@@ -75,7 +75,7 @@ DELIMITER ;
 		@param _modTime indica il timestamp della pagina voluta
 */
 DELIMITER |
-CREATE PROCEDURE approveModification(_ID INTEGER, _modTime TIMESTAMP)
+CREATE PROCEDURE approveModification(_ID INTEGER, _modTime TIMESTAMP(6))
 BEGIN
 	DECLARE _htmlCode TEXT;
 	DECLARE _img BLOB;
@@ -87,7 +87,7 @@ BEGIN
 	WHERE ID=_ID AND modTime=_modTime;
 
 	UPDATE _pages
-	SET htmlCode=_htmlCode,img=_img, posted = TRUE
+	SET insTime=_modTime,htmlCode=_htmlCode,img=_img, posted = TRUE
 	WHERE ID = _ID;
 	
 	DELETE FROM _events WHERE ID = _ID;
@@ -115,5 +115,16 @@ BEGIN
 	UPDATE _pages
 	SET posted=_posted
 	WHERE ID = _ID;
+END|
+DELIMITER ;
+
+/*	Rifiuta la modifica inserita 
+		@param _ID indica il codice della pagina modificata
+		@param _modTime indica il timestamp della modifica
+*/
+DELIMITER |
+CREATE PROCEDURE declineModification(_ID INTEGER, _modTime TIMESTAMP(6))
+BEGIN
+	DELETE FROM _modifiedPages WHERE ID = _ID AND modTime = _modTime;
 END|
 DELIMITER ;
