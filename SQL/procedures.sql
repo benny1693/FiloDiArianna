@@ -128,3 +128,22 @@ BEGIN
 	DELETE FROM _modifiedPages WHERE ID = _ID AND modTime = _modTime;
 END|
 DELIMITER ;
+
+/*	Crea una relazione da una pagina verso un'altra
+		@param _ID1 indica il codice identificativo della pagina
+		@param _ID2 indica il codice della pagina correlata
+*/
+DELIMITER |
+CREATE PROCEDURE insertRelationship(_ID1 INTEGER, _ID2 INTEGER)
+BEGIN
+	INSERT INTO _relations VALUES (_ID1,_ID2);
+END|
+DELIMITER ;
+
+/*	Elimina la pagina indicata */
+DELIMITER |
+CREATE PROCEDURE deletePage(_ID INTEGER)
+BEGIN
+	DELETE FROM _pages WHERE ID = _ID;
+END|
+DELIMITER ;
