@@ -418,6 +418,14 @@ nav li{
 	color: #ccc;
 	content: "/\00a0";
 }
+
+.breadcrumb > li {
+	display: inline-block;
+}
+
+.breadcrumb > .active {
+	color: #777;
+}
 /* END BREADCRUMB ############################################## */
 
 /* BUTTON ############################################## */
