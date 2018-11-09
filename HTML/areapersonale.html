@@ -1,34 +1,50 @@
 <!--versione ancora acerba della pagina dell'area personale(include il pannello di amministratore), necessita varie modifiche-->
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <title>Area personale</title>
-    <meta name="title" content="Area personale"/>
-    <meta name="description" content="Gestisci le pagine create"/>
-    <meta name="keyword" content="pagina, gestisci"/>
-    <meta name="author" content="Alessandro Spreafico"/>
-    <meta name="language" content="italian it"/>
-    <meta charset="UTF-8"/>   
-  </head>
 
-  <body>
-    <a href="crea-pagina.html">Crea una nuova pagina</a>  <!--porta  a pagina esterna di Laura-->
-    <div>
-      <h1>Pagine pendenti</h1>
-      <span><a href="pagina.html">Pagina</a> <a href="crea-pagina.html"> <img src="matita.jpg"/> </a>  <a href="elimina-pagina.html???"> <img src="bidone.jpg"/> </a> <a href="accetta-pagina.html???"> <img src="spunta.jpg"/> </a> </span>
-    </div>
-    <!--Non so bene come fare per accettare o eliminare una pagina, per ora ho messo un link a delle pagine specifiche html, anche se forse queste funzioni penso le fa il php--> 
-    
-    <div>
-      <h1>Pagine pubbicate</h1>
-       <span><a href="pagina.html">Pagina</a> <a href="crea-pagina.html"> <img src="matita.jpg"/> </a>  <a href="elimina-pagina.html???"> <img src="bidone.jpg"/> </a> <a href="accetta-pagina.html???"> <img src="spunta.jpg"/> </a> </span>
-    </div>
+<head>
+	<title>Area personale</title>
+	<meta name="title" content="Area personale" />
+	<meta name="description" content="Gestisci le pagine create" />
+	<meta name="keyword" content="pagina, gestisci" />
+	<meta name="author" content="Alessandro Spreafico" />
+	<meta name="language" content="italian it" />
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+</head>
 
-    <div>
-      <!-- FOOTER di Matteo --> 
-    </div>
-	
-  </body>
+<body>
+	<!-- HEADER / SIDEBAR -->
+	<div id="content" class="container-fluid">
+		<div class="overlay"></div>
+		<div id="page-content-wrapper">
+			<nav aria-label="breadcrumb">
+				<p>Ti trovi in:</p>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Area personale</li>
+				</ol>
+			</nav>
+			<section>
+				<a href="crea-pagina.html">Crea una nuova pagina</a>
+				<!--porta  a pagina esterna di Laura-->
+				<div>
+					<h1>Pagine pendenti</h1>
+					<span><a href="pagina.html">Pagina</a> <a href="crea-pagina.html"> <img src="matita.jpg" /> </a> <a href="elimina-pagina.html???"> <img src="bidone.jpg" /> </a> <a href="accetta-pagina.html???"> <img src="spunta.jpg" /> </a> </span>
+				</div>
+				<!--Non so bene come fare per accettare o eliminare una pagina, per ora ho messo un link a delle pagine specifiche html, anche se forse queste funzioni penso le fa il php-->
+
+				<div>
+					<h1>Pagine pubbicate</h1>
+					<span><a href="pagina.html">Pagina</a> <a href="crea-pagina.html"> <img src="matita.jpg" /> </a> <a href="elimina-pagina.html???"> <img src="bidone.jpg" /> </a> <a href="accetta-pagina.html???"> <img src="spunta.jpg" /> </a> </span>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<!-- FOOTER di Matteo -->
+</body>
+
 </html>
 
 
@@ -51,4 +67,3 @@ la pagina attuale rimane tra le pagine  pubblicate, ma viene creata una copia co
 se la pagina pendente viene accettata essa sostituisce la versione precedente sulle pagine pubblicate.
 Una eliminazione non richiede autorizazioni.
  -->
-
