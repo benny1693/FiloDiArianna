@@ -163,7 +163,7 @@ nav li{
 }
 
 .nav li > a.login-button:hover{
-	background: #09c;
+	background: #0247b9;
 }
 
 .navbar {
@@ -207,7 +207,7 @@ nav li{
 }
 
 .navbar-toggler:hover{
-	background: #09c;
+	background: #0247b9;
 }
 
 .navbar-toggler:hover, .navbar-toggler:focus {
@@ -244,7 +244,7 @@ nav li{
 	float: right;
 }
 
-.flipkart-navbar-input {
+.navbar-input {
     padding: 10px 15px;
     border-radius: 2px 0 0 2px;
     border: 1px solid rgba(153,153,153,.3);
@@ -253,20 +253,20 @@ nav li{
     letter-spacing: 0.0625em;
 }
 
-.flipkart-navbar-button {
+.navbar-button {
     background: #005AEE;
     border: none;
     border-radius: 0 25px 25px 0;
     color: #565656;
     padding: 10px 0;
     padding-bottom: 2.125rem;
-    margin-left: -1rem;
+    margin-left: -0.6rem;
     height: 2.6875rem;
     cursor: pointer;
 }
 
-.flipkart-navbar-button:hover{
-	background: #09c;
+.navbar-button:hover{
+	background: #0247b9;
 }
 
 #icon-search{
@@ -279,10 +279,19 @@ nav li{
 #sidebar-wrapper {
     width: 15rem;
     position: fixed;
-    left: -15rem;
     height: 100%;
     background: #003180;
     z-index: 1000;
+    transform: translateX(-15.9375rem);
+    -webkit-transition: transform 0.5s ease;
+       -moz-transition: transform 0.5s ease;
+    	 -o-transition: transform 0.5s ease;
+    		transition: transform 0.5s ease;
+	will-change: transform; /* rendering ottimizzto per maggior fluidità */
+}
+
+#sidebar-wrapper.toggled {
+    transform: translateX(-0.9375rem);
 }
 
 .sidebar-nav {
@@ -321,10 +330,6 @@ nav li{
     z-index: 9999;
 }
 
-#sidebar-wrapper.toggled {
-    left: 0;
-}
-
 @media (min-width: 768px){
 	.navbar-brand{
 		padding-left: 4.6875rem;
@@ -346,7 +351,7 @@ nav li{
 	#sidebar-wrapper{
 		position: fixed;
 	    width: 15rem;
-	    left: 0;
+	    transform: translateX(-0.9375rem);
 	    margin: 0;
 	    height: 100%;
 	}
@@ -358,6 +363,15 @@ nav li{
 #content{
 	position: relative;
 	padding-top: 7.685rem;
+}
+
+.overlay {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(250,250,250,.8);
+	z-index: 1;
 }
 
 #page-content-wrapper {
