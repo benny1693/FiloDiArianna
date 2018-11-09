@@ -9,20 +9,27 @@
 	<meta name="author" content="Benedetto Cosentino" />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, luoghi" />
 	<meta name="language" content="italian it" />
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 </head>
 
 <body>
-	<div>
-		<!-- HEADER / SIDEBAR -->
-		<div>
-			<div>
-				<p>Ti trovi in: <a href="index.html">Home</a> > <a href="scopri.html">Scopri</a> > Luoghi</p>
-			</div>
-			<div>
+	<!-- HEADER / SIDEBAR -->
+	<div id="content" class="container-fluid">
+		<div class="overlay"></div>
+		<div id="page-content-wrapper">
+			<nav aria-label="breadcrumb">
+				<p>Ti trovi in:</p>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="scopri.html">Scopri</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Luoghi</li>
+				</ol>
+			</nav>
+			<section>
 				<h1>Luoghi</h1>
 				<ul>
 					<li>
-						<div>
+						<div class="col-sm-6">
 							<h1><a href="luoghimitologici.html">Mitologici</a></h1>
 							<ul>
 								<li></li>
@@ -31,7 +38,7 @@
 					</li>
 
 					<li>
-						<div>
+						<div class="col-sm-6">
 							<h1><a href="luoghireali.html">Reali</a></h1>
 							<ul>
 								<li></li>
@@ -40,10 +47,10 @@
 					</li>
 
 				</ul>
-			</div>
+			</section>
 		</div>
-		<!-- FOOTER -->
 	</div>
+	<!-- FOOTER -->
 </body>
 
 </html>
