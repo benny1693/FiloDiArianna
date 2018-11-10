@@ -9,16 +9,23 @@
 	<meta name="author" content="Benedetto Cosentino" />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, eventi" />
 	<meta name="language" content="italian it" />
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 </head>
 
 <body>
-	<div>
-		<!-- HEADER / SIDEBAR -->
-		<div>
-			<div>
-				<p>Ti trovi in: <a href="index.html">Home</a> > <a href="scopri.html">Scopri</a> > Eventi</p>
-			</div>
-			<div>
+	<!-- HEADER / SIDEBAR -->
+	<div id="content" class="container-fluid">
+		<div class="overlay"></div>
+		<div id="page-content-wrapper">
+			<nav aria-label="breadcrumb">
+				<p>Ti trovi in:</p>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="scopri.html">Scopri</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Eventi</li>
+				</ol>
+			</nav>
+			<section>
 				<h1>Eventi</h1>
 				<p>Ricostruire un'esatta cronologia degli eventi della mitologia greca è praticamente impossibile. Spesso, infatti, è facile incontrare delle contraddizioni tra un mito e l'altro. Tuttavia, gli eventi della mitologia greca sono suddivisibili in 3 grandi categorie in base a come le divinità e gli esseri umani interagiscono.</p>
 				<dl>
@@ -31,16 +38,16 @@
 				</dl>
 				<ul>
 					<li>
-						<div>
+						<div class="col-sm-6">
 							<h1><a href="epocadei.html">Epoca degli Dei</a></h1>
 							<ul>
-								<li></li>
+								<li>asdf</li>
 							</ul>
 						</div>
 					</li>
 
 					<li>
-						<div>
+						<div class="col-sm-6">
 							<h1><a href="epocauomini.html">Epoca degli Dei e degli Uomini</a></h1>
 							<ul>
 								<li></li>
@@ -49,7 +56,7 @@
 					</li>
 
 					<li>
-						<div>
+						<div class="col-sm-12">
 							<h1><a href="epocaeroi.html">Epoca degli Eroi</a></h1>
 							<ul>
 								<li></li>
@@ -58,10 +65,10 @@
 					</li>
 
 				</ul>
-			</div>
+			</section>
 		</div>
-		<!-- FOOTER -->
 	</div>
+	<!-- FOOTER -->
 </body>
 
 </html>

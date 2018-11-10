@@ -9,27 +9,35 @@
 	<meta name="author" content="Benedetto Cosentino" />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, personaggi" />
 	<meta name="language" content="italian it" />
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 </head>
 
 <body>
-	<div>
-		<!-- HEADER / SIDEBAR -->
-		<div>
-			<div>
-				<p>Ti trovi in: <a href="index.html">Home</a> > <a href="scopri.html">Scopri</a> > <a href="personaggi.html">Personaggi</a> > Divinit&agrave;</p>
-			</div>
-			<div>
+	<div id="content" class="container-fluid">
+		<div class="overlay"></div>
+		<div id="page-content-wrapper">
+			<nav aria-label="breadcrumb">
+				<p>Ti trovi in:</p>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="scopri.html">Scopri</a></li>
+					<li class="breadcrumb-item"><a href="personaggi.html">Personaggi</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Divinit&agrave;</li>
+				</ol>
+			</nav>
+			<section>
 				<h1>Divinit&agrave;</h1>
 				<ul>
 					<li>
 						<!-- Contenitore di una voce data dalla query -->
 						<div>
-							<p>Nome</p>
-							<p>Autore,Ultima Modifica</p>
+							<p class="col-sm-6">Nome</p>
+							<p class="col-sm-3">Autore</p>
+							<p class="col-sm-3">Ultima Modifica</p>
 						</div>
 					</li>
 				</ul>
-			</div>
+			</section>
 		</div>
 		<!-- FOOTER -->
 	</div>
