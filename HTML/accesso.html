@@ -11,39 +11,55 @@
 
 <body>
 
-	<div>
-		<p>Ti trovi in: <a href="index.html"> Home </a> > Accesso </p>
-	</div>	
-	
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Accesso</li>
+	  </ol>
+	</nav>
+
 	<div>
 		<h1> Accedi </h1>
-		<form action="/action_page.php"> <!da cambiare ovviamente>
-			ID <br> 
-			<input type="text" name="id" value="">
-			<br>
-			Password <br>
-			<input type="text" name="psw" value="">
-			<br><br>
+		<form action="/action_page.php"> <!da cambiare>
+			<label for="id"> ID </label>
+			<input type="text" name="id" id="id" value="">
+			<label for="password"> Password </label>
+			<input type="text" name="password" id="password" value="">
 			<input type="submit" value="Vai">
 		</form>
-	</div> 
-	
+	</div>
+
 	<div>
 		<h1> Registrati </h1>
-		<form action="/action_page.php"> <!da cambiare ovviamente>
-			Username <br>
-			<input type="text" name="usr" value="">
-			<br>
-			Email <br>
-			<input type="text" name="mail" value="">
-			<br>
-			Password <br>
-			<input type="text" name="psw" value="">
-			<br><br>
-			<input type="submit" value="Continua">
-		</form>	
-	</div>	
-	
+		<form action="/action_page.php"> <!da cambiare>
+	  	<label for="username"> Username </label>
+	  	<input type="text" name="username" id="username" value="">
+	  	<label for="email"> Email </label>
+	  	<input type="text" name="email" id="email" value="">
+	  	<label for="password"> Password </label>
+	  	<input type="text" name="password" id="password" value="">
+	  	<input type="submit" value="Continua">
+	  </form>
+	</div>
+
+	<footer>
+		<div class="footer-copyright">© 2018 Copyright - All Rights Reserved</div>
+	</footer>
+
+	<!--	<div>
+			<h1> Accedi </h1>
+			<form action="/action_page.php"> <!da cambiare ovviamente>
+				ID <br>
+				<input type="text" name="id" value="">
+				<br>
+				Password <br>
+				<input type="text" name="psw" value="">
+				<br><br>
+				<input type="submit" value="Vai">
+			</form>
+		</div>
+	-->
+
 </body>
 
 </html>
