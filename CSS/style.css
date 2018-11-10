@@ -20,7 +20,6 @@ body {
 	color: #212529;
 	text-align: left;
 	background-color: #fff;
-	letter-spacing: 0.0625em;
 }
 
 h1, h2 {
@@ -68,6 +67,11 @@ a:hover {
 img {
 	vertical-align: middle;
 	border-style: none;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
 button {
@@ -123,15 +127,6 @@ header{
 
 nav li{
 	position: relative;
-}
-
-.clearfix:before,
-.clearfix:after{
-	display: table;
-	content: " ";
-}
-.clearfix:after{
-	clear: both;
 }
 
 /* HEADER AND SIDEBAR NAV ################################################ */
@@ -363,6 +358,7 @@ nav li{
 #content{
 	position: relative;
 	padding-top: 7.685rem;
+	background: #FFF;
 }
 
 .overlay {
@@ -474,6 +470,14 @@ nav li{
 	color: #fff;
     text-align: center;
 }
+
+@media (min-width: 768px){
+	.footer-copyright{
+		color: #fff;
+		text-align: center;
+		margin-left: 15rem;
+	}
+}
 /* END FOOTER ############################################## */
 
 /* GRID LAYOUT ############################################## */
@@ -498,7 +502,7 @@ nav li{
 }
 
 @media (min-width: 1200px) {
-	.container {
+	.container, .container-fluid {
 		max-width: 1140px;
 	}
 }
@@ -944,3 +948,24 @@ nav li{
 }
 
 /* END GRID LAYOUT ############################################## */
+
+/* FIX ################################################### */
+.row:before,
+.row:after,
+.navbar:before,
+.navbar:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after{
+	display: table;
+	content: " ";
+}
+
+.row:after,
+.navbar:after,
+.container:after,
+.container-fluid:after{
+	clear: both;
+}
+/* END FIX ################################################### */
