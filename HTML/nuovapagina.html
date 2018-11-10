@@ -23,7 +23,7 @@
 					</div>
 					<div class="col-sm-2 col-sm-push-8 col-xs-4 col-xs-push-3">
 						<ul>
-					    	<li><a class="login-button">Accedi</a></li>
+					    	<li><a class="login-button" href="accesso.html">Accedi</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-1 col-xs-2 col-xs-push-4">
@@ -45,7 +45,7 @@
 			</div>
 			<nav id="sidebar-wrapper">
 				<ul class="sidebar-nav">
-					<li><a href="index.html">Home</li>
+				  <li><a href="index.html">Home</li>
 					<li><a href="scopri.html">Scopri</a></li>
 					<li><a href="contatti.html">Contatti</a></li>
 				</ul>
@@ -61,43 +61,40 @@
 				<p>Ti trovi in:</p>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Accesso</li>
+          <li class="breadcrumb-item"><a href="areapersonale.html">Area Personale</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Nuova Pagina</li>
 				</ol>
 			</nav>
 
 			<section>
 				<div id="accesso">
-					<h1> Accedi </h1>
+					<h1> Crea una nuova pagina! </h1>
 					<form action="/action_page.php"> <!-- mettere giusto php -->
-						<label for="id"> ID </label>
-						<input type="text" name="id" id="id" value="">
-						<label for="password"> Password </label>
-						<input type="text" name="password" id="password" value="">
-						<input type="submit" value="Vai">
-					</form>
-				</div>
-
-				<div id="registrazione">
-					<h1> Registrati </h1>
-					<form action="/action_page.php"> <!-- mettere giusto php -->
-						<label for="username"> Username </label>
-						<input type="text" name="username" id="username" value="">
-						<label for="email"> Email </label>
-						<input type="text" name="email" id="email" value="">
-						<label for="password"> Password </label>
-						<input type="text" name="password" id="password" value="">
-						<input type="submit" value="Continua">
+            <p> Carica l'immagine che vuoi
+              inserire all'inizio della pagina che vuoi creare. </p>
+						<label for="immagine"> Immagine </label>
+						<input type="file" name="immagine" id="immagine" value="">
+            <p> Scrivi il titolo che vuoi dare alla tua pagina. </p>
+						<label for="titolo"> Titolo </label>
+						<input type="text" name="titolo" id="titolo" value="">
+            <label for="descrizione"> Descrizione </label>
+            <textarea rows="15" cols="60" id="descrizione"></textarea>
+            <p> Se la pagina che vuoi creare ha dei collegamenti ad altra
+              pagine già esistenti nel nostro sito, aggiungi qui i loro codici. </p>
+            <label for="correlati"> Correlati </label>
+						<input type="url" name="correlati" id="correlati" value="#">
+						<input type="submit" value="Fatto">
 					</form>
 				</div>
 
 			</section>
-		</div>
-	</div>
+  		</div>
+  	</div>
 
-	<footer>
-		<div class="footer-copyright">© 2018 Copyright - All Rights Reserved</div>
-	</footer>
+  <footer>
+  	<div class="footer-copyright">© 2018 Copyright - All Rights Reserved</div>
+  </footer>
 
-</body>
+  </body>
 
-</html>
+  </html>
