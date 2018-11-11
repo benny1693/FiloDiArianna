@@ -8,6 +8,7 @@
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+	<script src="../JS/custom.js"></script>
 </head>
 
 <body>
@@ -23,29 +24,29 @@
 					</div>
 					<div class="col-sm-2 col-sm-push-8 col-xs-4 col-xs-push-3">
 						<ul>
-					    	<li><a class="login-button">Accedi</a></li>
+							<li><a class="login-button">Accedi</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-1 col-xs-2 col-xs-push-4">
 						<button id="burger-menu" type="button" class="navbar-toggler">
-					        <span class="navbar-toggler-icon"></span>
+							<span class="navbar-toggler-icon"></span>
 						</button>
 					</div>
 					<div class="col-sm-6 col-sm-pull-1 col-xs-12">
-		                <form class="navbar-form clearfix" action="redirect.php" method="post">
-		                    <input class="navbar-input col-xs-11" type="text" placeholder="Search" />
-		                    <button class="navbar-button col-xs-1">
-		                        <svg id="icon-search">
-		                            <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
-		                        </svg>
-		                    </button>
-		                </form>
-	    			</div>
+						<form class="navbar-form clearfix" action="redirect.php" method="post">
+							<input class="navbar-input col-xs-11" type="text" placeholder="Search" />
+							<button class="navbar-button col-xs-1">
+								<svg id="icon-search">
+									<path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
+								</svg>
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			<nav id="sidebar-wrapper">
 				<ul class="sidebar-nav">
-					<li><a href="index.html">Home</li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="scopri.html">Scopri</a></li>
 					<li><a href="contatti.html">Contatti</a></li>
 				</ul>
@@ -53,7 +54,7 @@
 		</div>
 	</header>
 
-<!-- INIZIO PAGINA -->
+	<!-- INIZIO PAGINA -->
 	<div id="content" class="container-fluid">
 		<div class="overlay"></div>
 		<div id="page-content-wrapper">
@@ -67,29 +68,30 @@
 
 			<section>
 				<div id="accesso">
-					<h1> Accedi </h1>
-					<form action="/action_page.php"> <!-- mettere giusto php -->
+					<h1>Accedi</h1>
+					<form action="/action_page.php">
+						<!-- mettere giusto php -->
 						<label for="id"> ID </label>
-						<input type="text" name="id" id="id" value="">
+						<input type="text" name="id" id="id" value="" />
 						<label for="password"> Password </label>
-						<input type="text" name="password" id="password" value="">
-						<input type="submit" value="Vai">
+						<input type="text" name="password" id="password" value="" />
+						<input type="submit" value="Vai" />
 					</form>
 				</div>
 
 				<div id="registrazione">
-					<h1> Registrati </h1>
-					<form action="/action_page.php"> <!-- mettere giusto php -->
-						<label for="username"> Username </label>
-						<input type="text" name="username" id="username" value="">
-						<label for="email"> Email </label>
-						<input type="text" name="email" id="email" value="">
-						<label for="password"> Password </label>
-						<input type="text" name="password" id="password" value="">
-						<input type="submit" value="Continua">
+					<h1>Registrati</h1>
+					<form action="/action_page.php">
+						<!-- mettere giusto php -->
+						<label for="username">Username</label>
+						<input type="text" name="username" id="username" value="" />
+						<label for="email">Email</label>
+						<input type="text" name="email" id="email" value="" />
+						<label for="password">Password</label>
+						<input type="text" name="password" id="password" value="" />
+						<input type="submit" value="Continua" />
 					</form>
 				</div>
-
 			</section>
 		</div>
 	</div>
@@ -97,7 +99,6 @@
 	<footer>
 		<div class="footer-copyright">© 2018 Copyright - All Rights Reserved</div>
 	</footer>
-
 </body>
 
 </html>
