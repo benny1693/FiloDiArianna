@@ -8,6 +8,7 @@
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/provelaura.css" />
 	<script src="../JS/custom.js"></script>
 </head>
 
@@ -69,29 +70,43 @@
 			<section>
 				<div id="accesso">
 					<h1>Accedi</h1>
-					<form action="/action_page.php">
-						<!-- mettere giusto php -->
-						<label for="id"> ID </label>
-						<input type="text" name="id" id="id" value="" />
-						<label for="password"> Password </label>
-						<input type="text" name="password" id="password" value="" />
-						<input type="submit" value="Vai" />
-					</form>
+					<div class="sezione">
+						<form action="/action_page.php">
+							<!-- mettere giusto php -->
+							<div class="sottosezione">
+								<label for="id">ID</label>
+								<input type="text" name="id" id="id" value="" />
+							</div>
+							<div class="sottosezione">
+								<label for="password">Password</label>
+								<input type="text" name="password" id="password" value="" />
+							</div>
+							<input type="submit" value="Vai" />
+						</form>
+					</div>
 				</div>
 
 				<div id="registrazione">
 					<h1>Registrati</h1>
-					<form action="/action_page.php">
-						<!-- mettere giusto php -->
-						<label for="username">Username</label>
-						<input type="text" name="username" id="username" value="" />
-						<label for="email">Email</label>
-						<input type="text" name="email" id="email" value="" />
-						<label for="password">Password</label>
-						<input type="text" name="password" id="password" value="" />
-						<input type="submit" value="Continua" />
-					</form>
-				</div>
+					<div class="sezione">
+						<form action="/action_page.php">
+							<!-- mettere giusto php -->
+							<div class="sottosezione">
+								<label for="username">Username</label>
+								<input type="text" name="username" id="username" value="" />
+							</div>
+							<div class="sottosezione">
+								<label for="email">Email</label>
+								<input type="text" name="email" id="email" value="" />
+							</div>
+							<div class="sottosezione">
+								<label for="password">Password</label>
+								<input type="text" name="password" id="password" value="" />
+							</div>
+							<input type="submit" value="Continua" />
+						</form>
+				 </div>
+			 </div>
 			</section>
 		</div>
 	</div>
