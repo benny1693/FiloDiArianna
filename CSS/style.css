@@ -307,7 +307,7 @@ nav li {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	margin-top: 40px;
+	padding-top: 40px;
 }
 
 .sidebar-nav a,
@@ -320,8 +320,14 @@ nav li {
 	;
 }
 
+<<<<<<< HEAD
 .sidebar-nav:first-child {
 	border-top: 2px solid rgba(255, 255, 255, 0.1);
+=======
+.sidebar-nav li:first-child {
+	border-top: 2px solid rgba(255, 255, 255, 0.1);
+	;
+>>>>>>> fixlocale
 }
 
 .sidebar-nav a:hover {
@@ -333,10 +339,10 @@ nav li {
 	display: block;
 	background: #fff;
 	height: 100%;
-	width: 10px;
+	width: 5px;
 	position: absolute;
-	left: 0;
 	top: 0;
+	left: 0;
 	z-index: 9999;
 }
 
