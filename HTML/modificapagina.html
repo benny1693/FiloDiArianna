@@ -2,12 +2,13 @@
 <html lang="it">
 
 <head>
-	<meta name="title" content="Accesso | Filo di Arianna" />
-	<title>Pagina di accesso | Filo di Arianna</title>
+	<meta name="title" content="Modifica Pagina | Filo di Arianna" />
+	<title>Modifica Pagina | Filo di Arianna</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
-	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
+	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, modifica, pagina" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/provelaura.css" />
 	<script src="../JS/custom.js"></script>
 </head>
 
@@ -68,22 +69,30 @@
 			</nav>
 
 			<section>
-				<div id="accesso">
-					<h1> Modfica qui la tua pagina: #
-						<!--CODICE PAGINA -->
-					</h1>
-					<form action="/action_page.php">
-						<!-- mettere giusto php -->
-						<label for="immagine"> Immagine </label>
-						<input type="file" name="immagine" id="immagine" value="" />
-						<label for="titolo"> Titolo </label>
-						<input type="text" name="titolo" id="titolo" value="" />
-						<label for="descrizione"> Descrizione </label>
-						<textarea rows="15" cols="60" id="descrizione"></textarea>
-						<label for="correlati"> Correlati </label>
-						<input type="url" name="correlati" id="correlati" value="" />
-						<input type="submit" value="Modifica" />
-					</form>
+				<div id="modificapagina">
+					<h1> Modfica qui la tua pagina: #<!--CODICE PAGINA --></h1>
+					<div class="sezione">
+						<form action="/action_page.php">
+							<!-- mettere giusto php -->
+							<div class="sottosezione">
+								<label for="immagine">Immagine</label>
+								<input type="file" name="immagine" id="immagine" value="" />
+							</div>
+							<div class="sottosezione">
+								<label for="titolo">Titolo</label>
+								<input type="text" name="titolo" id="titolo" value="" />
+							</div>
+							<div class="sottosezione">
+								<label for="descrizione">Descrizione</label>
+								<textarea rows="15" cols="60" id="descrizione"></textarea>
+							</div>
+							<div class="sottosezione">
+								<label for="correlati">Correlati</label>
+								<input type="url" name="correlati" id="correlati" value="#" />
+							</div>
+							<input type="submit" value="Modifica" />
+						</form>
+					</div>
 				</div>
 			</section>
 		</div>
