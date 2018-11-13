@@ -320,14 +320,9 @@ nav li {
 	;
 }
 
-<<<<<<< HEAD
-.sidebar-nav:first-child {
-	border-top: 2px solid rgba(255, 255, 255, 0.1);
-=======
 .sidebar-nav li:first-child {
 	border-top: 2px solid rgba(255, 255, 255, 0.1);
 	;
->>>>>>> fixlocale
 }
 
 .sidebar-nav a:hover {
