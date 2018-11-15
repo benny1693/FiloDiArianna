@@ -60,7 +60,6 @@
 		<div class="overlay"></div>
 		<div id="page-content-wrapper">
 			<nav aria-label="breadcrumb">
-				<p>Ti trovi in:</p>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 					<li class="breadcrumb-item"><a href="areapersonale.html">Area Personale</a></li>
@@ -71,38 +70,47 @@
 			<section>
 				<div id="nuovapagina">
 					<h1>Crea una nuova pagina!</h1>
-					<div class="sezione">
-						<form action="/action_page.php">
-							<!-- mettere giusto php -->
-							<div class="sottosezione">
-								<p>Carica l'immagine che vuoi inserire all'inizio della pagina che vuoi creare.</p>
-								<label for="immagine">Immagine</label>
-								<input type="file" name="immagine" id="immagine" value="" />
-							</div>
-							<div class="sottosezione">
-								<p>Scrivi il titolo che vuoi dare alla tua pagina.</p>
-								<label for="titolo">Titolo</label>
-								<input type="text" name="titolo" id="titolo" value="" />
-							</div>
-							<div class="sottosezione">
-								<p>Inserisci il testo della pagina.</p>
-								<label for="descrizione">Descrizione</label>
-								<textarea rows="15" cols="60" id="descrizione"></textarea>
-							</div>
-							<div class="sottosezione">
-								<p>Se la pagina che vuoi creare ha dei collegamenti ad altra
-									pagine già esistenti nel nostro sito, aggiungi qui i loro codici.</p>
-								<label for="correlati">Correlati</label>
-								<input type="url" name="correlati" id="correlati" value="#" />
-							</div>
-							<input type="submit" value="Fatto" />
+
+						<form>
+
+						  <div class="form-group">
+						    <label for="FormControlFile">Carica l'immagine che vuoi inserire.</label>
+						    <input type="file" class="form-control-file" id="FormControlFile">
+						  </div>
+						 <!-- 	ALTERNATIVA
+							<div class="custom-file">
+						    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+						    <label class="custom-file-label" for="validatedCustomFile">Scegli immagine..</label>
+						    <div class="invalid-feedback">Example invalid custom file feedback</div>
+						  </div>
+							-->
+						<div class="form-group">
+					    <label for="inputTitolo">Titolo</label>
+					    <!--<div class="col-sm-10">-->
+					      <input type="text" class="form-control" id="inputTitolo" placeholder="Titolo">
+					  </div>
+
+						<div class="form-group">
+					    <label for="FormControlTextarea1">Descrizione</label>
+					    <textarea class="form-control" id="FormControlTextarea1" rows="10"></textarea>
+					  </div>
+
+						<div class="form-group">
+					    <label for="InputCorrelati">Pagine correlate</label>
+					    <input type="text" class="form-control" id="InputCorrelati" aria-describedby="emailHelp" placeholder="13, 5, 9">
+					    <small id="correlatihelp" class="form-text text-muted">Separa ogni codice da una virgola e uno spazio.</small>
+					  </div>
+
+						<input type="submit" value="Fatto" />
 						</form>
 					</div>
-				</div>
-			</section>
+					</section>
+			</div>
+		</div>
+
 		</div>
 	</div>
-	<footer>
+	<footer class="container-fluid">
 		<div class="footer-copyright">© 2018 Copyright - All Rights Reserved</div>
 	</footer>
 </body>

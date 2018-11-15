@@ -60,7 +60,6 @@
 		<div class="overlay"></div>
 		<div id="page-content-wrapper">
 			<nav aria-label="breadcrumb">
-				<p>Ti trovi in:</p>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 					<li class="breadcrumb-item"><a href="areapersonale.html">Area Personale</a></li>
@@ -71,9 +70,8 @@
 			<section>
 				<div id="modificapagina">
 					<h1> Modfica qui la tua pagina: #<!--CODICE PAGINA --></h1>
-					<div class="sezione">
+					<!--<div class="sezione">
 						<form action="/action_page.php">
-							<!-- mettere giusto php -->
 							<div class="sottosezione">
 								<label for="immagine">Immagine</label>
 								<input type="file" name="immagine" id="immagine" value="" />
@@ -94,11 +92,42 @@
 						</form>
 					</div>
 				</div>
+			-->
+					<form>
+
+					<div class="form-group">
+						<label for="FormControlFile">Carica l'immagine che vuoi sostituire.</label>
+						<input type="file" class="form-control-file" id="FormControlFile">
+					</div>
+
+					<div class="form-group">
+						<label for="inputTitolo" class="col-sm-2 col-form-label">Titolo</label>
+						<!--<div class="col-sm-10">-->
+							<input type="text" class="form-control" id="inputTitolo" placeholder="">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">Descrizione</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="InputCorrelati">Pagine correlate</label>
+						<input type="text" class="form-control" id="InputCorrelati" aria-describedby="emailHelp" placeholder="7, 122">
+						<small id="correlatihelp" class="form-text text-muted">Ricordati di separare ogni codice da una virgola e uno spazio.</small>
+					</div>
+
+					<input type="submit" value="Fatto" />
+					</form>
+				</div>
+				</div>
+			</div>
 			</section>
 		</div>
 	</div>
 
-	<footer>
+	<footer class="container-fluid">
 		<div class="footer-copyright">© 2018 Copyright - All Rights Reserved</div>
 	</footer>
 </body>
