@@ -75,10 +75,7 @@
 					<div class="form-group row">
 				    <label for="inputUsername0" class="col-sm-2 col-form-label">Username</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputUsername0" placeholder="Username" required>
-							<div class="invalid-tooltip">
-								Inserisci uno username valido.
-							</div>
+							<input type="text" class="form-control" id="inputUsername0" placeholder="Username" required>
 				    </div>
 						<!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required> -->
 				  </div>
@@ -87,11 +84,11 @@
 				    <label for="inputPassword0" class="col-sm-2 col-form-label">Password</label>
 				    <div class="col-sm-10">
 				      <input type="password" class="form-control" id="inputPassword0" placeholder="Password">
-							<div class="invalid-tooltip">
-								Inserisci una password valida.
-							</div>
 				    </div>
 				  </div>
+					<div class="invalid-feedback">
+						Inserisci password o username validi.
+					</div>
 
 					<div class="form-group row">
 				    <div class="col-sm-2">Ricordami</div>
@@ -102,6 +99,7 @@
 				      </div>
 				    </div>
 				  </div>
+
 				  <div class="form-group row">
 				    <div class="col-sm-10">
 				      <button type="submit" class="btn btn-primary">Vai</button>
@@ -117,9 +115,12 @@
 				  <div class="form-group row">
 				    <label for="inputEmail1" class="col-sm-2 col-form-label">Email</label>
 				    <div class="col-sm-10">
-				      <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+				      <input type="email" class="form-control" id="inputEmail1" placeholder="Email" data-error="Mail invalida" required>
+							<!-- <div class="help-block with-errors"></div> -->
 				    </div>
 				  </div>
+
+					<!-- <label for="inputEmail" class="control-label">Email</label> -->
 
 					<div class="form-group row">
 				    <label for="inputUsername1" class="col-sm-2 col-form-label">Username</label>
@@ -131,13 +132,16 @@
 				  <div class="form-group row">
 				    <label for="inputPassword1" class="col-sm-2 col-form-label">Password</label>
 				    <div class="col-sm-10">
-				      <input type="password" data-minlength="6" class="form-control" id="inputPassword1" placeholder="Password" required>
-							<div class="help-block">La password deve contenere almeno 6 caratteri.</div>
+				      <input type="password" data-minlength="6" data-maxlength="12" class="form-control" id="inputPassword1" placeholder="Password" required>
+							<p class="help-block">La password deve contenere tra 6-12 caratteri.</p>
 						</div>
-						<label for="inputPassword2" class="col-sm-2 col-form-label">Conferma password</label>
+						<label for="inputPasswordConfirm" class="col-sm-2 col-form-label">Conferma password</label>
 						<div class="col-sm-10">
-			        <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword1" data-match-error="Oops, non combacia" placeholder="Conferma password" required>
-			        <div class="help-block with-errors"></div>
+			        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Conferma password" required>
+			        <!-- <div class="help-block with-errors"></div> -->
+							<div class="invalid-feedback">
+								Le password non combaciano.
+							</div>
 			      </div>
 				  </div>
 
@@ -149,7 +153,7 @@
 
 				</form>
 			</div>
-			
+
 			</section>
 		</div>
 	</div>
