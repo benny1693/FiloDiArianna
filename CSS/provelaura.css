@@ -1,21 +1,43 @@
-
+/* il padding ha lo sfondo, il margine no
+ usare caretteri con grazie (per la stampa), per lo schermo senza grazie */
 #accesso h1{
   font-weight: bold;
 }
 
-#accesso #id #password{
-	text-decoration-style: solid;
-  font-family: fantasy;
+label{
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #registrazione h1{
   font-weight: bold;
 }
 
-#registrazione .sezione .sottosezione{
-
-}
-
 #sezione h1{
   font-weight: bold;
+}
+
+#accesso button[type=submit] {
+  border: 3px solid #555;
+  background-color: rgb(249, 249, 243);
+}
+
+#registrazione button[type=submit] {
+  border: 3px solid #555;
+  background-color: rgb(249, 249, 243);
+}
+
+#accesso input {
+  border: solid #555;
+  border-color: blue;
+  background-color: rgb(249, 249, 239);
+}
+
+#registrazione input {
+  border: solid #555;
+  border-color: blue;
+  background-color: rgb(249, 249, 239);
+}
+
+.col-sm-2{
+  font-family: sans-serif;
 }

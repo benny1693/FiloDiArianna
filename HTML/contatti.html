@@ -2,11 +2,11 @@
 <html lang="it">
 
 <head>
-	<meta name="title" content="Modifica Pagina | Filo di Arianna" />
-	<title>Modifica Pagina | Filo di Arianna</title>
+	<meta name="title" content="Contatti | Filo di Arianna" />
+	<title>Contatti | Filo di Arianna</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
-	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, modifica, pagina" />
+	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" href="../CSS/provelaura.css" />
 	<script src="../JS/custom.js"></script>
@@ -49,7 +49,7 @@
 				<ul class="sidebar-nav">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="scopri.html">Scopri</a></li>
-					<li><a href="contatti.html">Contatti</a></li>
+					<li class="active"><span>Contatti</span></li>
 				</ul>
 			</nav>
 		</div>
@@ -62,67 +62,35 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item"><a href="areapersonale.html">Area Personale</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Modifica Pagina</li>
+					<li class="breadcrumb-item active" aria-current="page">Contatti</li>
 				</ol>
 			</nav>
 
 			<section>
-				<div id="modificapagina">
-					<h1> Modfica qui la tua pagina: #<!--CODICE PAGINA --></h1>
-					<!--<div class="sezione">
-						<form action="/action_page.php">
-							<div class="sottosezione">
-								<label for="immagine">Immagine</label>
-								<input type="file" name="immagine" id="immagine" value="" />
-							</div>
-							<div class="sottosezione">
-								<label for="titolo">Titolo</label>
-								<input type="text" name="titolo" id="titolo" value="" />
-							</div>
-							<div class="sottosezione">
-								<label for="descrizione">Descrizione</label>
-								<textarea rows="15" cols="60" id="descrizione"></textarea>
-							</div>
-							<div class="sottosezione">
-								<label for="correlati">Correlati</label>
-								<input type="url" name="correlati" id="correlati" value="#" />
-							</div>
-							<input type="submit" value="Modifica" />
-						</form>
-					</div>
+
+				<div id="contattomail">
+					<h1> <span lang="en">E-mail</span> </h1>
+					<p>La nostra <span lang="en">mail</span>: filo_arianna@gmail.com</p>
 				</div>
-			-->
-					<form>
 
-					<div class="form-group">
-						<label for="FormControlFile">Carica l'immagine che vuoi sostituire.</label>
-						<input type="file" class="form-control-file" id="FormControlFile">
-					</div>
-
-					<div class="form-group">
-						<label for="inputTitolo" class="col-sm-2 col-form-label">Titolo</label>
-						<!--<div class="col-sm-10">-->
-							<input type="text" class="form-control" id="inputTitolo" placeholder="">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Descrizione</label>
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-					</div>
-
-					<div class="form-group">
-						<label for="InputCorrelati">Pagine correlate</label>
-						<input type="text" class="form-control" id="InputCorrelati" aria-describedby="emailHelp" placeholder="7, 122">
-						<small id="correlatihelp" class="form-text text-muted">Ricordati di separare ogni codice da una virgola e uno spazio.</small>
-					</div>
-
-					<input type="submit" value="Fatto" />
-					</form>
+				<div id="contattotelefonico">
+					<h1>Telefono</h1>
+					<p>Puoi chiamarci ogni giorno dalle 8:00 alle 20:00 al numero: 011 3456221.</p>
 				</div>
+
+				<div id="contattomessaggio">
+					<h1>Oppure.. manda qui il tuo messaggio!</h1>
+					<div class="form-group">
+				    <!--<label for="FormControlTextarea1">Scrivi</label>-->
+				    <textarea class="form-control" id="FormControlTextarea1" rows="8"></textarea>
+				  </div>
+					<div class="form-group row">
+				    <div class="col-sm-10">
+				      <button type="submit" class="btn btn-primary">Invia</button>
+				    </div>
+				  </div>
 				</div>
-			</div>
+
 			</section>
 		</div>
 	</div>
