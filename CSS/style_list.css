@@ -1,0 +1,56 @@
+ul.query > li:hover {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+ul.query > li img {
+	float: left;
+	width: 4em;
+}
+
+ul.query > li p {
+	margin-left: 5em;
+}
+
+nav.pagination > ol {
+	list-style-type: none;
+}
+
+nav.pagination > ol > li {
+	display: inline-block;
+}
+
+nav.pagination a {
+	border: 0.5px solid rgba(0, 0, 0, 0.5);
+	margin-right: -0.29em;
+	padding: 0.2em 1em;
+}
+
+nav.pagination a:hover {
+	background-color: #000000;
+	color: #ffffff;
+	z-index: -1000;
+}
+
+nav.pagination > ol > li:first-child > a,
+nav.pagination > ol > li:nth-child(2) > a {
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+}
+
+nav.pagination > ol > li:last-child > a,
+nav.pagination > ol > li:nth-last-child(2) > a {
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+nav.pagination > ol > li:first-child > a {
+	border-right: 0;
+	margin-right: -0.8em;
+	padding-right: 1em;
+}
+
+nav.pagination > ol > li:last-child > a {
+	border-left: 0;
+	margin-left: -0.5em;
+	padding-left: 1em;
+}
