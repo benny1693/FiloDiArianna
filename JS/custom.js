@@ -1,11 +1,10 @@
 window.onload = load;
 function load() {
 	document.getElementById("burger-menu").addEventListener("touchend", click);
-	var overlay = document.querySelector("#content .overlay");
+	document.querySelector("#sidebar-wrapper > .close").addEventListener("touchend", click);
 
 	function click(){
 		var el = document.getElementById("sidebar-wrapper");
 		el.classList.toggle("toggled");
-		overlay.style.display = overlay.style.display == "block" ? "none" : "block";
 	}
 }
