@@ -60,6 +60,7 @@
 		<div class="overlay"></div>
 		<div id="page-content-wrapper">
 			<nav aria-label="breadcrumb">
+				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Accesso</li>
@@ -68,84 +69,84 @@
 
 			<section>
 
-			<div id="accesso">
-				<h1>Accedi</h1>
+				<div id="accesso">
+					<h1>Accedi</h1>
 
-				<form class="needs-validation" novalidate>
-					<div class="form-group row">
-				    <label for="inputUsername0" class="col-sm-2 col-form-label">Username</label>
-				    <div class="col-sm-10">
-							<input type="text" class="form-control" id="inputUsername0" placeholder="Username" required>
-				    </div>
-						<!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required> -->
-				  </div>
-
-				  <div class="form-group row">
-				    <label for="inputPassword0" class="col-sm-2 col-form-label">Password</label>
-				    <div class="col-sm-10">
-				      <input type="password" class="form-control" id="inputPassword0" placeholder="Password">
-				    </div>
-				  </div>
-					<div class="invalid-feedback">
-						Inserisci password o username validi.
-					</div>
-
-					<div class="form-group row">
-				    <div class="col-sm-2">Ricordami</div>
-				    <div class="col-sm-10">
-				      <div class="form-check">
-				        <input class="form-check-input" type="checkbox" id="gridCheck1">
-				        <label class="form-check-label" for="gridCheck1">Ricorda le mie credenziali per i prossimi accessi.</label>
-				      </div>
-				    </div>
-				  </div>
-
-				  <button type="submit" class="btn btn-primary">Vai</button>
-
-				</form>
-			</div>
-
-			<div id="registrazione">
-				<h1>Registrati</h1>
-
-				<form data-toggle="validator" role="form">
-				  <div class="form-group row">
-				    <label for="inputEmail1" class="col-sm-2 col-form-label">Email</label>
-				    <div class="col-sm-10">
-				      <input type="email" class="form-control" id="inputEmail1" placeholder="Email" data-error="Mail invalida" required>
-							<!-- <div class="help-block with-errors"></div> -->
-				    </div>
-				  </div>
-
-					<!-- <label for="inputEmail" class="control-label">Email</label> -->
-
-					<div class="form-group row">
-				    <label for="inputUsername1" class="col-sm-2 col-form-label">Username</label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputUsername1" placeholder="Username">
-				    </div>
-				  </div>
-
-				  <div class="form-group row">
-				    <label for="inputPassword1" class="col-sm-2 col-form-label">Password</label>
-				    <div class="col-sm-10">
-				      <input type="password" data-minlength="6" data-maxlength="12" class="form-control" id="inputPassword1" placeholder="Password" required>
-							<p class="help-block">La password deve contenere tra 6-12 caratteri.</p>
-						</div>
-						<label for="inputPasswordConfirm" class="col-sm-2 col-form-label">Conferma password</label>
-						<div class="col-sm-10">
-			        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Conferma password" required>
-			        <!-- <div class="help-block with-errors"></div> -->
-							<div class="invalid-feedback">
-								Le password non combaciano.
+					<form class="needs-validation" novalidate>
+						<div class="form-group row">
+							<label for="inputUsername0" class="col-sm-2 col-form-label">Username</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputUsername0" placeholder="Username" required>
 							</div>
-			      </div>
-				  </div>
+							<!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required> -->
+						</div>
 
-		      <button type="submit" class="btn btn-primary">Fatto</button>
+						<div class="form-group row">
+							<label for="inputPassword0" class="col-sm-2 col-form-label">Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword0" placeholder="Password">
+							</div>
+						</div>
+						<div class="invalid-feedback">
+							Inserisci password o username validi.
+						</div>
 
-				</form>
-			</div>
+						<div class="form-group row">
+							<div class="col-sm-2">Ricordami</div>
+							<div class="col-sm-10">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="gridCheck1">
+									<label class="form-check-label" for="gridCheck1">Ricorda le mie credenziali per i prossimi accessi.</label>
+								</div>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Vai</button>
+
+					</form>
+				</div>
+
+				<div id="registrazione">
+					<h1>Registrati</h1>
+
+					<form data-toggle="validator" role="form">
+						<div class="form-group row">
+							<label for="inputEmail1" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="inputEmail1" placeholder="Email" data-error="Mail invalida" required>
+								<!-- <div class="help-block with-errors"></div> -->
+							</div>
+						</div>
+
+						<!-- <label for="inputEmail" class="control-label">Email</label> -->
+
+						<div class="form-group row">
+							<label for="inputUsername1" class="col-sm-2 col-form-label">Username</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputUsername1" placeholder="Username">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="inputPassword1" class="col-sm-2 col-form-label">Password</label>
+							<div class="col-sm-10">
+								<input type="password" data-minlength="6" data-maxlength="12" class="form-control" id="inputPassword1" placeholder="Password" required>
+								<p class="help-block">La password deve contenere tra 6-12 caratteri.</p>
+							</div>
+							<label for="inputPasswordConfirm" class="col-sm-2 col-form-label">Conferma password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Conferma password" required>
+								<!-- <div class="help-block with-errors"></div> -->
+								<div class="invalid-feedback">
+									Le password non combaciano.
+								</div>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Fatto</button>
+
+					</form>
+				</div>
 
 			</section>
 		</div>

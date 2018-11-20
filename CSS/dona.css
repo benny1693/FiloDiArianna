@@ -1,0 +1,18 @@
+#dona {
+	text-align: center;
+}
+
+#dona > h2 {
+	font-family: "Times New Roman";
+	font-style: italic;
+	font-size: 1.5em;
+	padding: 1em 0;
+}
+
+#dona > h2 > p {
+	margin: 0;
+}
+
+#dona dt {
+	font-size: 1.2em;
+}
