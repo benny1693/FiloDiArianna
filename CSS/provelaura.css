@@ -7,7 +7,7 @@
 }
 
 #registrazione h1{
-font-weight: bold;
+  font-weight: bold;
 }
 
 #accesso{
@@ -26,8 +26,24 @@ font-weight: bold;
   padding-top: 2rem;
 }
 
+#contattomail h1{
+  font-weight: bold;
+}
+
+#contattotelefonico h1{
+  font-weight: bold;
+}
+
+#contattomessaggio h1{
+  font-weight: bold;
+}
+
+.form-check-label{
+  font-size: 88%;
+}
+
 .help-block{
-  width:
+  font-size: 88%;
 }
 
 /*larghezza fissa, margine dx e sx auto*/
@@ -104,21 +120,48 @@ label{
   color: #dc3545;
 }
 
-input,
-button,
-select,
-optgroup,
-textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
 .col-sm-24, .col-sm-101 {
   position: relative;
   width: 100%;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.btn-outline-primary {
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  color: #007bff;
+  background-color: transparent;
+}
+
+/*
+textarea {
+  overflow: auto;
+  resize: vertical;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+*/
+#FormControlTextarea{
+  width: 60%;
+  line-height: inherit;
+  height: 20rem;
 }
