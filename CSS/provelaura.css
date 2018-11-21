@@ -1,6 +1,17 @@
-
- /* il padding ha lo sfondo, il margine no
- usare caretteri con grazie (per la stampa), per lo schermo senza grazie */
+/*- il padding ha lo sfondo, il margine no
+ 	-usare caretteri con grazie (per la stampa), per lo schermo senza grazie
+ 	- display none non fa leggere neanche allo screen reader 
+*/
+  
+ /* IN HTML: - usare scope row e scope col nelle tabelle per gli handicappati
+ 						 - xml:lang="en" per qualcosa in un altra lingua
+ 						 - per le abbreviazioni usare abbr title="..." 
+ 						 
+ 	consigli: - non permettere un link alla pagina corrente
+ 						- mostrare la differenza tra pagina visitata e non visitata	
+ 						- mostrare subito il contenuto della pagina, senza scorrere				 
+ */
+ 
 #accesso h1{
   font-weight: bold;
   font-family: sans-serif;
