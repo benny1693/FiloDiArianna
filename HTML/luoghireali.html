@@ -9,6 +9,7 @@
 	<meta name="author" content="Benedetto Cosentino" />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, luoghi" />
 	<meta name="language" content="italian it" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style_list.css" />
 	<script src="../JS/custom.js"></script>
@@ -19,7 +20,7 @@
 	<div id="content" class="container-fluid">
 		<div id="page-content-wrapper">
 			<nav aria-label="breadcrumb">
-				<p>Ti trovi in:</p>
+				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 					<li class="breadcrumb-item"><a href="scopri.html">Scopri</a></li>
@@ -29,16 +30,16 @@
 			</nav>
 			<section>
 				<h1>Luoghi Reali</h1>
-				<nav class="pagination">
-					<ol>
-						<li><a href="#">&laquo;</a></li>
-						<li><a href="#">&lsaquo;</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">&rsaquo;</a></li>
-						<li><a href="#">&raquo;</a></li>
-					</ol>
+				<nav role="navigation" aria-label="Paginazione" class="nav-pages">
+					<ul class="pagination">
+						<li class="page-item disabled"><a href="#">&laquo;</a></li>
+						<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
+						<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
+						<li class="page-item"><a href="#" class="page-link">2</a></li>
+						<li class="page-item"><a href="#" class="page-link">3</a></li>
+						<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
+						<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+					</ul>
 				</nav>
 				<ul class="query">
 					<li>
@@ -49,16 +50,16 @@
 						</a>
 					</li>
 				</ul>
-				<nav class="pagination">
-					<ol>
-						<li><a href="#">&laquo;</a></li>
-						<li><a href="#">&lsaquo;</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">&rsaquo;</a></li>
-						<li><a href="#">&raquo;</a></li>
-					</ol>
+				<nav role="navigation" aria-label="Paginazione" class="nav-pages">
+					<ul class="pagination">
+						<li class="page-item disabled"><a href="#">&laquo;</a></li>
+						<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
+						<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
+						<li class="page-item"><a href="#" class="page-link">2</a></li>
+						<li class="page-item"><a href="#" class="page-link">3</a></li>
+						<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
+						<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+					</ul>
 				</nav>
 			</section>
 		</div>
