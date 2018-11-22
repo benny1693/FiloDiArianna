@@ -7,8 +7,9 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
-	<link rel="stylesheet" type="text/css" href="../CSS/provelaura.css" />
+	<!--<link rel="stylesheet" type="text/css" href="../CSS/provelaura.css" />-->
 	<script src="../JS/custom.js"></script>
 </head>
 
@@ -57,9 +58,9 @@
 
 	<!-- INIZIO PAGINA -->
 	<div id="content" class="container-fluid">
-		<div class="overlay"></div>
 		<div id="page-content-wrapper">
 			<nav aria-label="breadcrumb">
+				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Contatti</li>
@@ -82,11 +83,11 @@
 					<h1>Oppure.. manda qui il tuo messaggio!</h1>
 					<div class="form-group">
 				    <!--<label for="FormControlTextarea1">Scrivi</label>-->
-				    <textarea class="form-control" id="FormControlTextarea1" rows="8"></textarea>
+				    <textarea class="form-control" id="FormControlTextarea" rows="17"></textarea>
 				  </div>
 					<div class="form-group row">
 				    <div class="col-sm-10">
-				      <button type="submit" class="btn btn-primary">Invia</button>
+				      <button type="submit" class="btn btn-outline-primary">Invia</button>
 				    </div>
 				  </div>
 				</div>

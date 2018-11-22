@@ -1,0 +1,8 @@
+#page-content-wrapper {
+	background: url(../img/filo.jpg) no-repeat;
+	background-size: contain;
+}
+
+section {
+	padding: 60% 0 5em 0;
+}
