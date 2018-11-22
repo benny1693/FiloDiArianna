@@ -1,15 +1,15 @@
 <header>
 	<div class="container-fluid">
 		<div class="navbar nav">
-			<div class="row clearfix">
+			<div class="row">
 				<div class="col-sm-2 col-xs-2">
-					<a class="navbar-brand" href="index.html">
+					<div class="navbar-brand">
 						<img src="img/logo.png" alt="Logo" />
-					</a>
+					</div>
 				</div>
 				<div class="col-sm-2 col-sm-push-8 col-xs-4 col-xs-push-3">
 					<ul>
-						<li><a class="login-button" href="accedi.html">Accedi</a></li>
+						<li><a class="login-button" href="HTML/accesso.html">Accedi</a></li>
 					</ul>
 				</div>
 				<div class="col-sm-1 col-xs-2 col-xs-push-4">
@@ -17,9 +17,27 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 				</div>
-				<div class="col-sm-6 col-sm-pull-1 col-xs-12">
+				<div class="col-sm-8 col-sm-pull-2 col-xs-12">
 					<form class="navbar-form clearfix" action="redirect.php" method="post">
-						<input class="navbar-input col-xs-11" type="text" placeholder="Search" />
+						<div id="categoria" class="navbar-select">
+							<label for="inputState" class="sr-only sr-only-focusable">Seleziona la categoria in cui desideri effettuare la ricerca</label>
+							<select id="inputState" class="form-control">
+								<option selected>Categorie</option>
+								<option value="personaggi">Personaggi</option>
+								<option value="p_umani">Esseri Umani</option>
+								<option value="p_eroi">Semidivinità/Eroi</option>
+								<option value="p_divinita">Divinità</option>
+								<option value="p_creature">Creature</option>
+								<option value="eventi">Eventi</option>
+								<option value="ep_dei">Epoca degli Dei</option>
+								<option class="text-truncate" value="ep_dei_uomini">Epoca degli Dei e degli Uomini</option>
+								<option value="ep_eroi">Epoca degli Eroi</option>
+								<option value="luoghi">Luoghi</option>
+								<option value="l_mitologici">Mitologici</option>
+								<option value="l_reali">Reali</option>
+							</select>
+						</div>
+						<input class="navbar-input col-xs-11 col-sm-8" type="text" placeholder="Ricerca" />
 						<button class="navbar-button col-xs-1">
 							<svg id="icon-search">
 								<path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
@@ -30,8 +48,11 @@
 			</div>
 		</div>
 		<nav id="sidebar-wrapper">
+			<button type="button" class="close" aria-label="Chiudi">
+				<span aria-hidden="true">&times;</span>
+			</button>
 			<ul class="sidebar-nav">
-				<li class="active">Home</li>
+				<li class="active" lang="en">Home</li>
 				<li><a href="scopri.html">Scopri</a></li>
 				<li><a href="contatti.html">Contatti</a></li>
 			</ul>
