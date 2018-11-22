@@ -1,15 +1,68 @@
-/* il padding ha lo sfondo, il margine no
- usare caretteri con grazie (per la stampa), per lo schermo senza grazie */
+/*- il padding ha lo sfondo, il margine no
+ 	-usare caretteri con grazie (per la stampa), per lo schermo senza grazie
+ 	- display none non fa leggere neanche allo screen reader 
+*/
+  
+ /* IN HTML: - usare scope row e scope col nelle tabelle per gli handicappati
+ 						 - xml:lang="en" per qualcosa in un altra lingua
+ 						 - per le abbreviazioni usare abbr title="..." 
+ 						 
+ 	consigli: - non permettere un link alla pagina corrente
+ 						- mostrare la differenza tra pagina visitata e non visitata	
+ 						- mostrare subito il contenuto della pagina, senza scorrere				 
+ */
+ 
 #accesso h1{
   font-weight: bold;
-}
-
-label{
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: sans-serif;
 }
 
 #registrazione h1{
   font-weight: bold;
+}
+
+#accesso{
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 0.2px solid;
+}
+
+#registrazione{
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 2rem;
+}
+
+#contattomail h1{
+  font-weight: bold;
+}
+
+#contattotelefonico h1{
+  font-weight: bold;
+}
+
+#contattomessaggio h1{
+  font-weight: bold;
+}
+
+.form-check-label{
+  font-size: 88%;
+}
+
+.help-block{
+  font-size: 88%;
+}
+
+/*larghezza fissa, margine dx e sx auto*/
+
+/*
+
+label{
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #sezione h1{
@@ -40,4 +93,86 @@ label{
 
 .col-sm-2{
   font-family: sans-serif;
+}
+*/
+
+.form-control {
+  display: block;
+  width: 40%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.col-form-label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+  font-family: Verdana;
+}
+
+.form-group {
+  margin-bottom: 0.6rem;
+}
+
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: #dc3545;
+}
+
+.col-sm-24, .col-sm-101 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.btn-outline-primary {
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  color: #007bff;
+  background-color: transparent;
+}
+
+/*
+textarea {
+  overflow: auto;
+  resize: vertical;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+*/
+#FormControlTextarea{
+  width: 60%;
+  line-height: inherit;
+  height: 20rem;
 }
