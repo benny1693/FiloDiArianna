@@ -1,17 +1,17 @@
 /*- il padding ha lo sfondo, il margine no
  	-usare caretteri con grazie (per la stampa), per lo schermo senza grazie
- 	- display none non fa leggere neanche allo screen reader 
+ 	- display none non fa leggere neanche allo screen reader
 */
-  
+
  /* IN HTML: - usare scope row e scope col nelle tabelle per gli handicappati
  						 - xml:lang="en" per qualcosa in un altra lingua
- 						 - per le abbreviazioni usare abbr title="..." 
- 						 
+ 						 - per le abbreviazioni usare abbr title="..."
+
  	consigli: - non permettere un link alla pagina corrente
- 						- mostrare la differenza tra pagina visitata e non visitata	
- 						- mostrare subito il contenuto della pagina, senza scorrere				 
+ 						- mostrare la differenza tra pagina visitata e non visitata
+ 						- mostrare subito il contenuto della pagina, senza scorrere
  */
- 
+
 #accesso h1{
   font-weight: bold;
   font-family: sans-serif;
@@ -22,19 +22,15 @@
 }
 
 #accesso{
-  width: 80%;
+  max-width: 29rem;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 0.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 0.2px solid;
 }
 
 #registrazione{
-  width: 80%;
+  max-width: 40rem;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 2rem;
 }
 
 #contattomail h1{
@@ -49,6 +45,11 @@
   font-weight: bold;
 }
 
+#NonAncoraRegistrato{
+  margin-top: 4rem;
+  /*margin-bottom: 0.5rem;*/
+}
+
 .form-check-label{
   font-size: 88%;
 }
@@ -59,42 +60,6 @@
 
 /*larghezza fissa, margine dx e sx auto*/
 
-/*
-
-label{
-  font-family: "Helvetica Neue", Arial, sans-serif;
-}
-
-#sezione h1{
-  font-weight: bold;
-}
-
-#accesso button[type=submit] {
-  border: 3px solid #555;
-  background-color: rgb(249, 249, 243);
-}
-
-#registrazione button[type=submit] {
-  border: 3px solid #555;
-  background-color: rgb(249, 249, 243);
-}
-
-#accesso input {
-  border: solid #555;
-  border-color: blue;
-  background-color: rgb(249, 249, 239);
-}
-
-#registrazione input {
-  border: solid #555;
-  border-color: blue;
-  background-color: rgb(249, 249, 239);
-}
-
-.col-sm-2{
-  font-family: sans-serif;
-}
-*/
 
 .form-control {
   display: block;
@@ -131,12 +96,12 @@ label{
   color: #dc3545;
 }
 
-.col-sm-24, .col-sm-101 {
-  position: relative;
+#accesso .form-control{
   width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+}
+
+#accesso .col-form-label {
+  text-align: right;
 }
 
 .btn-outline-primary {
@@ -175,4 +140,12 @@ textarea {
   width: 60%;
   line-height: inherit;
   height: 20rem;
+}
+
+.form-check-input:disabled ~ .form-check-label {
+  color: #6c757d;
+}
+
+.form-check-label {
+  margin-bottom: 0;
 }
