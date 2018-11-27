@@ -18,10 +18,15 @@
 							- Creatura
 */
 DELIMITER |
-CREATE PROCEDURE insertPage(_title VARCHAR(30), _htmlCode TEXT, _img BLOB, _author VARCHAR(20),
+CREATE PROCEDURE insertPage(_title VARCHAR(30), _htmlCode TEXT, _img BLOB, _author INTEGER,
 														 	_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
 	DECLARE _ID INTEGER;
+	
+	IF (EXISTS (SELECT * FROM _pages WHERE title = _title))
+	THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Pagina esistente';
+	END IF;
 	
 	INSERT INTO _pages (title,htmlCode,img,author)
 	VALUES (_title, LOAD_FILE(_htmlCode), LOAD_FILE(_img),_author);
@@ -87,7 +92,7 @@ BEGIN
 	WHERE ID=_ID AND modTime=_modTime;
 
 	UPDATE _pages
-	SET insTime=_modTime,htmlCode=_htmlCode,img=_img, posted = TRUE
+	SET insTime=_modTime,htmlCode=_htmlCode,img=_img, posted = FALSE
 	WHERE ID = _ID;
 	
 	DELETE FROM _events WHERE ID = _ID;
@@ -102,6 +107,8 @@ BEGIN
 	ELSE
 		INSERT INTO _characters VALUES(_ID,_type2);
 	END IF;
+	
+	call setPostStatus(_ID,TRUE);	
 END|
 DELIMITER ;
 
@@ -112,9 +119,40 @@ DELIMITER ;
 DELIMITER |
 CREATE PROCEDURE setPostStatus(_ID INTEGER, _posted BOOLEAN)
 BEGIN
-	UPDATE _pages
-	SET posted=_posted
-	WHERE ID = _ID;
+	DECLARE isPosted BOOLEAN;
+	
+	SELECT posted INTO isPosted FROM _pages WHERE ID = _ID;
+
+	UPDATE _pages SET posted=_posted WHERE ID = _ID;
+	
+	IF (isPosted <> _posted)
+	THEN
+		IF (_posted = FALSE) 
+		THEN
+			INSERT INTO _pendantRelations SELECT ID1, ID2, insTime
+																		FROM _relations JOIN _pages ON ID1 = ID
+																		WHERE ID1 = _ID OR ID2 =_ID;
+																	
+			DELETE FROM _relations WHERE ID1 = _ID OR ID2 = _ID;
+		ELSE
+			INSERT INTO _relations SELECT DISTINCT ID1, ID2
+														 FROM _pendantRelations
+														 WHERE (ID1 = _ID AND ID2 IN (SELECT ID 
+																													FROM _pages 
+																												 	WHERE posted = TRUE)) 
+																		OR (ID2 = _ID AND ID1 IN (SELECT ID 
+																														 	FROM _pages 
+																														 	WHERE posted = TRUE));
+														 
+			DELETE FROM _pendantRelations WHERE ((ID1 = _ID AND ID2 IN (SELECT ID 
+																													FROM _pages 
+																												 	WHERE posted = TRUE)) 
+																					 	OR (ID2 = _ID AND ID1 IN (SELECT ID 
+																																			FROM _pages 
+																														 					WHERE posted = TRUE)));
+		END IF;
+	END IF;
+			
 END|
 DELIMITER ;
 
@@ -129,21 +167,70 @@ BEGIN
 END|
 DELIMITER ;
 
-/*	Crea una relazione da una pagina verso un'altra
+/*	Se non esiste, crea una relazione da una pagina verso un'altra
 		@param _ID1 indica il codice identificativo della pagina
 		@param _ID2 indica il codice della pagina correlata
 */
 DELIMITER |
 CREATE PROCEDURE insertRelationship(_ID1 INTEGER, _ID2 INTEGER)
 BEGIN
+	IF (EXISTS(SELECT * 
+							FROM _relations 
+							WHERE ID1 = _ID1 AND ID2 = _ID2))
+	THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Relazione esistente';
+	END IF;
+	
 	INSERT INTO _relations VALUES (_ID1,_ID2);
 END|
+DELIMITER ;
+
+
+/* Se non esiste, crea una relazione da una pagina pendente verso un'altra
+		@param _ID1 indica il codice identificativo della pagina
+		@param _ID2 indica il codice della pagina correlata
+		@param _modTime è il timestamp della modifica della pagina scelta
+*/
+DELIMITER |
+CREATE PROCEDURE insertPendantRelationship(_ID1 INTEGER, _ID2 INTEGER, _modTime TIMESTAMP(6))
+BEGIN
+	IF (EXISTS (SELECT * 
+						  FROM _pendantRelations 
+						  WHERE ID1 = _ID1 AND ID2 = _ID2 AND modTime = _modTime))
+	THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Relazione esistente';
+	END IF;
+	
+	INSERT INTO _pendantRelations(ID1,ID2,modTime) VALUES (_ID1,_ID2,_modTime);
+END |
 DELIMITER ;
 
 /*	Elimina la pagina indicata */
 DELIMITER |
 CREATE PROCEDURE deletePage(_ID INTEGER)
 BEGIN
+	IF (_ID NOT IN (SELECT _ID FROM _pages))
+	THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Pagina non trovata';
+	END IF;
+	
 	DELETE FROM _pages WHERE ID = _ID;
+END|
+DELIMITER ;
+
+/* Inserisce un nuovo utente se non è già presente 
+	 @param _name : nome utente
+	 @param _passw : password indicata
+	 @param _admin : parametro che è true se l'utente inserito è un amministratore
+*/
+DELIMITER |
+CREATE PROCEDURE insertUser(_name VARCHAR(25),_passw VARCHAR(40), _admin BOOLEAN)
+BEGIN
+	IF (_name IN (SELECT name FROM _users))
+	THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Utente esistente';
+	END IF;
+	
+	INSERT INTO _users(name,pass_word,is_admin) VALUES (_name,SHA1(_passw),_admin);
 END|
 DELIMITER ;
