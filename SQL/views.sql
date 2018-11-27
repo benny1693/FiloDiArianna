@@ -6,7 +6,7 @@ CREATE VIEW unpostedPages AS
 				WHERE posted = FALSE
 					UNION 
 				SELECT ID, modTime 
-				FROM _modifiedPages) AS U, 
+				FROM _modifiedPages) AS U,
 				_pages AS P
 	WHERE P.ID = U.ID;
 
@@ -26,3 +26,15 @@ CREATE VIEW relatedPages AS
 						JOIN
 				_pages AS P2 ON P2.ID = R.ID2
 	WHERE P1.ID <> P2.ID AND P1.posted = TRUE AND P2.posted = TRUE;
+	
+/* Vista che selezione gli admin */
+CREATE VIEW admins AS
+	SELECT ID,name
+	FROM _users
+	WHERE is_admin = TRUE;
+
+/* Vista che selezione gli utenti normali */
+CREATE VIEW normalUsers AS
+	SELECT ID,name
+	FROM _users
+	WHERE is_admin = FALSE;
