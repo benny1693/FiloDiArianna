@@ -1,55 +1,55 @@
-.macrocategories > li {
+#macrocategories{
+	overflow: hidden;
+}
+
+#macrocategories > li {
 	margin: 0 auto;
-	width: 22em;
+	width: 22rem;
 }
 
 @media(min-width:1200px) {
-	.macrocategories > li {
-		margin-left: 1em;
-		margin-right: 1em;
+	#macrocategories > li {
+		margin-left: 1rem;
+		margin-right: 1rem;
 		float: left;
 	}
 
-	.macrocategories > li:last-child:nth-child(2n+1) {
+	#macrocategories > li:last-child:nth-child(2n+1) {
 		margin: 0 25%;
 	}
 }
 
-.macrocategories h1 {
+#macrocategories h1 {
 	margin: 0;
 }
 
-.macrocategories h1 a {
+#macrocategories h1 a {
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 20px 20px 0 0;
-	font-size: 0.65em;
-	padding: 0.1em 2em;
-	display: list-item;
+	font-size: 1.8rem;
+	padding: 0.1rem 2rem;
+	display: block;
+	background: #003180;
+	color: #fff;
 }
 
-.macrocategories h1 a:hover {
-	background-color: #000000;
-	color: #FFFFFF;
-}
-
-.categories {
+#macrocategories > li > ul{
 	padding: 0;
 }
 
-.categories > li a {
+#macrocategories > li > ul > li a {
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	text-align: center;
-	background-color: #0247b9;
-	color: #ffffff;
-	padding: 0.3em 1em;
-	font-size: 1.1em;
+	padding: 0.3rem 1rem;
+	font-size: 1.1rem;
 	display: block;
 }
 
-.categories > li a:hover {
+#macrocategories > li > ul > li a:hover {
 	background-color: #005AEE;
+	color: #fff;
 }
 
-.categories > li:last-child a {
+#macrocategories > li > ul > li:last-child a {
 	border-radius: 0 0 20px 20px;
 }
