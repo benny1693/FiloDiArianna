@@ -1,55 +1,51 @@
 <!DOCTYPE html>
 <html lang="it">
-
-<head>
-	<title>Area personale | Il Filo di Arianna</title>
-	<meta name="title" content="Area personale | Filo di Arianna" />
-	<meta name="description" content="Gestisci le pagine create" />
-	<meta name="keyword" content="pagina, gestisci" />
-	<meta name="author" content="Alessandro Spreafico" />
-	<meta name="language" content="italian it" />
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+ 
+  <head>
+    <title>Area personale | Il Filo di Arianna</title>
+    <meta name="title" content="Area personale | Filo di Arianna" />
+    <meta name="description" content="Gestisci le pagine create" />
+    <meta name="keyword" content="pagina, gestisci" />
+    <meta name="author" content="Alessandro Spreafico" />
+    <meta name="language" content="italian it" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css" />
     <link rel="stylesheet" type="text/css" href="../CSS/paginepubblicatependenti.css" />
-
-	<script src="../JS/custom.js"></script>
-
-</head>
-
-<body>
-	<!-- HEADER / SIDEBAR -->
-	<div id="content" class="container-fluid">
-		<div id="page-content-wrapper">
-			<nav aria-label="breadcrumb">
-				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="areapersonale.html">Area personale</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Pagine pendenti</li>
-
-				</ol>
-			</nav>
-			<section>
-				<div>
-					<h1>Pagine pendenti</h1>
-					<div class="linea">
-					  <form action="/ROBE.PHP" method="get">     <!-- display block position relative-->
-					    <a href="pagina.html">Pagina</a>         <!--//100% -->
-					    <div id="bottoni">                      <!--con larghezza fissa per i bottoni con posizione assoluta per farlo stare sopra al link right(0) -->
-                            <button type="submit" class="btn  btn-outline-primary">Accetta pagina</button>
-                            <button type="submit" class="btn  btn-outline-primary">Modifica pagina</button>
-                            <button type="submit" class="btn  btn-outline-primary">Elimina pagina</button>               
-                        </div>
-                      </form>
-				     </div>
+    <script src="../JS/custom.js"></script>
+    
+  </head>
+  
+  <body>
+    <!-- HEADER / SIDEBAR -->
+    <div id="content" class="container-fluid">
+      <div id="page-content-wrapper">
+	<nav aria-label="breadcrumb">
+	  <p class="sr-only sr-only-focusable">Ti trovi in:</p>
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="areapersonale.html">Area personale</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Pagine pendenti</li>
+	  </ol>
+	</nav>
+	<section>
+	  <div>
+	    <h1>Pagine pendenti</h1>
+	    <div class="linea">
+	      <form  action="/ROBE.PHP" method="get">
+                <a class="pagina" href="pagina.html">Pagina</a>
+		<div class="bottoni">
+                  <button type="submit" class="btn  btn-outline-primary">Accetta pagina</button>
+                  <button type="submit" class="btn  btn-outline-primary">Modifica pagina</button>
+                  <button type="submit" class="btn  btn-outline-primary">Elimina pagina</button>               
                 </div>
-			</section>
-		</div>
-	</div>
-
-	<!-- FOOTER di Matteo -->
-</body>
-
+              </form>
+	    </div>
+          </div>
+	</section>
+      </div>
+    </div>  
+    <!-- FOOTER di Matteo -->
+  </body>
+  
 </html>
-

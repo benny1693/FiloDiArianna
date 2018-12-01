@@ -1,19 +1,34 @@
-#bottoni{
+.bottoni{
 display: inline-block;
-position: absolute;
-right: 10px;    
+position: relative;
+float: right;  
 }
 
 .linea{
 border: 1px solid #007bff;
 border-radius: 5px;
-padding : 5px;
+padding : 2px;
+overflow: auto;
 }
 
+.pagina{
+display: inline-block;
+position: relative;
+/*vertical-align: middle; non funziona*/
+padding-top: 5px;
+padding-bottom: 5px;
+}
 
+.collegamentibottoni{
+border: 1px solid #007bff;
+padding: 1em;
+background: #007bff;
+color: white;
+}
 
-
-
+a.areapersonale:link {color:white;}
+/*a.areapersonale:visited {color:violet;} */
+a.areapersonale:hover {font-size:110%;}
 
 
 
