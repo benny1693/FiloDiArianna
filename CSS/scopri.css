@@ -5,7 +5,7 @@
 
 #macrocategories > li {
 	margin: 0 auto;
-	width: 22rem;
+	max-width: 22rem;
 }
 
 @media(min-width:1200px) {
