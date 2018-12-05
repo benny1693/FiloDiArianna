@@ -231,7 +231,7 @@ nav li{
 	background: #00428a;
 	height: 0;
 	margin: 0;
-	z-index: 999;
+	z-index: 9999;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,.16), 0 4px 10px 0 rgba(0,0,0,.12);
 }
 
@@ -437,6 +437,12 @@ img.navbar-brand {
 	border-radius: 0;
 }
 
+#inputState.form-control{
+	padding-left: 0;
+	margin-left: 1.25rem;
+	width: 80%;
+}
+
 #categoria:hover{
 	background: #001840;
 }
@@ -514,7 +520,7 @@ img.navbar-brand {
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	border-radius: 0.25rem;
-	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	/*transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
 
 .form-control:focus {
