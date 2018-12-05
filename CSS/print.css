@@ -18,8 +18,13 @@ header, #img-home{
 	background: none;
 }
 
-#content{
-	padding-top: 0;
+.breadcrumb > .active{
+	color: #212529;
+}
+
+#page-content-wrapper{
+	padding-top: 50px;
+	min-height: 0;
 }
 
 footer{
