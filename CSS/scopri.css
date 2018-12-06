@@ -1,4 +1,4 @@
-#macrocategories{
+#macrocategories {
 	overflow: hidden;
 	padding: 0;
 }
@@ -9,15 +9,16 @@
 }
 
 @media(min-width:1200px) {
-	#macrocategories{
-		width: 48rem;
-    	margin: 0 auto;
+	#macrocategories {
+		max-width: 48rem;
+		margin: 0 auto;
 	}
-	
+
 	#macrocategories > li {
 		margin-left: 1rem;
 		margin-right: 1rem;
 		float: left;
+		width: 22rem;
 	}
 
 	#macrocategories > li:last-child:nth-child(2n+1) {
@@ -39,7 +40,7 @@
 	color: #fff;
 }
 
-#macrocategories > li > ul{
+#macrocategories > li > ul {
 	padding: 0;
 }
 
