@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Filo di Arianna</title>
 	<link rel="stylesheet" type="text/css" href="CSS/style.css" />
+	<link rel="stylesheet" type="text/css" href="CSS/aiuti_nav.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css" />
 	<script src="JS/custom.js"></script>
 </head>
@@ -42,7 +43,7 @@
 					<form class="row navbar-form clearfix" action="redirect.php" method="post">
 						<div id="categoria" class="navbar-select">
 							<label for="inputState" class="sr-only">Seleziona la categoria in cui desideri effettuare la ricerca</label>
-							<select id="inputState" class="form-control">
+							<select id="inputState" class="form-control" tabindex="2">
 								<option selected>Categorie</option>
 								<option value="personaggi">Personaggi</option>
 								<option value="p_umani">Esseri Umani</option>
@@ -58,8 +59,8 @@
 								<option value="l_reali">Reali</option>
 							</select>
 						</div>
-						<input class="navbar-input col-xs-11 col-sm-8" type="text" placeholder="Ricerca" />
-						<button class="navbar-button col-xs-1">
+						<input class="navbar-input col-xs-11 col-sm-8" type="text" placeholder="Ricerca" tabindex="1" />
+						<button class="navbar-button col-xs-1" tabindex="3">
 							<svg id="icon-search">
 								<path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
 							</svg>
@@ -68,6 +69,7 @@
 				</div>
 			</div>
 			<nav id="sidebar-wrapper">
+				<a href="#page-content-wrapper" class="sr-only">Salta il contenuto</a>
 				<button type="button" class="close" aria-label="Chiudi">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -94,15 +96,33 @@
 			</figure>
 			<dl>
 				<dt>Il Nome</dt>
-				<dd>A Creta, il principe ateniese Teseo decide di avventurarsi nel labirinto di Cnosso allo scopo di salvare i propri sudditi. Nell'impresa non è solo, ma viene aiutato da Arianna, figlia del re Minosse. Ella dà a Teseo un gomitolo di lana (il cosiddetto <em>filo di Arianna</em>) per riconoscere la strada percorsa e poter uscire sano e salvo. Noi, come Arianna nel mito, vogliamo aiutarti (e invogliarti) ad avventurarti nei meandri della grecit&agrave; senza perderti.</dd>
-				<dt>Perché?</dt>
-				<dd>La cultura greca classica viene spesso considerata inutile alla comprensione di ci&ograve; che ci circonda. Niente di pi&ugrave; falso! Quasi tutti i popoli del Mediterraneo discendono o sono entrati in contatto con i Greci nell'antichità. La grecit&agrave;, infatti, fa parte delle nostre radici e influenza quotidianamente il nostro comportamento. Si pensi, ad esempio, al riguardo che si ha verso un ospite in casa propria: lo si fa accomodare, gli si offre qualcosa e lo si tratta con rispetto. Questo uso fu introdotto dai Greci: ogni visitatore poteva essere un dio sotto mentite spoglie e, quindi, era meglio trattarlo bene onde evitare l'ira di una divinit&agrave;. Date queste premesse, ci è sembrato giusto prodigarci per dare lustro alla cultura greca classica tramite il suo lato pi&ugrave; interessante e "vendibile": la mitologia.</dd>
-				<dt>Chi siamo?</dt>
-				<dd>Siamo un'associazione di appassionati di cultura greca. Il nostro intento &egrave; aiutare la diffusione della cultura greca classica tra i giovani tramite strumenti multimediali.</dd>
+				<dd>
+					<a href="#perche" class="sr-only">Salta la definizione</a>
+					<p>A Creta, il principe ateniese Teseo decide di avventurarsi nel labirinto di Cnosso allo scopo di salvare i propri sudditi. Nell'impresa non è solo, ma viene aiutato da Arianna, figlia del re Minosse. Ella dà a Teseo un gomitolo di lana (il cosiddetto <em>filo di Arianna</em>) per riconoscere la strada percorsa e poter uscire sano e salvo. Noi, come Arianna nel mito, vogliamo aiutarti (e invogliarti) ad avventurarti nei meandri della grecit&agrave; senza perderti.</p>
+				</dd>
+				<dt id="perche">Perché?</dt>
+				<dd>
+					<a href="#chi" class="sr-only">Salta la definizione</a>
+					<p>La cultura greca classica viene spesso considerata inutile alla comprensione di ci&ograve; che ci circonda. Niente di pi&ugrave; falso! Quasi tutti i popoli del Mediterraneo discendono o sono entrati in contatto con i Greci nell'antichità. La grecit&agrave;, infatti, fa parte delle nostre radici e influenza quotidianamente il nostro comportamento. Si pensi, ad esempio, al riguardo che si ha verso un ospite in casa propria: lo si fa accomodare, gli si offre qualcosa e lo si tratta con rispetto. Questo uso fu introdotto dai Greci: ogni visitatore poteva essere un dio sotto mentite spoglie e, quindi, era meglio trattarlo bene onde evitare l'ira di una divinit&agrave;. Date queste premesse, ci è sembrato giusto prodigarci per dare lustro alla cultura greca classica tramite il suo lato pi&ugrave; interessante e "vendibile": la mitologia.</p>
+				</dd>
+				<dt id="chi">Chi siamo?</dt>
+				<dd>
+					<a href="#scroll-back-button" class="sr-only">Salta la definizione</a>
+					<p>Siamo un'associazione di appassionati di cultura greca. Il nostro intento &egrave; aiutare la diffusione della cultura greca classica tra i giovani tramite strumenti multimediali.</p>
+				</dd>
 			</dl>
 		</section>
 	</main>
 	<footer class="container-fluid">
+		<div id="scroll-back-button">
+			<a href="#page-content-wrapper">
+				<svg>
+					<title class="svg-title sr-only">Torna su</title>
+					<desc><a href="#page-content-wrapper">Torna su</a></desc>
+					<path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" fill="#ffffff" />
+				</svg>
+			</a>
+		</div>
 		<div class="footer-copyright">&copy; 2018 <span lang="en">Copyright - All Rights Reserved</span></div>
 	</footer>
 </body>
