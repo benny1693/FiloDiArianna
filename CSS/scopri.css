@@ -1,6 +1,20 @@
 #macrocategories {
 	overflow: hidden;
 	padding: 0;
+	margin-top: 20px;
+}
+
+#macrocategories a{
+	color: #fff;
+}
+
+#macrocategories a:visited{
+	color: rgb(0, 255, 243);
+}
+
+#macrocategories > li > ul {
+	background: #001840;
+	border-radius: 0 0 20px 20px;
 }
 
 #macrocategories > li {
@@ -31,13 +45,17 @@
 }
 
 #macrocategories h1 a {
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	/*border: 1px solid rgba(0, 0, 0, 0.2);*/
 	border-radius: 20px 20px 0 0;
 	font-size: 1.8rem;
 	padding: 0.5rem 2rem;
 	display: block;
-	background: #003180;
+	background: #0078a7;
 	color: #fff;
+}
+
+#macrocategories h1 a:hover{
+	background: #00608e;
 }
 
 #macrocategories > li > ul {
@@ -45,7 +63,7 @@
 }
 
 #macrocategories > li > ul > li a {
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	/*border: 1px solid rgba(0, 0, 0, 0.2);*/
 	text-align: center;
 	padding: 0.3rem 1rem;
 	font-size: 1.1rem;
@@ -53,8 +71,7 @@
 }
 
 #macrocategories > li > ul > li a:hover {
-	background-color: #005AEE;
-	color: #fff;
+	background-color: #00428a;
 }
 
 #macrocategories > li > ul > li:last-child a {
