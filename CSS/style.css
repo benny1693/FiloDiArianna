@@ -412,7 +412,7 @@ img.navbar-brand {
 	z-index: 9999;
 }
 
-.sidebar-nav a:visited, .sidebar-nav li.active:visited{
+.sidebar-nav a:visited, .sidebar-nav li.active:visited, .breadcrumb-item a:visited{
 	color: rgb(0, 255, 243);	
 }
 
@@ -681,16 +681,22 @@ img.navbar-brand {
 
 .breadcrumb > li + li:before{
 	padding: 0 0.3125rem;
-	color: #ccc;
+	color: #fff;
 	content: "/\00a0";
 }
 
-.breadcrumb > li {
+.breadcrumb-item {
 	display: inline-block;
+}
+
+.breadcrumb-item a{
+	color: #fff;
+	text-decoration: underline;
 }
 
 .breadcrumb > .active {
 	color: #fff;
+	text-decoration: none;
 }
 
 /* END BREADCRUMB ############################################## */
