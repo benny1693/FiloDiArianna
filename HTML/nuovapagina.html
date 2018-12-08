@@ -5,6 +5,7 @@
 	<meta name="title" content="Nuova Pagina | Filo di Arianna" />
 	<title>Nuova Pagina | Filo di Arianna</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, pagina, creazione, nuova" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
@@ -18,29 +19,25 @@
 
 	<!-- INIZIO PAGINA -->
 	<div id="page-content-wrapper" class="container-fluid">
-		<!-- <div class="overlay"></div> -->
-		<!--<div id="page-content-wrapper"> -->
-			<nav aria-label="breadcrumb">
-				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-					<li class="breadcrumb-item"><a href="areapersonale.html">Area Personale</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Nuova Pagina</li>
-				</ol>
-			</nav>
+		<nav aria-label="breadcrumb">
+			<p class="sr-only sr-only-focusable">Ti trovi in:</p>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="areapersonale.html">Area Personale</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Nuova Pagina</li>
+			</ol>
+		</nav>
 
-			<section>
-				<div id="nuovapagina">
-					<h1>Crea una nuova pagina!</h1>
+		<section id="nuovapagina">
+			<h1>Crea una nuova pagina!</h1>
 
-					<form>
-
-						<div class="form-group">
-							<label for="FormControlFile">Carica l'immagine che vuoi inserire.</label>
-							<!-- <input type="file" class="form-control-file" id="FormControlFile"> -->
-							<input type="file" class="form-control-file" id="FormControlFile">
-						</div>
-						<!-- 	ALTERNATIVA
+			<form>
+				<div class="form-group">
+					<label for="FormControlFile">Carica l'immagine che vuoi inserire.</label>
+					<!-- <input type="file" class="form-control-file" id="FormControlFile"> -->
+					<input type="file" class="form-control-file" id="FormControlFile">
+				</div>
+				<!-- 	ALTERNATIVA
 							<div class="custom-file">
 						    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
 						    <label class="custom-file-label" for="validatedCustomFile">Scegli immagine..</label>
@@ -48,33 +45,31 @@
 						  </div>
 							-->
 
-						<div class="form-group">
-							<label for="inputTitolo">Titolo</label>
-							<!--<div class="col-sm-10">-->
-							<input type="text" class="form-control" id="inputTitolo" placeholder="Titolo">
-						</div>
-
-						<div class="form-group">
-							<label for="FormControlTextarea1">Descrizione</label>
-							<textarea class="form-control" id="FormControlTextarea1" rows="10"></textarea>
-						</div>
-
-						<div class="form-group">
-							<label for="InputCorrelati">Pagine correlate</label>
-							<input type="text" class="form-control" id="InputCorrelati" aria-describedby="emailHelp" placeholder="13, 5, 9">
-							<small id="correlatihelp" class="form-text text-muted">Separa ogni codice da una virgola e uno spazio.</small>
-						</div>
-
-						<div class="form-group text-center">
-							<input type="submit" class="btn btn-outline-primary" value="Fatto" />
-						</div>
-					</form>
+				<div class="form-group">
+					<label for="inputTitolo">Titolo</label>
+					<!--<div class="col-sm-10">-->
+					<input type="text" class="form-control" id="inputTitolo" placeholder="Titolo">
 				</div>
-			</section>
-		</div>
+
+				<div class="form-group">
+					<label for="FormControlTextarea1">Descrizione</label>
+					<textarea class="form-control" id="FormControlTextarea1" rows="10"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="InputCorrelati">Pagine correlate</label>
+					<input type="text" class="form-control" id="InputCorrelati" aria-describedby="emailHelp" placeholder="13, 5, 9">
+					<small id="correlatihelp" class="form-text text-muted">Separa ogni codice da una virgola e uno spazio.</small>
+				</div>
+
+				<div class="form-group submit-button">
+					<button type="submit" class="btn  btn-outline-primary">Fatto</button>
+				</div>
+			</form>
+		</section>
 	</div>
 
-<!-- FOOTER -->
+	<!-- FOOTER -->
 
 </body>
 

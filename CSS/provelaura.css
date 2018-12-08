@@ -3,7 +3,7 @@
  	- display none non fa leggere neanche allo screen reader
 */
 
- /* IN HTML: - usare scope row e scope col nelle tabelle per gli handicappati
+/* IN HTML: - usare scope row e scope col nelle tabelle per gli handicappati
  						 - xml:lang="en" per qualcosa in un altra lingua
  						 - per le abbreviazioni usare abbr title="..."
 
@@ -14,230 +14,224 @@
 
 #accesso h1,
 #registrazione h1 {
-  font-weight: bold;
+	font-weight: bold;
 }
 
-#accesso{
-  max-width: 29rem;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1em;
-  overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 1rem 1rem rgba(0,0,0,.175);
-  background-color: #007bff;
-  color: white;
-}
-
-
-#registrazione{
-  padding: 1em;
-  max-width: 40rem;
-  margin-right: auto;
-  margin-left: auto;
-  overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 1rem 1rem rgba(0,0,0,.175);
-  background-color: #007bff;
-  color: white;
+#accesso {
+	max-width: 29rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 1em;
+	overflow: hidden;
+	border-radius: 6px;
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
+	background-color: #007bff;
+	color: white;
 }
 
 
-#contattomail h1{
-  font-weight: bold;
+#registrazione {
+	padding: 1em;
+	max-width: 40rem;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+	border-radius: 6px;
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
+	background-color: #007bff;
+	color: white;
 }
 
-#contattotelefonico h1{
-  font-weight: bold;
+
+#contattomail h1 {
+	font-weight: bold;
 }
 
-#contattomessaggio h1{
-  font-weight: bold;
+#contattotelefonico h1 {
+	font-weight: bold;
 }
 
-#NonAncoraRegistrato{
-  margin-top: 4rem;
-  /*margin-bottom: 0.5rem;*/
+#contattomessaggio h1 {
+	font-weight: bold;
 }
 
-.form-check-label{
-  font-size: 88%;
+#NonAncoraRegistrato {
+	margin-top: 4rem;
+	/*margin-bottom: 0.5rem;*/
 }
 
-.help-block{
-  font-size: 88%;
+.form-check-label {
+	font-size: 88%;
+}
+
+.help-block {
+	font-size: 88%;
 }
 
 .col-form-label {
-  padding-top: calc(0.375rem + 1px);
-  padding-bottom: calc(0.375rem + 1px);
-  margin-bottom: 0;
-  font-size: inherit;
-  line-height: 1.5;
-  font-family: Verdana;
-}
-
-.form-group {
-  margin-bottom: 0.6rem;
+	padding-top: calc(0.375rem + 1px);
+	padding-bottom: calc(0.375rem + 1px);
+	margin-bottom: 0;
+	font-size: inherit;
+	line-height: 1.5;
+	font-family: Verdana;
 }
 
 .invalid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 0.95rem;
-  color: #dc3545;
+	display: none;
+	width: 100%;
+	margin-top: 0.25rem;
+	font-size: 0.95rem;
+	color: #dc3545;
 }
 
 
 #accesso .form-control,
-#registrazione .form-control{
-  width: 100%;
+#registrazione .form-control {
+	width: 100%;
 }
 
 #accesso .col-form-label,
 #registrazione .col-form-label {
-  text-align: right;
+	text-align: right;
 }
 
 #accesso .btn-outline-primary,
- #registrazione .btn-outline-primary
- {
-  color: #fff;
-  background-color: #194173;
-  background-image: none;
-  width: 7rem;
+#registrazione .btn-outline-primary {
+	color: #fff;
+	background-color: #194173;
+	background-image: none;
+	width: 7rem;
 }
 
 .btn-outline-primary:hover {
-  color: #007bff;
-  background-color: #fff;
-  border-color: #fff;
+	color: #007bff;
+	background-color: #fff;
+	border-color: #fff;
 }
 
-.btn-outline-primary:focus, .btn-outline-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
-.btn-outline-primary.disabled, .btn-outline-primary:disabled {
-  color: #007bff;
-  background-color: transparent;
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+	color: #007bff;
+	background-color: transparent;
 }
 
-#FormControlTextarea{
-  line-height: inherit;
-  height: 20rem;
-  box-shadow: 0 0 0 0.1rem #001840;
+#FormControlTextarea {
+	line-height: inherit;
+	height: 20rem;
+	box-shadow: 0 0 0 0.1rem #001840;
 }
 
 .form-check-input:disabled ~ .form-check-label {
-  color: #6c757d;
+	color: #6c757d;
 }
 
 .form-check-label {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
-@media(min-width: 768px){
-  #registrazione .form-control,
-   #accesso .form-control {
-    max-width: 18rem;
-  }
+@media(min-width: 768px) {
+
+	#registrazione .form-control,
+	#accesso .form-control {
+		max-width: 18rem;
+	}
 }
 
 
 #contattomessaggio .btn-outline-primary,
 #modificapagina .btn-outline-primary,
 #nuovapagina .btn-outline-primary {
-  color: #007bff;
-  background-color: transparent;
-  background-image: none;
-  border-color: #007bff;
+	color: #007bff;
+	background-color: transparent;
+	background-image: none;
+	border-color: #007bff;
 }
 
 #contattomessaggio .btn-outline-primary:hover,
 #modificapagina .btn-outline-primary:hover,
 #nuovapagina .btn-outline-primary:hover {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
 }
 
 #contattomessaggio .btn-outline-primary:focus,
 #modificapagina .btn-outline-primary:focus,
 #nuovapagina .btn-outline-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
 #contattomessaggio .btn-outline-primary.disabled,
 #modificapagina .btn-outline-primary:disabled,
 #nuovapagina .btn-outline-primary:disabled {
-  color: #007bff;
-  background-color: transparent;
+	color: #007bff;
+	background-color: transparent;
 }
 
 #contattomessaggio .btn-outline-primary:not(:disabled):not(.disabled):active,
 #modificapagina .btn-outline-primary:not(:disabled):not(.disabled):active,
 #nuovapagina .btn-outline-primary:not(:disabled):not(.disabled):active {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
 }
 
 #contattomessaggio .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 #modificapagina .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 #nuovapagina .btn-outline-primary:not(:disabled):not(.disabled):active:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.text-center {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
 .information {
-  font-style: italic;
+	font-style: italic;
 }
 
 #contattomail,
 #contattotelefonico {
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1em;
-  overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 1rem 1rem rgba(0,0,0,.175);
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-  word-wrap: break-word;  /*per mandare a capo la parola */
+	padding: 1em;
+	overflow: hidden;
+	border-radius: 6px;
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
+	margin-bottom: 2rem;
+	margin-top: 1rem;
+	word-wrap: break-word;
+	/*per mandare a capo la parola */
 }
 
 #contattomessaggio {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 4em;
-  padding-right: 4em;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
-  overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 1rem 1rem rgba(0,0,0,.175);
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-  word-wrap: break-word;  /*per mandare a capo la parola */
+	margin: 1rem auto 2rem auto;
+	padding-left: 4em;
+	padding-right: 4em;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	overflow: hidden;
+	border-radius: 6px;
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
+	text-align: center;
+	word-wrap: break-word;
+	/*per mandare a capo la parola */
 }
 
-.form-control-file{
-  display: block;
-  width: 100%;
+.form-control-file {
+	display: block;
+	width: 100%;
 }
 
 #nuovapagina label,
 #modificapagina label {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .form-group {
-  margin: 1.5rem;
+	margin: 1.5rem;
+}
+
+.submit-button {
+	text-align: center;
 }

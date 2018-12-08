@@ -1,63 +1,54 @@
-.bottoni{
-display: inline-block;
-position: relative;
-float: right;  
+.bottoni {
+	display: inline-block;
+	float: right;
 }
 
-.linea{
-border: 0.1rem solid #007bff;
-border-radius: 0.3rem;
-padding : 0.12rem;
-overflow: auto;
+.pagina {
+	display: inline-block;
+	padding: .25rem 0;
 }
 
-.pagina{
-display: inline-block;
-position: relative;
-padding-top: 0.25rem;
-padding-bottom: 0.25rem;
+.collegamentibottoni {
+	font-size: 2rem;
+	text-align: center;
+	border: 0.1rem solid #001840;
+	padding: 1em;
+	background: #001840;
+	;
+	color: white;
+	border-radius: 1rem;
+	max-width: 30rem;
+	margin: 0.5rem auto;
 }
 
-.collegamentibottoni{
-font-size: 2rem;
-text-align: center;
-border: 0.1rem solid #001840; 
-padding: 1em;
-background: #001840;;
-color: white;
-border-radius: 1rem;
-max-width: 30rem;
-margin: 0.5rem auto;
+a.areapersonale:link {
+	color: white;
 }
 
-a.areapersonale:link {color:white;}
-
-a.areapersonale:hover {font-size:122%;}
-
-
-
-
-
+a.areapersonale:hover {
+	font-size: 122%;
+}
 
 .btn-outline-primary {
-  color: #007bff;
-  background-color: transparent;
-  background-image: none;
-  border-color: #007bff;
+	color: #007bff;
+	background-color: transparent;
+	background-image: none;
+	border-color: #007bff;
 }
 
 .btn-outline-primary:hover {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
 }
 
-.btn-outline-primary:focus, .btn-outline-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
-.btn-outline-primary.disabled, .btn-outline-primary:disabled {
-  color: #007bff;
-  background-color: transparent;
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+	color: #007bff;
+	background-color: transparent;
 }
-

@@ -2,6 +2,19 @@ ul.query {
 	padding: 0;
 }
 
+.query > li {
+	transition: box-shadow 0.15s ease;
+	border-bottom: 1px solid #ccc;
+}
+
+.query > li.page-administration {
+	padding: 1rem;
+}
+
+.query > li:hover {
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
+}
+
 ul.query > li img {
 	float: left;
 	width: 4em;
@@ -11,24 +24,13 @@ ul.query > li p {
 	margin-left: 5em;
 }
 
-.query > li{
-	padding: 0 10px;
-}
-
-.query a{
+.query > li > a {
 	display: block;
-	padding: 10px;
-	margin: 0 -10px;
-	border-bottom: 1px solid #ccc;
-	transition: box-shadow 0.15s ease;
+	padding: 1rem;
 }
 
-.query > li:last-child > a{
+.query > li:last-child > a {
 	border-bottom: none;
-}
-
-.query a:hover{
-	box-shadow: 0 1rem 1rem rgba(0,0,0,.175);
 }
 
 /*
