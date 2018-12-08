@@ -17,9 +17,9 @@
 
 
 	<!-- INIZIO PAGINA -->
-	<div id="content" class="container-fluid">
-		<div class="overlay"></div>
-		<div id="page-content-wrapper">
+	<div id="page-content-wrapper" class="container-fluid">
+		<!-- <div class="overlay"></div> -->
+		<!--<div id="page-content-wrapper"> -->
 			<nav aria-label="breadcrumb">
 				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
 				<ol class="breadcrumb">
@@ -37,6 +37,7 @@
 
 						<div class="form-group">
 							<label for="FormControlFile">Carica l'immagine che vuoi inserire.</label>
+							<!-- <input type="file" class="form-control-file" id="FormControlFile"> -->
 							<input type="file" class="form-control-file" id="FormControlFile">
 						</div>
 						<!-- 	ALTERNATIVA
@@ -46,6 +47,7 @@
 						    <div class="invalid-feedback">Example invalid custom file feedback</div>
 						  </div>
 							-->
+
 						<div class="form-group">
 							<label for="inputTitolo">Titolo</label>
 							<!--<div class="col-sm-10">-->
@@ -63,7 +65,9 @@
 							<small id="correlatihelp" class="form-text text-muted">Separa ogni codice da una virgola e uno spazio.</small>
 						</div>
 
-						<input type="submit" value="Fatto" />
+						<div class="form-group text-center">
+							<input type="submit" class="btn btn-outline-primary" value="Fatto" />
+						</div>
 					</form>
 				</div>
 			</section>
