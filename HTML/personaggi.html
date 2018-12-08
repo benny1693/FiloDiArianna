@@ -17,49 +17,51 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
-	<div id="content" class="container-fluid">
-		<div id="page-content-wrapper">
-			<nav aria-label="breadcrumb">
-				<p class="sr-only sr-only-focusable">Ti trovi in:</p>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-					<li class="breadcrumb-item"><a href="scopri.html">Scopri</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Personaggi</li>
-				</ol>
-			</nav>
-			<section>
-				<h1>Personaggi</h1>
-				<ul class="macrocategories">
-					<li>
-						<h1><a href="umani.html">Esseri Umani</a></h1>
-						<ul class="categories">
-							<li><a href="#">adsf</a></li>
-						</ul>
-					</li>
+	<div id="page-content-wrapper" class="container-fluid">
+		<nav aria-label="breadcrumb">
+			<p class="sr-only sr-only-focusable">Ti trovi in:</p>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="scopri.html">Scopri</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Personaggi</li>
+			</ol>
+		</nav>
+		<section>
+			<h1>Personaggi</h1>
+			<ul id="macrocategories">
+				<li>
+					<a href="#semidei" class="sr-only">Salta lista</a>
+					<h1><a href="umani.html">Esseri Umani</a></h1>
+					<ul class="categories">
+						<li><a href="#">adsf</a></li>
+					</ul>
+				</li>
 
-					<li>
-						<h1><a href="semidei.html">Semidivinit&agrave; ed Eroi</a></h1>
-						<ul class="categories">
-							<li><a href="#">adsf</a></li>
-						</ul>
-					</li>
+				<li id="semidei">
+					<a href="#dei" class="sr-only">Salta lista</a>
+					<h1><a href="semidei.html">Semidivinit&agrave; ed Eroi</a></h1>
+					<ul class="categories">
+						<li><a href="#">adsf</a></li>
+					</ul>
+				</li>
 
-					<li>
-						<h1><a href="dei.html">Divinit&agrave;</a></h1>
-						<ul class="categories">
-							<li><a href="#">adsf</a></li>
-						</ul>
-					</li>
+				<li id="dei">
+					<a href="#creature" class="sr-only">Salta lista</a>
+					<h1><a href="dei.html">Divinit&agrave;</a></h1>
+					<ul class="categories">
+						<li><a href="#">adsf</a></li>
+					</ul>
+				</li>
 
-					<li>
-						<h1><a href="creature.html">Creature</a></h1>
-						<ul class="categories">
-							<li><a href="#">adsf</a></li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-		</div>
+				<li id="creature">
+					<a href="#scroll-back-button" class="sr-only">Salta lista</a>
+					<h1><a href="creature.html">Creature</a></h1>
+					<ul class="categories">
+						<li><a href="#">adsf</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
 	</div>
 	<!-- FOOTER -->
 </body>

@@ -1,0 +1,27 @@
+/* AIUTI ALLA NAVIGAZIONE ################################################### */
+
+#scroll-back-button > a {
+	width: 3rem;
+	height: 3rem;
+	right: 1.5%;
+	bottom: 4rem;
+	position: fixed;
+	padding: 0.5rem;
+	vertical-align: middle;
+	background-color: #00428a;
+	border-radius: 30px;
+}
+
+@media(min-width:1200px) {
+	#scroll-back-button > a {
+		right: calc(50% - 35rem);
+	}
+}
+
+#scroll-back-button svg {
+	width: 2rem;
+	height: 2rem;
+	vertical-align: middle;
+	padding: 0.15rem 0.25rem;
+	fill: #fff;
+}

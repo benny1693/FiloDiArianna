@@ -18,8 +18,13 @@ header, #img-home{
 	background: none;
 }
 
-.breadcrumb > .active{
+.breadcrumb > .active, .breadcrumb-item a, .breadcrumb-item a:visited{
 	color: #212529;
+	text-decoration: none;
+}
+
+#macrocategories a:visited{
+	color: #fff;
 }
 
 #page-content-wrapper{

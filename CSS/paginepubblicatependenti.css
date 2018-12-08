@@ -5,32 +5,34 @@ float: right;
 }
 
 .linea{
-border: 1px solid #007bff;
-border-radius: 5px;
-padding : 2px;
+border: 0.1rem solid #007bff;
+border-radius: 0.3rem;
+padding : 0.12rem;
 overflow: auto;
 }
 
 .pagina{
 display: inline-block;
 position: relative;
-/*vertical-align: middle; non funziona*/
-padding-top: 5px;
-padding-bottom: 5px;
+padding-top: 0.25rem;
+padding-bottom: 0.25rem;
 }
 
 .collegamentibottoni{
-border: 1px solid #007bff;
+font-size: 2rem;
+text-align: center;
+border: 0.1rem solid #001840; 
 padding: 1em;
-background: #007bff;
+background: #001840;;
 color: white;
+border-radius: 1rem;
+max-width: 30rem;
+margin: 0.5rem auto;
 }
 
 a.areapersonale:link {color:white;}
-/*a.areapersonale:visited {color:violet;} */
-a.areapersonale:hover {font-size:110%;}
 
-
+a.areapersonale:hover {font-size:122%;}
 
 
 
