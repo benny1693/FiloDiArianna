@@ -9,8 +9,10 @@
 	padding: 1em 0;
 }
 
-#dona > h2 > p {
+#dona > h2 > q,
+#dona > h2 > cite {
 	margin: 0;
+	display: block;
 }
 
 #dona dt {
