@@ -1,15 +1,21 @@
 /* AIUTI ALLA NAVIGAZIONE ################################################### */
 
 #scroll-back-button > a {
-	width: 3rem;
-	height: 3rem;
 	right: 1.5%;
-	bottom: 4rem;
+	transform: translateY(-12rem);
 	position: fixed;
 	padding: 0.5rem;
 	vertical-align: middle;
 	background-color: #00428a;
 	border-radius: 30px;
+	
+	opacity: 0;
+	transition: opacity .3s ease, transform .3s ease;
+}
+
+#scroll-back-button.scroll-back-button-active > a{
+	opacity: 1;
+	transform: translateY(-21rem);
 }
 
 @media(min-width:1200px) {
