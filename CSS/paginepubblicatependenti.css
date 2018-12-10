@@ -1,11 +1,11 @@
-/*.bottoni {
+.bottoni {
 	display: inline-block;
 	float: right;
-}*/
+}
 
 .pagina {
 	display: inline-block;
-	padding: .25rem 0;
+	margin-top: 7px;
 }
 
 #collegamentibottoni a{
@@ -32,6 +32,7 @@
 	background-color: transparent;
 	background-image: none;
 	border-color: #007bff;
+	margin: 2px 0;
 }
 
 .btn-outline-primary:hover {
