@@ -2,8 +2,8 @@ window.onload = load;
 window.onscroll = scroll;
 
 function load() {
-	document.getElementById("burger-menu").addEventListener("touchend", click);
-	document.querySelector("#sidebar-wrapper > .close").addEventListener("touchend", click);
+	document.getElementById("burger-menu").addEventListener("click", click);
+	document.querySelector("#sidebar-wrapper > .close").addEventListener("click", click);
 
 	function click(){
 		var el = document.getElementById("sidebar-wrapper");
