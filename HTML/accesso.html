@@ -10,6 +10,7 @@
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" href="../CSS/provelaura.css" />
+	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
 	<script src="../JS/custom.js"></script>
 </head>
 
@@ -17,7 +18,7 @@
 	<!-- HEADER -->
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
-			<p class="sr-only sr-only-focusable">Ti trovi in:</p>
+			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Accesso</li>
@@ -27,7 +28,7 @@
 		<section id="accesso">
 			<h1>Accedi</h1>
 
-			<form class="needs-validation" novalidate>
+			<form class="needs-validation clearfix" method="post" novalidate>
 				<div class="form-group row">
 					<label for="inputUsername0" class="col-sm-3 col-form-label">Username</label>
 					<div class="col-sm-9">
@@ -59,7 +60,7 @@
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-3">
 					<p id="NonAncoraRegistrato">Non sei ancora registrato?</p>
-					<input class="btn btn-outline-primary" type="button" value="Registrati!">
+					<a href="registrazione.html" class="btn btn-outline-primary">Registrati</a>
 				</div>
 			</div>
 

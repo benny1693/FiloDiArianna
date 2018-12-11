@@ -1,26 +1,29 @@
 /* AIUTI ALLA NAVIGAZIONE ################################################### */
 
-#scroll-back-button > a {
+#scroll-back-button {
 	right: 1.5%;
-	transform: translateY(-12rem);
+	bottom: -3.125rem;
 	position: fixed;
 	padding: 0.5rem;
-	vertical-align: middle;
 	background-color: #00428a;
 	border-radius: 30px;
 	
 	opacity: 0;
-	transition: opacity .3s ease, transform .3s ease;
+	transition: opacity .3s ease, bottom .3s ease;
 }
 
-#scroll-back-button.scroll-back-button-active > a{
+#scroll-back-button.scroll-back-button-active {
 	opacity: 1;
-	transform: translateY(-21rem);
+	bottom: 1.375rem;
 }
 
 @media(min-width:1200px) {
-	#scroll-back-button > a {
+	#scroll-back-button {
 		right: calc(50% - 35rem);
+	}
+
+	#scroll-back-button.scroll-back-button-active{
+		bottom: 4.375rem;
 	}
 }
 

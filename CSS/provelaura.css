@@ -25,10 +25,9 @@
 	overflow: hidden;
 	border-radius: 6px;
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
-	background-color: #007bff;
+	background-color: #00428a;
 	color: white;
 }
-
 
 #registrazione {
 	padding: 1em;
@@ -38,7 +37,7 @@
 	overflow: hidden;
 	border-radius: 6px;
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
-	background-color: #007bff;
+	background-color: #00428a;
 	color: white;
 }
 
@@ -99,26 +98,15 @@
 #accesso .btn-outline-primary,
 #registrazione .btn-outline-primary {
 	color: #fff;
-	background-color: #194173;
+	background-color: #00183f;
 	background-image: none;
 	width: 7rem;
+	border-color: transparent;
 }
 
-.btn-outline-primary:hover {
-	color: #007bff;
-	background-color: #fff;
-	border-color: #fff;
-}
-
-.btn-outline-primary:focus,
-.btn-outline-primary.focus {
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-primary.disabled,
-.btn-outline-primary:disabled {
-	color: #007bff;
-	background-color: transparent;
+#accesso .btn-outline-primary:hover,
+#registrazione .btn-outline-primary:hover{
+	border: 1px solid #fff;
 }
 
 #FormControlTextarea {
@@ -143,48 +131,35 @@
 	}
 }
 
-
-#contattomessaggio .btn-outline-primary,
-#modificapagina .btn-outline-primary,
-#nuovapagina .btn-outline-primary {
-	color: #007bff;
+.btn-outline-primary {
+	color: #0037FF;
 	background-color: transparent;
 	background-image: none;
-	border-color: #007bff;
+	border-color: #0037FF;
 }
 
-#contattomessaggio .btn-outline-primary:hover,
-#modificapagina .btn-outline-primary:hover,
-#nuovapagina .btn-outline-primary:hover {
+.btn-outline-primary:hover {
 	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff;
+	background-color: #0037FF;
+	border-color: #0037FF;
 }
 
-#contattomessaggio .btn-outline-primary:focus,
-#modificapagina .btn-outline-primary:focus,
-#nuovapagina .btn-outline-primary:focus {
+.btn-outline-primary:focus {
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
-#contattomessaggio .btn-outline-primary.disabled,
-#modificapagina .btn-outline-primary:disabled,
-#nuovapagina .btn-outline-primary:disabled {
-	color: #007bff;
+.btn-outline-primary:disabled {
+	color: #0037FF;
 	background-color: transparent;
 }
 
-#contattomessaggio .btn-outline-primary:not(:disabled):not(.disabled):active,
-#modificapagina .btn-outline-primary:not(:disabled):not(.disabled):active,
-#nuovapagina .btn-outline-primary:not(:disabled):not(.disabled):active {
+.btn-outline-primary:not(:disabled):not(.disabled):active {
 	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff;
+	background-color: #0037FF;
+	border-color: #0037FF;
 }
 
-#contattomessaggio .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
-#modificapagina .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
-#nuovapagina .btn-outline-primary:not(:disabled):not(.disabled):active:focus {
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus {
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
@@ -226,10 +201,6 @@
 #nuovapagina label,
 #modificapagina label {
 	font-weight: bold;
-}
-
-.form-group {
-	margin: 1.5rem;
 }
 
 .submit-button {

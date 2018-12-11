@@ -70,14 +70,6 @@ a {
 	background-color: transparent;
 }
 
-a:hover {
-	color: #00428a;
-}
-
-a:visited {
-	color: rgb(0, 255, 243);
-}
-
 img {
 	vertical-align: middle;
 	border-style: none;
