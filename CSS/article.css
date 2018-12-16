@@ -1,0 +1,32 @@
+section {
+	font-family: "Times New Roman", serif;
+}
+
+#article-title h1 {
+	display: inline-block;
+}
+
+#article-id::before {
+	content: "#"
+}
+
+#article-id {
+	display: inline-block;
+	float: right;
+	clear: both;
+	color: #575757;
+	margin-right: 2rem;
+	font-size: 1.5rem;
+}
+
+#article-image {
+	margin: 0 auto;
+	padding: 1rem;
+	max-width: 25rem;
+}
+
+@media(min-width:992px) {
+	#article-image {
+		float: right;
+	}
+}
