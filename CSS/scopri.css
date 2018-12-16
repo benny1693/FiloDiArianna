@@ -40,11 +40,12 @@
 	}
 }
 
-#macrocategories h1 {
+#macrocategories h2 {
 	margin: 0;
+	text-align: center;
 }
 
-#macrocategories h1 a {
+#macrocategories h2 a {
 	/*border: 1px solid rgba(0, 0, 0, 0.2);*/
 	border-radius: 20px 20px 0 0;
 	font-size: 1.8rem;
@@ -54,7 +55,7 @@
 	color: #fff;
 }
 
-#macrocategories h1 a:hover {
+#macrocategories h2 a:hover {
 	background: #0070AF;
 }
 
