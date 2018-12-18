@@ -33,7 +33,7 @@
 			<ul id="macrocategories">
 				<li>
 					<a href="#reali" class="sr-only">Salta lista</a>
-					<h2><a href="luoghimitologici.html">Mitologici</a></h2>
+					<h2><a href="luoghimitologici.php">Mitologici</a></h2>
 					<ul class="categories">
 						<li><a href="articolo.php">articolo1</a></li>
 						<li><a href="articolo.php">articolo2</a></li>
@@ -42,7 +42,7 @@
 
 				<li id="reali">
 					<a href="#scroll-back-button" class="sr-only">Salta lista</a>
-					<h2><a href="luoghireali.html">Reali</a></h2>
+					<h2><a href="luoghireali.php">Reali</a></h2>
 					<ul class="categories">
 						<li><a href="articolo.php">articolo1</a></li>
 						<li><a href="articolo.php">articolo2</a></li>

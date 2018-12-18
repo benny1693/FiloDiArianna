@@ -22,14 +22,14 @@
 						</svg>
 					</div>
 					<ul class="dropdown">
-						<li><a href="HTML/areapersonale.html">Area Riservata</a></li>
+						<li><a href="areapersonale.php">Area Riservata</a></li>
 						<li lang="en"><a href="#">Logout</a></li>
 					</ul>
 				</div>
-				<a id="login-button" href="HTML/accesso.html">Accedi</a>
+				<a id="login-button" href="accesso.php">Accedi</a>
 			</div>
 			<div class="col-sm-7 col-sm-pull-2 col-xs-12">
-				<form class="row navbar-form clearfix" action="redirect.php" method="post">
+				<form class="row navbar-form clearfix" action="ricerca.php" method="post">
 					<div id="categoria" class="navbar-select">
 						<label for="inputState" class="sr-only">Seleziona la categoria in cui desideri effettuare la ricerca</label>
 						<select id="inputState" class="form-control" tabindex="2">
