@@ -9,14 +9,15 @@
 
 #article-menu a {
 	text-decoration: underline;
+	background-color: rgba(100, 100, 100, 0.1);
+	padding: 0.5rem 1rem;
+	display: block;
 }
 
 #article-menu > li {
 	display: inline-block;
-	padding: 0.5rem 1rem;
 	box-shadow: 0.1rem -1.5px 2px 0 rgba(0, 0, 0, .16);
 	margin-left: -0.3rem;
-	background-color: rgba(100, 100, 100, 0.1);
 }
 
 #article-menu > li:first-child {
@@ -27,6 +28,7 @@
 #article-menu > li.active {
 	background-color: #fff;
 	position: relative;
+	padding: 0.5rem 1rem;
 	box-shadow: -0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16), 0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16);
 }
 
