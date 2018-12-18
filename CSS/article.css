@@ -1,5 +1,37 @@
-section {
+#article-content {
 	font-family: "Times New Roman", serif;
+	text-align: justify;
+}
+
+#article-menu {
+	margin: 0;
+}
+
+#article-menu a {
+	text-decoration: underline;
+}
+
+#article-menu > li {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	box-shadow: 0.1rem -1.5px 2px 0 rgba(0, 0, 0, .16);
+	margin-left: -0.3rem;
+	background-color: rgba(100, 100, 100, 0.1);
+}
+
+#article-menu > li:first-child {
+	box-shadow: -0.1rem -1.5px 2px 0 rgba(0, 0, 0, .16), 0.1rem -1.5px -1.5px 0 rgba(0, 0, 0, .16);
+
+}
+
+#article-menu > li.active {
+	background-color: #fff;
+	position: relative;
+	box-shadow: -0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16), 0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16);
+}
+
+#article-content > *:first-child {
+	box-shadow: 0 -1rem 6px -1rem rgba(0, 0, 0, .16), 0 -1rem 10px -1rem rgba(0, 0, 0, .12);
 }
 
 #article-title h1 {
@@ -12,11 +44,14 @@ section {
 
 #article-id {
 	display: inline-block;
-	float: right;
-	clear: both;
 	color: #575757;
 	margin-right: 2rem;
 	font-size: 1.5rem;
+}
+
+#articolo #article-id {
+	float: right;
+	clear: both;
 }
 
 #article-image {
@@ -25,8 +60,107 @@ section {
 	max-width: 25rem;
 }
 
+#back-to-article {
+	position: fixed;
+	z-index: 100;
+	bottom: 1rem;
+	left: 2rem;
+	padding: 0.5rem;
+	background: #00428a;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#comment-form {
+	margin: 0 1rem;
+}
+
+#comment-form textarea {
+	height: 7rem;
+}
+
+#comment-form .btn {
+	float: right;
+}
+
+@media(min-width:768px) {
+	#back-to-article {
+		left: 18rem;
+	}
+}
+
 @media(min-width:992px) {
 	#article-image {
 		float: right;
 	}
+
+	#comment-form textarea {
+		height: 5rem;
+	}
+}
+
+@media(min-width:1200px) {
+	#back-to-article {
+		left: 30rem;
+	}
+}
+
+.comment {
+	display: inline-block;
+	margin-bottom: 1rem;
+}
+
+.comment > p {
+	padding: 0.5rem;
+	background-color: #eee;
+	border-radius: 5px;
+	position: relative;
+}
+
+.comment:nth-child(odd) > p::after {
+	content: "";
+	position: absolute;
+	bottom: -1rem;
+	right: 2rem;
+	border-style: solid;
+	border-width: 1rem 0 0 18px;
+	border-color: #eee transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+.comment:nth-child(odd) > a {
+	float: right;
+	clear: both;
+}
+
+.comment:nth-child(odd) > p::after {
+	content: "";
+	position: absolute;
+	bottom: -1rem;
+	right: 2rem;
+	border-style: solid;
+	border-width: 1rem 0 0 1rem;
+	border-color: #eee transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+.comment:nth-child(even) > a {
+	float: left;
+}
+
+.comment:nth-child(even) > p::after {
+	content: "";
+	position: absolute;
+	bottom: -1rem;
+	left: 2rem;
+	border-style: solid;
+	border-width: 1rem 1rem 0 0;
+	border-color: #eee transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
 }
