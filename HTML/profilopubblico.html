@@ -2,15 +2,16 @@
 <html lang="it">
 
 <head>
-	<title>Area personale | Il Filo di Arianna</title>
-	<meta name="title" content="Area personale | Filo di Arianna" />
+	<title>Profilo di CiccioPasticcio | Il Filo di Arianna</title>
+	<meta name="title" content="Profilo di CiccioPasticcio | Filo di Arianna" />
 	<meta name="description" content="Gestisci le pagine create" />
-	<meta name="keyword" content="Filo, Arianna, greco, pagina, gestione, area, personale" />
-	<meta name="author" content="Alessandro Spreafico" />
+	<meta name="keyword" content="Filo, Arianna, greco, pagina, profilo, pubblico" />
+	<meta name="author" content="Benedetto Cosentino" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" href="../CSS/paginepubblicatependenti.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/style_list.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
 	<script src="../JS/custom.js"></script>
 </head>
@@ -26,7 +27,7 @@
 			</ol>
 		</nav>
 		<section>
-			<h1>Area personale</h1>
+			<h1>Profilo di CiccioPasticcio</h1>
 			<h2>Dati personali</h2>
 			<dl id="personalia">
 				<dt>Nome</dt>
@@ -39,13 +40,38 @@
 				<dd>Pasticcio</dd>
 			</dl>
 
-			<h2>Funzionalit&agrave;</h2>
-			<ul id="collegamentibottoni">
-				<li> <a href="nuovapagina.html">Crea una nuova pagina</a> </li>
-				<li> <a href="paginependenti.html">Pagine pendenti</a> </li>
-				<li> <a href="paginepubblicate.html">Pagine pubblicate</a> </li>
-				<li> <a href="gestioneutenti.html">Gestione utenti</a> </li>
+			<h2>Pagine pubblicate</h2>
+			<nav aria-label="Paginazione" class="nav-pages">
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">&laquo;</a></li>
+					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
+					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
+					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+				</ul>
+			</nav>
+			<ul class="query">
+				<li>
+					<a href="#">
+						<img src="query" alt="imago" class="image" />
+						<p>Nome</p>
+						<p>Descrizione</p>
+					</a>
+				</li>
 			</ul>
+			<nav aria-label="Paginazione" class="nav-pages">
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">&laquo;</a></li>
+					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
+					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
+					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+				</ul>
+			</nav>
 		</section>
 	</div>
 
