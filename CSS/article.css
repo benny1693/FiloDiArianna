@@ -103,7 +103,7 @@
 
 @media(min-width:1200px) {
 	#back-to-article {
-		left: 30rem;
+		left: calc(50% - 18rem);
 	}
 }
 

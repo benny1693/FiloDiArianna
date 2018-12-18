@@ -17,7 +17,12 @@ body {
 	line-height: 1.5;
 	color: #212529;
 	text-align: left;
-	background: #fff;
+}
+
+@media(min-width:1200px) {
+	body {
+		background: url(../img/desk.jpg) no-repeat fixed;
+	}
 }
 
 h1,
@@ -645,6 +650,7 @@ img.navbar-brand {
 	width: 100%;
 	padding: 10.5rem 1.875rem 1.875rem 1.875rem;
 	min-height: calc(100vh - 3.15rem - 4.0625rem);
+	background: #fff;
 }
 
 #page-content-wrapper > nav {
