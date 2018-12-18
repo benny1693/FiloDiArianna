@@ -2,31 +2,34 @@
 <html lang="it">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="title" content="Ricerca" />
-	<!-- Questa pagina di ricerca non la si vuole indicizzare -->
-	<meta name="robots" content="noindex">
-	<meta name="author" content="Matteo Ranzato" />
+	<title>Area personale | Il Filo di Arianna</title>
+	<meta name="title" content="Area personale | Filo di Arianna" />
+	<meta name="description" content="Gestisci le pagine create" />
+	<meta name="keyword" content="Filo, Arianna, greco, mitologia, pagina, gestisci, pubblicata" />
+	<meta name="author" content="Alessandro Spreafico" />
+	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Filo di Arianna</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style_list.css" />
-	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
-	<script src="JS/custom.js"></script>
+	<link rel="stylesheet" type="text/css" href="../CSS/aiuti_nav.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/paginepubblicatependenti.css" />
+	<script src="../JS/custom.js"></script>
 </head>
 
 <body>
-	<!--HEADER-->
+	<!-- HEADER / SIDEBAR -->
+	<?php require_once "header.php" ?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
-			<p class="sr-only">Ti trovi in: </p>
+			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item" lang="en"><a href="../index.html">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>
+				<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+				<li class="breadcrumb-item"><a href="areapersonale.php">Area personale</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Pagine pubblicate</li>
 			</ol>
 		</nav>
 		<section>
-			<h1>Risultati di ricerca</h1>
+			<h1>Pagine pubblicate</h1>
 			<nav aria-label="Paginazione" class="nav-pages">
 				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">&laquo;</a></li>
@@ -39,12 +42,14 @@
 				</ul>
 			</nav>
 			<ul class="query">
-				<li>
-					<a href="#">
-						<img src="query" alt="imago" class="image" />
-						<p>Nome</p>
-						<p>Descrizione</p>
-					</a>
+				<li class="page-administration clearfix">
+					<form action="/ROBE.PHP" method="get">
+						<a class="pagina" href="articolo.php">Pagina</a>
+						<div class="bottoni">
+							<button type="submit" class="btn btn-outline-primary">Modifica</button>
+							<button type="submit" class="btn btn-outline-primary">Elimina</button>
+						</div>
+					</form>
 				</li>
 			</ul>
 			<nav aria-label="Paginazione" class="nav-pages">
@@ -60,7 +65,8 @@
 			</nav>
 		</section>
 	</div>
-	<!--FOOTER-->
+	<!-- FOOTER di Matteo -->
+	<?php require_once "footer.html"?>
 </body>
 
 </html>

@@ -11,18 +11,20 @@
 	<title>Filo di Arianna</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style_list.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/aiuti_nav.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
 	<script src="JS/custom.js"></script>
 </head>
 
 <body>
 	<!--HEADER-->
+	<?php require_once "header.php" ?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in: </p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item" lang="en"><a href="../index.html">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>
+				<li class="breadcrumb-item" lang="en"><a href="index.php">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page" lang="en">Ricarca</li>
 			</ol>
 		</nav>
 		<section>
@@ -40,7 +42,7 @@
 			</nav>
 			<ul class="query">
 				<li>
-					<a href="#">
+					<a href="articolo.php">
 						<img src="query" alt="imago" class="image" />
 						<p>Nome</p>
 						<p>Descrizione</p>
@@ -61,6 +63,7 @@
 		</section>
 	</div>
 	<!--FOOTER-->
+	<?php require_once "footer.html"?>
 </body>
 
 </html>
