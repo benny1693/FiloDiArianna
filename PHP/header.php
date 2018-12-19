@@ -1,6 +1,6 @@
 <?php
 	function isNamefile($name){
-		return "index.php" == $name;
+		return $_SERVER['SCRIPT_URL'] == "/bcosenti/" . $name;
 	}
 ?>
 
@@ -64,23 +64,24 @@
 			</button>
 			<ul class="sidebar-nav">
 				<?php
-					if (isNamefile("index.php")){
+					if (isNamefile("PHP/index.php")){
 						echo "<li class=\"active\" lang=\"en\">Home</li>";
 						echo "<li><a href=\"scopri.php\">Scopri</a></li>";
 						echo "<li><a href=\"contatti.php\">Contatti</a></li>";
 					}
 
-					if (isNamefile("scopri.php")){
+					if (isNamefile("PHP/scopri.php")){
 						echo "<li lang=\"en\"><a href=\"index.php\">Home</a></li>";
 						echo "<li class=\"active\">Scopri</li>";
 						echo "<li><a href=\"contatti.php\">Contatti</a></li>";
 					}
 
-					if (isNamefile("contatti.php")){
+					if (isNamefile("PHP/contatti.php")){
 						echo "<li lang=\"en\"><a href=\"index.php\">Home</a></li>";
 						echo "<li><a href=\"scopri.php\">Scopri</a></li>";
 						echo "<li class=\"active\">Contatti</li>";
 					}
+					echo "<!--"; print_r($_SERVER); echo "-->";
 				?>
 			</ul>
 		</nav>
