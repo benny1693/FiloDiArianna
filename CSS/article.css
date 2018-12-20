@@ -1,43 +1,45 @@
 #article-content {
-	font-family: "Times New Roman", serif;
+	/*font-family: "Times New Roman", serif;*/
 	text-align: justify;
 }
 
 #article-menu {
 	margin: 0;
+    margin-bottom: -1px;
 }
 
 #article-menu a {
 	text-decoration: underline;
 	background-color: rgba(100, 100, 100, 0.1);
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 2rem;
 	display: block;
 }
 
 #article-menu > li {
 	display: inline-block;
-	box-shadow: 0.1rem -1.5px 2px 0 rgba(0, 0, 0, .16);
+	/*box-shadow: 0.1rem -1.5px 2px 0 rgba(0, 0, 0, .16);*/
 	margin-left: -0.3rem;
-}
-
-#article-menu > li:first-child {
-	box-shadow: -0.1rem -1.5px 2px 0 rgba(0, 0, 0, .16), 0.1rem -1.5px -1.5px 0 rgba(0, 0, 0, .16);
-
+    background: #EDEDED;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 7px solid #CCCCCC;
 }
 
 #article-menu > li.active {
 	background-color: #fff;
 	position: relative;
-	padding: 0.5rem 1rem;
-	box-shadow: -0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16), 0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16);
+    border-top: 7px solid #00428a;
+    padding: 0.5rem 2rem;
+	/*box-shadow: -0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16), 0.1rem -1.5px 5px 0 rgba(0, 0, 0, .16);*/
 }
 
-#article-content > *:first-child {
-	box-shadow: 0 -1rem 6px -1rem rgba(0, 0, 0, .16), 0 -1rem 10px -1rem rgba(0, 0, 0, .12);
+#article-content{
+    border-top: 1px solid #ccc;
 }
 
 #article-title h1 {
 	display: inline-block;
+    margin-top: 1rem;
 }
 
 #article-id::before {
@@ -47,6 +49,7 @@
 #article-id {
 	display: inline-block;
 	color: #575757;
+    margin-top: 1rem;
 	margin-right: 2rem;
 	font-size: 1.5rem;
 }
@@ -113,7 +116,7 @@
 }
 
 .comment > p {
-	padding: 0.5rem;
+	padding: 0.5rem 1rem;
 	background-color: #eee;
 	border-radius: 5px;
 	position: relative;
