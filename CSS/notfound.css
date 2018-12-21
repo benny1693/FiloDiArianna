@@ -1,11 +1,11 @@
-#page-content-wrapper {
+#not-found #page-content-wrapper {
 	background: url(../img/filo.jpg) no-repeat;
 	background-size: contain;
 	background-position: center;
 }
 
 @media(min-width:768px) {
-	#page-content-wrapper {
+	#not-found #page-content-wrapper {
 		background-size: calc(100% - 15rem);
 		background-position: right bottom;
 	}
