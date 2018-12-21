@@ -1272,7 +1272,8 @@ ul.query > li p {
 }
 
 .form-check-input:disabled ~ .form-check-label {
-	color: #6c757d;
+	/*color: #6c757d;*/
+	color: lightgray;
 }
 
 .form-check-label {
@@ -1421,7 +1422,7 @@ ul.query > li p {
 	padding: 0.5rem;
 	background-color: #00428a;
 	border-radius: 30px;
-	
+
 	opacity: 0;
 	transition: opacity .3s ease, bottom .3s ease;
 }

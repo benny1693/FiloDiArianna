@@ -28,33 +28,93 @@
 			<h1>Registrati</h1>
 
 			<form data-toggle="validator">
+
 				<div class="form-group row">
-					<label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
+					<label for="inputName1" class="col-sm-3 col-form-label">Nome</label>
 					<div class="col-sm-9">
-						<input type="email" class="form-control" id="inputEmail1" placeholder="Email" data-error="Mail invalida" required>
+						<input type="text" class="form-control" id="inputName1" placeholder="Nome" data-error="Nome non valido" required>
+					</div>
+					<div class="invalid-feedback">
+						<p>
+							Nome non valido.
+						</p>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="inputSurename1" class="col-sm-3 col-form-label">Cognome</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="inputSurename1" placeholder="Cognome" data-error="Cognome non valido" required>
+					</div>
+					<div class="invalid-feedback">
+						<p>
+							Cognome non valido.
+						</p>
+					</div>
+				</div>
+
+				<!-- <fieldset class="form-group"> -->
+				 <div class="form-group row">
+					 <legend class="col-sm-3 col-form-label">Sesso</legend>
+					 <div class="col-sm-9">
+						 <div class="form-check">
+							 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							 <label class="form-check-label" for="gridRadios1">
+								 Maschio
+							 </label>
+						 </div>
+						 <div class="form-check">
+							 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							 <label class="form-check-label" for="gridRadios2">
+								 Femmina
+							 </label>
+						 </div>
+						 <div class="form-check disabled">
+							 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							 <label class="form-check-label" for="gridRadios3">
+								 Nessuno dei due
+							 </label>
+						 </div>
+					 </div>
+				 </div>
+			<!--  </fieldset> -->
+
+				<div class="form-group row">
+					<label for="inputEmail1" class="col-sm-3 col-form-label" lang="en">Email</label>
+					<div class="col-sm-9">
+						<input type="email" class="form-control" id="inputEmail1" placeholder="Email" data-error="Mail non valida" required>
 						<!-- <div class="help-block with-errors"></div> -->
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="inputUsername1" class="col-sm-3 col-form-label">Username</label>
+					<label for="inputUsername1" class="col-sm-3 col-form-label" lang="en">Username</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputUsername1" placeholder="Username">
+						<input type="text" class="form-control" id="inputUsername1" placeholder="Username" required>
+					</div>
+					<div class="invalid-feedback">
+						<p>
+							<span lang="en">Username</span> non valido.
+						</p>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="inputPassword1" class="col-sm-3 col-form-label">Password</label>
+
+					<label for="inputPassword1" class="col-sm-3 col-form-label" lang="en">Password</label>
 					<div class="col-sm-9">
 						<input type="password" data-minlength="6" data-maxlength="12" class="form-control" id="inputPassword1" placeholder="Password" required>
 						<p class="help-block">La password deve contenere tra 6-12 caratteri.</p>
 					</div>
-					<label for="inputPasswordConfirm" class="col-sm-3 col-form-label">Conferma password</label>
+					<label for
+					="inputPasswordConfirm" class="col-sm-3 col-form-label">Conferma password</label>
 					<div class="col-sm-9">
 						<input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Conferma password" required>
 						<!-- <div class="help-block with-errors"></div> -->
 						<div class="invalid-feedback">
-							Le password non combaciano.
+							<p>
+								Le <span lang="en">password</span> non combaciano.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -63,6 +123,7 @@
 					<button type="submit" class="btn  btn-outline-primary">Fatto</button>
 				</div>
 			</form>
+
 		</section>
 	</div>
 </body>

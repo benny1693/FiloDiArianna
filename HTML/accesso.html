@@ -27,7 +27,9 @@
 		<section id="accesso">
 			<h1>Accedi</h1>
 
-			<form class="needs-validation clearfix" method="post" novalidate>
+			<!-- <form class="needs-validation clearfix" method="post" data-toggle="validator" novalidate> -->
+			<form data-toggle="validator">
+
 				<div class="form-group row">
 					<label for="inputUsername0" class="col-sm-3 col-form-label">Username</label>
 					<div class="col-sm-9">
@@ -39,11 +41,11 @@
 				<div class="form-group row">
 					<label for="inputPassword0" class="col-sm-3 col-form-label">Password</label>
 					<div class="col-sm-9">
-						<input type="password" class="form-control" id="inputPassword0" placeholder="Password">
+						<input type="password" class="form-control" id="inputPassword0" placeholder="Password" required>
 					</div>
 				</div>
 				<div class="invalid-feedback">
-					<p>Inserisci password o username validi.</p>
+					<p>Password o username non validi.</p>
 				</div>
 
 				<div class="form-group row col-sm-10 col-sm-offset-3 form-check">
