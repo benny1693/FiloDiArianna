@@ -633,15 +633,6 @@ img.navbar-brand {
 	line-height: 1.5;
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
-
-	.form-control,
-	.custom-control-label::before,
-	.custom-file-label {
-		transition: none;
-	}
-}
-
 /* END FORM ############################################################## */
 
 /* ARTICLE ############################################################## */
@@ -925,11 +916,7 @@ img.navbar-brand {
 	border: 1px solid transparent;
 	border-radius: 4px;
 	cursor: pointer;
-	-ms-touch-action: manipulation;
 	touch-action: manipulation;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -1080,8 +1067,8 @@ ul.query > li p {
 	z-index: 3;
 	color: #fff;
 	cursor: default;
-	background-color: #337ab7;
-	border-color: #337ab7;
+	background: #337ab7;
+	border-color: #337ab6;
 }
 
 .pagination > .disabled > span,
@@ -1092,7 +1079,7 @@ ul.query > li p {
 .pagination > .disabled > a:focus {
 	color: #777;
 	cursor: not-allowed;
-	background-color: #fff;
+	background: #fff;
 	border-color: #ddd;
 }
 /* END LIST ITEM ############################################## */
@@ -1310,7 +1297,7 @@ ul.query > li p {
 .btn-outline-primary:hover {
 	color: #fff;
 	background-color: #0037FF;
-	border-color: #0037FF;
+	border-color: #0037FE;
 }
 
 .btn-outline-primary:focus {
@@ -1325,7 +1312,7 @@ ul.query > li p {
 .btn-outline-primary:not(:disabled):not(.disabled):active {
 	color: #fff;
 	background-color: #0037FF;
-	border-color: #0037FF;
+	border-color: #0037FE;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus {
