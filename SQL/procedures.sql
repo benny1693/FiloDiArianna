@@ -263,6 +263,21 @@ BEGIN
 END|
 DELIMITER ;
 
+/* Inserisce un commento a una pagina */
+DELIMITER |
+CREATE PROCEDURE insertComment(_pageID INTEGER, _content TEXT, _author INTEGER)
+BEGIN
+	INSERT INTO _comments (pageID,content,author) VALUES (_pageID, _content, _author);
+END|
+DELIMITER ;
+
+/* Elimina un dato commento */
+DELIMITER |
+CREATE PROCEDURE deleteComment(_pageID INTEGER, _time_stamp TIMESTAMP(6), _author INTEGER)
+BEGIN
+	DELETE FROM _comments WHERE pageID = _pageID AND time_stamp = _time_stamp AND author = _author;
+END|
+DELIMITER ;
 
 /* UTILITIES */
 DELIMITER |

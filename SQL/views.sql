@@ -41,3 +41,11 @@ CREATE VIEW normalUsers AS
 	SELECT ID,name
 	FROM _users
 	WHERE is_admin = FALSE;
+	
+/* Vista che seleziona tutti i commenti con autore del commento e 
+pagina commentata */
+CREATE VIEW commentedArticles AS
+	SELECT P.ID AS pageID, P.title AS pageTitle, P.author AS pageAuthor, 
+				C.time_stamp AS commentTime, C. author AS commentAuthor, C.content AS pageComment
+	FROM _pages AS P JOIN _comments AS C ON P.ID = C.pageID
+	ORDER BY C.time_stamp ASC;
