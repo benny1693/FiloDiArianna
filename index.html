@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="it">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8" />
 	<meta name="title" content="Filo di Arianna" />
 	<meta name="description" content="Sito di ricerca per aiutare la diffusione della cultura greca classica tra i giovani tramite strumenti multimediali." />
 	<meta name="keywords" content="cultura greca, cultura greca classica, greci, mitologia, associazione" />
@@ -19,7 +19,7 @@
 		<div class="container-fluid">
 			<div class="row navbar">
 				<div class="col-sm-2 col-xs-3">
-					<img class="navbar-brand" src="img/logo.png" alt="Logo" />
+					<img class="navbar-brand" src="img/logo.png" alt="Logo Filo di Arianna" />
 				</div>
 				<div class="col-sm-3 col-sm-push-7 col-xs-9">
 					<button id="burger-menu" type="button" class="navbar-toggler">
@@ -33,7 +33,7 @@
 						</div>
 						<ul class="dropdown">
 							<li><a href="HTML/areapersonale.html">Area Riservata</a></li>
-							<li lang="en"><a href="#">Logout</a></li>
+							<li lang="en"><a href="logout.php">Logout</a></li>
 						</ul>
 					</div>
 					<a id="login-button" href="HTML/accesso.html">Accedi</a>
@@ -41,7 +41,7 @@
 				<div class="col-sm-7 col-sm-pull-2 col-xs-12">
 					<form class="row navbar-form clearfix" action="redirect.php" method="post">
 						<div id="categoria" class="navbar-select">
-							<label for="inputState" class="sr-only">Seleziona la categoria in cui desideri effettuare la ricerca</label>
+							<label id="selectCategory" for="inputState" class="sr-only">Seleziona la categoria in cui desideri effettuare la ricerca</label>
 							<select id="inputState" class="form-control" tabindex="2">
 								<option selected>Categorie</option>
 								<option value="personaggi">Personaggi</option>

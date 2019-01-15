@@ -75,6 +75,10 @@ a {
 	background-color: transparent;
 }
 
+fieldset{
+	border: none;
+}
+
 img {
 	vertical-align: middle;
 	border-style: none;
@@ -623,6 +627,11 @@ img.navbar-brand {
 .form-text {
 	display: block;
 	margin-top: 0.25rem;
+}
+
+legend.col-form-label,
+label[for="inputPasswordConfirm"]{
+	padding-top: 0;
 }
 
 .col-form-label {
