@@ -436,6 +436,10 @@ img.navbar-brand {
 	border-radius: 1.5625rem 0 0 1.5625rem;
 }
 
+#inputCategorie{
+	margin-left: 0;
+}
+
 #inputState {
 	padding: 0.625rem 0.9375rem;
 	padding-right: 0.5rem;
