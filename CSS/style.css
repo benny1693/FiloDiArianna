@@ -616,14 +616,6 @@ img.navbar-brand {
 	border-radius: 0 0.25rem 0.25rem 0;
 }
 
-.invalid-feedback {
-	display: none;
-	width: 100%;
-	margin-top: 0.25rem;
-	font-size: 80%;
-	color: #dc3545;
-}
-
 .form-text {
 	display: block;
 	margin-top: 0.25rem;
@@ -1210,6 +1202,7 @@ ul.query > li p {
 
 .help-block {
 	font-size: 88%;
+	margin-bottom: 0;
 }
 
 .col-form-label {
@@ -1222,22 +1215,24 @@ ul.query > li p {
 }
 
 .invalid-feedback {
-	display: none;
-	width: 100%;
-	margin-top: 0.25rem;
-	font-size: 0.95rem;
-	color: #dc3545;
+    max-width: 100%;
+    padding: .25rem .5rem;
+    margin-top: .1rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    color: #fff;
+    background-color: rgba(220,53,69,.9);
+    border-radius: .25rem;
+}
+
+.invalid-feedback > p{
+	margin-bottom: 0;
 }
 
 
 #accesso .form-control,
 #registrazione .form-control {
 	width: 100%;
-}
-
-#accesso .col-form-label,
-#registrazione .col-form-label {
-	text-align: right;
 }
 
 #accesso .btn-outline-primary,
@@ -1273,6 +1268,15 @@ ul.query > li p {
 
 	#registrazione .form-control,
 	#accesso .form-control {
+		max-width: 18rem;
+	}
+
+	#accesso .col-form-label,
+	#registrazione .col-form-label {
+		text-align: right;
+	}
+
+	.invalid-feedback{
 		max-width: 18rem;
 	}
 }
