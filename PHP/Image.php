@@ -8,5 +8,19 @@
 
 class Image
 {
+    private $source;
+
+    public function __construct($source) {
+        $this->source = $source;
+    }
+
+    //anteprima dell'immagine
+    public function generateThumbnail() {
+
+    }
+
+    public function getSource() {
+
+    }
 
 }

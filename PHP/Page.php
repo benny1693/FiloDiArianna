@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: benedetto
+ * User: pincohackerino
  * Date: 03/01/19
  * Time: 12.18
  */
@@ -13,6 +13,7 @@ class Page {
         $this->name = $name;
     }
 
+    //equivalente di getPersonalButtons
     public function printPersonalButtons($user_id) {
         print_r('<div id="member">
 					<div id="icon-member">
@@ -27,7 +28,10 @@ class Page {
 				</div>');
     }
 
+    //equivalente di getLoginButtons
     public function printLoginButtons() {
         print_r('<a id="login-button" href="HTML/accesso.html">Accedi</a>');
     }
+
+
 }
