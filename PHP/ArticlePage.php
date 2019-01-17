@@ -13,41 +13,48 @@ require_once "RegisteredUser.php";
 
 class ArticlePage extends Page {
 
-    private $articleID;
+    private $artileID;
+    private $title;
     private $author;
     private $image;
-    private $title;
-    private $
+    private $articleContent;
+    private $discussionArea;
 
-    public function __construct($name, $articleID, $author, $image) {
+    public function __construct($name, $articleID, $title, $author, $image, $articleContent, $discussionArea) {
         parent::__construct($name);
         $this->articleID = $articleID;
-        
+        $this->title = $title;
+        $this->author = $author;
+        $this->image = $image;
+        $this->articleContent = $articleContent;
+        $this->discussionArea = $discussionArea;
+    }
+    //tolti tutti i metodi set
+
+    public function getArticleID() {
+        return $articleID;
     }
 
-    public function setDiscussionArea() {
-        $this->
+    public function getTitle () {
+      return $title;
     }
 
-    public function setTitle($title){
-        $this->title = title;
-    }
-
-    public function getImage() {
-        return $image;
+    public function getContent() {
+        return $articleContent;
     }
 
     public function getAuthor() {
       return $author;
     }
 
+    public function getImage() {
+        return $image;
+    }
+
     public function getDiscussionArea() {
-
+        return $discussionArea;
     }
 
-    public function getTitle () {
-      return $title;
-    }
 
 }
 

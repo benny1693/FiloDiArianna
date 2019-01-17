@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: benedetto
+ * User: pincohackerino
  * Date: 03/01/19
  * Time: 12.20
  */
@@ -20,7 +20,7 @@ class Image
     }
 
     public function getSource() {
-
+        return $source;
     }
 
 }
