@@ -1,12 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: benedetto
- * Date: 03/01/19
- * Time: 12.21
- */
+
+require_once "RegisteredUser";
+
 
 class Comment
 {
+  private $timeStamp;
+  private $articleID;
+  private $content;
+  private $RegisteredUser;
+  
+  public function __construct($timeStamp, $articleID, $content)
+  {
+    $this->timeStamp=$timeStamp;
+    $this->articleID=$articleID;
+    $this->content=$content;
+  }
+  
+  public function getContent()   { return $this->content;  }
+  public function getTimeStamp() { return $this->timeStamp;}
+  public function getAuthor() {return $RegisteredUser->getID;}
   
 }
+
+?>
