@@ -8,19 +8,23 @@
 
 require_once "User.php";
 
-class UnregisteredUser implements User{
+class UnregisteredUser extends User{
 
-    private $ID = null;
+	public function __construct() {
+		parent::__construct();
+		$_SESSION['ID'] = -1;
+	}
 
-    function __construct() {
-        $this->ID = md5(time());
-    }
+	public function isRegistered() {
+		return false;
+	}
 
-    function getID() {
-     return $this->ID;
-    }
+	public function subscribe($name,$surname,$gender,$birthDate,
+														$email,$username,$password){
+		//TODO
+	}
 
-    function isRegistered() {
-        return false;
-    }
+	public function login($username,$password) {
+		//TODO
+	}
 }

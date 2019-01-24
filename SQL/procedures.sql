@@ -1,6 +1,6 @@
 /* 	Inserisce nel database la pagina con i dati indicati.
 		@param _title: 		indica il titolo da assegnare alla pagina
-		@param _htmlCode: indica il codice HTML relativo alla pagina inserita
+		@param _content: indica il contenuto relativo alla pagina inserita
 		@param _img: 			indica l'immagine che correda l'articolo
 		@param type1: 		indica la categoria principale dell'articolo (eventi,luoghi o personaggi)
 		@param type2: 		indica la sottocategoria dell'articolo
@@ -19,7 +19,7 @@
 		@throws: 					segnala un errore se la pagina già esiste
 */
 DELIMITER |
-CREATE PROCEDURE insertPage(_title VARCHAR(30), _htmlCode TEXT, _img BLOB, _author INTEGER,
+CREATE PROCEDURE insertPage(_title VARCHAR(30), _content TEXT, _img BLOB, _author INTEGER,
 														 	_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
 	DECLARE _ID INTEGER;
@@ -31,8 +31,8 @@ BEGIN
 	END IF;
 	
 	/* Inserisco la pagina tra la lista totale delle pagine*/
-	INSERT INTO _pages (title,htmlCode,img,author)
-	VALUES (_title, LOAD_FILE(_htmlCode), LOAD_FILE(_img),_author);
+	INSERT INTO _pages (title,content,img,author)
+	VALUES (_title, LOAD_FILE(_content), LOAD_FILE(_img),_author);
 	
 	/* Ne seleziono l'ID */
 	SELECT ID INTO _ID 
@@ -48,7 +48,7 @@ DELIMITER ;
 /*	Permette l'inserimento di una modifica di una pagina. La nuova versione della pagina
 		viene inserita tra quelle pendenti.
 		@param _ID: 			indica il codice della pagina da modificare
-		@param _htmlCode: rappresenta il codice HTML modificato
+		@param _content: rappresenta il codice HTML modificato
 		@param _img: 			rappresenta l'immagine che correda la voce
 		@param _type1: 		indica la categoria principale 
 		@param type2: 		indica la sottocategoria dell'articolo
@@ -66,11 +66,11 @@ DELIMITER ;
 													- Creatura
 */
 DELIMITER |
-CREATE PROCEDURE insertModification(_ID INTEGER, _htmlCode TEXT, _img BLOB, 
+CREATE PROCEDURE insertModification(_ID INTEGER, _content TEXT, _img BLOB, 
 														_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
-		INSERT INTO _modifiedPages (ID,htmlCode,img,type1,type2)
-		VALUES (_ID,_htmlCode,_img,_type1,_type2);
+		INSERT INTO _modifiedPages (ID,content,img,type1,type2)
+		VALUES (_ID,_content,_img,_type1,_type2);
 END|
 DELIMITER ;
 
@@ -81,19 +81,19 @@ DELIMITER ;
 DELIMITER |
 CREATE PROCEDURE approveModification(_ID INTEGER, _modTime TIMESTAMP(6))
 BEGIN
-	DECLARE _htmlCode TEXT;
+	DECLARE _content TEXT;
 	DECLARE _img BLOB;
 	DECLARE _type1 VARCHAR(18);
 	DECLARE _type2 VARCHAR(18);
 	
 	/* Seleziono i valori della pagina modificata */
-	SELECT htmlCode,img,type1,type2 INTO _htmlCode,_img,_type1,_type2
+	SELECT content,img,type1,type2 INTO _content,_img,_type1,_type2
 	FROM _modifiedPages
 	WHERE ID=_ID AND modTime=_modTime;
 
 	/* Eseguo l'update */
 	UPDATE _pages
-	SET insTime=_modTime,htmlCode=_htmlCode,img=_img, posted = FALSE
+	SET insTime=_modTime,content=_content,img=_img, posted = FALSE
 	WHERE ID = _ID;
 	
 	/* Elimino la pagina dalle sotto-categorie */
@@ -230,20 +230,24 @@ END|
 DELIMITER ;
 
 /* Inserisce un nuovo utente se non è già presente 
-	 @param _name: 	nome utente
+	 @param _username: 	nome utente
+	 @param _name:			nome anagrafico
+	 @param _surname:		cognome
+	 @param _birthDate:	data di nascita
+	 @param _gender:		sesso
 	 @param _passw: password indicata
 	 @param _admin: parametro che è true se l'utente inserito è un amministratore
 	 @throws:				se l'utente già esiste segnala un errore
 */
 DELIMITER |
-CREATE PROCEDURE insertUser(_name VARCHAR(25),_passw VARCHAR(40), _admin BOOLEAN)
+CREATE PROCEDURE insertUser(_username VARCHAR(25),_name VARCHAR(25),_surname VARCHAR(25),_birthDate DATE, _gender ENUM('M','F'),_passw VARCHAR(40), _admin BOOLEAN)
 BEGIN
-	IF (_name IN (SELECT name FROM _users))
+	IF (_username IN (SELECT _username FROM _users))
 	THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Utente esistente';
 	END IF;
 	
-	INSERT INTO _users(name,pass_word,is_admin) VALUES (_name,SHA1(_passw),_admin);
+	INSERT INTO _users(username,name,surname,birthDate,gender,pass_word,is_admin) VALUES (_username,_name,_surname,_birthDate,_gender,SHA1(_passw),_admin);
 END|
 DELIMITER ;
 

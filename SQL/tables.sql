@@ -1,6 +1,10 @@
 CREATE TABLE _users (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
-	name VARCHAR(25) UNIQUE NOT NULL,
+	username VARCHAR(25) UNIQUE NOT NULL,
+	name VARCHAR(25),
+	surname VARCHAR(25),
+	birthDate DATE,
+	gender ENUM('M','F'),
 	pass_word CHAR(40),
 	is_admin BOOLEAN
 );
@@ -9,7 +13,7 @@ CREATE TABLE _pages (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
 	insTime TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
 	title VARCHAR(30) UNIQUE NOT NULL,
-	htmlCode TEXT,
+	content TEXT,
 	img LONGBLOB,
 	visits INTEGER NOT NULL DEFAULT 0,
 	author INTEGER,
@@ -23,7 +27,7 @@ CREATE TABLE _pages (
 CREATE TABLE _modifiedPages (
 	ID INTEGER,
 	modTime TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
-	htmlCode TEXT,
+	content TEXT,
 	img LONGBLOB,
 	type1 VARCHAR(11),
 	type2 VARCHAR(18),
@@ -93,14 +97,14 @@ CREATE TABLE _comments(
 	pageID INTEGER NOT NULL,
 	time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
 	content TEXT,
-	author INTEGER,
+	author INTEGER DEFAULT -1,
 	
 	PRIMARY KEY (pageID,time_stamp,author),
 	
 	FOREIGN KEY (pageID) REFERENCES _pages (ID)
 					ON DELETE CASCADE
 					ON UPDATE CASCADE,
-	FOREIGN KEY (author) REFERENCES _user (ID)
-					ON DELETE SET NULL
+	FOREIGN KEY (author) REFERENCES _users (ID)
+					ON DELETE CASCADE
 					ON UPDATE CASCADE
 );

@@ -9,7 +9,24 @@
 require_once "RegisteredUser.php";
 
 class Admin extends RegisteredUser {
-    public function isAdmin() {
-        return true;
-    }
+
+	public function __construct($u_name){
+		parent::__construct($u_name);
+	}
+
+	public function isAdmin() {
+		return true;
+	}
+
+	public function deleteUser($userID) {
+		//TODO
+	}
+
+	public function approveArticle($articleID) {
+		//TODO
+	}
+
+	public function deleteArticle($articleID){
+		//TODO
+	}
 }

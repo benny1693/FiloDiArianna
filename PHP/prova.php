@@ -6,11 +6,20 @@
  * Time: 17.58
  */
 
+require_once 'UnregisteredUser.php';
 
-require_once 'RegisteredUser.php';
+$u = new UnregisteredUser();
 
-$u = new RegisteredUser('ciccio');
+echo "<p>Ricerca degli articoli</p>";
+$articleList = $u->searchArticle("",1);
 
+$u->printArticleList($articleList);
 
+echo "<p>Ricerca dei commenti</p>";
 
+$u->printArticleComment(1);
+
+echo "<p>Informazione di un altro utente</p>";
+
+$u->printOtherUserInfo(1);
 ?>

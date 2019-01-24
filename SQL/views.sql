@@ -15,7 +15,7 @@ CREATE VIEW unpostedPages AS
 
 /* Vista che seleziona le pagine postate*/
 CREATE VIEW postedPages AS
-	SELECT ID, title, author, visits
+	SELECT ID, title, author, visits, img, content
 	FROM _pages
 	WHERE posted = TRUE;
 	
