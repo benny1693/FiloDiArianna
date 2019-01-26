@@ -10,17 +10,32 @@ require_once "Comment.php";
 
 class DiscussionArea
 {
-    private $comments = []; //array di commenti
+    private $comments = array(); //array di commenti vuoto
 
     public function __construct() {
     }
 
     public function addComment($comment) {
+        //mette l'elemento in fondo
     	array_push($this->comments, $comment);
     }
 
-    public function deleteComment($comment) {
+    public function deleteComment($comment) {   //TODO: da testare
 
+        //scorrendo tutto l'array
+        foreach($this->comments as $currentComment) {
+            //ho trovato il commento da cancellare
+            if($currentComment == $comment) {
+                //toglie l'elemento
+                unset($this->comments[
+                    key($this->comments)]   //chiave di quel valore comment
+                    );
+                //quindi usciamo dal ciclo
+                break;
+            }
+        }
+        //per rimettere a posto gli indici dopo aver eliminato un elemento
+        $this->comments = array_values($this->comments);
     }
 
     public function printComments() {

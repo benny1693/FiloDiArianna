@@ -8,7 +8,7 @@
 
 class Image
 {
-		private $source = null;
+	private $source = null;
 
     public function __construct($source) {
         $this->source = $source;
@@ -16,6 +16,8 @@ class Image
 
     //anteprima dell'immagine
     public function generateThumbnail() {
+
+
 			return $this->source; //TODO
     }
 
