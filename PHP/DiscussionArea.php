@@ -13,6 +13,7 @@ class DiscussionArea
     private $comments = array(); //array di commenti vuoto
 
     public function __construct() {
+
     }
 
     public function addComment($comment) {
