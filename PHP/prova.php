@@ -22,4 +22,6 @@ $u->printArticleComment(1);
 echo "<p>Informazione di un altro utente</p>";
 
 $u->printOtherUserInfo(1);
+
+
 ?>
