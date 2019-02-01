@@ -12,9 +12,7 @@ class DiscussionArea
 {
     private $comments = array(); //array di commenti vuoto
 
-    public function __construct() {
-
-    }
+    //   public function __construct() {}
 
     public function addComment($comment) {
         //mette l'elemento in fondo
@@ -26,7 +24,7 @@ class DiscussionArea
         //scorrendo tutto l'array
         foreach($this->comments as $currentComment) {
             //ho trovato il commento da cancellare
-            if($currentComment == $comment) {
+            if($currentComment->equalTo($comment)) {
                 //toglie l'elemento
                 unset($this->comments[
                     key($this->comments)]   //chiave di quel valore comment
@@ -41,7 +39,6 @@ class DiscussionArea
 
     public function printComments() {
 
-
     	foreach ($this->comments as $comment){
     		if ($comment->getAuthor() == $_SESSION['ID']) {
 					echo "					<div class=\"comment user\">";
@@ -54,7 +51,9 @@ class DiscussionArea
 			}
     }
 
-    public function showTextArea() {
+    public function showTextArea() {    //far vedere nella pagina il testo dei commenti
 
     }
 }
+
+?>
