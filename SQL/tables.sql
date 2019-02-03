@@ -5,6 +5,7 @@ CREATE TABLE _users (
 	surname VARCHAR(25),
 	birthDate DATE,
 	gender ENUM('M','F'),
+	email VARCHAR(40),
 	pass_word CHAR(40),
 	is_admin BOOLEAN
 );
