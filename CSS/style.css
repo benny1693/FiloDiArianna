@@ -502,10 +502,6 @@ img.navbar-brand {
 		box-shadow: none;
 	}
 
-	.navbar-button {
-		margin-left: -1.3rem;
-	}
-
 	#sidebar-wrapper {
 		position: fixed;
 		width: 15rem;
@@ -513,6 +509,9 @@ img.navbar-brand {
 		margin: 0;
 		height: 100%;
 		box-shadow: -2px 2px 5px 0 rgba(0, 0, 0, .16), -2px 2px 10px 0 rgba(0, 0, 0, .12);
+	}
+	input[title="Search"]{
+		max-width: 16.875rem;
 	}
 }
 
