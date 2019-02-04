@@ -3,9 +3,8 @@
 
 <head>
 	<title>Discussione su TitoloArticolo | Il Filo di Arianna</title>
-	<meta name="title" content="Discussione su TitoloArticolo | Filo di Arianna" />
 	<meta name="description" content="Discussione tra gli utenti sull'articolo TitoloArticolo" />
-	<meta name="keyword" content="Filo, Arianna, greco, mitologia, TitoloArticolo, discussione" />
+	<meta name="keywords" content="Filo, Arianna, greco, mitologia, TitoloArticolo, discussione" />
 	<meta name="author" content="Benedetto Cosentino" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +16,6 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
-	<?php require_once "header.php" ?>
 
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
@@ -72,9 +70,9 @@
 					</div>
 				</div>
 				<form id="comment-form">
-					<label>Lascia un commento</label>
 					<div class="form-group row">
-						<textarea class="form-control"></textarea>
+						<label for="inputText">Lascia un commento</label>
+						<textarea id="inputText" class="form-control"></textarea>
 					</div>
 
 					<div class="form-group row">

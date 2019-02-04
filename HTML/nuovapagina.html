@@ -37,17 +37,9 @@
 					<!-- <input type="file" class="form-control-file" id="FormControlFile"> -->
 					<input type="file" class="form-control-file" id="FormControlFile" />
 				</div>
-				<!-- 	ALTERNATIVA
-							<div class="custom-file">
-						    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-						    <label class="custom-file-label" for="validatedCustomFile">Scegli immagine..</label>
-						    <div class="invalid-feedback">Example invalid custom file feedback</div>
-						  </div>
-							-->
 
 				<div class="form-group">
 					<label for="inputTitolo">Titolo</label>
-					<!--<div class="col-sm-10">-->
 					<input type="text" class="form-control" id="inputTitolo" placeholder="Titolo" />
 				</div>
 
@@ -58,7 +50,7 @@
 				
 				<div class="form-group">
 					<label for="inputCategorie">Categorie</label>
-					<select id="inputCategorie" class="form-control" tabindex="2">
+					<select name="categorie" id="inputCategorie" class="form-control">
 						<optgroup label="Personaggi">
 							<option value="p_umani">Esseri Umani</option>
 							<option value="p_eroi">Semidivinità/Eroi</option>
@@ -77,14 +69,19 @@
 					</select>
 				</div>
 
-				<div class="form-group">
-					<label for="InputCorrelati">Pagine correlate</label>
-					<input type="text" class="form-control" id="InputCorrelati" aria-describedby="correlatihelp" placeholder="13, 5, 9" />
-					<small id="correlatihelp" class="form-text text-muted">Separa ogni codice da una virgola e uno spazio.</small>
-				</div>
+				<fieldset id="correlate" class="form-group">
+					<legend>Pagine correlate</legend>
+                    <p class="row">
+                        <label for="1" class="col-xs-1">1</label>
+                        <select id="1" name="correlati[]" class="form-control col-xs-9"></select>
+                    </p>
+                    <button type="button" id="plus" class="btn" onclick="plusClick()">
+                        <svg><path d="M 28, 20 h -8 v 8 h -4 v -8 h -8 v -4 h 8 v -8 h 4 v 8 h 8 v 4 z"/></svg>
+                    </button>
+				</fieldset>
 
 				<div class="form-group submit-button">
-					<button type="submit" class="btn  btn-outline-primary">Fatto</button>
+					<button type="submit" class="btn btn-outline-primary">Fatto</button>
 				</div>
 			</form>
 		</section>

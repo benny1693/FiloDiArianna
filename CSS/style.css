@@ -624,6 +624,15 @@ img.navbar-brand {
 	margin-top: 0.25rem;
 }
 
+#nuovapagina fieldset p > label{
+	padding-top: .3rem;
+    text-align: center;
+}
+
+select[name="correlati"]{
+	margin-bottom: 1rem;
+}
+
 legend.col-form-label,
 label[for="inputPasswordConfirm"]{
 	padding-top: 0;
@@ -939,6 +948,24 @@ label[for="inputPasswordConfirm"]{
 .close:not(:disabled):not(.disabled):focus {
 	color: #fff;
 	text-decoration: none;
+}
+
+#plus{
+	margin: 0 calc(50% - 1.75rem);
+	padding: 0.35rem 0.5rem 0.2rem 0.5rem;
+    border-radius: 50%;
+    background: #00428a;
+    fill: #fff;
+    outline: none;
+}
+
+#plus:hover{
+	background: #001840;
+}
+
+#plus > svg{
+	width: 2.2rem;
+	height:  2.2rem;
 }
 
 button.close {
@@ -1351,8 +1378,12 @@ ul.query > li p {
 	width: 100%;
 }
 
-#nuovapagina label,
-#modificapagina label {
+fieldset{
+	padding: 0;
+	margin: 0;
+}
+
+label, legend {
 	font-weight: bold;
 }
 
