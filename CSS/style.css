@@ -75,7 +75,7 @@ a {
 	background-color: transparent;
 }
 
-fieldset{
+fieldset {
 	border: none;
 }
 
@@ -436,7 +436,7 @@ img.navbar-brand {
 	border-radius: 1.5625rem 0 0 1.5625rem;
 }
 
-#inputCategorie{
+#inputCategorie {
 	margin-left: 0;
 }
 
@@ -510,7 +510,8 @@ img.navbar-brand {
 		height: 100%;
 		box-shadow: -2px 2px 5px 0 rgba(0, 0, 0, .16), -2px 2px 10px 0 rgba(0, 0, 0, .12);
 	}
-	input[title="Search"]{
+
+	input[title="Search"] {
 		max-width: 16.875rem;
 	}
 }
@@ -624,17 +625,28 @@ img.navbar-brand {
 	margin-top: 0.25rem;
 }
 
-#nuovapagina fieldset p > label{
+#modificapagina fieldset p > label,
+#nuovapagina fieldset p > label {
 	padding-top: .3rem;
-    text-align: center;
+	text-align: center;
+	height: 2.1rem;
+	background: #00428a;
+	margin-left: 1rem;
+	color: #fff;
+	border-radius: 8px 0 0 8px;
 }
 
-select[name="correlati"]{
+#modificapagina fieldset p > select,
+#nuovapagina fieldset p > select {
+	border-radius: 0 0.25rem 0.25rem 0;
+}
+
+select[name="correlati"] {
 	margin-bottom: 1rem;
 }
 
 legend.col-form-label,
-label[for="inputPasswordConfirm"]{
+label[for="inputPasswordConfirm"] {
 	padding-top: 0;
 }
 
@@ -801,6 +813,7 @@ label[for="inputPasswordConfirm"]{
 	left: 2rem;
 	border-width: 1rem 1rem 0 0;
 }
+
 /* END ARTICLE ############################################################## */
 
 /* CONTENT ###################################################### */
@@ -858,6 +871,7 @@ label[for="inputPasswordConfirm"]{
 	padding: 2rem 1rem;
 	border-radius: 5px;
 }
+
 /* END NOT FOUND ###################################################### */
 
 /* BREADCRUMB ############################################## */
@@ -950,22 +964,22 @@ label[for="inputPasswordConfirm"]{
 	text-decoration: none;
 }
 
-#plus{
+#plus {
 	margin: 0 calc(50% - 1.75rem);
 	padding: 0.35rem 0.5rem 0.2rem 0.5rem;
-    border-radius: 50%;
-    background: #00428a;
-    fill: #fff;
-    outline: none;
+	border-radius: 50%;
+	background: #00428a;
+	fill: #fff;
+	outline: none;
 }
 
-#plus:hover{
+#plus:hover {
 	background: #001840;
 }
 
-#plus > svg{
+#plus > svg {
 	width: 2.2rem;
-	height:  2.2rem;
+	height: 2.2rem;
 }
 
 button.close {
@@ -1093,6 +1107,7 @@ ul.query > li p {
 	background: #fff;
 	border-color: #ddd;
 }
+
 /* END LIST ITEM ############################################## */
 
 /* CATEGORIES ############################################## */
@@ -1176,6 +1191,7 @@ ul.query > li p {
 #macrocategories > li > ul > li:last-child a {
 	border-radius: 0 0 20px 20px;
 }
+
 /* END CATEGORIES ############################################## */
 
 /* LOGIN AND REGISTRATION ############################################## */
@@ -1245,17 +1261,17 @@ ul.query > li p {
 }
 
 .invalid-feedback {
-    max-width: 100%;
-    padding: .25rem .5rem;
-    margin-top: .1rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    color: #fff;
-    background-color: rgba(220,53,69,.9);
-    border-radius: .25rem;
+	max-width: 100%;
+	padding: .25rem .5rem;
+	margin-top: .1rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	color: #fff;
+	background-color: rgba(220, 53, 69, .9);
+	border-radius: .25rem;
 }
 
-.invalid-feedback > p{
+.invalid-feedback > p {
 	margin-bottom: 0;
 }
 
@@ -1275,7 +1291,7 @@ ul.query > li p {
 }
 
 #accesso .btn-outline-primary:hover,
-#registrazione .btn-outline-primary:hover{
+#registrazione .btn-outline-primary:hover {
 	border: 1px solid #fff;
 }
 
@@ -1306,7 +1322,7 @@ ul.query > li p {
 		text-align: right;
 	}
 
-	.invalid-feedback{
+	.invalid-feedback {
 		max-width: 18rem;
 	}
 }
@@ -1378,18 +1394,20 @@ ul.query > li p {
 	width: 100%;
 }
 
-fieldset{
+fieldset {
 	padding: 0;
 	margin: 0;
 }
 
-label, legend {
+label,
+legend {
 	font-weight: bold;
 }
 
 .submit-button {
 	text-align: center;
 }
+
 /* END LOGIN AND REGISTRATION ############################################## */
 
 /* PAGES */
@@ -1439,6 +1457,7 @@ label, legend {
 #personalia > dt {
 	float: left;
 }
+
 /* END PAGES */
 
 /* AIUTI ALLA NAVIGAZIONE ################################################### */
@@ -1464,7 +1483,7 @@ label, legend {
 		right: calc(50% - 35rem);
 	}
 
-	#scroll-back-button.scroll-back-button-active{
+	#scroll-back-button.scroll-back-button-active {
 		bottom: 4.375rem;
 	}
 }
@@ -1476,6 +1495,7 @@ label, legend {
 	padding: 0.15rem 0.25rem;
 	fill: #fff;
 }
+
 /* END AIUTI ALLA NAVIGAZIONE ################################################### */
 
 /* DONA ################################################### */
@@ -1499,6 +1519,7 @@ label, legend {
 #dona dt {
 	font-size: 1.2em;
 }
+
 /* END DONA ################################################### */
 
 /* FOOTER ############################################## */
@@ -1565,8 +1586,17 @@ label, legend {
 }
 
 
-.col-sm-2, .col-sm-3, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10,
-.col-xs-1, .col-xs-3, .col-xs-9, .col-xs-11, .col-xs-12 {
+.col-sm-2,
+.col-sm-3,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-xs-1,
+.col-xs-3,
+.col-xs-9,
+.col-xs-11,
+.col-xs-12 {
 	position: relative;
 	min-height: 0.0625rem;
 	padding-right: 0.9375rem;
@@ -1615,7 +1645,7 @@ label, legend {
 	.col-sm-7,
 	.col-sm-8,
 	.col-sm-9,
-	.col-sm-10{
+	.col-sm-10 {
 		float: left;
 	}
 
