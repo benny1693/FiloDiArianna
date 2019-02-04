@@ -39,4 +39,5 @@ class DatabaseConnection{
 	public function query($query) {
 		return mysqli_query($this->connectionMYSQL,$query);
 	}
+
 }

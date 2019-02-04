@@ -21,24 +21,17 @@ abstract class User
 
 	public abstract function isRegistered();
 
-	public function searchArticle($substring, $authorID) {
+	public function searchArticle($substring, $authorID = null) {
 		$substring = strtolower(trim($substring));
 
-		$query = null;
+		$select = "SELECT *
+								FROM Prova.postedPages 
+								WHERE title LIKE '%$substring%'";
 
-		if ($authorID) {
-			$query = $this->dbconnection->query(
-				"SELECT *
-			FROM postedPages 
-			WHERE title LIKE '%$substring%' AND author = $authorID"
-			);
-		} else {
-			$query = $this->dbconnection->query(
-				"SELECT *
-			FROM postedPages 
-			WHERE title LIKE '%$substring%'"
-			);
-		}
+		if ($authorID)
+			$select = $select . " AND author = $authorID";
+
+		$query = $this->dbconnection->query($select);
 
 		return $query->fetch_all(MYSQLI_ASSOC);
 	}
@@ -66,7 +59,7 @@ abstract class User
 	{
 		$query = $this->dbconnection->query(
 			"SELECT *
-			FROM _comments
+			FROM Prova._comments
 			WHERE pageID = $articleID
 			ORDER BY time_stamp"
 		);
@@ -88,7 +81,7 @@ abstract class User
 	public function getOtherUserInfo($userID) {
 		$query = $this->dbconnection->query(
 		"SELECT * 
-			FROM _users
+			FROM Prova._users
 			WHERE ID = $userID"
 		);
 
@@ -122,7 +115,8 @@ abstract class User
 		}
 	}
 
-	protected function getDBConnection() {
+	// TODO: rendere protected questo metodo
+	public function getDBConnection() {
 		return $this->dbconnection;
 	}
 }

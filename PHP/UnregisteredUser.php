@@ -12,7 +12,6 @@ class UnregisteredUser extends User{
 
 	public function __construct() {
 		parent::__construct();
-		$_SESSION['ID'] = -1;
 	}
 
 	public function isRegistered() {
@@ -21,10 +20,10 @@ class UnregisteredUser extends User{
 
 	public function subscribe($name,$surname,$gender,$birthDate,
 														$email,$username,$password){
-		//TODO
-	}
 
-	public function login($username,$password) {
-		//TODO
+		$birthDate = str_replace(array("-",":"," "),"",$birthDate);
+		$this->getDBConnection()->query("CALL insertUser('$username','$name','$surname','$birthDate','$gender','$email','$password',0)");
+
+		return $this->getDBConnection()->getConnection()->affected_rows;
 	}
 }

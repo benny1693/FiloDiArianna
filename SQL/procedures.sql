@@ -147,11 +147,14 @@ BEGIN
 			
 			/* Inserisco le relazioni pendenti tra quelle confermate */
 			INSERT INTO _relations SELECT DISTINCT ID1, ID2
-														 FROM _pendantRelations
+														 FROM _pendantRelations AS P
 														 WHERE (ID1 = _ID AND ID2 IN (SELECT ID 
 																													FROM postedPages)) 
 																		OR (ID2 = _ID AND ID1 IN (SELECT ID 
-																														 	FROM postedPages));
+																														 	FROM postedPages))
+																		AND NOT EXISTS (SELECT ID1,ID2 
+																										FROM _relations
+																									 	WHERE P.ID1 = ID1 AND P.ID2 = ID2);
 			/* Elimino le relazioni tra quelle pendenti */
 			DELETE FROM _pendantRelations WHERE ((ID1 = _ID AND ID2 IN (SELECT ID 
 																													FROM postedPages)) 
@@ -181,14 +184,13 @@ DELIMITER ;
 DELIMITER |
 CREATE PROCEDURE insertRelationship(_ID1 INTEGER, _ID2 INTEGER)
 BEGIN
-	IF (EXISTS(SELECT * 
+	IF (NOT EXISTS(SELECT * 
 							FROM _relations 
 							WHERE ID1 = _ID1 AND ID2 = _ID2))
 	THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Relazione esistente';
+		INSERT INTO _relations VALUES (_ID1,_ID2);
 	END IF;
 	
-	INSERT INTO _relations VALUES (_ID1,_ID2);
 END|
 DELIMITER ;
 
@@ -202,14 +204,15 @@ DELIMITER ;
 DELIMITER |
 CREATE PROCEDURE insertPendantRelationship(_ID1 INTEGER, _ID2 INTEGER, _modTime TIMESTAMP(6))
 BEGIN
-	IF (EXISTS (SELECT * 
+	IF (NOT EXISTS (SELECT * 
 						  FROM _pendantRelations 
-						  WHERE ID1 = _ID1 AND ID2 = _ID2 AND modTime = _modTime))
+						  WHERE ID1 = _ID1 AND ID2 = _ID2 AND modTime = _modTime)
+		 AND NOT EXISTS (SELECT * 
+						  FROM _relations 
+						  WHERE ID1 = _ID1 AND ID2 = _ID2))
 	THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Relazione esistente';
+		INSERT INTO _pendantRelations(ID1,ID2,modTime) VALUES (_ID1,_ID2,_modTime);
 	END IF;
-	
-	INSERT INTO _pendantRelations(ID1,ID2,modTime) VALUES (_ID1,_ID2,_modTime);
 END |
 DELIMITER ;
 
@@ -240,14 +243,14 @@ DELIMITER ;
 	 @throws:				se l'utente già esiste segnala un errore
 */
 DELIMITER |
-CREATE PROCEDURE insertUser(_username VARCHAR(25),_name VARCHAR(25),_surname VARCHAR(25),_birthDate DATE, _gender ENUM('M','F'),_passw VARCHAR(40), _admin BOOLEAN)
+CREATE PROCEDURE insertUser(_username VARCHAR(25),_name VARCHAR(25),_surname VARCHAR(25),_birthDate DATE, _gender ENUM('M','F'), _email VARCHAR(40),_passw VARCHAR(40), _admin BOOLEAN)
 BEGIN
-	IF (_username IN (SELECT _username FROM _users))
+	IF (_username IN (SELECT username FROM _users))
 	THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Utente esistente';
 	END IF;
 	
-	INSERT INTO _users(username,name,surname,birthDate,gender,pass_word,is_admin) VALUES (_username,_name,_surname,_birthDate,_gender,SHA1(_passw),_admin);
+	INSERT INTO _users(username,name,surname,birthDate,gender,email,pass_word,is_admin) VALUES (_username,_name,_surname,_birthDate,_gender,_email,SHA1(_passw),_admin);
 END|
 DELIMITER ;
 
