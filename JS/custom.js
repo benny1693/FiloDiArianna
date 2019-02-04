@@ -12,6 +12,17 @@ function load() {
 	}
 }
 
+function plusClick(){
+	var elements = document.getElementById("correlate").children;
+	var element = elements[elements.length - 2];
+	var newElement = element.cloneNode(true);
+	var number = +newElement.querySelector("label").textContent + 1;
+	newElement.querySelector("label").setAttribute("for", number);
+	newElement.querySelector("label").textContent = number;
+	newElement.querySelector("select").setAttribute("id", number);
+	element.parentNode.insertBefore(newElement, element.nextSibling);
+}
+
 function scroll(){
 	var sent = true;
 	var scroll = document.getElementById("scroll-back-button");
