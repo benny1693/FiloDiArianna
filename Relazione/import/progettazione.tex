@@ -1,4 +1,8 @@
 \section{Fase di Progettazione}
+Come strategie di progettazione abbiamo usato quella del \textbf{Mobile First} e \textbf{Responsive Web Design}.\\
+\textbf{Mobile First} permette di caricare gli elementi essenziali sulle piattaforme mobile. Ciò porta un'esperienza di navigazione più snella, che evita ritardi e latenza di caricamento.\\
+\textbf{Responsive Web design} si basa sul concetto di media query che ottimizzano la visualizzazione in base a dispositivi specifici e dimensioni di viewport.\\
+Infatti è stato codificato il CSS iniziale secondo un approccio \textbf{Mobile First} e poi utilizzato le media query per servire selettivamente contenuti aggiuntivi al crescere delle dimensioni del viewport.
 
 \subsection{Struttura del sito}
 Il sito presenta tre livelli di profondità in modo tale da rendere facile la ricerca manuale senza dover rinunciare ad una organizzazione gerarchica ben strutturata.\\
@@ -47,7 +51,25 @@ Per questi motivi il menu verrà visualizzato coprendo l'intera larghezza dello 
 \subsubsection{Footer}
 All'interno del footer compare solo la dicitura per il copyright. Potevamo aggiungere i contatti ma, essendo sempre visibile la voce del menu che porta alla pagina contatti, non aveva senso duplicare le informazioni.
 
+\subsubsection{Breadcrumb}
+Il breadcrumb è presente in tutte le pagine del sito, sia mobile che desktop, e comprende un insieme di campi che identificano la posizione dell'utente all'interno del sito. L'ultimo campo è la pagina corrente, ovvero la pagina che l'utente sta visualizzando. Per evitare i link circolari, quest'ultimo campo è solo un testo.
+
 \subsubsection{Contenuto}
+Il sito ha lo scopo principale di ricerca e lettura delle informazioni e per questo motivo abbiamo scelto un layout stretto. Infatti, cosi facendo, il numero medio di parole scritte in una riga è di circa 15 e questo permette una migliore lettura.\\
+Le informazioni più importanti compaiono nella prima metà della pagina siccome è quella più visibile e che l'utente vede appena viene caricato il sito. Inoltre abbiamo cercato di mettere anche gli elementi fondamentali per l'interazione, come il menu e la barra di ricerca.\\
+Lo schema che abbiamo utilizzato è quello a tre panelli, che rispondono alle seguenti domande:\\
+\begin{itemize}
+	\item \textbf{Dove sono?:} la prima risposta a questa domanda si trova nel titolo della pagina. Sono brevi e vanno dal particolare al generale. La seconda si trova nei breadcrumb, che indicano il percorso fatto per arrivare in quel punto;
+	\item \textbf{Di cosa si tratta?:} la risposta a questa domanda si trova nel contenuto della pagina;
+	\item \textbf{Dove posso andare?:} la risposta a questa domanda si trova nel menu che compare come left sidebar.
+\end{itemize}
+
+\subsubsection{Database}
 
 
 \subsection{Accessibilità}
+
+\subsubsection{Separazione tra contenuto, presentazione e struttura}
+Per migliorare l’accesso al sito agli utenti con differenti disabilità e ai motori di ricerca è stata mantenuta la separazione tra struttura, presentazione e comportamento.\\
+La prima è stata sviluppata tramite documenti XHTML5, i quali richiamano i fogli di stile esterni CSS che implementano la presentazione e script esterni realizzati con JavaScript che formano il comportamento. Questi script sono stati implementati in modo da garantire una trasformazione elegante del sito, poiché se JavaScript è disabilitato il contenuto rimane comunque accessibile.\\
+Tutto il codice redatto è stato scritto secondo le raccomandazioni W3C, accertando che fossero state rispettate tramite validazione. Si è evitato l’uso di tag e attributi deprecati.
