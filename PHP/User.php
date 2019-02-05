@@ -39,15 +39,16 @@ abstract class User
 	public function printArticleList($articleList) {
 		if ($articleList == null) {
 			print_r("Nessun risultato trovato");
-			return;
+            return;
 		}
+
 		foreach($articleList as $article) {
 			$img = new Image($article['img']);
 
 			echo
 				'<li>
 					<a href="#">
-						<img src="'.$img->generateThumbnail().'" alt="'.$article['title'].'" class="image" />
+						<img src="'.$img->generateThumbnail(null,null,null,null).'" alt="'.$article['title'].'" class="image" />
 						<p>'.$article['title'].'</p>
 						<p>'.substr($article['content'],0,100).'</p>
 					</a>

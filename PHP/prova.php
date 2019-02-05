@@ -8,7 +8,13 @@
 
 require_once 'UnregisteredUser.php';
 require_once 'RegisteredUser.php';
-require_once  'Admin.php';
+require_once 'Admin.php';
+require_once "Page.php";
+require_once "Image.php";
+require_once "DiscussionArea.php";
+
+
+
 
 $u = null;
 try {
@@ -21,12 +27,44 @@ try {
 	$u = new UnregisteredUser();
 }
 
+
+/*
+$a = null;
+$b = null;
+$c = null;
+
+$a = new Page('Pagina Dei');
+$a->printLoginButtons();
+$img = new Image('img');
+
+$a = new ArticlePage('Nome Atena', '1111', 'Titolo Atena', $u->getID(), $img ,'Questo è il 
+conenuto di articolo');
+$contenuto = $a->getContent();
+echo $contenuto;
+$autore = $a->getAuthor();
+$titolo = $a->getTitle();
+echo $autore.$titolo;
+
+$c1 = new Comment('13:38', $a->getArticleID(), 'Questo è un fottutisso fottutissimissimo commento. 
+La pagina di Atena fa schifo, bleah.', $u->getID());
+$c2 = new Comment('13:48', $a->getArticleID(), 'No dai, forse la pagina di Atena mi piace.', $u->getID());
+$b = $a->getDiscussionArea();
+$b->addComment($c1);
+$b->addComment($c2);
+$b->printComments();
+echo '--- Ora ho cancellato il primo commento ---';
+$b->deleteComment($c1);
+$b->printComments();
+
+echo '-------FINE PROVE LAURA --------';
+*/
+
 echo "<h1>Funzionalità generiche</h1>";
 
 echo "<h2>Ricerca degli articoli con autore</h2>";
 $articleList = $u->searchArticle("",1);
-
 $u->printArticleList($articleList);
+
 
 echo "<h2>Ricerca degli articoli senza autore</h2>";
 $articleList = $u->searchArticle("ao1");
@@ -177,4 +215,5 @@ $result = $query->fetch_assoc();
 print_r($result);
 
 $u->deleteArticle($result['ID']);
+
 ?>

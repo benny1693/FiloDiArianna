@@ -14,22 +14,22 @@ class Image
         $this->source = $source;
     }
 
-    const IMAGE_HANDLERS = [
-        IMAGETYPE_JPEG => [
-            'load' => 'imagecreatefromjpeg',
-            'save' => 'imagejpeg',
-            'quality' => 100
-        ],
-        IMAGETYPE_PNG => [
-            'load' => 'imagecreatefrompng',
-            'save' => 'imagepng',
-            'quality' => 0
-        ],
-        IMAGETYPE_GIF => [
-            'load' => 'imagecreatefromgif',
-            'save' => 'imagegif'
-        ]
-    ];
+const IMAGE_HANDLERS = [
+    IMAGETYPE_JPEG => [
+        'load' => 'imagecreatefromjpeg',
+        'save' => 'imagejpeg',
+        'quality' => 100
+    ],
+    IMAGETYPE_PNG => [
+        'load' => 'imagecreatefrompng',
+        'save' => 'imagepng',
+        'quality' => 0
+    ],
+    IMAGETYPE_GIF => [
+        'load' => 'imagecreatefromgif',
+        'save' => 'imagegif'
+    ]
+];
 
 
     //anteprima dell'immagine
