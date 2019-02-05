@@ -84,4 +84,5 @@ class RegisteredUser extends User {
 	public function insertComment($articleID,$content) {
 		$this->getDBConnection()->query("CALL insertComment($articleID,'$content',$this->ID)");
 	}
+
 }

@@ -14,7 +14,7 @@ class DiscussionArea
 
     //   public function __construct() {}
 
-    public function addComment($comment) {
+    public function addComment($comment) {  //TODO: da testare
         //mette l'elemento in fondo
     	array_push($this->comments, $comment);
     }
@@ -46,14 +46,13 @@ class DiscussionArea
 					echo "					<div class=\"comment others\">";
 				}
     		echo "<p>".$comment->getContent()."</p>
-						<a href=\"profiloautore.html\">Autore</a>
+						<a href=\"profiloautore.html\">Autore</a>   
 					</div>";
 			}
     }
 
-    public function showTextArea() {    //far vedere nella pagina il testo dei commenti
-
-    }
+    //inutile
+    //public function showTextArea($registeredUserID) {    //far vedere nella pagina il testo dei commenti    }
 }
 
 ?>

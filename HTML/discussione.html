@@ -36,7 +36,7 @@
 			<div id="article-content">
 				<div id="article-title">
 					<h1>Discussione di "Titolo"</h1>
-					<p id="article-id">0000000</p>
+					<p id="article-id"><? $y->y->getArticleID ?></p>
 					<a id="back-to-article" href="articolo.html">Torna all'articolo</a>
 				</div>
 				<div>
@@ -69,7 +69,7 @@
 						<a href="profiloautore.html">Autore</a>
 					</div>
 				</div>
-				<form id="comment-form">
+				<form id="comment-form" onsubmit="">
 					<div class="form-group row">
 						<label for="inputText">Lascia un commento</label>
 						<textarea id="inputText" class="form-control"></textarea>
