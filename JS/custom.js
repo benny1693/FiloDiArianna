@@ -90,3 +90,35 @@ function validateForm(){
 
 	return boolName && boolSurname && boolEmail && boolUsername && boolPassword && boolConfermaPassword;
 }
+
+function AlertFilesize(){
+    if(window.ActiveXObject){
+        var fileSO = new ActiveXObject("Scripting.FileSystemObject");
+        var filepath = document.getElementById("FormControlFile").value;
+        var thefile = fileSO.getFile(filepath);
+        var sizeinbytes = thefile.size;
+    }else{
+        var sizeinbytes = document.getElementById("FormControlFile").files[0].size;
+    }
+
+    var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+    var fileSize = sizeinbytes;
+    var i = 0;
+    while(fileSize > 900){
+    	fileSize /= 1024;
+    	i++;
+    }
+
+    var button = document.getElementById("fatto");
+    var addImage = document.getElementById("FormControlFile");
+	var parent = addImage.parentNode;
+	var alert = parent.querySelector(".invalid-feedback");
+
+	var bool = showAlert(alert, (Math.round(fileSize*100)/100) < 300, "L'immagine caricata pesa troppo!", parent);
+
+    if(!bool){
+    	button.setAttribute("disabled", "disabled");
+    }else{
+    	if(button.hasAttribute("disabled"))	button.removeAttribute("disabled");
+    }
+}
