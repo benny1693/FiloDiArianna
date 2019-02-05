@@ -834,6 +834,13 @@ label[for="inputPasswordConfirm"] {
 	left: 0;
 }
 
+.description{
+	overflow: hidden;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
 	#page-content-wrapper.container-fluid {
 		padding-bottom: 2.5rem;
@@ -945,6 +952,14 @@ label[for="inputPasswordConfirm"] {
 	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
+.btn[disabled]{
+	cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+
 .close {
 	float: right;
 	font-size: 2.5rem;
@@ -1017,11 +1032,7 @@ ul.query {
 ul.query > li img {
 	float: left;
 	width: 4em;
-}
-
-ul.query > li p {
-	margin-left: 5em;
-}
+}	
 
 .query > li > a {
 	display: block;
@@ -1368,9 +1379,6 @@ ul.query > li p {
 	padding: 1em;
 	overflow: hidden;
 	border-radius: 6px;
-	/*box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);*/
-	margin-bottom: 2rem;
-	margin-top: 1rem;
 	word-wrap: break-word;
 	/*per mandare a capo la parola */
 }

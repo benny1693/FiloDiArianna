@@ -34,8 +34,7 @@
 			<form>
 				<div class="form-group">
 					<label for="FormControlFile">Carica l'immagine che vuoi inserire.</label>
-					<!-- <input type="file" class="form-control-file" id="FormControlFile"> -->
-					<input type="file" class="form-control-file" id="FormControlFile" />
+					<input type="file" class="form-control-file" id="FormControlFile" onchange="AlertFilesize();" />
 				</div>
 
 				<div class="form-group">
@@ -81,14 +80,13 @@
 				</fieldset>
 
 				<div class="form-group submit-button">
-					<button type="submit" class="btn btn-outline-primary">Fatto</button>
+					<button type="submit" id="fatto" class="btn btn-outline-primary">Fatto</button>
 				</div>
 			</form>
 		</section>
 	</div>
 
 	<!-- FOOTER -->
-
 </body>
 
 </html>
