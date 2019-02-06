@@ -1,5 +1,5 @@
-//window.onload = load;
-//window.onscroll = scroll;
+window.onload = load;
+window.onscroll = scroll;
 //window.onload = validateForm;
 
 function load() {
@@ -7,16 +7,16 @@ function load() {
 	document.querySelector("#sidebar-wrapper > .close").addEventListener("click", click);
 
 	function click(){
-		var el = document.getElementById("sidebar-wrapper");
+		let el = document.getElementById("sidebar-wrapper");
 		el.classList.toggle("toggled");
 	}
 }
 
 function plusClick(){
-	var elements = document.getElementById("correlate").children;
-	var element = elements[elements.length - 2];
-	var newElement = element.cloneNode(true);
-	var number = +newElement.querySelector("label").textContent + 1;
+	let elements = document.getElementById("correlate").children;
+	let element = elements[elements.length - 2];
+	let newElement = element.cloneNode(true);
+	let number = +newElement.querySelector("label").textContent + 1;
 	newElement.querySelector("label").setAttribute("for", number);
 	newElement.querySelector("label").textContent = number;
 	newElement.querySelector("select").setAttribute("id", number);
@@ -24,8 +24,8 @@ function plusClick(){
 }
 
 function scroll(){
-	var sent = true;
-	var scroll = document.getElementById("scroll-back-button");
+	let sent = true;
+	let scroll = document.getElementById("scroll-back-button");
 	if(window.pageYOffset > 50 && sent){
 		scroll.classList.add("scroll-back-button-active");
 		sent = false;
@@ -60,7 +60,7 @@ function checkText(input, text, regexp){
 	return showAlert(alert, regexp.test(test), text, parent);
 }
 
-function isPasswordEqual(password, confermaPassword, text, parent){
+function isPasswordEqual(password, confermaPassword, text){
 	var parent = confermaPassword.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
@@ -101,7 +101,6 @@ function AlertFilesize(){
         var sizeinbytes = document.getElementById("FormControlFile").files[0].size;
     }
 
-    var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
     var fileSize = sizeinbytes;
     var i = 0;
     while(fileSize > 900){
