@@ -9,8 +9,8 @@
 class DatabaseConnection{
 
 	private $host = "localhost";
-	private $username = "root";
-	private $password = "benny1293";
+	private $username = "user";
+	private $password = "1111";
 	private $connectionMYSQL = null;
 
 	public function __construct(){
