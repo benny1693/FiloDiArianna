@@ -105,7 +105,7 @@ $u->printArticleList($result);
 
 echo "<h2>Modifica di un articolo</h2>";
 
-$u->modifyArticle(2,"allora l'approviamo?",'NULL',array('personaggio','divinita'),array(3));
+$u->modifyArticle(2,"allora l'approviamo?",'NULL',array('personaggi','dei'),array(3));
 
 $query = $u->getDBConnection()->query("SELECT * FROM Prova._modifiedPages");
 $result = $query->fetch_all(MYSQLI_ASSOC);

@@ -19,7 +19,7 @@ class Page {
 					</div>
 					<ul class="dropdown">
 						<li><a href="'.addPoints().'PHP/areapersonale.php">Area Riservata</a></li>
-						<li lang="en"><a href="#">Logout</a></li>
+						<li lang="en"><a href="'.addPoints().'PHP/logout.php">Logout</a></li>
 					</ul>
 				</div>');
     }

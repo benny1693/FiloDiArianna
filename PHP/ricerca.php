@@ -10,9 +10,7 @@ $pages = ceil(count($list)/$articlesNumber);
 
 if (($currentpage - 1)*$articlesNumber > count($list))
     header("Location: notfound.php");
-print_r($_SESSION);
 ?>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -52,7 +50,6 @@ print_r($_SESSION);
             if (count($list) > 0)
                 printNavigation($currentpage,$pages);
 
-            print_r($list);
             if ($currentpage != $pages)
                 $u->printArticleList($list,($currentpage-1)*$articlesNumber,$currentpage*$articlesNumber);
             else

@@ -1,3 +1,7 @@
+<?php
+require_once 'utilities.php';
+init();
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -14,6 +18,7 @@
 
 <body>
 	<!-- HEADER -->
+    <?php include_once 'header.php';?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
@@ -24,34 +29,37 @@
 		</nav>
 
 		<section id="accesso">
-			<h1>Accedi</h1>
+			<?php
+            if ($_SESSION['ID'] != -1)
+                echo "<div class=\"invalid-feedback\">
+					<p>Hai gi&agrave; effettuato l'accesso</p>
+				</div>";
+            else{
+                echo '
+            <h1>Accedi</h1>
 
-			<!-- <form class="needs-validation clearfix" method="post" data-toggle="validator" novalidate> -->
-			<form data-toggle="validator">
-
+			<form data-toggle="validator" action="login.php" method="post">
 				<div class="form-group row">
 					<label for="inputUsername0" class="col-sm-3 col-form-label">Username</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputUsername0" placeholder="Username" required="required" />
+						<input type="text" class="form-control" id="inputUsername0" name="username" placeholder="Username" required="required" />
 					</div>
-					<!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required> -->
 				</div>
 
 				<div class="form-group row">
 					<label for="inputPassword0" class="col-sm-3 col-form-label">Password</label>
 					<div class="col-sm-9">
-						<input type="password" class="form-control" id="inputPassword0" placeholder="Password" required="required" />
+						<input type="password" class="form-control" id="inputPassword0" name="password" placeholder="Password" required="required" />
 					</div>
-				</div>
+				</div>';
+
+                if (isset($_SESSION['login_error']) && ($_SESSION['login_error']))
+                    echo '
 				<div class="invalid-feedback">
 					<p>Password o username non validi.</p>
-				</div>
+				</div>';
 
-				<div class="form-group row col-sm-10 col-sm-offset-3 form-check">
-					<input class="form-check-input" type="checkbox" id="gridCheck1"/>
-					<label class="form-check-label" for="gridCheck1">Ricorda le mie credenziali.</label>
-				</div>
-
+                echo '
 				<div class="form-group row col-sm-10 col-sm-offset-3">
 					<button type="submit" class="btn  btn-outline-primary">Vai</button>
 				</div>
@@ -62,13 +70,14 @@
 					<p id="NonAncoraRegistrato">Non sei ancora registrato?</p>
 					<a href="registrazione.php" class="btn btn-outline-primary">Registrati</a>
 				</div>
-			</div>
-
+			</div>';
+            }
+            ?>
 		</section>
 	</div>
 
 	<!-- FOOTER -->
-
+    <?php include_once '../HTML/footer.html'; ?>
 </body>
 
 </html>

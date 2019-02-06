@@ -1,3 +1,7 @@
+<?php
+require_once 'utilities.php';
+init();
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -15,6 +19,8 @@
 </head>
 
 <body id="not-found">
+
+    <?php include_once 'header.php';?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
@@ -28,6 +34,7 @@
 			<p>Accidenti, sembra che tu sia rimasto impigliato e che ti sia perso! Prova a tornare alla <a href="../index.php" lang="en">Home</a> e riprova da l&igrave;!</p>
 		</section>
 	</div>
+	<?php include_once '../HTML/footer.html';?>
 </body>
 
 </html>

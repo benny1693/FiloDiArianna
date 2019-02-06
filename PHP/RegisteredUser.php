@@ -37,7 +37,7 @@ class RegisteredUser extends User {
 	}
 
 	public function isCorrectPassword($insertedPassword) {
-		return md5($insertedPassword) == $this->password;
+		return sha1($insertedPassword) == $this->password;
 	}
 
 	public function getUsername() {

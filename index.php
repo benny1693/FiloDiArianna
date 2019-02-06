@@ -1,6 +1,7 @@
 <?php
 require_once 'PHP/utilities.php';
 init();
+print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
