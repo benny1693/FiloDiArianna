@@ -21,7 +21,7 @@ class Page {
 						</svg>
 					</div>
 					<ul class="dropdown">
-						<li><a href="HTML/areapersonale.html">Area Riservata</a></li>
+						<li><a href="HTML/areapersonale.php">Area Riservata</a></li>
 						<li lang="en"><a href="#">Logout</a></li>
 					</ul>
 				</div>');
@@ -29,7 +29,7 @@ class Page {
 
     //equivalente di getLoginButtons
     public function printLoginButtons() {
-        print_r('<a id="login-button" href="HTML/accesso.html">Accedi</a>');
+        print_r('<a id="login-button" href="HTML/accesso.php">Accedi</a>');
     }
 
 

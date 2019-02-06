@@ -860,7 +860,7 @@ label[for="inputPasswordConfirm"] {
 
 /* NOT FOUND ###################################################### */
 #not-found #page-content-wrapper {
-	background: url(../img/filo.jpg) no-repeat;
+	background: #ffffff url(../img/filo.jpg) no-repeat;
 	background-size: contain;
 	background-position: center;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
+
+<head>
+	<title>Luoghi | Filo di Arianna</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="Scopri le voci sugli eventi della mitologia greca dell'enciclopedia più ellenica del web" />
+	<meta name="author" content="Benedetto Cosentino" />
+	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, luoghi" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
+	<script src="../JS/custom.js"></script>
+</head>
+
+<body>
+	<!-- HEADER / SIDEBAR -->
+	<div id="page-content-wrapper" class="container-fluid">
+		<nav aria-label="breadcrumb">
+			<p class="sr-only ">Ti trovi in:</p>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Luoghi</li>
+			</ol>
+		</nav>
+		<section>
+			<h1>Luoghi</h1>
+			<ul id="macrocategories">
+				<li>
+					<a href="#reali" class="sr-only">Salta lista</a>
+					<h2><a href="luoghimitologici.html">Mitologici</a></h2>
+					<ul class="categories">
+						<li><a href="#">asdf</a></li>
+					</ul>
+				</li>
+
+				<li id="reali">
+					<a href="#scroll-back-button" class="sr-only">Salta lista</a>
+					<h2><a href="luoghireali.html">Reali</a></h2>
+					<ul class="categories">
+						<li><a href="#">adsf</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<!-- FOOTER -->
+</body>
+
+</html>
