@@ -1,3 +1,8 @@
+<?php
+require_once "utilities.php";
+$user = init();
+print_r($_SESSION);
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -15,11 +20,12 @@
 
 <body>
 	<!-- HEADER -->
+    <?php include_once "header.php";?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Scopri</li>
 			</ol>
 		</nav>
@@ -29,10 +35,10 @@
 				<a href="#eventi" class="sr-only">Salta lista</a>
 				<h2><a href="personaggi.php">Personaggi</a></h2>
 				<ul>
-					<li><a href="umani.html">Esseri Umani</a></li>
-					<li><a href="semidei.html">Semidivinit&agrave;/Eroi</a></li>
-					<li><a href="dei.html">Divinit&agrave;</a></li>
-					<li><a href="creature.html">Creature</a></li>
+					<li><a href="ricerca.php?category=personaggi&substringSearched=&subcategory=umani">Esseri Umani</a></li>
+					<li><a href="ricerca.php?category=personaggi&substringSearched=&subcategory=eroi">Semidivinit&agrave;/Eroi</a></li>
+					<li><a href="ricerca.php?category=personaggi&substringSearched=&subcategory=dei">Divinit&agrave;</a></li>
+					<li><a href="ricerca.php?category=personaggi&substringSearched=&subcategory=creature">Creature</a></li>
 				</ul>
 			</li>
 
@@ -40,9 +46,9 @@
 				<a href="#luoghi" class="sr-only">Salta lista</a>
 				<h2><a href="eventi.php">Eventi</a></h2>
 				<ul>
-					<li><a href="eventidei.html">Epoca degli Dei</a></li>
-					<li><a href="eventiuomini.html">Epoca degli Dei e degli Uomini</a></li>
-					<li><a href="eventieroi.html">Epoca degli Eroi</a></li>
+					<li><a href="ricerca.php?category=eventi&substringSearched=&subcategory=eradei">Epoca degli Dei</a></li>
+					<li><a href="ricerca.php?category=eventi&substringSearched=&subcategory=eradeiuomini">Epoca degli Dei e degli Uomini</a></li>
+					<li><a href="ricerca.php?category=eventi&substringSearched=&subcategory=eraeroi">Epoca degli Eroi</a></li>
 				</ul>
 			</li>
 
@@ -50,13 +56,14 @@
 				<a href="#scroll-back-button" class="sr-only">Salta lista</a>
 				<h2><a href="luoghi.php">Luoghi</a></h2>
 				<ul>
-					<li><a href="luoghimitologici.html">Mitologici</a></li>
-					<li><a href="luoghireali.html">Reali</a></li>
+					<li><a href="ricerca.php?category=luoghi&substringSearched=&subcategory=mitologici">Mitologici</a></li>
+					<li><a href="ricerca.php?category=luoghi&substringSearched=&subcategory=reali">Reali</a></li>
 				</ul>
 			</li>
 		</ul>
 	</div>
 	<!-- FOOTER -->
+	<?php include_once "../HTML/footer.html";?>
 </body>
 
 </html>

@@ -11,16 +11,20 @@ class Admin extends RegisteredUser {
 
 	public function __construct($u_name) {
 		parent::__construct($u_name);
-		if (!$this->isAdmin())
+		if (!$this->hasAdminPrivilege())
 			throw new Exception("Utente non amministratore");
 	}
 
-	private function isAdmin() {
+	private function hasAdminPrivilege() {
 		$ID = $this->getID();
 		$query = $this->getDBConnection()->query("SELECT is_admin FROM Prova._users WHERE ID = $ID");
 		$result = $query->fetch_row()[0];
 
 		return $result == 1;
+	}
+
+	public function isAdmin() {
+		return true;
 	}
 
 	public function deleteUser($userID) {

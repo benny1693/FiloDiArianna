@@ -68,7 +68,8 @@ $u->printArticleList($articleList);
 
 echo "<h2>Ricerca dei commenti</h2>";
 
-$u->printArticleComment(1);
+
+$u->printArticleComment($u->getArticleComment(1));
 
 echo "<h2>Informazione di un altro utente</h2>";
 
@@ -115,7 +116,7 @@ echo "<h2>Inserimento di un commento</h2>";
 
 $u->insertComment(1,"anch'io penso che sia un bell'articolo");
 
-$u->printArticleComment(1);
+$u->printArticleComment($u->getArticleComment(1));
 
 echo "<h1>Funzionalità esclusive degli utenti non registrati</h1>";
 

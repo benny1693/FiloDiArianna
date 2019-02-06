@@ -194,8 +194,9 @@ nav li {
 	text-align: center;
 	width: 6rem;
 	float: right;
-	margin-right: 20px;
-	display: none;
+	margin-right: 1rem;
+	margin-top: 0.7rem;
+	color: #fff;
 }
 
 #login-button:hover {
@@ -330,7 +331,7 @@ img.navbar-brand {
 
 #burger-menu {
 	float: right;
-	margin-top: 0.5rem;
+	margin-top: 0.7rem;
 }
 
 .navbar-input {
@@ -1052,6 +1053,11 @@ ul.query > li img {
 	padding-left: 0;
 	margin: 1rem;
 	border-radius: 25px;
+}
+
+#results {
+	font-size: 1.4rem;
+	background: rgba(255,239,0,0.4);
 }
 
 .pagination > li {

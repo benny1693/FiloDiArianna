@@ -26,4 +26,8 @@ class UnregisteredUser extends User{
 
 		return $this->getDBConnection()->getConnection()->affected_rows;
 	}
+
+	public function setSessionVars() {
+		$_SESSION['ID'] = -1;
+	}
 }

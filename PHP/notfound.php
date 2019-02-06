@@ -19,13 +19,13 @@
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Ti sei perso</li>
 			</ol>
 		</nav>
 		<section>
 			<h1><span lang="el">Ὀτοτοῖ!</span> Qualcosa non va...</h1>
-			<p>Accidenti, sembra che tu sia rimasto impigliato e che ti sia perso! Prova a tornare alla <a href="index.html" lang="en">Home</a> e riprova da l&igrave;!</p>
+			<p>Accidenti, sembra che tu sia rimasto impigliato e che ti sia perso! Prova a tornare alla <a href="../index.php" lang="en">Home</a> e riprova da l&igrave;!</p>
 		</section>
 	</div>
 </body>

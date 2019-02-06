@@ -1,3 +1,18 @@
+<?php
+require_once "utilities.php";
+$u = init();
+$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
+
+$articlesNumber = 10;
+
+$list = $u->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
+$pages = ceil(count($list)/$articlesNumber);
+
+if (($currentpage - 1)*$articlesNumber > count($list))
+    header("Location: notfound.php");
+print_r($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -15,49 +30,41 @@
 
 <body>
 	<!--HEADER-->
+    <?php include_once 'header.php'; ?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in: </p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item" lang="en"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item" lang="en"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>
 			</ol>
 		</nav>
 		<section>
 			<h1>Risultati di ricerca</h1>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
-			<ul class="query">
-				<li>
-					<a href="#">
-						<p>Nome</p>
-						<p class="description">Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione</p>
-					</a>
-				</li>
-			</ul>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
-		</section>
+            <?php
+            if (!$list || count($list) <= 0)
+                echo '<p id="results">Nessun risultato trovato</p>';
+            else {
+                echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
+                echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
+            }
+
+            if (count($list) > 0)
+                printNavigation($currentpage,$pages);
+
+            print_r($list);
+            if ($currentpage != $pages)
+                $u->printArticleList($list,($currentpage-1)*$articlesNumber,$currentpage*$articlesNumber);
+            else
+                $u->printArticleList($list,($currentpage-1)*$articlesNumber,count($list));
+
+            if (count($list) > 0)
+                printNavigation($currentpage,$pages);
+            ?>
+        </section>
 	</div>
 	<!--FOOTER-->
+    <?php include_once '../HTML/footer.html'; ?>
 </body>
 
 </html>

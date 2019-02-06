@@ -1,3 +1,8 @@
+<?php
+require_once 'utilities.php';
+init();
+print_r($_SESSION);
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -14,13 +19,13 @@
 </head>
 
 <body>
-
+    <?php include_once "header.php" ?>
 	<!-- HEADER / SIDEBAR -->
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Contatti</li>
 			</ol>
 		</nav>
@@ -58,6 +63,7 @@
 	</div>
 
 	<!-- FOOTER -->
+	<?php include_once "../HTML/footer.html" ?>
 </body>
 
 </html>

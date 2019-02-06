@@ -292,10 +292,10 @@ CREATE PROCEDURE insertInCategories(_ID INTEGER, _type1 VARCHAR(18), _type2 VARC
 BEGIN
 	SET _type1 = LOWER(_type1);
 	SET _type2 = LOWER(_type2);
-	IF _type1 = 'evento' THEN
+	IF _type1 = 'eventi' THEN
 		INSERT INTO _events VALUES(_ID,_type2);
-	ELSEIF _type1 = 'luogo' THEN
-		INSERT INTO _places VALUES(_ID,(_type2 = 'mitologico'));
+	ELSEIF _type1 = 'luoghi' THEN
+		INSERT INTO _places VALUES(_ID,_type2);
 	ELSE
 		INSERT INTO _characters VALUES(_ID,_type2);
 	END IF;

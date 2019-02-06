@@ -60,7 +60,7 @@ CREATE TABLE _events (
 
 CREATE TABLE _places (
 	ID INTEGER PRIMARY KEY,
-	mythological BOOLEAN,
+	type VARCHAR(10),
 	
 	FOREIGN KEY (ID) REFERENCES _pages(ID)
 					ON DELETE CASCADE

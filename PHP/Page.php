@@ -6,14 +6,11 @@
  * Time: 12.18
  */
 
+require_once "utilities.php";
+
 class Page {
-    private $name = null;
 
-    public function __construct($name) {
-        $this->name = $name;
-    }
-
-    public function printPersonalButtons($user_id) {
+    public function printPersonalButtons() {
         print_r('<div id="member">
 					<div id="icon-member">
 						<svg>
@@ -21,15 +18,15 @@ class Page {
 						</svg>
 					</div>
 					<ul class="dropdown">
-						<li><a href="HTML/areapersonale.php">Area Riservata</a></li>
+						<li><a href="'.addPoints().'PHP/areapersonale.php">Area Riservata</a></li>
 						<li lang="en"><a href="#">Logout</a></li>
 					</ul>
 				</div>');
     }
 
     //equivalente di getLoginButtons
-    public function printLoginButtons() {
-        print_r('<a id="login-button" href="HTML/accesso.php">Accedi</a>');
+    public function printLoginButton() {
+        print_r('<a id="login-button" href="'.addPoints().'PHP/accesso.php">Accedi</a>');
     }
 
 

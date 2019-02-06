@@ -14,18 +14,77 @@ abstract class User
 {
 	private $dbconnection;
 
+
+	const Category_Handlers = array(
+		'personaggi' => array(
+			'_characters',
+			'type',
+			array(
+				'umani',
+				'creature',
+				'dei',
+				'eroi'
+			)
+		),
+		'eventi' => array(
+			'_events',
+			'era',
+			array(
+				'eradeiuomini',
+				'eradei',
+				'eraeroi'
+			)
+		),
+		'luoghi' => array(
+			'_places',
+			'type',
+			array(
+				'mitologici',
+				'reali'
+			)
+		)
+	);
+
 	public function __construct(){
 		$this->dbconnection = new DatabaseConnection();
 	}
 
 	public abstract function isRegistered();
 
-	public function searchArticle($substring, $authorID = null) {
+	private function adjustCategories(&$category,&$subcategory) {
+		if ($category) {
+			if (!array_key_exists($category, self::Category_Handlers)) {
+				$category = null;
+				$subcategory = null;
+			} else {
+				if (!in_array($subcategory,self::Category_Handlers[$category][2])) {
+					$subcategory = null;
+				}
+			}
+		} else {
+			$subcategory = null;
+		}
+	}
+
+	public function searchArticle($substring, $category = null, $subcategory = null ,$authorID = null) {
+
+		$this->adjustCategories($category,$subcategory);
+		$categoryfield = self::Category_Handlers[$category][1];
+
 		$substring = addslashes(strtolower(trim($substring)));
 
 		$select = "SELECT *
-								FROM Prova.postedPages 
-								WHERE title LIKE '%$substring%'";
+								FROM Prova.postedPages";
+
+		if ($category) {
+			$category = self::Category_Handlers[$category][0];
+			$select = $select . " NATURAL JOIN Prova.$category";
+		}
+		$select = $select . " WHERE title LIKE '%$substring%'";
+
+		if ($subcategory) {
+			$select = $select . " AND $categoryfield = '$subcategory'";
+		}
 
 		if ($authorID)
 			$select = $select . " AND author = $authorID";
@@ -35,37 +94,45 @@ abstract class User
 		return $query->fetch_all(MYSQLI_ASSOC);
 	}
 
-	public function printArticleList($articleList) {
-		if ($articleList == null) {
-			print_r("Nessun risultato trovato");
-            return;
-		}
+	public function printArticleList($articleList,$begin = 0, $limit = -1) {
+		if ($articleList != null) {
 
-		foreach($articleList as $article) {
-			echo
-				'<li>
+			if ($limit == -1)
+				$limit = count($articleList);
+
+			if ($begin < 0 || $begin > $limit || $limit > count($articleList))
+				$begin = $limit = 0;
+
+			for ($i = $begin; $i < $limit; $i++)
+				echo
+					'<li>
 					<a href="#">
-						<p>'.stripslashes($article['title']).'</p>
-						<p>'.stripslashes(substr($article['content'],0,100)).'</p>
+						<p>' . stripslashes($articleList[$i]['title']) . '</p>
+						<p>' . stripslashes(substr($articleList[$i]['content'], 0, 100)) . '</p>
 					</a>
 				</li>';
 		}
 	}
 
-	public function printArticleComment($articleID)
-	{
+
+	public function getArticleComment($articleID) {
 		$query = $this->dbconnection->query(
 			"SELECT *
 			FROM Prova._comments
 			WHERE pageID = $articleID
 			ORDER BY time_stamp"
 		);
-		if ($query->num_rows > 0) {
-			$result = $query->fetch_all(MYSQLI_ASSOC);
+		return $query->fetch_all(MYSQLI_ASSOC);
+	}
+
+	public function printArticleComment($comments)
+	{
+
+		if (count($comments) > 0) {
 
 			$discussionArea = new DiscussionArea();
 
-			foreach ($result as $comment) {
+			foreach ($comments as $comment) {
 				$discussionArea->addComment(new Comment($comment['time_stamp'],$comment['pageID'],$comment['content'],$comment['author']));
 			}
 
@@ -115,6 +182,12 @@ abstract class User
 	// TODO: rendere protected questo metodo
 	public function getDBConnection() {
 		return $this->dbconnection;
+	}
+
+	public abstract function setSessionVars();
+
+	public function isAdmin() {
+		return false;
 	}
 }
 

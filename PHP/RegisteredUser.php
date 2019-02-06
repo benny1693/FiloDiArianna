@@ -14,10 +14,10 @@ class RegisteredUser extends User {
 	private $username = null;
 	private $password = null;
 
+
 	public function __construct($u_name) {
 		parent::__construct();
 		$query = $this->getDBConnection()->query("SELECT * FROM Prova._users WHERE username = '$u_name'");
-
 		if ($query->num_rows > 0) {
 			$result = $query->fetch_assoc();
 			$this->ID = $result['ID'];
@@ -89,4 +89,9 @@ class RegisteredUser extends User {
 		$this->getDBConnection()->query("CALL insertComment($articleID,'".addslashes($content)."',$this->ID)");
 	}
 
+
+	function setSessionVars() {
+		$_SESSION['username'] = $this->getUsername();
+		$_SESSION['ID'] = $this->getID();
+	}
 }

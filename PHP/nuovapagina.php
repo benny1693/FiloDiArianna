@@ -23,7 +23,7 @@
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="areapersonale.php">Area Personale</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Nuova Pagina</li>
 			</ol>
