@@ -51,8 +51,6 @@ class DiscussionArea
 			}
     }
 
-    //inutile
-    //public function showTextArea($registeredUserID) {    //far vedere nella pagina il testo dei commenti    }
 }
 
 ?>

@@ -10,11 +10,7 @@ require_once 'UnregisteredUser.php';
 require_once 'RegisteredUser.php';
 require_once 'Admin.php';
 require_once "Page.php";
-require_once "Image.php";
 require_once "DiscussionArea.php";
-
-
-
 
 $u = null;
 try {
@@ -65,12 +61,10 @@ echo "<h2>Ricerca degli articoli con autore</h2>";
 $articleList = $u->searchArticle("",1);
 $u->printArticleList($articleList);
 
-
 echo "<h2>Ricerca degli articoli senza autore</h2>";
 $articleList = $u->searchArticle("ao1");
 
 $u->printArticleList($articleList);
-
 
 echo "<h2>Ricerca dei commenti</h2>";
 
@@ -84,7 +78,7 @@ echo "<h1>Funzionalità esclusive utenti registrati</h1>";
 
 echo "<h2>Inserimento di un articolo (titolo = hello)</h2>";
 
-$u->insertArticle('hello','NULL','NULL',1,array('personaggio','creatura'),array(2,3));
+$u->insertArticle("L'ira di Zeus",'NULL','NULL',1,array('personaggio','creatura'),array(2,3));
 
 $query = $u->getDBConnection()->query("SELECT * FROM Prova._pages");
 $result = $query->fetch_all(MYSQLI_ASSOC);
@@ -96,7 +90,9 @@ $result = $query->fetch_all(MYSQLI_ASSOC);
 print_r($result);
 
 echo "<h2>Eliminazione di un articolo</h2>";
-$query = $u->getDBConnection()->query("SELECT * FROM Prova.`_pages` WHERE title = 'hello'");
+$query = $u->getDBConnection()->query(
+	"SELECT * FROM Prova.`_pages` WHERE title = '" . addslashes("L'ira di Zeus") . "'"
+);
 $ID = $query->fetch_assoc()['ID'];
 
 $u->deleteArticle($ID);
@@ -108,7 +104,7 @@ $u->printArticleList($result);
 
 echo "<h2>Modifica di un articolo</h2>";
 
-$u->modifyArticle(2,'ciao','NULL',array('personaggio','divinita'),array(3));
+$u->modifyArticle(2,"allora l'approviamo?",'NULL',array('personaggio','divinita'),array(3));
 
 $query = $u->getDBConnection()->query("SELECT * FROM Prova._modifiedPages");
 $result = $query->fetch_all(MYSQLI_ASSOC);
@@ -117,7 +113,7 @@ print_r($result);
 
 echo "<h2>Inserimento di un commento</h2>";
 
-$u->insertComment(1,"ok");
+$u->insertComment(1,"anch'io penso che sia un bell'articolo");
 
 $u->printArticleComment(1);
 
@@ -127,8 +123,8 @@ $u = new UnregisteredUser();
 
 echo "<h2>Registrazione</h2>";
 
-echo $u->subscribe('mario','rossi','M','2012-12-12','mrossi@italia.it',
-									'mrossi','aaaa');
+echo $u->subscribe('mario',"dall'anese",'M','2012-12-12','mrossi@italia.it',
+									'mdall','aaaa');
 echo "<br/>";
 
 $query = $u->getDBConnection()->query('SELECT * FROM Prova._users');
@@ -158,7 +154,7 @@ $u->printUserList($u->findUser('ciccio'));
 
 echo "<h2>Eliminazione di un utente</h2>";
 
-$query = $u->getDBConnection()->query("SELECT ID FROM Prova.`_users` WHERE username = 'mrossi'");
+$query = $u->getDBConnection()->query("SELECT ID FROM Prova.`_users` WHERE username = 'mdall'");
 
 $u->deleteUser($query->fetch_row()[0]);
 

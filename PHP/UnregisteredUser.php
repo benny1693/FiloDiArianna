@@ -18,11 +18,11 @@ class UnregisteredUser extends User{
 		return false;
 	}
 
-	public function subscribe($name,$surname,$gender,$birthDate,
-														$email,$username,$password){
+	public function subscribe($name,$surname,$gender,$birthDate,$email,$username,$password){
 
 		$birthDate = str_replace(array("-",":"," "),"",$birthDate);
-		$this->getDBConnection()->query("CALL insertUser('$username','$name','$surname','$birthDate','$gender','$email','$password',0)");
+		$this->getDBConnection()->query(
+			"CALL insertUser('$username','".addslashes($name)."','".addslashes($surname)."','$birthDate','$gender','$email','$password',0)");
 
 		return $this->getDBConnection()->getConnection()->affected_rows;
 	}

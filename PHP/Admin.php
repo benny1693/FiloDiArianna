@@ -70,7 +70,9 @@ class Admin extends RegisteredUser {
 	}
 
 	public function findUser($username) {
-		$query = $this->getDBConnection()->query("SELECT * FROM Prova._users WHERE username LIKE '%$username%'");
+		$query = $this->getDBConnection()->query(
+			"SELECT * FROM Prova._users WHERE username LIKE '%".addslashes($username)."%'"
+		);
 
 		return $query->fetch_all(MYSQLI_ASSOC);
 	}

@@ -46,9 +46,13 @@ class RegisteredUser extends User {
 
 	public function insertArticle($title,$content,$image,$authorID,$types,$relatedPages) {
 
-		$this->getDBConnection()->query("CALL insertPage('$title','$content','$image',$authorID,'$types[0]','$types[1]')");
+		$this->getDBConnection()->query(
+			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','$image',$authorID,'$types[0]','$types[1]')"
+		);
 
-		$query = $this->getDBConnection()->query("SELECT ID,insTime FROM Prova._pages WHERE title = '$title'");
+		$query = $this->getDBConnection()->query(
+			"SELECT ID,insTime FROM Prova._pages WHERE title = '".addslashes($title)."'"
+		);
 
 		$result = $query->fetch_assoc();
 		$articleID = $result['ID'];
@@ -60,12 +64,12 @@ class RegisteredUser extends User {
 	}
 
 	public function modifyArticle($articleID,$newcontent,$newimage,$newtypes,$newrelatedPages) {
-		$this->getDBConnection()->query("CALL insertModification($articleID,'$newcontent','$newimage',
-																																		'$newtypes[0]','$newtypes[1]')");
+		$this->getDBConnection()->query(
+			"CALL insertModification($articleID,'".addslashes($newcontent)."','$newimage','$newtypes[0]','$newtypes[1]')");
 
 		$query = $this->getDBConnection()->query("SELECT modTime 
 																										FROM Prova._modifiedPages 
-																										WHERE ID = $articleID AND content = '$newcontent'");
+																										WHERE ID = $articleID AND content = '".addslashes($newcontent)."'");
 
 		$result = $query->fetch_assoc();
 		$timestamp = str_replace(array(":"," ","-"),"", $result['insTime']);
@@ -82,7 +86,7 @@ class RegisteredUser extends User {
 	}
 
 	public function insertComment($articleID,$content) {
-		$this->getDBConnection()->query("CALL insertComment($articleID,'$content',$this->ID)");
+		$this->getDBConnection()->query("CALL insertComment($articleID,'".addslashes($content)."',$this->ID)");
 	}
 
 }

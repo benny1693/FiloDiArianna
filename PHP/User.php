@@ -8,7 +8,6 @@
 
 require_once "DatabaseConnection.php";
 require_once "ArticlePage.php";
-require_once "Image.php";
 require_once "DiscussionArea.php";
 
 abstract class User
@@ -22,7 +21,7 @@ abstract class User
 	public abstract function isRegistered();
 
 	public function searchArticle($substring, $authorID = null) {
-		$substring = strtolower(trim($substring));
+		$substring = addslashes(strtolower(trim($substring)));
 
 		$select = "SELECT *
 								FROM Prova.postedPages 
@@ -43,14 +42,11 @@ abstract class User
 		}
 
 		foreach($articleList as $article) {
-			$img = new Image($article['img']);
-
 			echo
 				'<li>
 					<a href="#">
-						<img src="'.$img->generateThumbnail(null,null,null,null).'" alt="'.$article['title'].'" class="image" />
-						<p>'.$article['title'].'</p>
-						<p>'.substr($article['content'],0,100).'</p>
+						<p>'.stripslashes($article['title']).'</p>
+						<p>'.stripslashes(substr($article['content'],0,100)).'</p>
 					</a>
 				</li>';
 		}
@@ -101,9 +97,9 @@ abstract class User
 			<h2>Dati personali</h2>
 			<dl id=\"personalia\">
 				<dt>Nome</dt>
-				<dd>".$info['name']."</dd>
+				<dd>".stripslashes($info['name'])."</dd>
 				<dt>Cognome</dt>
-				<dd>".$info['surname']."</dd>
+				<dd>".stripslashes($info['surname'])."</dd>
 				<dt>Data di nascita</dt>
 				<dd>".$info['birthDate']."</dd>
 				<dt>Sesso</dt>

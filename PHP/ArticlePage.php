@@ -7,9 +7,7 @@
  */
 
 require_once "Page.php";
-require_once "Image.php";
 require_once "DiscussionArea.php";
-require_once "RegisteredUser.php";
 
 class ArticlePage extends Page {
 

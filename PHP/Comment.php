@@ -16,7 +16,7 @@ class Comment
     $this->userID = $userID;  //è l'autore del commento
   }
   
-  public function getContent()  { return $this->content;  }
+  public function getContent()  { return stripslashes($this->content);  }
 
   public function getTimeStamp()  { return $this->timeStamp; }
 

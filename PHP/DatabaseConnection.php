@@ -9,12 +9,12 @@
 class DatabaseConnection{
 
 	private $host = "localhost";
-	private $username = "laura";
-	private $password = "1811";
+	private $username = "root";
+	private $password = "benny1293";
 	private $connectionMYSQL = null;
 
 	public function __construct(){
-		$this->connectionMYSQL = mysqli_connect($this->host,$this->username,$this->password,"Prova");
+		$this->connectToDatabase("Prova");
 	}
 
 	public function DatabaseConnection($host,$username,$password) {
@@ -25,6 +25,8 @@ class DatabaseConnection{
 
 	public function connectToDatabase($database) {
 		$this->connectionMYSQL = mysqli_connect($this->host,$this->username,$this->password,$database);
+		if (!$this->connectionMYSQL)
+			die ("Errore di connessione: " . mysqli_connect_error());
 	}
 
 	public function disconnect() {

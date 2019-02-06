@@ -13,7 +13,6 @@ class Page {
         $this->name = $name;
     }
 
-    //equivalente di getPersonalButtons
     public function printPersonalButtons($user_id) {
         print_r('<div id="member">
 					<div id="icon-member">
