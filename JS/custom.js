@@ -136,36 +136,11 @@ function changeCheckbox(event) {
 	}
 }
 
-/*
-function calculateAge(birthday) { // birthday is a date
-	var ageDifMs = Date.now() - birthday.getTime();
-	var ageDate = new Date(ageDifMs); // miliseconds from epoch
-	return Math.abs(ageDate.getUTCFullYear() - 1970);
-}
-*/
-
-/*
-function getAge(dateString) {
-	var today = new Date();
-	var birthDate = new Date(dateString);
-	var age = today.getFullYear() - birthDate.getFullYear();
-	var m = today.getMonth() - birthDate.getMonth();
-	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-		age--;
-	}
-	return age;
-}
-
-function validBirthday(date){
-	console.log(getAge(date));
-	return getAge(date) > 6;
-}
-*/
 
 function invalidBirthDay() {
 	var element = document.getElementById("inputDate");
 	var parent = element.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
-	var condition = Date.now() - Date.parse(element.value)  >= Date.UTC(1976);
+	var condition = Date.now() - Date.parse(element.value)  >= Date.UTC(1976);	//sei anni a partire dal 1970
 	return showAlert(alert, condition, "Sei un po' troppo giovane non credi?", parent);
 }
