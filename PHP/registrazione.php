@@ -36,19 +36,19 @@ init();
             else
                 echo '
             <h1>Registrati</h1>
-            <form data-toggle="validator">
+            <form data-toggle="validator" action="registration.php" method="post">
 
 				<div class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">Nome</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" aria-required="true" onblur="return checkText(\'inputName\',\'Nome non valido\',/^[a-zA-Z]{1,20}$/)"/>
+						<input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" aria-required="true" onblur="return checkText(\'inputName\',\'Nome non valido\',/^[a-zA-Z]{1,20}$/);"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="inputSurname" class="col-sm-3 col-form-label" >Cognome</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" aria-required="true" onblur="return checkText(\'inputSurname\',\'Cognome non valido\',/^[a-zA-Z]{1,20}$/)"/>
+						<input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" aria-required="true" onblur="return checkText(\'inputSurname\',\'Cognome non valido\',/^[a-zA-Z\' ]{1,20}$/);"/>
 					</div>
 				</div>
 

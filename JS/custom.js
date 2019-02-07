@@ -32,11 +32,9 @@ function scroll(){
 }
 
 function showAlert(alert, condition, text, parent){
-	if(condition){
-		if(alert) parent.removeChild(alert);
-		return true;
-	}else{
-		if(alert) parent.removeChild(alert);
+	if(alert) parent.removeChild(alert);
+
+	if(!condition && text !== ""){
 		var div = document.createElement("div");
 		div.classList.add("invalid-feedback");
 		var p = document.createElement("p");
@@ -46,6 +44,8 @@ function showAlert(alert, condition, text, parent){
 
 		return false;
 	}
+
+	return true;
 }
 
 function checkText(input, text, regexp){
@@ -54,7 +54,7 @@ function checkText(input, text, regexp){
 	var parent = element.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
-	return showAlert(alert, regexp.test(test), text, parent);
+	return showAlert(alert, regexp.test(test) || test === "" , text, parent);
 }
 
 function isPasswordEqual(){
