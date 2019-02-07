@@ -128,3 +128,11 @@ function disableElement(element,condition) {
 			element.removeAttribute("disabled");
 	}
 }
+
+function invalidBirthDay() {
+	var element = document.getElementById("inputDate");
+	var parent = element.parentNode;
+	var alert = parent.querySelector(".invalid-feedback");
+	var condition = Date.now() - Date.parse(element.value)  >= Date.UTC(1976);	//sei anni a partire dal 1970
+	return showAlert(alert, condition, "Sei un po' troppo giovane non credi?", parent);
+}

@@ -33,7 +33,7 @@ init();
             <?php
             if ($_SESSION['ID'] != -1)
                 printInvalidFeedback('Sei gi&agrave; registrato!');
-            else
+            else {
                 echo '
             <h1>Registrati</h1>
             <form data-toggle="validator" action="registration.php" method="post">
@@ -73,11 +73,11 @@ init();
 				<div class="form-group row">
 				      <label for="inputDate" class="col-sm-3 col-form-label">Data di nascita</label>
 							<div class="col-sm-9">
-				      <input type="date" class="form-control" id="inputDate" name="birthdate"/>
+				      <input type="date" class="form-control" id="inputDate" name="birthdate" required="required" aria-required="true" onblur="return invalidBirthDay();" />
 				    </div>
-				</div>
+				</div>';
 
-				<div class="form-group row">
+				echo '<div class="form-group row">
 					<label for="inputEmail" class="col-sm-3 col-form-label" lang="en">Email</label>
 					<div class="col-sm-9">
 						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" onblur="return checkText(\'inputEmail\',\'Email non valida\','. '/^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/' .');"/>
@@ -108,6 +108,7 @@ init();
 					<button type="submit" id="fatto" class="btn  btn-outline-primary" >Fatto</button>
 				</div>
 			</form>';
+            }
         ?>
 		</section>
 	</div>
