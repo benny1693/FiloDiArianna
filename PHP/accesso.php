@@ -54,10 +54,7 @@ init();
 				</div>';
 
                 if (isset($_SESSION['login_error']) && ($_SESSION['login_error']))
-                    echo '
-				<div class="invalid-feedback">
-					<p>Password o username non validi.</p>
-				</div>';
+                    printInvalidFeedback('Username o password errati');
 
                 echo '
 				<div class="form-group row col-sm-10 col-sm-offset-3">

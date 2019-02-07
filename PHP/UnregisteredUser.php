@@ -24,7 +24,7 @@ class UnregisteredUser extends User{
 		$this->getDBConnection()->query(
 			"CALL insertUser('$username','".addslashes($name)."','".addslashes($surname)."','$birthDate','$gender','$email','$password',0)");
 
-		return $this->getDBConnection()->getConnection()->affected_rows;
+		return $this->getDBConnection()->getConnection()->mysqlstate == '00000';
 	}
 
 	public function setSessionVars() {
