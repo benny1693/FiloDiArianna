@@ -33,10 +33,10 @@ init();
             <?php
             if ($_SESSION['ID'] != -1)
                 printInvalidFeedback('Sei gi&agrave; registrato!');
-            else
+            else {
                 echo '
             <h1>Registrati</h1>
-            <form data-toggle="validator">
+            <form data-toggle="validator" action="registration.php" method="post">
 
 				<div class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">Nome</label>
@@ -73,12 +73,11 @@ init();
 				<div class="form-group row">
 				      <label for="inputDate" class="col-sm-3 col-form-label">Data di nascita</label>
 							<div class="col-sm-9">
-				      <input type="date" class="form-control" id="inputDate" name="birthdate"/>
-				      <p class="help-block">Devi avere almeno 6 anni per registrarti.</p>
+				      <input type="date" class="form-control" id="inputDate" name="birthdate" required="required" aria-required="true" onblur="return invalidBirthDay();" />
 				    </div>
-				</div>
+				</div>';
 
-				<div class="form-group row">
+				echo '<div class="form-group row">
 					<label for="inputEmail" class="col-sm-3 col-form-label" lang="en">Email</label>
 					<div class="col-sm-9">
 						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" data-error="Mail non valida" required="required" />
@@ -109,6 +108,7 @@ init();
 					<button type="submit" id="fatto" class="btn  btn-outline-primary" >Fatto</button>
 				</div>
 			</form>';
+            }
         ?>
 		</section>
 	</div>

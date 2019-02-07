@@ -88,12 +88,6 @@ function printNavigation($page,$pages){
             <ul class="query">';
 }
 
-function printInvalidFeedback($message){
-	echo "
-				<div class=\"invalid-feedback\">
-					<p>$message</p>
-				</div>";
-}
 
 
 /*
