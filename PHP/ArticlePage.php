@@ -18,8 +18,7 @@ class ArticlePage extends Page {
     private $articleContent = null;
     private $discussionArea;
 
-    public function __construct($name, $articleID, $title, $author, $image, $articleContent) {
-        parent::__construct($name);
+    public function __construct($articleID, $title, $author, $image, $articleContent) {
         $this->articleID = $articleID;
         $this->title = $title;
         $this->author = $author;

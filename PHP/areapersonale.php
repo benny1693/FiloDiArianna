@@ -1,3 +1,7 @@
+<?php
+require_once 'utilities.php';
+init();
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -15,6 +19,7 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
+    <?php include_once 'header.php';?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
@@ -24,7 +29,13 @@
 			</ol>
 		</nav>
 		<section>
-			<h1>Area personale</h1>
+            <?php
+            if ($_SESSION['ID'] == -1)
+                echo "<div class=\"invalid-feedback\">
+					<p>Non hai effettuato l'accesso</p>
+				</div>";
+            else {
+			echo '<h1>Area personale</h1>
 			<h2>Dati personali</h2>
 			<dl id="personalia">
 				<dt>Nome</dt>
@@ -43,11 +54,14 @@
 				<li> <a href="paginependenti.html">Pagine pendenti</a> </li>
 				<li> <a href="listapagine.php">Pagine pubblicate</a> </li>
 				<li> <a href="gestioneutenti.php">Gestione utenti</a> </li>
-			</ul>
+			</ul> ';
+            }
+            ?>
 		</section>
 	</div>
 
 	<!-- FOOTER di Matteo -->
+    <?php include_once '../HTML/footer.html'; ?>
 </body>
 
 </html>

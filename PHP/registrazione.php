@@ -74,6 +74,7 @@ init();
 				      <label for="inputDate" class="col-sm-3 col-form-label">Data di nascita</label>
 							<div class="col-sm-9">
 				      <input type="date" class="form-control" id="inputDate" name="birthdate"/>
+				      <p class="help-block">Devi avere almeno 6 anni per registrarti.</p>
 				    </div>
 				</div>
 
