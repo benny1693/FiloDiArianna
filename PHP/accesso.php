@@ -31,9 +31,7 @@ init();
 		<section id="accesso">
 			<?php
             if ($_SESSION['ID'] != -1)
-                echo "<div class=\"invalid-feedback\">
-					<p>Hai gi&agrave; effettuato l'accesso</p>
-				</div>";
+                printInvalidFeedback("Hai gi&agrave; effettuato l'accetto");
             else{
                 echo '
             <h1>Accedi</h1>

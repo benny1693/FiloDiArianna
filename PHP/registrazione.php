@@ -36,33 +36,33 @@ init();
             else
                 echo '
             <h1>Registrati</h1>
-            <form data-toggle="validator" action="registration.php" method="post">
+            <form data-toggle="validator">
 
 				<div class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">Nome</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" data-error="Nome non valido" required="required" />
+						<input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" aria-required="true" onblur="return checkText(\'inputName\',\'Nome non valido\',/^[a-zA-Z]{1,20}$/)"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="inputSurname" class="col-sm-3 col-form-label">Cognome</label>
+					<label for="inputSurname" class="col-sm-3 col-form-label" >Cognome</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" data-error="Cognome non valido" required="required" />
+						<input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" aria-required="true" onblur="return checkText(\'inputSurname\',\'Cognome non valido\',/^[a-zA-Z]{1,20}$/)"/>
 					</div>
 				</div>
 
 				 <fieldset class="form-group row">
 					 <legend class="col-sm-3 col-form-label">Sesso</legend>
-					 <div class="col-sm-9">
+					 <div class="col-sm-9" role="radiogroup">
 						 <div class="form-check">
-							 <input class="form-check-input" type="radio" name="gender" id="male" value="M" checked="checked" />
+							 <input class="form-check-input" type="radio" name="gender" id="male" value="M" checked="checked" aria-checked="true"/>
 							 <label class="form-check-label" for="gridRadios1">
 								 Maschio
 							 </label>
 						 </div>
 						 <div class="form-check">
-							 <input class="form-check-input" type="radio" name="gender" id="female" value="F"/>
+							 <input class="form-check-input" type="radio" name="gender" id="female" value="F" aria-checked="false"/>
 							 <label class="form-check-label" for="gridRadios2">
 								 Femmina
 							 </label>
@@ -95,7 +95,7 @@ init();
 
 					<label for="inputPassword" class="col-sm-3 col-form-label" lang="en">Password</label>
 					<div class="col-sm-9">
-						<input type="password" data-minlength="6" data-maxlength="12" class="form-control" name="password" id="inputPassword" placeholder="Password" required="required" />
+						<input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" required="required" onblur="return checkText(\'inputPassword\',\'Password errata\',/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])([a-zA-Z0-9!@#$%^&*]){6,12}$/)"/>
 						<p class="help-block">La password deve contenere tra 6-12 caratteri.</p>
 					</div>
 					<label for="inputPasswordConfirm" class="col-sm-3 col-form-label">Conferma password</label>
@@ -105,13 +105,13 @@ init();
 				</div>
 
 				<div class="col-sm-10 col-sm-offset-3">
-					<button type="submit" class="btn  btn-outline-primary">Fatto</button>
+					<button type="submit" id="fatto" class="btn  btn-outline-primary" >Fatto</button>
 				</div>
 			</form>';
         ?>
 		</section>
-		<?php include_once '../HTML/footer.html'; ?>
 	</div>
+	<?php include_once '../HTML/footer.html'; ?>
 </body>
 
 </html>

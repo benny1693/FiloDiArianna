@@ -1,22 +1,21 @@
 window.onload = load;
 window.onscroll = scroll;
-//window.onload = validateForm;
 
 function load() {
 	document.getElementById("burger-menu").addEventListener("click", click);
 	document.querySelector("#sidebar-wrapper > .close").addEventListener("click", click);
 
 	function click(){
-		let el = document.getElementById("sidebar-wrapper");
+		var el = document.getElementById("sidebar-wrapper");
 		el.classList.toggle("toggled");
 	}
 }
 
 function plusClick(){
-	let elements = document.getElementById("correlate").children;
-	let element = elements[elements.length - 2];
-	let newElement = element.cloneNode(true);
-	let number = +newElement.querySelector("label").textContent + 1;
+	var elements = document.getElementById("correlate").children;
+	var element = elements[elements.length - 2];
+	var newElement = element.cloneNode(true);
+	var number = +newElement.querySelector("label").textContent + 1;
 	newElement.querySelector("label").setAttribute("for", number);
 	newElement.querySelector("label").textContent = number;
 	newElement.querySelector("select").setAttribute("id", number);
@@ -24,14 +23,11 @@ function plusClick(){
 }
 
 function scroll(){
-	let sent = true;
-	let scroll = document.getElementById("scroll-back-button");
-	if(window.pageYOffset > 50 && sent){
+	var scroll = document.getElementById("scroll-back-button");
+	if(window.pageYOffset > 50){
 		scroll.classList.add("scroll-back-button-active");
-		sent = false;
 	}else{
 		scroll.classList.remove("scroll-back-button-active");
-		sent = true;
 	}
 }
 
@@ -53,8 +49,9 @@ function showAlert(alert, condition, text, parent){
 }
 
 function checkText(input, text, regexp){
-	var test = input.value;
-	var parent = input.parentNode;
+	var element = document.getElementById(input);
+	var test = element.value;
+	var parent = element.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
 	return showAlert(alert, regexp.test(test), text, parent);
@@ -64,12 +61,12 @@ function isPasswordEqual(password, confermaPassword, text){
 	var parent = confermaPassword.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
-	return showAlert(alert, password.value == confermaPassword.value, text, parent);
+	return showAlert(alert, password.value === confermaPassword.value, text, parent);
 }
 
 function validateForm(){
 	var name = document.getElementById("inputName");
-	var surname = document.getElementById("inputSurename");
+	var surname = document.getElementById("inputSurname");
 	var email = document.getElementById("inputEmail");
 	var username = document.getElementById("inputUsername");
 	var password = document.getElementById("inputPassword");
@@ -87,6 +84,8 @@ function validateForm(){
 	var boolUsername = checkText(username, "Username non valida", regexpUsername);
 	var boolPassword = checkText(password, "Password non corretta", regExpPassword);
 	var boolConfermaPassword = isPasswordEqual(password, confermaPassword, "Le password non combaciano");
+
+	var button = document.getElementById("fatto");
 
 	return boolName && boolSurname && boolEmail && boolUsername && boolPassword && boolConfermaPassword;
 }
@@ -113,11 +112,26 @@ function AlertFilesize(){
 	var parent = addImage.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
-	var bool = showAlert(alert, (Math.round(fileSize*100)/100) < 300, "L'immagine caricata pesa troppo!", parent);
+    disableElement(button,showAlert(alert, (Math.round(fileSize*100)/100) < 300, "L'immagine caricata pesa troppo!", parent));
+}
 
-    if(!bool){
-    	button.setAttribute("disabled", "disabled");
-    }else{
-    	if(button.hasAttribute("disabled"))	button.removeAttribute("disabled");
-    }
+function disableElement(element,condition) {
+	if (!condition){
+		element.setAttribute("disabled", "disabled");
+	}else{
+		if(element.hasAttribute("disabled"))
+			element.removeAttribute("disabled");
+	}
+}
+
+function changeCheckbox(event) {
+	let item = document.getElementById('chkPref');
+	switch(item.getAttribute('aria-checked')) {
+		case "true":
+			item.setAttribute('aria-checked', "false");
+			break;
+		case "false":
+			item.setAttribute('aria-checked', "true");
+			break;
+	}
 }
