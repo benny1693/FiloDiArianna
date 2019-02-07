@@ -3,7 +3,7 @@ require_once "utilities.php";
 $u = init();
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 
-$articlesNumber = 1;
+$articlesNumber = 10;
 
 $list = $u->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
 $pages = ceil(count($list)/$articlesNumber);

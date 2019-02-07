@@ -88,7 +88,18 @@ function printNavigation($page,$pages){
             <ul class="query">';
 }
 
+function printFeedback($message,$valid){
+	if ($valid)
+		echo "
+				<div class=\"valid-feedback\">";
+	else
+		echo "
+				<div class=\"invalid-feedback\">";
 
+	echo "
+					<p>$message</p>
+				</div>";
+}
 
 /*
 function isNamefile($name){

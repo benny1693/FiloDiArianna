@@ -11,7 +11,7 @@ class DatabaseConnection{
 	private $host = "localhost";
 	private $username = "user";
 	private $password = "1111";
-	private $connectionMYSQL = null;
+	private $connectionMYSQL;
 
 	public function __construct(){
 		$this->connectToDatabase("Prova");
@@ -25,17 +25,20 @@ class DatabaseConnection{
 
 	public function connectToDatabase($database) {
 		$this->connectionMYSQL = mysqli_connect($this->host,$this->username,$this->password,$database);
-		if (!$this->connectionMYSQL)
-			die ("Errore di connessione: " . mysqli_connect_error());
+		return $this->connectionMYSQL->errno == 0;
 	}
 
 	public function disconnect() {
-		if ($this->connectionMYSQL != null)
+		if (!$this->connectionMYSQL)
 			$this->connectionMYSQL->close();
 	}
 
 	public function getConnection() {
 		return $this->connectionMYSQL;
+	}
+
+	public function getError() {
+		return $this->connectionMYSQL->errno;
 	}
 
 	public function query($query) {

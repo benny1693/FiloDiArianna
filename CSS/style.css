@@ -1292,6 +1292,20 @@ ul.query > li img {
 	margin-bottom: 0;
 }
 
+.valid-feedback {
+	max-width: 100%;
+	padding: .25rem .5rem;
+	margin-top: .1rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	color: #fff;
+	background-color: rgba(00, 85, 00, .9);
+	border-radius: .25rem;
+}
+
+.valid-feedback > p {
+	margin-bottom: 0;
+}
 
 #accesso .form-control,
 #registrazione .form-control {
