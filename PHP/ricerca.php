@@ -3,12 +3,12 @@ require_once "utilities.php";
 $u = init();
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 
-$articlesNumber = 10;
+$articlesNumber = 1;
 
 $list = $u->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
 $pages = ceil(count($list)/$articlesNumber);
 
-if (($currentpage - 1)*$articlesNumber > count($list))
+if (($currentpage - 1)*$articlesNumber > count($list) || $currentpage <= 0)
     header("Location: notfound.php");
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ if (($currentpage - 1)*$articlesNumber > count($list))
 	<title>Risultati ricerca | Filo di Arianna</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
-	<script src="JS/custom.js"></script>
+	<script src="../JS/custom.js"></script>
 </head>
 
 <body>

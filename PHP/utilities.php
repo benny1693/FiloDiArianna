@@ -80,7 +80,7 @@ function printNavigation($page,$pages){
 					';
 	else{
 		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$page + 1, '&rsaquo;');
-		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$page , '&raquo;');
+		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$pages , '&raquo;');
 	}
 	echo '
                 </ul>
