@@ -71,18 +71,21 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
 				<li class="breadcrumb-item active" aria-current="page">Registrazione</li>
 			</ol>
 		</nav>
+                <?php
 
-		<section id="registrazione">
 
-            <?php
+
 
                 if ($_SESSION['ID'] != -1) {
+                    echo'
+			<section>';
                     if ($_SERVER['HTTP_REFERER'] != "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'])
                         printFeedback('Sei gi&agrave; registrato!', false);
                     else
                         printFeedback('Registrazione effettuata con successo',true);
                 } else {
                     echo '
+            <section id="registrazione">
                 <h1>Registrati</h1>
                 <form data-toggle="validator" action="registrazione.php" method="post">
     

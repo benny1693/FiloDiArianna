@@ -13,7 +13,7 @@ class RegisteredUser extends User {
 	private $ID = null;
 	private $username = null;
 	private $password = null;
-
+	private $personalia = array();
 
 	public function __construct($u_name) {
 		parent::__construct();
@@ -23,6 +23,13 @@ class RegisteredUser extends User {
 			$this->ID = $result['ID'];
 			$this->username = $u_name;
 			$this->password = $result['pass_word'];
+			$this->personalia = array(
+				"name" => $result['name'],
+				"surname" => $result['surname'],
+				"birthdate" => $result['birthDate'],
+				"email" => $result['email'],
+				"gender" => $result['gender']
+			);
 		} else {
 			throw new Exception("Utente non esistente");
 		}
@@ -42,6 +49,10 @@ class RegisteredUser extends User {
 
 	public function getUsername() {
 		return $this->username;
+	}
+
+	public function getPersonalia() {
+		return $this->personalia;
 	}
 
 	public function insertArticle($title,$content,$image,$authorID,$types,$relatedPages) {

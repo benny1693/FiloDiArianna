@@ -8,7 +8,7 @@ CREATE VIEW unpostedPagesInfo AS
 				
 /* Vista che seleziona le pagine non postate e le modifiche non ancora approvate */
 CREATE VIEW unpostedPages AS
-	SELECT P.ID, U.insTime, P.title, P.visits, P.author
+	SELECT P.ID, U.insTime, P.title, P.visits, P.author,P.content
 	FROM unpostedPagesInfo 	AS U,
 				_pages AS P
 	WHERE P.ID = U.ID;

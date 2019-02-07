@@ -91,10 +91,10 @@ function printNavigation($page,$pages){
 function printFeedback($message,$valid){
 	if ($valid)
 		echo "
-				<div class=\"valid-feedback\">";
+				<div class=\"feedback valid-feedback\">";
 	else
 		echo "
-				<div class=\"invalid-feedback\">";
+				<div class=\"feedback invalid-feedback\">";
 
 	echo "
 					<p>$message</p>

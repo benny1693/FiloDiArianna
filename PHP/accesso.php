@@ -28,12 +28,15 @@ init();
 			</ol>
 		</nav>
 
-		<section id="accesso">
+
 			<?php
-            if ($_SESSION['ID'] != -1)
-                printFeedback("Hai gi&agrave; effettuato l'accesso",false);
-            else{
+            if ($_SESSION['ID'] != -1) {
                 echo '
+        <section>';
+                printFeedback("Hai gi&agrave; effettuato l'accesso", false);
+            }else{
+                echo '
+            <section id="accesso">
             <h1>Accedi</h1>
 
 			<form data-toggle="validator" action="login.php" method="post">
@@ -48,13 +51,14 @@ init();
 					<label for="inputPassword0" class="col-sm-3 col-form-label">Password</label>
 					<div class="col-sm-9">
 						<input type="password" class="form-control" id="inputPassword0" name="password" placeholder="Password" required="required" />
-					</div>
-				</div>';
+					';
 
                 if (isset($_SESSION['login_error']) && ($_SESSION['login_error']))
-                    printInvalidFeedback('Username o password errati');
+                    printFeedback('Username o password errati',false);
 
                 echo '
+                    </div>
+				</div>
 				<div class="form-group row col-sm-10 col-sm-offset-3">
 					<button type="submit" class="btn  btn-outline-primary">Vai</button>
 				</div>

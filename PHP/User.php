@@ -66,15 +66,17 @@ abstract class User
 		}
 	}
 
-	public function searchArticle($substring, $category = null, $subcategory = null ,$authorID = null) {
+	public function searchArticle($substring, $category = null, $subcategory = null ,$pendant = false,$authorID = null) {
 
 		$this->adjustCategories($category,$subcategory);
 		$categoryfield = self::Category_Handlers[$category][1];
 
 		$substring = addslashes(strtolower(trim($substring)));
 
+		$table = ($pendant ? 'unpostedPages' : 'postedPages');
+
 		$select = "SELECT *
-								FROM Prova.postedPages";
+								FROM Prova.$table";
 
 		if ($category) {
 			$category = self::Category_Handlers[$category][0];

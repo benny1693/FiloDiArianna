@@ -52,9 +52,10 @@
 					<form action="/ROBE.PHP" method="get">
 						<a class="pagina" href="pagina.html">Pagina</a>
 						<div class="bottoni">
-							<button type="submit" class="btn  btn-outline-primary">Accetta</button>
-							<button type="submit" class="btn  btn-outline-primary">Modifica</button>
-							<button type="submit" class="btn  btn-outline-primary">Elimina</button>
+							<input type="hidden" name="pageid" value="idpagina" />
+							<input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />
+							<input type="submit" class="btn btn-outline-primary" name="action" value="Modifica" />
+							<input type="submit" class="btn btn-outline-primary" name="action" value="Elimina" />
 						</div>
 					</form>
 				</li>

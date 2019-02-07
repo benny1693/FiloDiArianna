@@ -1,3 +1,31 @@
+<?php
+require_once 'utilities.php';
+$user = init();
+
+$pendenti = $_GET['pendenti'] = (empty($_GET['pendenti']) ? false : $_GET['pendenti']);
+$pendenti = filter_var($pendenti, FILTER_VALIDATE_BOOLEAN);
+
+$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
+
+$articlesNumber = 10;
+
+$list = null;
+if ($user->isAdmin())
+	$list = $user->searchArticle('', null, null,$pendenti);
+else
+	$list = $user->searchArticle('', null, null,$pendenti,$user->getID());
+
+$pages = ceil(count($list)/$articlesNumber);
+
+if (($currentpage - 1)*$articlesNumber > count($list) || $currentpage <= 0)
+	header("Location: notfound.php");
+
+print_r($list);
+
+
+print_r($_SESSION);
+print_r($_GET);
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -15,53 +43,61 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
-	<div id="page-content-wrapper" class="container-fluid">
+    <?php include_once 'header.php'; ?>
+
+    <div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="areapersonale.php">Area personale</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Pagine pubblicate</li>
+                <?php
+				echo '<li class="breadcrumb-item active" aria-current="page">Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</li>';
+				?>
 			</ol>
 		</nav>
+
 		<section>
-			<h1>Pagine pubblicate</h1>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
-			<ul class="query">
-				<li class="page-administration clearfix">
-					<form action="/ROBE.PHP" method="get">
-						<a class="pagina" href="pagina.html">Pagina</a>
-						<div class="bottoni">
-							<button type="submit" class="btn btn-outline-primary">Modifica</button>
-							<button type="submit" class="btn btn-outline-primary">Elimina</button>
-						</div>
-					</form>
-				</li>
-			</ul>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
+            <?php
+
+            echo '
+			<h1>Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</h1>';
+
+            if (!$user->isRegistered())
+                printFeedback('Devi essere registrato per vedere questa pagina',false);
+            else
+                if (!$list || count($list) <= 0)
+                    echo '<p id="results">Nessun risultato trovato</p>';
+                else {
+                    echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
+                    echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
+                }
+
+                if (count($list) > 0)
+                    printNavigation($currentpage,$pages);
+
+                echo '
+                <ul class="query">
+                    <li class="page-administration clearfix">
+                        <form action="pageaction.php" method="post">
+                            <a class="pagina" href="pagina.html">Pagina</a>
+                            <div class="bottoni">
+                                <input type="submit" class="btn  btn-outline-primary" value="Accetta" />
+                                <input type="submit" class="btn btn-outline-primary" value="Modifica" />
+                                <input type="submit" class="btn btn-outline-primary" value="Elimina" />
+                            </div>
+                        </form>
+                    </li>
+                </ul>';
+
+                if (count($list) > 0)
+                    printNavigation($currentpage,$pages);
+			?>
 		</section>
 	</div>
-	<!-- FOOTER di Matteo -->
+	<!-- FOOTER -->
+    <?php include_once '../HTML/footer.html'; ?>
+
 </body>
 
 </html>

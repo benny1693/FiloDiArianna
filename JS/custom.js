@@ -36,6 +36,7 @@ function showAlert(alert, condition, text, parent){
 
 	if(!condition && text !== ""){
 		var div = document.createElement("div");
+		div.classList.add("feedback");
 		div.classList.add("invalid-feedback");
 		var p = document.createElement("p");
 		p.appendChild(document.createTextNode(text));

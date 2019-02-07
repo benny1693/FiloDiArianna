@@ -1,6 +1,7 @@
 <?php
 require_once 'utilities.php';
-init();
+$user = init();
+print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -31,30 +32,35 @@ init();
 		<section>
             <?php
             if ($_SESSION['ID'] == -1)
-                echo "<div class=\"invalid-feedback\">
-					<p>Non hai effettuato l'accesso</p>
-				</div>";
+                printFeedback("Non hai effettuato l'accesso",false);
             else {
-			echo '<h1>Area personale</h1>
-			<h2>Dati personali</h2>
-			<dl id="personalia">
-				<dt>Nome</dt>
-				<dd>Ciccio</dd>
-				<dt>Cognome</dt>
-				<dd>Pasticcio</dd>
-				<dt>Data di nascita</dt>
-				<dd>01/01/2001</dd>
-				<dt>Occupazione</dt>
-				<dd>Pasticcio</dd>
-			</dl>
+                $info = $user->getPersonalia();
+                echo '<h1>Area personale</h1>
+                <h2>Dati personali</h2>
+                <dl id="personalia">
+                    <dt>Nome</dt>
+                    <dd>'.$info['name'].'</dd>
+                    <dt>Cognome</dt>
+                    <dd>'.$info['surname'].'</dd>
+                    <dt>Data di nascita</dt>
+                    <dd>'.$info['birthdate'].'</dd>
+                    <dt>Email</dt>
+                    <dd>'.$info['email'].'</dd>
+                    <dt>Sesso</dt>
+                    <dd>'.($info['gender'] == 'M' ? 'Maschile' : 'Femminile').'</dd>
+                </dl>';
 
-			<h2>Funzionalit&agrave;</h2>
-			<ul id="collegamentibottoni">
-				<li> <a href="nuovapagina.php">Crea una nuova pagina</a> </li>
-				<li> <a href="paginependenti.html">Pagine pendenti</a> </li>
-				<li> <a href="listapagine.php">Pagine pubblicate</a> </li>
-				<li> <a href="gestioneutenti.php">Gestione utenti</a> </li>
-			</ul> ';
+                echo '
+                <h2>Funzionalit&agrave;</h2>
+                <ul id="collegamentibottoni">
+                    <li> <a href="nuovapagina.php">Crea una nuova pagina</a> </li>
+                    <li> <a href="listapagine.php?pendenti=true">Pagine pendenti</a> </li>
+                    <li> <a href="listapagine.php?pendenti=false">Pagine pubblicate</a> </li>';
+                if ($user->isAdmin())
+                    echo '
+                    <li> <a href="gestioneutenti.php">Gestione utenti</a> </li>';
+                echo '
+                </ul> ';
             }
             ?>
 		</section>
