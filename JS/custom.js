@@ -57,13 +57,17 @@ function checkText(input, text, regexp){
 	return showAlert(alert, regexp.test(test), text, parent);
 }
 
-function isPasswordEqual(password, confermaPassword, text){
+function isPasswordEqual(){
+	var password = document.getElementById('inputPassword');
+	var confermaPassword = document.getElementById('inputPasswordConfirm');
+
 	var parent = confermaPassword.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
-	return showAlert(alert, password.value === confermaPassword.value, text, parent);
+	return showAlert(alert, password.value === confermaPassword.value, 'Le password non combaciano', parent);
 }
 
+// FIXME: eliminare la seguente funzione
 function validateForm(){
 	var name = document.getElementById("inputName");
 	var surname = document.getElementById("inputSurname");
@@ -89,6 +93,7 @@ function validateForm(){
 
 	return boolName && boolSurname && boolEmail && boolUsername && boolPassword && boolConfermaPassword;
 }
+
 
 function AlertFilesize(){
     if(window.ActiveXObject){
@@ -121,17 +126,5 @@ function disableElement(element,condition) {
 	}else{
 		if(element.hasAttribute("disabled"))
 			element.removeAttribute("disabled");
-	}
-}
-
-function changeCheckbox(event) {
-	let item = document.getElementById('chkPref');
-	switch(item.getAttribute('aria-checked')) {
-		case "true":
-			item.setAttribute('aria-checked', "false");
-			break;
-		case "false":
-			item.setAttribute('aria-checked', "true");
-			break;
 	}
 }

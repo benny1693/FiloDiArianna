@@ -56,13 +56,13 @@ init();
 					 <legend class="col-sm-3 col-form-label">Sesso</legend>
 					 <div class="col-sm-9" role="radiogroup">
 						 <div class="form-check">
-							 <input class="form-check-input" type="radio" name="gender" id="male" value="M" checked="checked" aria-checked="true"/>
+							 <input class="form-check-input" type="radio" name="gender" id="male" value="M" checked="checked" />
 							 <label class="form-check-label" for="gridRadios1">
 								 Maschio
 							 </label>
 						 </div>
 						 <div class="form-check">
-							 <input class="form-check-input" type="radio" name="gender" id="female" value="F" aria-checked="false"/>
+							 <input class="form-check-input" type="radio" name="gender" id="female" value="F"/>
 							 <label class="form-check-label" for="gridRadios2">
 								 Femmina
 							 </label>
@@ -80,14 +80,14 @@ init();
 				<div class="form-group row">
 					<label for="inputEmail" class="col-sm-3 col-form-label" lang="en">Email</label>
 					<div class="col-sm-9">
-						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" data-error="Mail non valida" required="required" />
+						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" onblur="return checkText(\'inputEmail\',\'Email non valida\','. '/^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/' .');"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="inputUsername" class="col-sm-3 col-form-label" lang="en">Username</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required="required" />
+						<input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required="required" onblur="return checkText(\'inputUsername\',\'Username non valido\',/^[a-zA-Z0-9]+$/)"/>
 					</div>
 				</div>
 
@@ -95,12 +95,12 @@ init();
 
 					<label for="inputPassword" class="col-sm-3 col-form-label" lang="en">Password</label>
 					<div class="col-sm-9">
-						<input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" required="required" onblur="return checkText(\'inputPassword\',\'Password errata\',/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])([a-zA-Z0-9!@#$%^&*]){6,12}$/)"/>
+						<input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" required="required" onblur="return checkText(\'inputPassword\',\'Password errata\',/^([a-zA-Z0-9!@#$%^&*]){6,12}$/);"/>
 						<p class="help-block">La password deve contenere tra 6-12 caratteri.</p>
 					</div>
 					<label for="inputPasswordConfirm" class="col-sm-3 col-form-label">Conferma password</label>
 					<div class="col-sm-9">
-						<input type="password" class="form-control" id="inputPasswordConfirm" name="confirmpass" placeholder="Conferma password" required="required" />
+						<input type="password" class="form-control" id="inputPasswordConfirm" name="confirmpass" placeholder="Conferma password" required="required" onblur="return isPasswordEqual();"/>
 					</div>
 				</div>
 
