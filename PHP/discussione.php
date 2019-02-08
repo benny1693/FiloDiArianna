@@ -2,10 +2,12 @@
 include_once 'utilities.php';
 $user = init();
 //$article = $_GET['articleID'];
-$numArticle = 1; //per prove
+$numArticle = 2; //per prove
 $infoArticle = $user->getArticleInfo($numArticle);
 $article = new ArticlePage($numArticle, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['content']);
-
+$discussione = $article->getDiscussionArea();
+$com1 = new Comment("12:10", $article->getArticleID(), "Io sono un commento", $user->getID());
+$discussione->addComment($com1);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -45,21 +47,13 @@ $article = new ArticlePage($numArticle, $infoArticle['title'], $infoArticle['aut
 			</ul>
 			<div id="article-content">
 				<div id="article-title">
-					<h1>Discussione di <?php $article->getTitle() ?></h1>
-					<p id="article-id"><?php $article->getArticleID() ?></p>
+					<h1>Discussione di <?php echo $article->getTitle() ?></h1>
+					<p id="article-id"><?php echo $article->getArticleID() ?></p>
 					<a id="back-to-article" href="articolo.php">Torna all'articolo</a>
 				</div>
 				<div>
-                    <?php $article->getDiscussionArea()->printComments(); ?>
+                    <?php $discussione->printComments(); ?>
 					<div class="comment user">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
-					<div class="comment others">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
-					<div class="comment others">
 						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
 						<a href="profiloautore.html">Autore</a>
 					</div>
