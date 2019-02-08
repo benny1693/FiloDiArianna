@@ -157,8 +157,9 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
                     <div class="form-group row">
                         <label for="inputUsername" class="col-sm-3 col-form-label" lang="en">Username</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required="required" onblur="return checkText(\'inputUsername\',\'Username non valido\',/^[a-zA-Z0-9]+$/)"/>';
-
+                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required="required" onblur="return checkText(\'inputUsername\',\'Username non valido\',/^[a-zA-Z0-9]+$/)"/>
+                            <p class="help-block">Lo username pu&ograve contenere solo lettere e numeri.</p>';
+                    
                     if (isset($_SESSION['registration_errors']['username']))
                         printFeedback($_SESSION['registration_errors']['username'],false);
 

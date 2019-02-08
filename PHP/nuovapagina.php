@@ -1,3 +1,9 @@
+<?php
+include_once 'utilities.php';
+$user = init();
+
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -16,7 +22,7 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
-
+    <?php include_once 'header.php';?>
 
 	<!-- INIZIO PAGINA -->
 	<div id="page-content-wrapper" class="container-fluid">
@@ -29,11 +35,18 @@
 			</ol>
 		</nav>
 
+        <?php
+            if ($_SESSION['ID'] == -1) {
+                echo '
+        <section>';
+                printFeedback("Per creare una nuova pagina devi effettuare l'accesso", false);
+            }else {
+                echo '
 		<section id="nuovapagina">
 			<h1>Crea una nuova pagina</h1>
 			<form>
 				<div class="form-group">
-					<label for="FormControlFile">Carica l'immagine che vuoi inserire.</label>
+					<label for="FormControlFile">Carica l\'immagine che vuoi inserire.</label>
 					<input type="file" class="form-control-file" id="FormControlFile" onchange="AlertFilesize();" />
 				</div>
 
@@ -82,11 +95,15 @@
 				<div class="form-group submit-button">
 					<button type="submit" id="fatto" class="btn btn-outline-primary">Fatto</button>
 				</div>
-			</form>
+			</form>';
+            }
+			?>
 		</section>
 	</div>
 
 	<!-- FOOTER -->
+    <?php include_once '../HTML/footer.html'; ?>
+
 </body>
 
 </html>
