@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+require_once 'utilities.php';
+init();
+?>
+ html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
 <head>
@@ -15,6 +19,8 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
+    <?php include_once 'header.php';?>
+
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
@@ -73,6 +79,8 @@
 	</div>
 
 	<!-- FOOTER di Matteo -->
+    <?php include_once '../HTML/footer.html'; ?>
+
 </body>
 
 </html>

@@ -45,12 +45,13 @@ class DiscussionArea
 				} else {
 					echo "					<div class=\"comment others\">";
 				}
+
     		echo "<p>".$comment->getContent()."</p>
-						<a href=\"profiloautore.html\">Autore</a>   
+						<a href=\"profiloautore.html\"> ". User::getOtherUserInfo($comment->getAuthor())['username']."</a>   
 					</div>";
 			}
     }
 
-}
+}//getOtherUserInfo(
 
 ?>

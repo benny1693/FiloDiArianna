@@ -1,7 +1,7 @@
 <?php
 require_once 'PHP/utilities.php';
 init();
-print_r($_SESSION);
+//print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -31,20 +31,27 @@ print_r($_SESSION);
 		</nav>
 		<section>
 			<h1>Il Filo di Arianna</h1>
+
+            <p><a href="#chi" class="sr-only">Salta la definizione</a>
+                Il Filo di Arianna ti permette di trovare tutte le informazioni rigurdanti personaggi, luoghi ed eventi della mitologia greca.</p>
 			<figure id="img-home">
 				<img class="img-fluid" src="img/teseo_arianna.jpg" alt="Dipinto in cui Arianna d&agrave; filo e spada a Teseo" />
 				<figcaption class="figure-caption"><span lang="fr">Jean-Baptiste Regnault</span> - Arianna e Teseo</figcaption>
 			</figure>
-			<h2>Il Nome</h2>
+
+            <h2 id="chi">Chi siamo?</h2>
+            <p><a href="#ilnome" class="sr-only">Salta la definizione</a>
+                Siamo un'associazione di appassionati di cultura greca. Il nostro intento &egrave; aiutare la diffusione della cultura greca classica tra i giovani tramite strumenti multimediali. </p>
+
+            <h2 id="ilnome">Il Nome</h2>
 			<p><a href="#perche" class="sr-only">Salta la definizione</a>
 				A Creta, il principe ateniese Teseo decide di avventurarsi nel labirinto di Cnosso allo scopo di salvare i propri sudditi. Nell'impresa non è solo, ma viene aiutato da Arianna, figlia del re Minosse. Ella dà a Teseo un gomitolo di lana (il cosiddetto <em>filo di Arianna</em>) per riconoscere la strada percorsa e poter uscire sano e salvo. Noi, come Arianna nel mito, vogliamo aiutarti (e invogliarti) ad avventurarti nei meandri della grecit&agrave; senza perderti.</p>
-			<h2 id="perche">Perché?</h2>
-			<p><a href="#chi" class="sr-only">Salta la definizione</a>
-				La cultura greca classica viene spesso considerata inutile alla comprensione di ci&ograve; che ci circonda. Niente di pi&ugrave; falso! Quasi tutti i popoli del Mediterraneo discendono o sono entrati in contatto con i Greci nell'antichità. La grecit&agrave;, infatti, fa parte delle nostre radici e influenza quotidianamente il nostro comportamento. Si pensi, ad esempio, al riguardo che si ha verso un ospite in casa propria: lo si fa accomodare, gli si offre qualcosa e lo si tratta con rispetto. Questo uso fu introdotto dai Greci: ogni visitatore poteva essere un dio sotto mentite spoglie e, quindi, era meglio trattarlo bene onde evitare l'ira di una divinit&agrave;. Date queste premesse, ci è sembrato giusto prodigarci per dare lustro alla cultura greca classica tramite il suo lato pi&ugrave; interessante e "vendibile": la mitologia.</p>
-			<h2 id="chi">Chi siamo?</h2>
+
+            <h2 id="perche">Perché?</h2>
 			<p><a href="#scroll-back-button" class="sr-only">Salta la definizione</a>
-				Siamo un'associazione di appassionati di cultura greca. Il nostro intento &egrave; aiutare la diffusione della cultura greca classica tra i giovani tramite strumenti multimediali.</p>
-		</section>
+				La cultura greca classica viene spesso considerata inutile alla comprensione di ci&ograve; che ci circonda. Niente di pi&ugrave; falso! Quasi tutti i popoli del Mediterraneo discendono o sono entrati in contatto con i Greci nell'antichità. La grecit&agrave;, infatti, fa parte delle nostre radici e influenza quotidianamente il nostro comportamento. Si pensi, ad esempio, al riguardo che si ha verso un ospite in casa propria: lo si fa accomodare, gli si offre qualcosa e lo si tratta con rispetto. Questo uso fu introdotto dai Greci: ogni visitatore poteva essere un dio sotto mentite spoglie e, quindi, era meglio trattarlo bene onde evitare l'ira di una divinit&agrave;. Date queste premesse, ci è sembrato giusto prodigarci per dare lustro alla cultura greca classica tramite il suo lato pi&ugrave; interessante e "vendibile": la mitologia.</p>
+
+        </section>
 	</main>
     <?php include_once 'HTML/footer.html' ?>
 </body>

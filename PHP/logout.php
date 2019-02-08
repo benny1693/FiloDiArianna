@@ -10,7 +10,7 @@ require_once 'utilities.php';
 session_start();
 session_destroy();
 
-if ($_SERVER['HTTP_REFERER'] != 'http://'.$_SERVER['HTTP_HOST'].'/FiloDiArianna/PHP/areapersonale.php')
+if ($_SERVER['HTTP_REFERER'] == 'http://'.$_SERVER['HTTP_HOST'].'/FiloDiArianna/index.php')
 	header('Location: '.$_SERVER['HTTP_REFERER']);
 else
 	header('Location: '.'../index.php');

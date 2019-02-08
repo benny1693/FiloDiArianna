@@ -1,7 +1,7 @@
 <?php
 require_once 'utilities.php';
 init();
-print_r($_SESSION);
+//print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -45,12 +45,29 @@ print_r($_SESSION);
 			</div>
 
 			<div id="contattomessaggio" class="row">
+                <?php if($_POST['formArea'] != null)
+                    printFeedback("Grazie, il tuo messaggio è stato inviato correttamente! Ti contatteremo al più presto", true);
+                    //unset($_POST['formArea']); // = null;
+                ?>
 				<h1>Oppure.. scrivi direttamente qui il tuo messaggio</h1>
 
-				<form>
+				<form data-toggle="validator" action="contatti.php" method="post">
+                    <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-3 col-form-label" lang="en">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" onblur="return checkText('inputEmail','Email non valida', /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/);"/>
+
+                            <?php
+                            if (isset($_SESSION['registration_errors']['email']))
+                            printFeedback($_SESSION['registration_errors']['email'],false);
+                            ?>
+                        </div>
+                    </div>
+
+
 					<div class="form-group row">
 						<label for="FormControlTextarea" class="sr-only">Scrivi</label>
-						<textarea class="form-control" id="FormControlTextarea" rows="17"></textarea>
+						<textarea class="form-control" id="FormControlTextarea" name="formArea" rows="17" required="required" aria-required="true" ></textarea>
 					</div>
 
 					<div class="form-group row">
