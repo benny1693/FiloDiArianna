@@ -61,17 +61,19 @@ class RegisteredUser extends User {
 			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','".addslashes($image)."',$authorID,'$types[0]','$types[1]')"
 		);
 
-		$query = $this->getDBConnection()->query(
-			"SELECT ID,insTime FROM Prova._pages WHERE title = '".addslashes($title)."'"
-		);
+		if ($this->getDBConnection()->getError() == 0) {
 
-		$result = $query->fetch_assoc();
-		$articleID = $result['ID'];
-		$timestamp = str_replace(array(":"," ","-"),"", $result['insTime']);
+			$query = $this->getDBConnection()->query(
+				"SELECT ID,insTime FROM Prova._pages WHERE title = '" . addslashes($title) . "'"
+			);
 
-		foreach ($relatedPages as $relation)
-			$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
+			$result = $query->fetch_assoc();
+			$articleID = $result['ID'];
+			$timestamp = str_replace(array(":", " ", "-"), "", $result['insTime']);
 
+			foreach ($relatedPages as $relation)
+				$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
+		}
 	}
 
 	public function modifyArticle($articleID,$newcontent,$newimage,$newtypes,$newrelatedPages) {

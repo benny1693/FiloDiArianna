@@ -1,14 +1,33 @@
 <?php
 include_once 'utilities.php';
 $user = init();
-
 if (!empty($_POST)){
 	$img = file_get_contents($_FILES['image']['tmp_name']);
 	$path = $_FILES['image']['name'];
 	$type = pathinfo($path, PATHINFO_EXTENSION);
-	print_r($_POST);
-	print_r($path);
-    //$user->insertArticle($_GET['ID'],$_GET['content'],$img,$_SESSION['ID'],$_GET['types'],$_GET['relatedpages']);
+
+	$types = array();
+    switch (substr($_POST['types'],0,1)):
+      case 'p':
+          $types[0] = 'personaggi';
+          break;
+      case 'e':
+          $types[0] = 'eventi';
+          break;
+      case 'l':
+          $types[0] = 'luoghi';
+          break;
+    endswitch;
+
+    if ($types[0] == 'eventi'){
+        $types[1] = str_replace('_','',$_POST['types']);
+    } else {
+        $types[1] = substr($_POST['types'],2);
+    }
+
+    $_POST['relatedpages'] = array_diff($_POST['relatedpages'],array('none'));
+
+    $user->insertArticle($_POST['title'],$_POST['content'],$img,$_SESSION['ID'],$_POST['types'],$_POST['relatedpages']);
 }
 ?>
 
@@ -50,7 +69,15 @@ if (!empty($_POST)){
                 printFeedback("Per creare una nuova pagina devi effettuare l'accesso", false);
             }else {
                 echo '
-		<section id="nuovapagina">
+		<section id="nuovapagina">';
+
+                if ($user->getDBConnection()->getError() != 0)
+                    printFeedback('Pagina non inserita',false);
+		        else
+		            if (!empty($_POST))
+		                printFeedback('Pagina inserita e in attesa di approvazione',true);
+
+		        echo '		    
 			<h1>Crea una nuova pagina</h1>
 			<form method="post" action="nuovapagina.php" enctype="multipart/form-data">
 				<div class="form-group">
@@ -70,17 +97,17 @@ if (!empty($_POST)){
 				
 				<div class="form-group">
 					<label for="inputCategorie">Categorie</label>
-					<select name="type" id="inputCategorie" class="form-control">
+					<select name="types" id="inputCategorie" class="form-control">
 						<optgroup label="Personaggi">
 							<option value="p_umani">Esseri Umani</option>
-							<option value="p_eroi">Semidivinità/Eroi</option>
-							<option value="p_divinita">Divinità</option>
+							<option value="p_eroi">Semidivinit&agrave;/Eroi</option>
+							<option value="p_dei">Divinità</option>
 							<option value="p_creature">Creature</option>
 						</optgroup>
 						<optgroup label="Eventi">
-							<option value="ep_dei">Epoca degli Dei</option>
-							<option value="ep_dei_uomini">Epoca degli Dei e degli Uomini</option>
-							<option value="ep_eroi">Epoca degli Eroi</option>
+							<option value="era_dei">Era degli Dei</option>
+							<option value="era_dei_uomini">Era degli Dei e degli Uomini</option>
+							<option value="era_eroi">Era degli Eroi</option>
 						</optgroup>
 						<optgroup label="Luoghi">
 							<option value="l_mitologici">Mitologici</option>

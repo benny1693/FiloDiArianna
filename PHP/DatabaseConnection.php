@@ -41,6 +41,10 @@ class DatabaseConnection{
 		return $this->connectionMYSQL->errno;
 	}
 
+	public function affectedRows() {
+		return $this->connectionMYSQL->affected_rows;
+	}
+
 	public function query($query) {
 		return mysqli_query($this->connectionMYSQL,$query);
 	}
