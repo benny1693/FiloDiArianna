@@ -229,17 +229,26 @@ abstract class User
         foreach ($array as $art){
             echo $art['title'];
         }
-        //$array = this.
     }
 
-    //con fetch assoc
-    //se non admin posted
-    //se non admin
-    public function getArticleInfo($articleID) {    //ricavo le informazioni per ArticlePage
-        $query = $this->dbconnection->query(
-        "SELECT * 
-		FROM Prova._pages
-		WHERE ID = $articleID");
+    public function getArticleInfo($articleID) {   //ricavo le informazioni per ArticlePage
+	    if($this->isAdmin()) {
+            $query = $this->dbconnection->query(
+                "SELECT * 
+                FROM Prova.unpostedPages
+                WHERE ID = $articleID");
+        }
+	    else{   //se non admin posted
+            $query = $this->dbconnection->query(
+                "SELECT * 
+                FROM Prova.postedPages
+                WHERE ID = $articleID");
+        }
+
+        if ($query->num_rows > 0)
+            return $query->fetch_assoc();
+        else
+            return null;
     }
 
 }

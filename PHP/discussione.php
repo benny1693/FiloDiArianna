@@ -1,7 +1,11 @@
 <?php
 include_once 'utilities.php';
 $user = init();
-$article = $_GET['articleID'];
+//$article = $_GET['articleID'];
+$numArticle = 1; //per prove
+$infoArticle = $user->getArticleInfo($numArticle);
+$article = new ArticlePage($numArticle, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['content']);
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
