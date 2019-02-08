@@ -12,9 +12,10 @@ $articlesNumber = 10;
 $list = null;
 if ($user->isAdmin())
 	$list = $user->searchArticle('', null, null,$pendenti);
-else
-	$list = $user->searchArticle('', null, null,$pendenti,$user->getID());
-
+else {
+    if ($user->isRegistered())
+    	$list = $user->searchArticle('', null, null, $pendenti, $user->getID());
+}
 $pages = ceil(count($list)/$articlesNumber);
 if ($pages == 0)
 	$currentpage = 0;
@@ -67,7 +68,7 @@ print_r($_GET);
             else {
                 echo '
 			<h1>Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</h1>';
-                if (!$list || count($list) <= 0)
+                if (count($list) <= 0)
                     echo '<p id="results">Nessun risultato trovato</p>';
                 else {
                     echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";

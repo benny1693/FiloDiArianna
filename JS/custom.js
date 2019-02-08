@@ -97,16 +97,10 @@ function validateForm(){
 
 
 function AlertFilesize(){
-    if(window.ActiveXObject){
-        var fileSO = new ActiveXObject("Scripting.FileSystemObject");
-        var filepath = document.getElementById("FormControlFile").value;
-        var thefile = fileSO.getFile(filepath);
-        var sizeinbytes = thefile.size;
-    }else{
-        var sizeinbytes = document.getElementById("FormControlFile").files[0].size;
-    }
+	var filepath = document.getElementById("FormControlFile").value;
 
-    var fileSize = sizeinbytes;
+	var fileSize = document.getElementById("FormControlFile").files[0].size;
+
     var i = 0;
     while(fileSize > 900){
     	fileSize /= 1024;
@@ -118,7 +112,10 @@ function AlertFilesize(){
 	var parent = addImage.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
 
-    disableElement(button,showAlert(alert, (Math.round(fileSize*100)/100) < 300, "L'immagine caricata pesa troppo!", parent));
+	var extensions = ['png','jpg','jpeg','svg'];
+	var isImage = extensions.includes(filepath.split('.').pop());
+
+    disableElement(button,showAlert(alert, ((Math.round(fileSize*100)/100) < 300) && isImage, "Il file pesa troppo o non è un'immagine!", parent));
 }
 
 function disableElement(element,condition) {

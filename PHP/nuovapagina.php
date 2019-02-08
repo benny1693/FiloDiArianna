@@ -2,6 +2,14 @@
 include_once 'utilities.php';
 $user = init();
 
+if (!empty($_POST)){
+	$img = file_get_contents($_FILES['image']['tmp_name']);
+	$path = $_FILES['image']['name'];
+	$type = pathinfo($path, PATHINFO_EXTENSION);
+	print_r($_POST);
+	print_r($path);
+    //$user->insertArticle($_GET['ID'],$_GET['content'],$img,$_SESSION['ID'],$_GET['types'],$_GET['relatedpages']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +30,7 @@ $user = init();
 
 <body>
 	<!-- HEADER / SIDEBAR -->
-    <?php include_once 'header.php';?>
+    <?php include_once 'header.php'; ?>
 
 	<!-- INIZIO PAGINA -->
 	<div id="page-content-wrapper" class="container-fluid">
@@ -44,25 +52,25 @@ $user = init();
                 echo '
 		<section id="nuovapagina">
 			<h1>Crea una nuova pagina</h1>
-			<form>
+			<form method="post" action="nuovapagina.php" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="FormControlFile">Carica l\'immagine che vuoi inserire.</label>
-					<input type="file" class="form-control-file" id="FormControlFile" onchange="AlertFilesize();" />
+					<input type="file" class="form-control-file" id="FormControlFile" name="image" onchange="AlertFilesize();" />
 				</div>
 
 				<div class="form-group">
 					<label for="inputTitolo">Titolo</label>
-					<input type="text" class="form-control" id="inputTitolo" placeholder="Titolo" />
+					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" />
 				</div>
 
 				<div class="form-group">
 					<label for="FormControlTextarea1">Descrizione</label>
-					<textarea class="form-control" id="FormControlTextarea1" rows="10"></textarea>
+					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10"></textarea>
 				</div>
 				
 				<div class="form-group">
 					<label for="inputCategorie">Categorie</label>
-					<select name="categorie" id="inputCategorie" class="form-control">
+					<select name="type" id="inputCategorie" class="form-control">
 						<optgroup label="Personaggi">
 							<option value="p_umani">Esseri Umani</option>
 							<option value="p_eroi">Semidivinità/Eroi</option>
@@ -85,7 +93,15 @@ $user = init();
 					<legend>Pagine correlate</legend>
                     <p class="row">
                         <label for="1" class="col-xs-1">1</label>
-                        <select id="1" name="correlati[]" class="form-control col-xs-9"></select>
+                        <select id="1" name="relatedpages[]" class="form-control col-xs-9">
+                            <option value="none" selected="selected">Nessuna</option>';
+                $list = $user->searchArticle('');
+                foreach ($list as $article){
+                    echo '
+                            <option value="'.$article['ID'].'">'.$article['title'].'</option>';
+                }
+                echo '
+                        </select>
                     </p>
                     <button type="button" id="plus" class="btn" onclick="plusClick()">
                         <svg><path d="M 28, 20 h -8 v 8 h -4 v -8 h -8 v -4 h 8 v -8 h 4 v 8 h 8 v 4 z"/></svg>

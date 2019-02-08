@@ -58,7 +58,7 @@ class RegisteredUser extends User {
 	public function insertArticle($title,$content,$image,$authorID,$types,$relatedPages) {
 
 		$this->getDBConnection()->query(
-			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','$image',$authorID,'$types[0]','$types[1]')"
+			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','".addslashes($image)."',$authorID,'$types[0]','$types[1]')"
 		);
 
 		$query = $this->getDBConnection()->query(

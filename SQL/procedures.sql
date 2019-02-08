@@ -1,7 +1,7 @@
 /* 	Inserisce nel database la pagina con i dati indicati.
 		@param _title: 		indica il titolo da assegnare alla pagina
 		@param _content: indica il contenuto relativo alla pagina inserita
-		@param _img: 			indica l'immagine che correda l'articolo
+		@param _img: 			indica la stringa in base64 dell'immagine che correda l'articolo
 		@param type1: 		indica la categoria principale dell'articolo (eventi,luoghi o personaggi)
 		@param type2: 		indica la sottocategoria dell'articolo
 											Per eventi:
@@ -19,7 +19,7 @@
 		@throws: 					segnala un errore se la pagina già esiste
 */
 DELIMITER |
-CREATE PROCEDURE insertPage(_title VARCHAR(30), _content TEXT, _img BLOB, _author INTEGER,
+CREATE PROCEDURE insertPage(_title VARCHAR(30), _content TEXT, _img LONGBLOB, _author INTEGER,
 														 	_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
 	DECLARE _ID INTEGER;
@@ -32,7 +32,7 @@ BEGIN
 	
 	/* Inserisco la pagina tra la lista totale delle pagine*/
 	INSERT INTO _pages (title,content,img,author)
-	VALUES (_title, LOAD_FILE(_content), LOAD_FILE(_img),_author);
+	VALUES (_title, _content, _img,_author);
 	
 	/* Ne seleziono l'ID */
 	SELECT ID INTO _ID 
@@ -85,27 +85,30 @@ BEGIN
 	DECLARE _img BLOB;
 	DECLARE _type1 VARCHAR(18);
 	DECLARE _type2 VARCHAR(18);
-	
-	/* Seleziono i valori della pagina modificata */
-	SELECT content,img,type1,type2 INTO _content,_img,_type1,_type2
-	FROM _modifiedPages
-	WHERE ID=_ID AND modTime=_modTime;
 
-	/* Eseguo l'update */
-	UPDATE _pages
-	SET insTime=_modTime,content=_content,img=_img, posted = FALSE
-	WHERE ID = _ID;
-	
-	/* Elimino la pagina dalle sotto-categorie */
-	DELETE FROM _events WHERE ID = _ID;
-	DELETE FROM _characters WHERE ID = _ID;
-	DELETE FROM _places WHERE ID = _ID;
-	DELETE FROM _modifiedPages WHERE ID = _ID AND modTime = _modTime;
-	
-	/* Inserisco la pagina nella sotto-categoria corretta */
-	call insertInCategories(_ID,_type1,_type2);
-	
-	call setPostStatus(_ID,TRUE);	
+	IF EXISTS(SELECT * FROM _modifiedPages WHERE ID=_ID AND modTime=_modTime)
+	THEN
+		/* Seleziono i valori della pagina modificata */
+		SELECT content,img,type1,type2 INTO _content,_img,_type1,_type2
+		FROM _modifiedPages
+		WHERE ID=_ID AND modTime=_modTime;
+
+		/* Eseguo l'update */
+		UPDATE _pages
+		SET insTime=_modTime,content=_content,img=_img, posted = FALSE
+		WHERE ID = _ID;
+
+		/* Elimino la pagina dalle sotto-categorie */
+		DELETE FROM _events WHERE ID = _ID;
+		DELETE FROM _characters WHERE ID = _ID;
+		DELETE FROM _places WHERE ID = _ID;
+		DELETE FROM _modifiedPages WHERE ID = _ID AND modTime = _modTime;
+
+		/* Inserisco la pagina nella sotto-categoria corretta */
+		call insertInCategories(_ID,_type1,_type2);
+
+		call setPostStatus(_ID,TRUE);
+	END IF;
 END|
 DELIMITER ;
 

@@ -42,15 +42,12 @@ class Admin extends RegisteredUser {
 			$select = $select . " AND modTime = '$timestamp'";
 		}
 
-		$query = $this->getDBConnection()->query($select);
-
-		if ($query->num_rows >= 1) {
-			if ($timestamp != null) {
-				$this->getDBConnection()->query("CALL approveModification($articleID,'$timestamp')");
-			} else {
-				$this->getDBConnection()->query("CALL setPostStatus($articleID,1)");
-			}
+		if ($timestamp != null) {
+			$this->getDBConnection()->query("CALL approveModification($articleID,'$timestamp')");
+		} else {
+			$this->getDBConnection()->query("CALL setPostStatus($articleID,1)");
 		}
+
 	}
 
 	public function deleteArticle($articleID){
