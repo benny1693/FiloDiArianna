@@ -96,23 +96,38 @@ abstract class User
 		return $query->fetch_all(MYSQLI_ASSOC);
 	}
 
-	public function printArticleList($articleList,$begin = 0, $limit = -1) {
+	public function printArticleList($articleList, $buttons = false, $pendant = false) {
+
 		if ($articleList != null) {
-
-			if ($limit == -1)
-				$limit = count($articleList);
-
-			if ($begin < 0 || $begin > $limit || $limit > count($articleList))
-				$begin = $limit = 0;
-
-			for ($i = $begin; $i < $limit; $i++)
-				echo
-					'<li>
+			if (!$buttons) {
+				foreach ($articleList as $article)
+					echo '
+				<li>
 					<a href="#">
-						<p>' . stripslashes($articleList[$i]['title']) . '</p>
-						<p>' . stripslashes(substr($articleList[$i]['content'], 0, 100)) . '</p>
+						<p>' . stripslashes($article['title']) . '</p>
+						<p>' . stripslashes(substr($article['content'], 0, 100)) . '</p>
 					</a>
 				</li>';
+			} else {
+				foreach ($articleList as $article){
+					echo '
+										<li class="page-administration clearfix">
+                        <form action="pageaction.php" method="post">
+                            <a class="pagina" href="articolo.php?articleID='.$article['ID'].'">'.$article['title'].'</a>
+                            <div class="bottoni">
+                            		<input type="hidden" name="pageid" value="'.$article['ID'].'" />';
+					if ($this->isAdmin() && $pendant)
+						echo '
+                  							<input type="hidden" name="instime" value="'.$article['insTime'].'" />
+                                <input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />';
+					echo '
+                                <input type="submit" class="btn btn-outline-primary" name="action" value="Modifica" />
+                                <input type="submit" class="btn btn-outline-primary" name="action" value="Elimina" />
+                            </div>
+                        </form>
+                    </li>';
+				}
+			}
 		}
 	}
 

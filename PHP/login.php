@@ -14,7 +14,7 @@ if ($_SESSION['ID'] == -1){
 	$_SESSION['login_error'] = true;
 	header('Location: accesso.php');
 } else {
-	$_SESSION['login_error'] = false;
+	unset($_SESSION['login_error']);
 	header('Location: ../index.php');
 }
 ?>

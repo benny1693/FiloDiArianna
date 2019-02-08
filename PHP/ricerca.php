@@ -3,12 +3,14 @@ require_once "utilities.php";
 $u = init();
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 
-$articlesNumber = 10;
+$articlesNumber = 2;
 
 $list = $u->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
 $pages = ceil(count($list)/$articlesNumber);
+if ($pages == 0)
+    $currentpage = 0;
 
-if (($currentpage - 1)*$articlesNumber > count($list) || $currentpage <= 0)
+if (($currentpage > $pages || $currentpage <= 0) && $currentpage != $pages)
     header("Location: notfound.php");
 ?>
 <!DOCTYPE html>
@@ -45,18 +47,16 @@ if (($currentpage - 1)*$articlesNumber > count($list) || $currentpage <= 0)
             else {
                 echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
                 echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
+
+                printNavigation($currentpage,$pages);
+
+                if ($currentpage < $pages)
+                    $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,$articlesNumber));
+                else
+                    $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,count($list) - ($currentpage-1)*$articlesNumber));
+
+                printNavigation($currentpage,$pages);
             }
-
-            if (count($list) > 0)
-                printNavigation($currentpage,$pages);
-
-            if ($currentpage != $pages)
-                $u->printArticleList($list,($currentpage-1)*$articlesNumber,$currentpage*$articlesNumber);
-            else
-                $u->printArticleList($list,($currentpage-1)*$articlesNumber,count($list));
-
-            if (count($list) > 0)
-                printNavigation($currentpage,$pages);
             ?>
         </section>
 	</div>

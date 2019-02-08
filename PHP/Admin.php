@@ -44,12 +44,13 @@ class Admin extends RegisteredUser {
 
 		$query = $this->getDBConnection()->query($select);
 
-		if ($query->num_rows >= 1)
-			if ($timestamp != null)
+		if ($query->num_rows >= 1) {
+			if ($timestamp != null) {
 				$this->getDBConnection()->query("CALL approveModification($articleID,'$timestamp')");
-		else
-			echo "CALL setPostStatus($articleID,1)";
-			$this->getDBConnection()->query("CALL setPostStatus($articleID,1)");
+			} else {
+				$this->getDBConnection()->query("CALL setPostStatus($articleID,1)");
+			}
+		}
 	}
 
 	public function deleteArticle($articleID){

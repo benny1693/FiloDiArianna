@@ -16,8 +16,10 @@ else
 	$list = $user->searchArticle('', null, null,$pendenti,$user->getID());
 
 $pages = ceil(count($list)/$articlesNumber);
+if ($pages == 0)
+	$currentpage = 0;
 
-if (($currentpage - 1)*$articlesNumber > count($list) || $currentpage <= 0)
+if (($currentpage > $pages || $currentpage <= 0) && $currentpage != $pages)
 	header("Location: notfound.php");
 
 print_r($list);
@@ -60,38 +62,33 @@ print_r($_GET);
 		<section>
             <?php
 
-            echo '
-			<h1>Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</h1>';
-
             if (!$user->isRegistered())
                 printFeedback('Devi essere registrato per vedere questa pagina',false);
-            else
+            else {
+                echo '
+			<h1>Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</h1>';
                 if (!$list || count($list) <= 0)
                     echo '<p id="results">Nessun risultato trovato</p>';
                 else {
                     echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
                     echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
-                }
 
-                if (count($list) > 0)
-                    printNavigation($currentpage,$pages);
+                    printNavigation($currentpage, $pages);
 
-                echo '
-                <ul class="query">
-                    <li class="page-administration clearfix">
-                        <form action="pageaction.php" method="post">
-                            <a class="pagina" href="pagina.html">Pagina</a>
-                            <div class="bottoni">
-                                <input type="submit" class="btn  btn-outline-primary" value="Accetta" />
-                                <input type="submit" class="btn btn-outline-primary" value="Modifica" />
-                                <input type="submit" class="btn btn-outline-primary" value="Elimina" />
-                            </div>
-                        </form>
-                    </li>
+                    echo '
+                <ul class="query">';
+
+                    if ($currentpage < $pages)
+                        $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber, $articlesNumber), true,$pendenti);
+                    else //$currentpage == $pages
+                        $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber, count($list) - ($currentpage - 1) * $articlesNumber), true,$pendenti);
+
+                    echo '
                 </ul>';
 
-                if (count($list) > 0)
-                    printNavigation($currentpage,$pages);
+                    printNavigation($currentpage, $pages);
+                }
+            }
 			?>
 		</section>
 	</div>
