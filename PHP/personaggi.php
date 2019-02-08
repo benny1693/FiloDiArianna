@@ -15,6 +15,8 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
+    <?php include_once 'header.php';?>
+
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
@@ -62,6 +64,8 @@
 		</section>
 	</div>
 	<!-- FOOTER -->
+    <?php include_once '../HTML/footer.html'; ?>
+
 </body>
 
 </html>

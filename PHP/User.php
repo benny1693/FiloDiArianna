@@ -206,6 +206,42 @@ abstract class User
 	public function isAdmin() {
 		return false;
 	}
+
+
+	//prendere id di articolo e trova pagine correlate
+    //array con id e titolo
+    public function getRelatedPages($articleID){
+
+        $query = $this->dbconnection->query(
+            "SELECT * 
+			FROM Prova._relatedPages
+			WHERE ID = $articleID"
+        );
+
+        if ($query->num_rows > 0)
+            return $query->fetch_all(MYSQLI_ASSOC);
+        else
+            return null;
+    }
+
+    public function printRelatedPages($articleID) {
+        $array = $this->getRelatedPages($articleID);
+        foreach ($array as $art){
+            echo $art['title'];
+        }
+        //$array = this.
+    }
+
+    //con fetch assoc
+    //se non admin posted
+    //se non admin
+    public function getArticleInfo($articleID) {    //ricavo le informazioni per ArticlePage
+        $query = $this->dbconnection->query(
+        "SELECT * 
+		FROM Prova._pages
+		WHERE ID = $articleID");
+    }
+
 }
 
 ?>

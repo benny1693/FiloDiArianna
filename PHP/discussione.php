@@ -1,8 +1,13 @@
+<?php
+include_once 'utilities.php';
+$user = init();
+$article = $_GET['articleID'];
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
 <head>
-	<title>Discussione su TitoloArticolo | Il Filo di Arianna</title>
+	<title>Discussione su <?php echo $article->getTitle() ?> | Il Filo di Arianna</title>
 	<meta name="description" content="Discussione tra gli utenti sull'articolo TitoloArticolo" />
 	<meta name="keywords" content="Filo, Arianna, greco, mitologia, TitoloArticolo, discussione" />
 	<meta name="author" content="Benedetto Cosentino" />
@@ -24,7 +29,7 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
-				<li class="breadcrumb-item"><a href="#queryarticoloprecedente.php">TitoloArticolo</a></li>
+				<li class="breadcrumb-item"><a href="#queryarticoloprecedente.php"><?php echo $article->getTitle() ?></a></li>
 				<li class="breadcrumb-item" aria-current="page">Discussione</li>
 			</ol>
 		</nav>
@@ -36,11 +41,12 @@
 			</ul>
 			<div id="article-content">
 				<div id="article-title">
-					<h1>Discussione di "Titolo"</h1>
-					<p id="article-id"><? $y->y->getArticleID ?></p>
+					<h1>Discussione di <?php $article->getTitle() ?></h1>
+					<p id="article-id"><?php $article->getArticleID() ?></p>
 					<a id="back-to-article" href="articolo.php">Torna all'articolo</a>
 				</div>
 				<div>
+                    <?php $article->getDiscussionArea()->printComments(); ?>
 					<div class="comment user">
 						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
 						<a href="profiloautore.html">Autore</a>
