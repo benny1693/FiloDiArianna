@@ -1,12 +1,16 @@
 <?php
 include_once 'utilities.php';
 $user = init();
-//$numArticle = $_GET['articleID'];
-$numArticle = 1; //per prove
-$infoArticle = $user->getArticleInfo($numArticle);
-$article = new ArticlePage($numArticle, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['ext'], $infoArticle['content']);
+$articleID = $_GET['articleID'];
+//$articleID = 1; //per prove
+if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pagina non esiste o l'id non corrisponde
+    header("Location: notfound.php");
+    exit();
+}
+$infoArticle = $user->getArticleInfo($articleID);
+$article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['ext'], $infoArticle['content']);
 $disc = $article->getDiscussionArea();
-$arrayComments = $user->getArticleComment($article->getArticleID());    //per ricevere tutti i commenti relativi a quell'articolo dal DB
+$arrayComments = $user->getArticleComment($article->getArticleID()); //per ricevere tutti i commenti relativi a quell'articolo dal DB
 
 ?>
 <!DOCTYPE html>
