@@ -3,7 +3,9 @@ include_once 'utilities.php';
 $user = init();
 $articleID = $_GET['articleID'];
 //$articleID = 1; //per prove
-if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pagina non esiste o l'id non corrisponde
+$instime = $_GET['insTime'];
+$pendentPage = $user->isPendentPage($articleID, $instime);
+if($articleID == null || $user->getArticleInfo($articleID) == null || $pendentPage) { //se la pagina non esiste o l'id non corrisponde
     header("Location: notfound.php");
     exit();
 }
