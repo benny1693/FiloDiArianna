@@ -1,13 +1,12 @@
 <?php
 include_once 'utilities.php';
 $user = init();
-print_r($_SESSION);
 $modifiedpage = !empty($_SESSION['modification']['instime']);
 
+print_r($_SESSION);
 $info = null;
 if (!empty($_SESSION['modification'])) {
-	$info = $user->getArticleInfo($_SESSION['pageid'], ($modifiedpage ? $_SESSION['instime'] : null));
-
+	$info = $user->getArticleInfo($_SESSION['modification']['pageid'], ($modifiedpage ? $_SESSION['modification']['instime'] : null));
 }
 print_r($info);
 ?>
@@ -52,17 +51,22 @@ print_r($info);
                 else {
                     echo '
 		<section id="modificapagina">
-			<h1>Modifica la pagina "'.$info['title'].'</h1>
+			<h1>Modifica la pagina "'.$info['title'].'"</h1>
 
-			<form>
+			<form method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="FormControlFile">Carica l\'immagine che vuoi sostituire.</label>
-					<input type="file" class="form-control-file" id="FormControlFile" />
+					<input type="file" class="form-control-file" id="FormControlFile"';
+                    if (!empty($info['img']))
+                        echo 'value="data:image/' . $info['ext'] . ';base64,' . base64_encode($info['img']).'"';
+
+                    // TODO: effettuare il filling dei campi delle pagine correlate
+					echo '/>
 				</div>
 
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">Descrizione</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Inserisci una descrizione qui"></textarea>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Inserisci una descrizione qui">'.$info['content'].'</textarea>
 				</div>
 
 				<fieldset id="correlate" class="form-group">
@@ -84,6 +88,7 @@ print_r($info);
 			</form>';
                 }
             }
+            unset($_SESSION['modification']);
             ?>
 		</section>
 

@@ -242,13 +242,14 @@ abstract class User
 
     public function getArticleInfo($articleID, $instime = null) {   //ricavo le informazioni per ArticlePage
     	$query = null;
-
     	if ($instime == null) {
-    		$query = $this->getDBConnection()->query("SELECT * FROM Prova._pages WHERE ID = $articleID");
+				$query = $this->getDBConnection()->query("SELECT * FROM Prova._pages WHERE ID = $articleID");
 			} else {
-    		$instime = str_replace(array(':','-',' '),' ',$instime);
+    		$instime = str_replace(array(':','-',' '),'',$instime);
 				$query = $this->getDBConnection()->query(
-					"SELECT * FROM Prova.`_modifiedPages` WHERE ID = $articleID AND modTime = $instime"
+					"SELECT M.ID, P.title, M.modTime, M.content, M.img, M.ext, M.type1, M.type2 
+									FROM Prova.`_modifiedPages` AS M,Prova.`_pages` AS P 
+									WHERE M.ID = $articleID AND modTime = $instime AND P.ID = M.ID"
 				);
 			}
 
