@@ -53,26 +53,6 @@ $arrayComments = $user->getArticleComment($article->getArticleID());    //per ri
 				</div>
 				<div>
                     <?php $user->printArticleComment($arrayComments); //per inserire in commenti nell'area discussione relativa ?>
-					<div class="comment user">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
-					<div class="comment others">
-						<p>Commento  Commento Commento</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
-					<div class="comment user">
-						<p>Como</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
-					<div class="comment others">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
-					<div class="comment user">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
-						<a href="profiloautore.html">Autore</a>
-					</div>
 				</div>
 
 
