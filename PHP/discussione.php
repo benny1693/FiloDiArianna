@@ -1,13 +1,13 @@
 <?php
 include_once 'utilities.php';
 $user = init();
-//$article = $_GET['articleID'];
-$numArticle = 2; //per prove
+//$numArticle = $_GET['articleID'];
+$numArticle = 1; //per prove
 $infoArticle = $user->getArticleInfo($numArticle);
-$article = new ArticlePage($numArticle, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['content']);
-$discussione = $article->getDiscussionArea();
-$com1 = new Comment("12:10", $article->getArticleID(), "Io sono un commento", $user->getID());
-$discussione->addComment($com1);
+$article = new ArticlePage($numArticle, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['ext'], $infoArticle['content']);
+$disc = $article->getDiscussionArea();
+$arrayComments = $user->getArticleComment($article->getArticleID());    //per ricevere tutti i commenti relativi a quell'articolo dal DB
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -52,17 +52,17 @@ $discussione->addComment($com1);
 					<a id="back-to-article" href="articolo.php">Torna all'articolo</a>
 				</div>
 				<div>
-                    <?php $discussione->printComments(); ?>
+                    <?php $user->printArticleComment($arrayComments); //per inserire in commenti nell'area discussione relativa ?>
 					<div class="comment user">
 						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
 						<a href="profiloautore.html">Autore</a>
 					</div>
 					<div class="comment others">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
+						<p>Commento  Commento Commento</p>
 						<a href="profiloautore.html">Autore</a>
 					</div>
 					<div class="comment user">
-						<p>Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento Commento</p>
+						<p>Como</p>
 						<a href="profiloautore.html">Autore</a>
 					</div>
 					<div class="comment others">
@@ -74,7 +74,12 @@ $discussione->addComment($com1);
 						<a href="profiloautore.html">Autore</a>
 					</div>
 				</div>
-				<form id="comment-form" onsubmit="">
+
+
+                <?php
+                //se l'utente non è registrato, non può lasciare un commento quindi non vede la textarea
+                if($user->isRegistered()) {
+                    echo '<form id="comment-form" onsubmit="">
 					<div class="form-group row">
 						<label for="inputText">Lascia un commento</label>
 						<textarea id="inputText" class="form-control"></textarea>
@@ -83,7 +88,11 @@ $discussione->addComment($com1);
 					<div class="form-group row">
 						<button type="submit" class="btn btn-outline-primary">Invia</button>
 					</div>
-				</form>
+				</form> ';
+                }
+
+                ?>
+
 			</div>
 		</section>
 	</div>
