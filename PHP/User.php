@@ -239,7 +239,6 @@ abstract class User
 	 * @return array|null			se instime è non nullo, allora cerco solo tra le pagine modificate,
 	 * 												altrimenti tra quelle non modificate
 	 */
-
     public function getArticleInfo($articleID, $instime = null) {   //ricavo le informazioni per ArticlePage
     	$query = null;
     	if ($instime == null) {

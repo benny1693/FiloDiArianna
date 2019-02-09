@@ -19,7 +19,8 @@ print_r($info);
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
-	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, modifica, pagina" />
+    <meta name="author" content="Laura Cameran" />
+    <meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, modifica, pagina" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />
 	<script src="../JS/custom.js"></script>

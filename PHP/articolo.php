@@ -8,8 +8,10 @@ if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pa
     header("Location: notfound.php");
     exit();
 }
-$infoArticle = $user->getArticleInfo($articleID);
+$time = $_GET['insTime']; //se è modificata sarà non nullo
+$infoArticle = $user->getArticleInfo($articleID, $time);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
