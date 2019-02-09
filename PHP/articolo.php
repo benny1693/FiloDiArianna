@@ -2,7 +2,7 @@
 include_once 'utilities.php';
 $user = init();
 
-$articleID = $_GET['articleID']; //se tutto funzia
+$articleID = $_GET['articleID']; 
 $infoArticle = $user->getArticleInfo($articleID);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
 ?>
