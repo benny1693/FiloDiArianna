@@ -238,7 +238,6 @@ abstract class User
 	 * @return array|null			se instime è non nullo, allora cerco anche tra le pagine modificate,
 	 * 												altrimenti tra quelle non modificate
 	 */
-
     public function getArticleInfo($articleID, $instime = null) {   //ricavo le informazioni per ArticlePage
     	$query = null;
     	if ($instime == null) {
@@ -255,6 +254,21 @@ abstract class User
 			else
 					return null;
 		}
+
+    public function isPendentPage($articleID, $instime) {
+        $query = $this->getDBConnection()->query("SELECT * FROM Prova.unpostedPages WHERE ID = $articleID");
+        $arrayAssoc = null;
+        if ($query->num_rows > 0)
+             $arrayAssoc = $query->fetch_assoc();
+        $secondTime = $arrayAssoc['insTime'];
+        //print_r($secondTime);
+        if($instime == $secondTime) {
+            return true;
+        }
+       else {
+            return false;
+        }
+    }
 
 }
 

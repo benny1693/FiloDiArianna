@@ -2,9 +2,19 @@
 include_once 'utilities.php';
 $user = init();
 
-$articleID = $_GET['articleID']; //se tutto funzia
+$articleID = $_GET['articleID'];
+//$articleID = 1; //per prove
+if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pagina non esiste o l'id non corrisponde
+    header("Location: notfound.php");
+    exit();
+}
+$instime = $_GET['insTime'];
 $infoArticle = $user->getArticleInfo($articleID);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
+//$time = $infoArticle['insTime'];
+//print_r($time);
+
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -36,9 +46,16 @@ $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['auth
 			</ol>
 		</nav>
 		<section id="articolo">
+            <?php
+                //if($articleID == null)
+            ?>
 			<ul id="article-menu">
 				<li class="active">Voce</li>
-				<li><a href="discussione.php">Discussione</a></li>
+                <?php if(!($user->isPendentPage($articleID, $instime))){
+                    echo '<li><a href="discussione.php">Discussione</a></li>';
+                }
+                ?>
+
 			</ul>
 
 			<div id="article-content">

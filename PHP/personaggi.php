@@ -28,7 +28,7 @@
 		</nav>
 		<section>
 			<h1>Personaggi</h1>
-			<ul id="macrocategories">
+            <ul id="macrocategories">
 				<li>
 					<a href="#semidei" class="sr-only">Salta lista</a>
 					<h2><a href="umani.html">Esseri Umani</a></h2>
