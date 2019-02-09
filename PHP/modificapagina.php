@@ -5,10 +5,31 @@ $modifiedpage = !empty($_SESSION['modification']['instime']);
 
 print_r($_SESSION);
 $info = null;
-if (!empty($_SESSION['modification'])) {
+if (!empty($_SESSION['modification'])) { // sono arrivato da listapagine
 	$info = $user->getArticleInfo($_SESSION['modification']['pageid'], ($modifiedpage ? $_SESSION['modification']['instime'] : null));
+} else { // ho richiesto la modifica di una pagina
+    $info = $user->getArticleInfo($_POST['articleID'],$_POST['instime']);
+
+    $validField = preg_match('/^.*[a-zA-Z].*$/', $_POST['content']) && $_POST['content'] != $info['content'];
+
+	if (!empty($_POST) && $validField) {
+		$img = $ext = null;
+		if (!empty($_FILES)) {
+			$img = file_get_contents($_FILES['image']['tmp_name']);
+			$path = $_FILES['image']['name'];
+			$ext = pathinfo($path, PATHINFO_EXTENSION);
+		} else {
+			$img = $info['img'];
+			$ext = $info['ext'];
+		}
+
+		$types = findCorrectTypes($_POST['types']);
+
+        $_POST['relatedpages'] = array_unique(array_diff($_POST['relatedpages'], array('none')));
+
+        $user->modifyArticle($_POST['articleID'], $_POST['content'], $img, $ext, $types, $_POST['relatedpages']);
+	}
 }
-print_r($info);
 ?>
 
 <!DOCTYPE html>
@@ -46,34 +67,63 @@ print_r($info);
         <section>';
                 printFeedback("Per modificare una pagina devi effettuare l'accesso", false);
             } else {
-                if (empty($_SESSION['modification']))
-                    printFeedback("Non hai selezionato la pagina da modificare",false);
-                else {
+                if (empty($_SESSION['modification'])) {
+                    if (!$validField)
+                        printFeedback("Non hai selezionato la pagina da modificare", false);
+                    else
+                        printFeedback("Modifica avvenuta con successo e in attesa di approvazione",true);
+                } else {
                     echo '
 		<section id="modificapagina">
 			<h1>Modifica la pagina "'.$info['title'].'"</h1>
 
-			<form method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="FormControlFile">Carica l\'immagine che vuoi sostituire.</label>
-					<input type="file" class="form-control-file" id="FormControlFile"';
-                    if (!empty($info['img']))
-                        echo 'value="data:image/' . $info['ext'] . ';base64,' . base64_encode($info['img']).'"';
-
-                    // TODO: effettuare il filling dei campi delle pagine correlate
-					echo '/>
+			<form action="modificapagina.php" method="post" enctype="multipart/form-data">
+			    <input type="hidden" name="articleID" value="'.$info['ID'].'"/>
+			    <input type="hidden" name="instime" value="'.$info['insTime'].'">
+				<div class="form-group">';
+                    if ($info['img'])
+    			        echo '<img id="oldimage" src="data:image/' . $info['ext'] . ';base64,' . base64_encode($info['img']).'" alt="Vecchia immagine" />';
+                    echo '
+					<label for="FormControlFile">Carica l\'immagine per sostituire la precedente.</label>
+					<input type="file" class="form-control-file" id="FormControlFile"/>
 				</div>
 
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">Descrizione</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Inserisci una descrizione qui">'.$info['content'].'</textarea>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="content" placeholder="Inserisci una descrizione qui">'.$info['content'].'</textarea>
 				</div>
+
+                <div class="form-group">
+                    <label for="inputCategorie">Categorie</label>
+                    <select name="types" id="inputCategorie" class="form-control">
+                        <optgroup label="Personaggi">
+                            <option value="p_umani">Esseri Umani</option>
+                            <option value="p_eroi">Semidivinit&agrave;/Eroi</option>
+                            <option value="p_dei">Divinità</option>
+                            <option value="p_creature">Creature</option>
+                        </optgroup>
+                        <optgroup label="Eventi">
+                            <option value="era_dei">Era degli Dei</option>
+                            <option value="era_dei_uomini">Era degli Dei e degli Uomini</option>
+                            <option value="era_eroi">Era degli Eroi</option>
+                        </optgroup>
+                        <optgroup label="Luoghi">
+                            <option value="l_mitologici">Mitologici</option>
+                            <option value="l_reali">Reali</option>
+                        </optgroup>
+                    </select>
+                </div>
 
 				<fieldset id="correlate" class="form-group">
 					<legend>Pagine correlate</legend>
 					<p class="row">
 						<label for="1" class="col-xs-1">1</label>
-						<select id="1" name="correlati[]" class="form-control col-xs-9"></select>
+						<select id="1" name="relatedpages[]" class="form-control col-xs-9">
+                            <option value="none" selected="selected">Nessuna</option>';
+
+                    printSelect($user->searchArticle(''));
+
+                    echo '</select>
 					</p>
 					<button type="button" id="plus" class="btn" onclick="plusClick()">
 						<svg>

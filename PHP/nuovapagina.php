@@ -12,7 +12,7 @@ if (!empty($_POST) && $validField){
 
 	$types = findCorrectTypes($_POST['types']);
 
-	$_POST['relatedpages'] = array_diff($_POST['relatedpages'],array('none'));
+	$_POST['relatedpages'] = array_unique(array_diff($_POST['relatedpages'],array('none')));
 
 	$user->insertArticle($_POST['title'],$_POST['content'],$img,$ext,$_SESSION['ID'],$types,$_POST['relatedpages']);
 }
@@ -113,11 +113,9 @@ if (!empty($_POST) && $validField){
                         <label for="1" class="col-xs-1">1</label>
                         <select id="1" name="relatedpages[]" class="form-control col-xs-9">
                             <option value="none" selected="selected">Nessuna</option>';
-                $list = $user->searchArticle('');
-                foreach ($list as $article){
-                    echo '
-                            <option value="'.$article['ID'].'">'.$article['title'].'</option>';
-                }
+
+                printSelect($user->searchArticle(''));
+
                 echo '
                         </select>
                     </p>

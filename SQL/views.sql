@@ -1,21 +1,21 @@
 CREATE VIEW unpostedPagesInfo AS
-	 SELECT ID, insTime
-	 FROM _pages 
+	 SELECT ID, insTime, content, img, ext
+	 FROM _pages
 	 WHERE posted = FALSE
 					UNION
-	 SELECT ID, modTime 
+	 SELECT ID, modTime, content, img, ext
 	 FROM _modifiedPages;
 				
 /* Vista che seleziona le pagine non postate e le modifiche non ancora approvate */
 CREATE VIEW unpostedPages AS
-	SELECT P.ID, U.insTime, P.title, P.author, P.visits, P.img, P.content
+	SELECT U.ID, U.insTime, P.title, P.author, P.visits, U.img, U.content, U.ext
 	FROM unpostedPagesInfo 	AS U,
 				_pages AS P
 	WHERE P.ID = U.ID;
 
 /* Vista che seleziona le pagine postate */
 CREATE VIEW postedPages AS
-	SELECT ID, insTime ,title, author, visits, img, content
+	SELECT ID, insTime ,title, author, visits, img, content, ext
 	FROM _pages
 	WHERE posted = TRUE;
 

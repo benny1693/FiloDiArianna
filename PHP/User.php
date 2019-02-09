@@ -118,10 +118,10 @@ abstract class User
                             	<p class="time">'.$article['insTime'].'</p>
                             </a>
                             <div class="bottoni">
-                            		<input type="hidden" name="pageid" value="'.$article['ID'].'" />';
+                            		<input type="hidden" name="pageid" value="'.$article['ID'].'" />
+                            		<input type="hidden" name="instime" value="'.$article['insTime'].'" />';
 					if ($this->isAdmin() && $pendant)
 						echo '
-                  							<input type="hidden" name="instime" value="'.$article['insTime'].'" />
                                 <input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />';
 					echo '
                                 <input type="submit" class="btn btn-outline-primary" name="action" value="Modifica" />
@@ -232,11 +232,10 @@ abstract class User
     }
 
 
-    // FIXME: un admin deve poter vedere sia le pagine postate che quelle non postate
 	/**
 	 * @param $articleID			.codice identificativo della pagina cercata
 	 * @param null $instime		tempo di inserimento
-	 * @return array|null			se instime è non nullo, allora cerco solo tra le pagine modificate,
+	 * @return array|null			se instime è non nullo, allora cerco anche tra le pagine modificate,
 	 * 												altrimenti tra quelle non modificate
 	 */
 
@@ -247,9 +246,7 @@ abstract class User
 			} else {
     		$instime = str_replace(array(':','-',' '),'',$instime);
 				$query = $this->getDBConnection()->query(
-					"SELECT M.ID, P.title, M.modTime, M.content, M.img, M.ext, M.type1, M.type2 
-									FROM Prova.`_modifiedPages` AS M,Prova.`_pages` AS P 
-									WHERE M.ID = $articleID AND modTime = $instime AND P.ID = M.ID"
+					"SELECT * FROM Prova.allPages WHERE ID = $articleID AND insTime = $instime"
 				);
 			}
 

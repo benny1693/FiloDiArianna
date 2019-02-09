@@ -125,6 +125,13 @@ function findCorrectTypes($type) {
 	return $types;
 }
 
+function printSelect($list) {
+	foreach ($list as $article){
+		echo '
+                            <option value="'.$article['ID'].'">'.$article['title'].'</option>';
+	}
+}
+
 /*
 function isNamefile($name){
 	return $_SERVER['SCRIPT_URL'] == "/bcosenti/" . $name;

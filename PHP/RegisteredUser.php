@@ -76,18 +76,22 @@ class RegisteredUser extends User {
 		}
 	}
 
-	public function modifyArticle($articleID,$newcontent,$newimage,$newtypes,$newrelatedPages) {
+	public function modifyArticle($articleID,$newcontent,$newimage,$newext,$newtypes,$newrelatedPages) {
 		$this->getDBConnection()->query(
-			"CALL insertModification($articleID,'".addslashes($newcontent)."','$newimage','$newtypes[0]','$newtypes[1]')");
+			"CALL insertModification($articleID,'".addslashes($newcontent)."','".addslashes($newimage)."','$newext','$newtypes[0]','$newtypes[1]')");
 
 		$query = $this->getDBConnection()->query("SELECT modTime 
 																										FROM Prova._modifiedPages 
 																										WHERE ID = $articleID AND content = '".addslashes($newcontent)."'");
 
 		$result = $query->fetch_assoc();
-		$timestamp = str_replace(array(":"," ","-"),"", $result['insTime']);
-		foreach ($newrelatedPages as $relation)
+		echo $timestamp = str_replace(array(":"," ","-"),"", $result['modTime']);
+
+		foreach ($newrelatedPages as $relation) {
 			$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
+			echo $this->getDBConnection()->getError();
+			echo $relation;
+		}
 	}
 
 
