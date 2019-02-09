@@ -1044,6 +1044,11 @@ ul.query > li img {
 	border-bottom: none;
 }
 
+p.time {
+	font-size: 0.8rem;
+	color : #444444;
+}
+
 .nav-pages {
 	text-align: center;
 }

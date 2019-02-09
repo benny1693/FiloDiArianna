@@ -22,12 +22,6 @@ if ($pages == 0)
 
 if (($currentpage > $pages || $currentpage <= 0) && $currentpage != $pages)
 	header("Location: notfound.php");
-
-print_r($list);
-
-
-print_r($_SESSION);
-print_r($_GET);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">

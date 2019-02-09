@@ -42,13 +42,28 @@ class Admin extends RegisteredUser {
 			$select = $select . " AND modTime = '$timestamp'";
 		}
 
-		if ($timestamp != null) {
+		$query = $this->getDBConnection()->query($select);
+
+		if ($timestamp != null && $query->num_rows >= 1) {
 			$this->getDBConnection()->query("CALL approveModification($articleID,'$timestamp')");
 		} else {
 			$this->getDBConnection()->query("CALL setPostStatus($articleID,1)");
 		}
-
 	}
+
+	public function declinePendant($articleID,$timestamp){
+		$timestamp = str_replace(array("-"," ",":"),"",$timestamp);
+
+		$query = $this->getDBConnection()->query(
+			"SELECT * FROM Prova.`_modifiedPages` WHERE ID = $articleID AND modTime = $timestamp"
+		);
+
+		if ($query->num_rows > 0)
+			$this->getDBConnection()->query("CALL declineModification($articleID,$timestamp)");
+		else
+			$this->deleteArticle($articleID);
+	}
+
 
 	public function deleteArticle($articleID){
 		$this->getDBConnection()->query("CALL deletePage($articleID)");

@@ -9,6 +9,7 @@
 require_once 'Admin.php';
 require_once 'UnregisteredUser.php';
 require_once 'RegisteredUser.php';
+require_once 'ArticlePage.php';
 
 function getLoggedUser($username){
 	try {
@@ -101,8 +102,32 @@ function printFeedback($message,$valid){
 				</div>";
 }
 
+function findCorrectTypes($type) {
+	$types = array();
+	switch (substr($type,0,1)):
+		case 'p':
+			$types[0] = 'personaggi';
+			break;
+		case 'e':
+			$types[0] = 'eventi';
+			break;
+		case 'l':
+			$types[0] = 'luoghi';
+			break;
+	endswitch;
+
+	if ($types[0] == 'eventi'){
+		$types[1] = str_replace('_','',$type);
+	} else {
+		$types[1] = substr($type,2);
+	}
+
+	return $types;
+}
+
 /*
 function isNamefile($name){
 	return $_SERVER['SCRIPT_URL'] == "/bcosenti/" . $name;
 }
 */
+?>

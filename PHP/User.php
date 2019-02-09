@@ -113,7 +113,10 @@ abstract class User
 					echo '
 										<li class="page-administration clearfix">
                         <form action="pageaction.php" method="post">
-                            <a class="pagina" href="articolo.php?articleID='.$article['ID'].'">'.$article['title'].'</a>
+                            <a class="pagina" href="articolo.php?articleID='.$article['ID'].($pendant ? '&instime='.$article['insTime'] : '').'">
+                            	<p>'.$article['title'].'</p>
+                            	<p class="time">'.$article['insTime'].'</p>
+                            </a>
                             <div class="bottoni">
                             		<input type="hidden" name="pageid" value="'.$article['ID'].'" />';
 					if ($this->isAdmin() && $pendant)
@@ -135,9 +138,8 @@ abstract class User
 	public function getArticleComment($articleID) {
 		$query = $this->dbconnection->query(
 			"SELECT *
-			FROM Prova._comments
-			WHERE pageID = $articleID
-			ORDER BY time_stamp"
+			FROM Prova.commentedArticles
+			WHERE pageID = $articleID"
 		);
 		return $query->fetch_all(MYSQLI_ASSOC);
 	}
@@ -150,7 +152,7 @@ abstract class User
 			$discussionArea = new DiscussionArea();
 
 			foreach ($comments as $comment) {
-				$discussionArea->addComment(new Comment($comment['time_stamp'],$comment['pageID'],$comment['content'],$comment['author']));
+				$discussionArea->addComment(new Comment($comment['commentTime'],$comment['pageID'],$comment['pageComment'],$comment['commentAuthor'],$comment['commentAuthorName']));
 			}
 
 			$discussionArea->printComments();
@@ -213,9 +215,7 @@ abstract class User
     public function getRelatedPages($articleID){
 
         $query = $this->dbconnection->query(
-            "SELECT * 
-			FROM Prova._relatedPages
-			WHERE ID = $articleID"
+            "SELECT * FROM Prova.relatedPages WHERE ID = $articleID"
         );
 
         if ($query->num_rows > 0)
@@ -231,25 +231,32 @@ abstract class User
         }
     }
 
-    public function getArticleInfo($articleID) {   //ricavo le informazioni per ArticlePage
-	    if($this->isAdmin()) {
-            $query = $this->dbconnection->query(
-                "SELECT * 
-                FROM Prova.unpostedPages
-                WHERE ID = $articleID");
-        }
-	    else{   //se non admin posted
-            $query = $this->dbconnection->query(
-                "SELECT * 
-                FROM Prova.postedPages
-                WHERE ID = $articleID");
-        }
 
-        if ($query->num_rows > 0)
-            return $query->fetch_assoc();
-        else
-            return null;
-    }
+    // FIXME: un admin deve poter vedere sia le pagine postate che quelle non postate
+	/**
+	 * @param $articleID			.codice identificativo della pagina cercata
+	 * @param null $instime		tempo di inserimento
+	 * @return array|null			se instime è non nullo, allora cerco solo tra le pagine modificate,
+	 * 												altrimenti tra quelle non modificate
+	 */
+
+    public function getArticleInfo($articleID, $instime = null) {   //ricavo le informazioni per ArticlePage
+    	$query = null;
+
+    	if ($instime == null) {
+    		$query = $this->getDBConnection()->query("SELECT * FROM Prova._pages WHERE ID = $articleID");
+			} else {
+    		$instime = str_replace(array(':','-',' '),' ',$instime);
+				$query = $this->getDBConnection()->query(
+					"SELECT * FROM Prova.`_modifiedPages` WHERE ID = $articleID AND modTime = $instime"
+				);
+			}
+
+			if ($query->num_rows > 0)
+					return $query->fetch_assoc();
+			else
+					return null;
+		}
 
 }
 

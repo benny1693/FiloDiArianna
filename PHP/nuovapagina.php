@@ -1,33 +1,20 @@
 <?php
 include_once 'utilities.php';
 $user = init();
-if (!empty($_POST)){
+
+$validField = preg_match('/^.*[a-zA-Z].*$/',$_POST['title']) &&
+	preg_match('/^.*[a-zA-Z].*$/',$_POST['content']);
+
+if (!empty($_POST) && $validField){
 	$img = file_get_contents($_FILES['image']['tmp_name']);
 	$path = $_FILES['image']['name'];
-	$type = pathinfo($path, PATHINFO_EXTENSION);
+	$ext = pathinfo($path, PATHINFO_EXTENSION);
 
-	$types = array();
-    switch (substr($_POST['types'],0,1)):
-      case 'p':
-          $types[0] = 'personaggi';
-          break;
-      case 'e':
-          $types[0] = 'eventi';
-          break;
-      case 'l':
-          $types[0] = 'luoghi';
-          break;
-    endswitch;
+	$types = findCorrectTypes($_POST['types']);
 
-    if ($types[0] == 'eventi'){
-        $types[1] = str_replace('_','',$_POST['types']);
-    } else {
-        $types[1] = substr($_POST['types'],2);
-    }
+	$_POST['relatedpages'] = array_diff($_POST['relatedpages'],array('none'));
 
-    $_POST['relatedpages'] = array_diff($_POST['relatedpages'],array('none'));
-
-    $user->insertArticle($_POST['title'],$_POST['content'],$img,$_SESSION['ID'],$_POST['types'],$_POST['relatedpages']);
+	$user->insertArticle($_POST['title'],$_POST['content'],$img,$ext,$_SESSION['ID'],$types,$_POST['relatedpages']);
 }
 ?>
 
@@ -74,8 +61,12 @@ if (!empty($_POST)){
                 if ($user->getDBConnection()->getError() != 0)
                     printFeedback('Pagina non inserita',false);
 		        else
-		            if (!empty($_POST))
-		                printFeedback('Pagina inserita e in attesa di approvazione',true);
+		            if (!empty($_POST)) {
+                        if ($validField)
+                            printFeedback('Pagina inserita e in attesa di approvazione', true);
+                        else
+                            printFeedback('La pagina deve avere almeno titolo e descrizione', false);
+                    }
 
 		        echo '		    
 			<h1>Crea una nuova pagina</h1>
@@ -87,12 +78,12 @@ if (!empty($_POST)){
 
 				<div class="form-group">
 					<label for="inputTitolo">Titolo</label>
-					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" />
+					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" required="required" aria-required="true" />
 				</div>
 
 				<div class="form-group">
 					<label for="FormControlTextarea1">Descrizione</label>
-					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10"></textarea>
+					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10" required="required" aria-required="true"></textarea>
 				</div>
 				
 				<div class="form-group">

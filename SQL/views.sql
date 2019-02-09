@@ -8,17 +8,22 @@ CREATE VIEW unpostedPagesInfo AS
 				
 /* Vista che seleziona le pagine non postate e le modifiche non ancora approvate */
 CREATE VIEW unpostedPages AS
-	SELECT P.ID, U.insTime, P.title, P.visits, P.author,P.content
+	SELECT P.ID, U.insTime, P.title, P.author, P.visits, P.img, P.content
 	FROM unpostedPagesInfo 	AS U,
 				_pages AS P
 	WHERE P.ID = U.ID;
 
-/* Vista che seleziona le pagine postate*/
+/* Vista che seleziona le pagine postate */
 CREATE VIEW postedPages AS
-	SELECT ID, title, author, visits, img, content
+	SELECT ID, insTime ,title, author, visits, img, content
 	FROM _pages
 	WHERE posted = TRUE;
-	
+
+/* Vista che seleziona tutte le pagine postate e non postate */
+CREATE VIEW allPages AS
+  SELECT DISTINCT *
+  FROM (SELECT * FROM postedPages UNION SELECT * FROM unpostedPages) AS U;
+
 /* Vista che seleziona le pagine correlate */
 CREATE VIEW relatedPages AS
 	SELECT R.ID1 AS ID1, P1.title AS title1, P1.author AS author1, P1.visits AS visits1, 
@@ -45,7 +50,8 @@ CREATE VIEW normalUsers AS
 /* Vista che seleziona tutti i commenti con autore del commento e 
 pagina commentata */
 CREATE VIEW commentedArticles AS
-	SELECT P.ID AS pageID, P.title AS pageTitle, P.author AS pageAuthor, 
-				C.time_stamp AS commentTime, C. author AS commentAuthor, C.content AS pageComment
-	FROM _pages AS P JOIN _comments AS C ON P.ID = C.pageID
+	SELECT P.ID AS pageID, P.title AS pageTitle, P.author AS pageAuthor,
+				C.time_stamp AS commentTime, C.author AS commentAuthor, U.username AS commentAuthorName, C.content AS pageComment
+	FROM (Prova._pages AS P JOIN Prova._comments AS C ON P.ID = C.pageID)
+				JOIN Prova.`_users` AS U ON C.author = U.ID
 	ORDER BY C.time_stamp ASC;

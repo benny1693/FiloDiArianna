@@ -16,6 +16,7 @@ CREATE TABLE _pages (
 	title VARCHAR(30) UNIQUE NOT NULL,
 	content TEXT,
 	img LONGBLOB,
+	ext VARCHAR(5),
 	visits INTEGER NOT NULL DEFAULT 0,
 	author INTEGER,
 	posted BOOLEAN NOT NULL DEFAULT FALSE,
@@ -30,6 +31,7 @@ CREATE TABLE _modifiedPages (
 	modTime TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
 	content TEXT,
 	img LONGBLOB,
+	ext VARCHAR(5),
 	type1 VARCHAR(11),
 	type2 VARCHAR(18),
 	

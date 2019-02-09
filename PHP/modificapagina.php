@@ -1,7 +1,15 @@
 <?php
 include_once 'utilities.php';
 $user = init();
+print_r($_SESSION);
+$modifiedpage = !empty($_SESSION['modification']['instime']);
 
+$info = null;
+if (!empty($_SESSION['modification'])) {
+	$info = $user->getArticleInfo($_SESSION['pageid'], ($modifiedpage ? $_SESSION['instime'] : null));
+
+}
+print_r($info);
 ?>
 
 <!DOCTYPE html>
@@ -38,22 +46,18 @@ $user = init();
                 echo '
         <section>';
                 printFeedback("Per modificare una pagina devi effettuare l'accesso", false);
-            }else {
-                echo '
+            } else {
+                if (empty($_SESSION['modification']))
+                    printFeedback("Non hai selezionato la pagina da modificare",false);
+                else {
+                    echo '
 		<section id="modificapagina">
-			<h1>Modifica qui la tua pagina numero: #</h1>
-			<!--inserire cod pag-->
+			<h1>Modifica la pagina "'.$info['title'].'</h1>
 
 			<form>
 				<div class="form-group">
 					<label for="FormControlFile">Carica l\'immagine che vuoi sostituire.</label>
 					<input type="file" class="form-control-file" id="FormControlFile" />
-				</div>
-
-				<div class="form-group">
-					<label for="inputTitolo">Titolo</label>
-					<!--<div class="col-sm-10">-->
-					<input type="text" class="form-control" id="inputTitolo" placeholder="Titolo" />
 				</div>
 
 				<div class="form-group">
@@ -78,6 +82,7 @@ $user = init();
 				</div>
 
 			</form>';
+                }
             }
             ?>
 		</section>

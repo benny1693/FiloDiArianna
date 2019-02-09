@@ -8,13 +8,13 @@
 
 require_once "Comment.php";
 
-class DiscussionArea
-{
+class DiscussionArea {
+
     private $comments = array(); //array di commenti vuoto
 
-    //   public function __construct() {}
+		//public function __construct(){}
 
-    public function addComment($comment) {  //TODO: da testare
+	public function addComment($comment) {  //TODO: da testare
         //mette l'elemento in fondo
     	array_push($this->comments, $comment);
     }
@@ -47,7 +47,7 @@ class DiscussionArea
 				}
 
     		echo "<p>".$comment->getContent()."</p>
-						<a href=\"profiloautore.html\"> ". User::getOtherUserInfo($comment->getAuthor())['username']."</a>   
+						<a href=\"profilopubblico.php?ID=".$comment->getAuthor()."\">".$comment->getAuthorName()."</a>   
 					</div>";
 			}
     }

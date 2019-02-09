@@ -1,7 +1,8 @@
 /* 	Inserisce nel database la pagina con i dati indicati.
 		@param _title: 		indica il titolo da assegnare alla pagina
-		@param _content: indica il contenuto relativo alla pagina inserita
+		@param _content: 	indica il contenuto relativo alla pagina inserita
 		@param _img: 			indica la stringa in base64 dell'immagine che correda l'articolo
+		@param _ext:			indica l'estensione originaria dell'immagine
 		@param type1: 		indica la categoria principale dell'articolo (eventi,luoghi o personaggi)
 		@param type2: 		indica la sottocategoria dell'articolo
 											Per eventi:
@@ -19,7 +20,7 @@
 		@throws: 					segnala un errore se la pagina già esiste
 */
 DELIMITER |
-CREATE PROCEDURE insertPage(_title VARCHAR(30), _content TEXT, _img LONGBLOB, _author INTEGER,
+CREATE PROCEDURE insertPage(_title VARCHAR(30), _content TEXT, _img LONGBLOB, _ext VARCHAR(5),_author INTEGER,
 														 	_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
 	DECLARE _ID INTEGER;
@@ -31,8 +32,8 @@ BEGIN
 	END IF;
 	
 	/* Inserisco la pagina tra la lista totale delle pagine*/
-	INSERT INTO _pages (title,content,img,author)
-	VALUES (_title, _content, _img,_author);
+	INSERT INTO _pages (title,content,img,ext,author)
+	VALUES (_title, _content, _img,_ext,_author);
 	
 	/* Ne seleziono l'ID */
 	SELECT ID INTO _ID 
@@ -50,6 +51,7 @@ DELIMITER ;
 		@param _ID: 			indica il codice della pagina da modificare
 		@param _content: rappresenta il codice HTML modificato
 		@param _img: 			rappresenta l'immagine che correda la voce
+		@param _ext:			indica l'estensione originaria dell'immagine
 		@param _type1: 		indica la categoria principale 
 		@param type2: 		indica la sottocategoria dell'articolo
 											Per eventi:
@@ -66,11 +68,11 @@ DELIMITER ;
 													- Creatura
 */
 DELIMITER |
-CREATE PROCEDURE insertModification(_ID INTEGER, _content TEXT, _img BLOB, 
+CREATE PROCEDURE insertModification(_ID INTEGER, _content TEXT, _img LONGBLOB, _ext VARCHAR(5),
 														_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
-		INSERT INTO _modifiedPages (ID,content,img,type1,type2)
-		VALUES (_ID,_content,_img,_type1,_type2);
+		INSERT INTO _modifiedPages (ID,content,img,ext,type1,type2)
+		VALUES (_ID,_content,_img,_ext,_type1,_type2);
 END|
 DELIMITER ;
 
@@ -82,20 +84,21 @@ DELIMITER |
 CREATE PROCEDURE approveModification(_ID INTEGER, _modTime TIMESTAMP(6))
 BEGIN
 	DECLARE _content TEXT;
-	DECLARE _img BLOB;
+	DECLARE _img LONGBLOB;
+	DECLARE _ext VARCHAR(5);
 	DECLARE _type1 VARCHAR(18);
 	DECLARE _type2 VARCHAR(18);
 
 	IF EXISTS(SELECT * FROM _modifiedPages WHERE ID=_ID AND modTime=_modTime)
 	THEN
 		/* Seleziono i valori della pagina modificata */
-		SELECT content,img,type1,type2 INTO _content,_img,_type1,_type2
+		SELECT content,img,ext,type1,type2 INTO _content,_img,_ext,_type1,_type2
 		FROM _modifiedPages
 		WHERE ID=_ID AND modTime=_modTime;
 
 		/* Eseguo l'update */
 		UPDATE _pages
-		SET insTime=_modTime,content=_content,img=_img, posted = FALSE
+		SET insTime=_modTime,content=_content,img=_img,ext=_ext, posted = FALSE
 		WHERE ID = _ID;
 
 		/* Elimino la pagina dalle sotto-categorie */

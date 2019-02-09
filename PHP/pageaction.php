@@ -14,12 +14,19 @@ switch($_POST['action']):
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 		break;
 	case 'Elimina':
-		$u->deleteArticle($_POST['pageid']);
+		if (empty($_POST['instime']))
+			$u->deleteArticle($_POST['pageid']);
+		else
+			$u->declinePendant($_POST['pageid'],$_POST['instime']);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 		break;
 	default:
-		$_SESSION['pageid'] = $_POST['pageid'];
-		//header('Location: modificapagina.php');
+		$_SESSION['modification']= array(
+			'pageid' => $_POST['pageid'],
+			'instime' => $_POST['instime']
+		);
+
+		header('Location: modificapagina.php');
 		break;
 endswitch;
 ?>

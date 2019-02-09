@@ -15,14 +15,16 @@ class ArticlePage extends Page {
     private $title = null;
     private $author = null;
     private $image = null;
+    private $imageExtension = null;
     private $articleContent = null;
     private $discussionArea;
 
-    public function __construct($articleID, $title, $author, $image, $articleContent) {
+    public function __construct($articleID, $title, $author, $image, $imageExtension,$articleContent) {
         $this->articleID = $articleID;
         $this->title = $title;
         $this->author = $author;
         $this->image = $image;
+        $this->imageExtension = $imageExtension;
         $this->articleContent = $articleContent;
         $this->discussionArea = new DiscussionArea();
     }
@@ -45,6 +47,10 @@ class ArticlePage extends Page {
 
     public function getImage() {
         return $this->image;
+    }
+
+    public function getImageExtension() {
+        return $this->imageExtension;
     }
 
     public function getDiscussionArea() {

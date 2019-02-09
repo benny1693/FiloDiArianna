@@ -55,10 +55,10 @@ class RegisteredUser extends User {
 		return $this->personalia;
 	}
 
-	public function insertArticle($title,$content,$image,$authorID,$types,$relatedPages) {
+	public function insertArticle($title,$content,$image,$ext,$authorID,$types,$relatedPages) {
 
 		$this->getDBConnection()->query(
-			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','".addslashes($image)."',$authorID,'$types[0]','$types[1]')"
+			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','".addslashes($image)."','".$ext."',$authorID,'$types[0]','$types[1]')"
 		);
 
 		if ($this->getDBConnection()->getError() == 0) {
@@ -89,6 +89,27 @@ class RegisteredUser extends User {
 		foreach ($newrelatedPages as $relation)
 			$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
 	}
+
+
+	public function declinePendant($articleID,$timestamp){
+		$query = $this->getDBConnection()->query("SELECT author FROM Prova._pages WHERE ID = $articleID");
+		$result = $query->fetch_row()[0];
+
+		if ($result == $this->ID){
+
+			$timestamp = str_replace(array("-"," ",":"),"",$timestamp);
+
+			$query = $this->getDBConnection()->query(
+				"SELECT * FROM Prova.`_modifiedPages` WHERE ID = $articleID AND modTime = $timestamp"
+			);
+
+			if ($query->num_rows > 0)
+				$this->getDBConnection()->query("CALL declineModification($articleID,$timestamp)");
+			else
+				$this->deleteArticle($articleID);
+		}
+	}
+
 
 	public function deleteArticle($articleID){
 		$query = $this->getDBConnection()->query("SELECT author FROM Prova._pages WHERE ID = $articleID");

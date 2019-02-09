@@ -7,13 +7,14 @@ class Comment
   private $articleID = null;
   private $content = null;
   private $userID = null;
-  
-  public function __construct($timeStamp, $articleID, $content, $userID)
+  private $userName = null;
+  public function __construct($timeStamp, $articleID, $content, $userID,$userName)
   {
     $this->timeStamp = $timeStamp;  //date
     $this->articleID = $articleID;  //int
     $this->content = $content;  //string
     $this->userID = $userID;  //è l'autore del commento
+    $this->userName = $userName;
   }
   
   public function getContent()  { return stripslashes($this->content);  }
@@ -21,6 +22,8 @@ class Comment
   public function getTimeStamp()  { return $this->timeStamp; }
 
   public function getAuthor() { return $this->userID; }
+
+  public function getAuthorName() { return $this->userName; }
 
   public function getArticleID()  { return $this->articleID; }
 
