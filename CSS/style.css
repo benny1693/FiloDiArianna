@@ -753,7 +753,10 @@ label[for="inputPasswordConfirm"] {
 
 @media(min-width:768px) {
 	#back-to-article {
-		left: 18rem;
+		left: unset;
+		bottom: unset;
+		right: 2.5rem;
+		top: 6.5rem;
 	}
 }
 
@@ -769,13 +772,24 @@ label[for="inputPasswordConfirm"] {
 
 @media(min-width:1200px) {
 	#back-to-article {
-		left: calc(50% - 18rem);
+		right: calc(50% - 32rem);
 	}
+}
+
+#commentlist {
+	display: inline-block;
+	width: 100%;
 }
 
 .comment {
 	display: inline-block;
 	margin-bottom: 1rem;
+	float:left;
+	clear: both;
+}
+
+.comment.user {
+	float:right;
 }
 
 .comment > p {

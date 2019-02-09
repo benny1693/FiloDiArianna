@@ -47,11 +47,11 @@ $arrayComments = $user->getArticleComment($article->getArticleID());    //per ri
 			</ul>
 			<div id="article-content">
 				<div id="article-title">
-					<h1>Discussione di <?php echo $article->getTitle() ?></h1>
+					<h1>Discussione di <?php echo $article->getTitle(); ?></h1>
 					<p id="article-id"><?php echo $article->getArticleID() ?></p>
 					<a id="back-to-article" href="articolo.php">Torna all'articolo</a>
 				</div>
-				<div>
+				<div id="commentlist">
                     <?php $user->printArticleComment($arrayComments); //per inserire in commenti nell'area discussione relativa ?>
 				</div>
 
