@@ -52,6 +52,6 @@ class DiscussionArea {
 			}
     }
 
-}//getOtherUserInfo(
+}
 
 ?>

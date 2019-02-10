@@ -1,11 +1,17 @@
 <?php
 require_once 'utilities.php';
-init();
+$user = init();
+$pageUserID = $_GET['ID'];
+$infoUserPage = $user->getOtherUserInfo($pageUserID);
+if($pageUserID == null || $infoUserPage == null) {  //se id inesistente o sbagliato quindi non presente in DB
+    header("Location: notfound.php");
+    exit();
+}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
 <head>
-	<title>Profilo di CiccioPasticcio | Il Filo di Arianna</title>
+	<title>Profilo di <?php echo $infoUserPage['username'] ?> | Il Filo di Arianna</title>
 	<meta name="description" content="Gestisci le pagine create" />
 	<meta name="keywords" content="Filo, Arianna, greco, pagina, profilo, pubblico" />
 	<meta name="author" content="Benedetto Cosentino" />
@@ -25,23 +31,13 @@ init();
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Area personale</li>
+				<li class="breadcrumb-item active" aria-current="page">Profilo personale</li>
 			</ol>
 		</nav>
 		<section>
-			<h1>Profilo di CiccioPasticcio</h1>
-			<h2>Dati personali</h2>
-			<dl id="personalia">
-				<dt>Nome</dt>
-				<dd>Ciccio</dd>
-				<dt>Cognome</dt>
-				<dd>Pasticcio</dd>
-				<dt>Data di nascita</dt>
-				<dd>01/01/2001</dd>
-				<dt>Occupazione</dt>
-				<dd>Pasticcio</dd>
-			</dl>
-
+         <?php
+         $user->printOtherUserInfo($pageUserID);
+         echo '
 			<h2>Pagine pubblicate</h2>
 			<nav aria-label="Paginazione" class="nav-pages">
 				<ul class="pagination">
@@ -73,7 +69,9 @@ init();
 					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
 					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
 				</ul>
-			</nav>
+			</nav> 
+            ';
+         ?>
 		</section>
 	</div>
 
