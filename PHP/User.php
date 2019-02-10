@@ -199,8 +199,6 @@ abstract class User
 				<dt>Sesso</dt>
 				<dd>".$info['gender']."</dd>
 			</dl>");
-		} else {
-			echo "<p>Utente non esistente</p>";
 		}
 	}
 
