@@ -45,13 +45,10 @@ $instime = $correctUser ? $_GET['instime'] : null;
 			</ol>
 		</nav>
 		<section id="articolo">
-            <?php
-                //if($articleID == null)
-            ?>
 			<ul id="article-menu">
 				<li class="active">Voce</li>
                 <?php
-                if(!($user->isPendentPage($articleID, $instime))){
+                if($instime == null) {
                     echo '<li><a href="discussione.php?articleID='.$articleID.'">Discussione</a></li>';
                 }
                 ?>

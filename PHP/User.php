@@ -199,8 +199,6 @@ abstract class User
 				<dt>Sesso</dt>
 				<dd>".$info['gender']."</dd>
 			</dl>");
-		} else {
-			echo "<p>Utente non esistente</p>";
 		}
 	}
 
@@ -274,13 +272,6 @@ abstract class User
 			else
 					return null;
 		}
-
-    public function isPendentPage($articleID, $instime) {
-    		$instime = str_replace(array(':','-',' '),'',$instime);
-        $query = $this->getDBConnection()->query("SELECT * FROM Prova.unpostedPages WHERE ID = $articleID AND insTime = $instime");
-
-        return ($query->num_rows > 0);
-    }
 
 	function printRandomArticlesTitle($numArticles = null, $category = null,$subcategory=null){
 		$list = $this->searchArticle('',$category,$subcategory);
