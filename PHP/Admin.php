@@ -70,19 +70,24 @@ class Admin extends RegisteredUser {
 	}
 
 	public function printUserList($userList) {
-
 		foreach ($userList as $row) {
-			$username = $row['username'];
-			print_r(
+
+			echo
 				"
 				<li class=\"page-administration clearfix\">
-					<form action=\"/ROBE.PHP\" method=\"get\">
-						<a class=\"pagina\" href=\"pagina.html\">$username</a>
+					<form action=\"gestioneutenti.php\" method=\"post\">
+						<input type=\"hidden\" name=\"userID\" value=\"".$row['ID']."\"/>
+						<a class=\"pagina\" href=\"profilopubblico.php?userID=".$row['ID']."\">".$row['username']."</a>";
+
+			if ($row['is_admin'] == 0)
+				echo "
 						<div class=\"bottoni\">
 							<button type=\"submit\" class=\"btn btn-outline-primary\">Elimina</button>
-						</div>
+						</div>";
+
+			echo "
 					</form>
-				</li>");
+				</li>";
 		}
 	}
 

@@ -50,12 +50,14 @@ if (($currentpage > $pages || $currentpage <= 0) && $currentpage != $pages)
 
                 printNavigation($currentpage,$pages);
 
+                echo '<ul class="query">';
                 if ($currentpage < $pages)
                     $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,$articlesNumber));
                 else
-                    $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,count($list) - ($currentpage-1)*$articlesNumber));
+                    $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber));
 
                 printNavigation($currentpage,$pages);
+                echo '</ul>';
             }
             ?>
         </section>

@@ -20,7 +20,10 @@ $pages = ceil(count($list)/$articlesNumber);
 if ($pages == 0)
 	$currentpage = 0;
 
-if (($currentpage > $pages || $currentpage <= 0) && $currentpage != $pages)
+if ($currentpage == 0 && $page != 0)
+	header("Location: notfound.php");
+
+if ($currentpage > $pages || $currentpage < 0)
 	header("Location: notfound.php");
 ?>
 <!DOCTYPE html>
@@ -76,7 +79,7 @@ if (($currentpage > $pages || $currentpage <= 0) && $currentpage != $pages)
                     if ($currentpage < $pages)
                         $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber, $articlesNumber), true,$pendenti);
                     else //$currentpage == $pages
-                        $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber, count($list) - ($currentpage - 1) * $articlesNumber), true,$pendenti);
+                        $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber), true,$pendenti);
 
                     echo '
                 </ul>';

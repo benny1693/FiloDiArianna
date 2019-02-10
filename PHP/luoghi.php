@@ -1,3 +1,8 @@
+<?php
+require_once 'utilities.php';
+$user = init();
+$numArticles = 5;
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -28,20 +33,32 @@
 		</nav>
 		<section>
 			<h1>Luoghi</h1>
-			<ul id="macrocategories">
+            <a href="#macrocategories" class="sr-only">Salta introduzione</a>
+            <p>I luoghi della mitologia greca, ovvero dove si sono svolti gli eventi, non sono meno importanti di questi ultimi o dei personaggi. Tali luoghi hanno avuto una grande influenza nell'immaginario collettivo di chi ci ha preceduto e conseguentemente influenzano il nostro. Si pensi ad esempio all'Averno, ovvero l'Oltretomba greco, rispetto alla visione cristiana dell'aldilà. Essi sono per certi concetti molto simili e non &egrave; un caso che Dante Alighieri abbia ripreso alcune figure come Minosse e Caronte nella Divina Commedia.</p>
+            <dl>
+                <dt>Reali</dt>
+                <dd>Sono tutti quei luoghi che sono collocabili in modo pi&ugrave; o meno preciso sulle mappe geografiche</dd>
+                <dt>Mitologici</dt>
+                <dd>Sono tutti quei luoghi che sono presenti solo nella mitologia e che non trovano una collocazione geografica</dd>
+            </dl>
+            <ul id="macrocategories">
 				<li>
 					<a href="#reali" class="sr-only">Salta lista</a>
-					<h2><a href="luoghimitologici.html">Mitologici</a></h2>
+					<h2><a href="ricerca.php?category=luoghi&subcategory=mitologici">Mitologici</a></h2>
 					<ul class="categories">
-						<li><a href="#">asdf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'luoghi','mitologici');
+                        ?>
 					</ul>
 				</li>
 
 				<li id="reali">
 					<a href="#scroll-back-button" class="sr-only">Salta lista</a>
-					<h2><a href="luoghireali.html">Reali</a></h2>
+					<h2><a href="ricerca.php?category=luoghi&subcategory=reali">Reali</a></h2>
 					<ul class="categories">
-						<li><a href="#">adsf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'luoghi','reali');
+                        ?>
 					</ul>
 				</li>
 			</ul>

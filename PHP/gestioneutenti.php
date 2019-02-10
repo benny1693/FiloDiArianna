@@ -1,3 +1,29 @@
+<?php
+require_once 'utilities.php';
+$user = init();
+
+$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
+
+$usersNumber = 10;
+
+$list = null;
+if ($user->isAdmin()) {
+	if (!empty($_POST['userID'])){
+		$user->deleteUser($_POST['userID']);
+    }
+
+	$list = $user->findUser('');
+	$pages = ceil(count($list)/$usersNumber);
+	if ($pages == 0)
+		$currentpage = 0;
+
+	if ($currentpage == 0 && $page != 0)
+		header("Location: notfound.php");
+
+	if ($currentpage > $pages || $currentpage < 0)
+		header("Location: notfound.php");
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -15,6 +41,7 @@
 
 <body>
 	<!-- HEADER / SIDEBAR -->
+    <?php include_once 'header.php'; ?>
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<p class="sr-only">Ti trovi in:</p>
@@ -25,42 +52,34 @@
 			</ol>
 		</nav>
 		<section>
-			<h1>Gestisci gli utenti</h1>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
-			<ul class="query">
-				<li class="page-administration clearfix">
-					<form action="/ROBE.PHP" method="get">
-						<a class="pagina" href="pagina.html">Utente</a>
-						<div class="bottoni">
-							<button type="submit" class="btn btn-outline-primary">Elimina</button>
-						</div>
-					</form>
-				</li>
-			</ul>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
+            <?php
+            if (!$user->isAdmin())
+                printFeedback('Non sei un amministratore',false);
+            else {
+                echo '
+			<h1>Gestisci gli utenti</h1>';
+
+                printNavigation($currentpage,$pages,false);
+
+                echo '
+			<ul class="query">';
+
+                if ($currentpage < $pages) {
+                    $user->printUserList(array_slice($list, ($currentpage - 1) * $usersNumber, $usersNumber));
+                }else{
+                    $user->printUserList(array_slice($list,($currentpage - 1) * $usersNumber));
+                }
+
+                echo'
+			</ul>';
+
+                printNavigation($currentpage,$pages,false);
+            }
+			?>
 		</section>
 	</div>
-	<!-- FOOTER di Matteo -->
+	<!-- FOOTER -->
+    <?php include_once '../HTML/footer.html'; ?>
 </body>
 
 </html>

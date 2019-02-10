@@ -3,7 +3,7 @@ include_once 'utilities.php';
 $user = init();
 $modifiedpage = !empty($_SESSION['modification']['instime']);
 
-print_r($_SESSION);
+($_SESSION);
 $info = null;
 if (!empty($_SESSION['modification'])) { // sono arrivato da listapagine
 	$info = $user->getArticleInfo($_SESSION['modification']['pageid'], ($modifiedpage ? $_SESSION['modification']['instime'] : null));
@@ -74,6 +74,7 @@ if (!empty($_SESSION['modification'])) { // sono arrivato da listapagine
                     else
                         printFeedback("Modifica avvenuta con successo e in attesa di approvazione",true);
                 } else {
+                    unset($_SESSION['modification']);
                     echo '
 		<section id="modificapagina">
 			<h1>Modifica la pagina "'.$info['title'].'"</h1>
@@ -139,7 +140,6 @@ if (!empty($_SESSION['modification'])) { // sono arrivato da listapagine
 			</form>';
                 }
             }
-            unset($_SESSION['modification']);
             ?>
 		</section>
 

@@ -1,3 +1,8 @@
+<?php
+require_once 'utilities.php';
+$user = init();
+$numArticles = 5;
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -41,25 +46,31 @@
 			<ul id="macrocategories">
 				<li id="dei">
 					<a href="#uomini" class="sr-only">Salta lista</a>
-					<h2><a href="epocadei.html">Epoca degli Dei</a></h2>
+					<h2><a href="ricerca.php?category=eventi&subcategory=eradei">Epoca degli Dei</a></h2>
 					<ul class="categories">
-						<li><a href="#">asdf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'eventi','eradei');
+                        ?>
 					</ul>
 				</li>
 
 				<li id="uomini">
 					<a href="#eroi" class="sr-only">Salta lista</a>
-					<h2><a href="epocauomini.html">Epoca degli Dei e degli Uomini</a></h2>
+					<h2><a href="ricerca.php?category=eventi&subcategory=eradeiuomini">Epoca degli Dei e degli Uomini</a></h2>
 					<ul class="categories">
-						<li><a href="#">asdf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'eventi','eradeiuomini');
+                        ?>
 					</ul>
 				</li>
 
 				<li id="eroi">
 					<a href="#scroll-back-button" class="sr-only">Salta lista</a>
-					<h2><a href="epocaeroi.html">Epoca degli Eroi</a></h2>
+					<h2><a href="ricerca.php?category=eventi&subcategory=eraeroi">Epoca degli Eroi</a></h2>
 					<ul class="categories">
-						<li><a href="#">asdf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'eventi','eraeroi');
+                        ?>
 					</ul>
 				</li>
 			</ul>

@@ -1,3 +1,8 @@
+<?php
+require_once 'utilities.php';
+$user = init();
+$numArticles = 5;
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -28,36 +33,56 @@
 		</nav>
 		<section>
 			<h1>Personaggi</h1>
+            <a href="#macrocategories" class="sr-only">Salta introduzione</a>
+            <p>La mitologia greca &egrave; piena di personaggi iconici e notissimi nella cultura popolare: basti pensare a Zeus, il padre degli Dei, o ad Eracle e le sue dodici fatiche. Tuttavia, individuare una perfetta suddivisione in categorie &egrave; un compito davvero spinoso: si prenda ad esempio le Creature. Molte di loro sono figlie di alcune divinit&agrave;: sono, quindi, delle semidivinit&agrave; o delle creature? Cionnonostante, abbiamo cercato di suddividere in categorie tali personaggi.</p>
+            <dl>
+                <dt>Esseri Umani</dt>
+                <dd>Sono tutti quei personaggi che non sono di discendenza divina, ma hanno partecipato a degli eventi della mitologia</dd>
+                <dt>Semidivinit&agrave; ed Eroi</dt>
+                <dd>Sono tutti quei personaggi frutto dell'unione tra dei e uomini e che spesso popolano le leggende pi&ugrave; note della mitologia greca.</dd>
+                <dt>Divinit&agrave;</dt>
+                <dd>Sono tutti quei personaggi di esclusiva discendenza divina.</dd>
+                <dt>Creature</dt>
+                <dd>Sono tutte quelle entit&agrave; dall'aspetto non antropomorfo.</dd>
+            </dl>
             <ul id="macrocategories">
 				<li>
 					<a href="#semidei" class="sr-only">Salta lista</a>
-					<h2><a href="umani.html">Esseri Umani</a></h2>
+					<h2><a href="ricerca.php?category=personaggi&subcategory=umani">Esseri Umani</a></h2>
 					<ul class="categories">
-						<li><a href="#">adsf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'personaggi','umani');
+                        ?>
 					</ul>
 				</li>
 
 				<li id="semidei">
 					<a href="#dei" class="sr-only">Salta lista</a>
-					<h2><a href="semidei.html">Semidivinit&agrave; ed Eroi</a></h2>
+					<h2><a href="ricerca.php?category=personaggi&subcategory=eroi">Semidivinit&agrave; ed Eroi</a></h2>
 					<ul class="categories">
-						<li><a href="#">adsf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'personaggi','eroi');
+                        ?>
 					</ul>
 				</li>
 
 				<li id="dei">
 					<a href="#creature" class="sr-only">Salta lista</a>
-					<h2><a href="dei.html">Divinit&agrave;</a></h2>
+					<h2><a href="ricerca.php?category=personaggi&subcategory=dei">Divinit&agrave;</a></h2>
 					<ul class="categories">
-						<li><a href="#">adsf</a></li>
+                        <?php
+                        $user->printRandomArticlesTitle($numArticles,'personaggi','dei');
+                        ?>
 					</ul>
 				</li>
 
 				<li id="creature">
 					<a href="#scroll-back-button" class="sr-only">Salta lista</a>
-					<h2><a href="creature.html">Creature</a></h2>
+					<h2><a href="ricerca.php?category=personaggi&subcategory=creature">Creature</a></h2>
 					<ul class="categories">
-						<li><a href="#">adsf</a></li>
+                        <?php
+                            $user->printRandomArticlesTitle($numArticles,'personaggi','creature');
+                        ?>
 					</ul>
 				</li>
 			</ul>

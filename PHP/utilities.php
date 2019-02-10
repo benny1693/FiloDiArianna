@@ -54,39 +54,57 @@ function printLinkRicerca($category,$substring,$subcategory,$page,$text) {
 					<li class="page-item"><a href="ricerca.php?category=' . $category . '&substringSearched=' . $substring . '&subcategory=' . $subcategory . '&page=' . $page . '" class="page-link">' . $text . '</a></li>';
 }
 
-function printNavigation($page,$pages){
+function printLinkUser($page,$text) {
+	echo '
+					<li class="page-item"><a href="gestioneutenti.php?page='.$page.'" class="page-link">'.$text.'</a></li>';
+}
+
+function printNavigation($page,$pages,$article = true){
 	echo '
 			<nav aria-label="Paginazione" class="nav-pages">
                 <ul class="pagination">';
 	if ($page == 1)
-		echo '
-   				<li class="page-item disabled"><a href="#">&laquo;</a></li>
+		echo '<li class="page-item disabled"><a href="#">&laquo;</a></li>
 					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>';
 	else {
-		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],1, '&laquo;');
-		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$page - 1 , '&lsaquo;');
+		if ($article){
+			printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],1, '&laquo;');
+			printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$page - 1 , '&lsaquo;');
+		} else {
+			printLinkUser(1,'&laquo;');
+			printLinkUser($page-1,'&lsaquo;');
+		}
 	}
 	for ($i = 0; $i < 5; $i++) {
 		if ($page - 2 + $i > 0 && $page - 2 + $i <= $pages) {
 			if ($i == 2)
-				echo '<li class="page-item disabled"><a href="#">'.$page.'</a></li>';
-			else
-				printLinkRicerca($_GET['category'], $_GET['substringSearched'], $_GET['subcategory'], $page + $i - 2, $page + $i - 2);
+				echo '
+					<li class="page-item disabled"><a href="#">'.$page.'</a></li>';
+			else {
+				if ($article)
+					printLinkRicerca($_GET['category'], $_GET['substringSearched'], $_GET['subcategory'], $page + $i - 2, $page + $i - 2);
+				else
+					printLinkUser($page + $i - 2,$page + $i -2);
+			}
 		}
 	}
 	if ($page == $pages)
 		echo'
-          <li class="page-item disabled"><a href="#" >&rsaquo;</a></li>
+ 					<li class="page-item disabled"><a href="#" >&rsaquo;</a></li>
 					<li class="page-item disabled"><a href="#" >&raquo;</a></li>
 					';
 	else{
-		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$page + 1, '&rsaquo;');
-		printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$pages , '&raquo;');
+		if ($article){
+			printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$page + 1, '&rsaquo;');
+			printLinkRicerca($_GET['category'],$_GET['substringSearched'],$_GET['subcategory'],$pages , '&raquo;');
+		} else {
+			printLinkUser($page + 1, '&rsaquo;');
+			printLinkUser($pages , '&raquo;');
+		}
 	}
 	echo '
                 </ul>
-            </nav>
-            <ul class="query">';
+            </nav>';
 }
 
 function printFeedback($message,$valid){

@@ -96,18 +96,26 @@ abstract class User
 		return $query->fetch_all(MYSQLI_ASSOC);
 	}
 
+	public function printArticleListTitle($articleList){
+		foreach ($articleList as $article){
+			echo '
+					<li><a href="articolo.php?articleID='.$article['ID'].'">' . stripslashes($article['title']) . '</a></li>';
+		}
+	}
+
 	public function printArticleList($articleList, $buttons = false, $pendant = false) {
 
 		if ($articleList != null) {
 			if (!$buttons) {
-				foreach ($articleList as $article)
+				foreach ($articleList as $article){
 					echo '
 				<li>
-					<a href="#">
+					<a href="articolo.php?articleID='.$article['ID'].'">
 						<p>' . stripslashes($article['title']) . '</p>
 						<p>' . stripslashes(substr($article['content'], 0, 100)) . '</p>
 					</a>
 				</li>';
+				}
 			} else {
 				foreach ($articleList as $article){
 					echo '
@@ -191,8 +199,6 @@ abstract class User
 				<dt>Sesso</dt>
 				<dd>".$info['gender']."</dd>
 			</dl>");
-
-			$this->printArticleList($this->searchArticle("", $info['ID']));
 		} else {
 			echo "<p>Utente non esistente</p>";
 		}
@@ -269,6 +275,23 @@ abstract class User
             return false;
         }
     }
+
+	function printRandomArticlesTitle($numArticles = null, $category = null,$subcategory=null){
+		$list = $this->searchArticle('',$category,$subcategory);
+
+		$numArticles = min($numArticles,count($list));
+
+		$rand_keys = array_rand($list,$numArticles);
+		if ($numArticles > 1) {
+			$result = array();
+			foreach ($rand_keys as $key) {
+				array_push($result, $list[$key]);
+			}
+			$this->printArticleListTitle($result);
+		} elseif ($numArticles == 1) {
+			$this->printArticleListTitle(array($list[$rand_keys]));
+		}
+	}
 
 }
 
