@@ -3,18 +3,17 @@ include_once 'utilities.php';
 $user = init();
 
 $articleID = $_GET['articleID'];
-//$articleID = 1; //per prove
 if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pagina non esiste o l'id non corrisponde
     header("Location: notfound.php");
     exit();
 }
-$instime = $_GET['insTime'];
 $infoArticle = $user->getArticleInfo($articleID);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
-//$time = $infoArticle['insTime'];
-//print_r($time);
+$instime = null;
 
-
+// Se sono l'autore dell'articolo o l'admin sono un utente corretto
+$correctUser = ($user->isRegistered() && $user->getID() == $article->getAuthor()) || $user->isAdmin();
+$instime = $correctUser ? $_GET['instime'] : null;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -51,11 +50,11 @@ $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['auth
             ?>
 			<ul id="article-menu">
 				<li class="active">Voce</li>
-                <?php if(!($user->isPendentPage($articleID, $instime))){
-                    echo '<li><a href="discussione.php">Discussione</a></li>';
+                <?php
+                if(!($user->isPendentPage($articleID, $instime))){
+                    echo '<li><a href="discussione.php?articleID='.$articleID.'">Discussione</a></li>';
                 }
                 ?>
-
 			</ul>
 
 			<div id="article-content">
@@ -87,14 +86,16 @@ $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['auth
 				<div id="article-references">
                     <h2>Pagine correlate</h2>
                     <?php
-                    $relatedPages = $user->getRelatedPages($article->getArticleID());
-                    if ($relatedPages){
-                        echo '
-					<ul>';
-                        foreach ($relatedPages as $related)
-                            echo '<li><a href="articolo.php?articleID='.$related['ID2'].'">'.$related['title2'].'</a></li>';
+                    $relatedPages = $user->getRelatedPages($article->getArticleID(),$instime);
+
+                    if ($instime) {
+                        echo '<h3>Pagine correlate alla versione pubblicata</h3>';
+                        $user->printRelatedPages($relatedPages['posted']);
+                        echo '<h3>Pagine correlate a questa versione</h3>';
+                        $user->printRelatedPages($relatedPages['unposted']);
+
                     } else {
-                        echo '<p>Nessuna pagina correlata</p>';
+                        $user->printRelatedPages($relatedPages);
                     }
                     ?>
 					</ul>

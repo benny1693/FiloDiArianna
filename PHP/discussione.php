@@ -2,13 +2,13 @@
 include_once 'utilities.php';
 $user = init();
 $articleID = $_GET['articleID'];
-//$articleID = 1; //per prove
 $instime = $_GET['insTime'];
 $pendentPage = $user->isPendentPage($articleID, $instime);
 if($articleID == null || $user->getArticleInfo($articleID) == null || $pendentPage) { //se la pagina non esiste o l'id non corrisponde
     header("Location: notfound.php");
     exit();
 }
+
 $infoArticle = $user->getArticleInfo($articleID);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['ext'], $infoArticle['content']);
 $disc = $article->getDiscussionArea();
@@ -41,31 +41,35 @@ $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricev
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
-				<li class="breadcrumb-item"><a href="#queryarticoloprecedente.php"><?php echo $article->getTitle() ?></a></li>
+                <?php
+				echo '<li class="breadcrumb-item"><a href="articolo.php?articleID='.$article->getArticleID().'">'.$article->getTitle().'</a></li>';
+				?>
 				<li class="breadcrumb-item" aria-current="page">Discussione</li>
 			</ol>
 		</nav>
 
 		<section id="discussione">
 			<ul id="article-menu">
-				<li><a href="articolo.php">Voce</a></li>
+				<li><a href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>">Voce</a></li>
 				<li class="active">Discussione</li>
 			</ul>
 			<div id="article-content">
 				<div id="article-title">
 					<h1>Discussione di <?php echo $article->getTitle(); ?></h1>
 					<p id="article-id"><?php echo $article->getArticleID() ?></p>
-					<a id="back-to-article" href="articolo.php">Torna all'articolo</a>
+                    <?php
+					echo '<a id="back-to-article" href="articolo.php?articleID='.$article->getArticleID().'">Torna all\'articolo</a>';
+                    ?>
 				</div>
 				<div id="commentlist">
                     <?php $user->printArticleComment($arrayComments); //per inserire in commenti nell'area discussione relativa ?>
 				</div>
 
-
                 <?php
                 //se l'utente non è registrato, non può lasciare un commento quindi non vede la textarea
                 if($user->isRegistered()) {
-                    echo '<form id="comment-form" onsubmit="">
+                    echo '
+                 <form id="comment-form" >
 					<div class="form-group row">
 						<label for="inputText">Lascia un commento</label>
 						<textarea id="inputText" class="form-control"></textarea>
@@ -76,7 +80,6 @@ $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricev
 					</div>
 				</form> ';
                 }
-
                 ?>
 
 			</div>

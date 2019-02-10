@@ -20,11 +20,16 @@ $pages = ceil(count($list)/$articlesNumber);
 if ($pages == 0)
 	$currentpage = 0;
 
-if ($currentpage == 0 && $page != 0)
+if ($currentpage == 0 && $page != 0) {
 	header("Location: notfound.php");
+	exit();
+}
 
-if ($currentpage > $pages || $currentpage < 0)
+if ($currentpage > $pages || $currentpage < 0) {
 	header("Location: notfound.php");
+	exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">

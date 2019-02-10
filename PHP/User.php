@@ -218,24 +218,38 @@ abstract class User
 
 	//prendere id di articolo e trova pagine correlate
     //array con id e titolo
-    public function getRelatedPages($articleID){
+	/**
+	 * @param $articleID . Codice identificativo dell'articolo
+	 * @param null $instime . Tempo di inserimento dell'articolo
+	 * @return array|mixed|null . La lista delle pagine pubblicate correlate ad $articleID.
+	 * 														Se $instime è null restituisce un array di pagine,
+	 * 														altrimenti restituisce un array con due chiavi che indicizzano rispettivamente
+	 * 														posted => l'insieme delle pagine correlate alla versione pubblicata di $articleID
+	 * 														unposted => l'insieme delle pagine correlate alla versione non pubblicata di $articleID
+	 */
 
-        $query = $this->dbconnection->query(
-            "SELECT * FROM Prova.relatedPages WHERE ID = $articleID"
-        );
+    public function getRelatedPages($articleID,$instime = null){
 
-        if ($query->num_rows > 0)
-            return $query->fetch_all(MYSQLI_ASSOC);
-        else
-            return null;
+				$query = $this->dbconnection->query("SELECT * FROM Prova.relatedPages WHERE ID1 = $articleID");
+				$result = $query->fetch_all(MYSQLI_ASSOC);
+
+				if ($instime != null){
+					$instime = str_replace(array(':','-',' '), '', $instime);
+					$query = $this->dbconnection->query("SELECT * FROM Prova.relatedPendantPages WHERE ID1 = $articleID AND insTime1 = $instime");
+					$result = array('posted' => $result, 'unposted' => $query->fetch_all(MYSQLI_ASSOC));
+				}
+
+				return $result;
     }
 
-    public function printRelatedPages($articleID) {
-        $array = $this->getRelatedPages($articleID);
-        foreach ($array as $art){
-            echo $art['title'];
-        }
-    }
+	public function printRelatedPages($relatedPages){
+		if ($relatedPages) {
+			foreach ($relatedPages as $related)
+				echo '<li><a href="articolo.php?articleID=' . $related['ID2'] . '">' . $related['title2'] . '</a></li>';
+		} else {
+			echo '<p>Nessuna pagina correlata</p>';
+		}
+	}
 
 
 	/**
@@ -262,18 +276,10 @@ abstract class User
 		}
 
     public function isPendentPage($articleID, $instime) {
-        $query = $this->getDBConnection()->query("SELECT * FROM Prova.unpostedPages WHERE ID = $articleID");
-        $arrayAssoc = null;
-        if ($query->num_rows > 0)
-             $arrayAssoc = $query->fetch_assoc();
-        $secondTime = $arrayAssoc['insTime'];
-        //print_r($secondTime);
-        if($instime == $secondTime) {
-            return true;
-        }
-       else {
-            return false;
-        }
+    		$instime = str_replace(array(':','-',' '),'',$instime);
+        $query = $this->getDBConnection()->query("SELECT * FROM Prova.unpostedPages WHERE ID = $articleID AND insTime = $instime");
+
+        return ($query->num_rows > 0);
     }
 
 	function printRandomArticlesTitle($numArticles = null, $category = null,$subcategory=null){

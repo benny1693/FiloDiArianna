@@ -58,6 +58,16 @@ function checkText(input, text, regexp){
 	return showAlert(alert, regexp.test(test) || test === "" , text, parent);
 }
 
+function checkEmail() {
+	var regex = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/;
+	var element = document.getElementById('inputEmail');
+	var test = element.value;
+	var parent = element.parentNode;
+	var alert = parent.querySelector(".invalid-feedback");
+
+	return showAlert(alert,regex.test(test) || test === "", 'Email non valida', parent);
+}
+
 function isPasswordEqual(){
 	var password = document.getElementById('inputPassword');
 	var confermaPassword = document.getElementById('inputPasswordConfirm');

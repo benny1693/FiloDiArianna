@@ -12,6 +12,7 @@ switch($_POST['action']):
 	case 'Accetta':
 		$u->approveArticle($_POST['pageid'],str_replace(array(':','-',' '),'',$_POST['instime']));
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		exit();
 		break;
 	case 'Elimina':
 		if (empty($_POST['instime']))
@@ -19,6 +20,7 @@ switch($_POST['action']):
 		else
 			$u->declinePendant($_POST['pageid'],$_POST['instime']);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		exit();
 		break;
 	default:
 		$_SESSION['modification']= array(
@@ -27,6 +29,7 @@ switch($_POST['action']):
 		);
 
 		header('Location: modificapagina.php');
+		exit();
 		break;
 endswitch;
 ?>

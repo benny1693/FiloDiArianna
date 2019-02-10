@@ -33,7 +33,7 @@ class ArticlePage extends Page {
         return $this->articleID;
     }
 
-    public function getTitle () {
+    public function getTitle() {
       return $this->title;
     }
 
@@ -56,8 +56,6 @@ class ArticlePage extends Page {
     public function getDiscussionArea() {
         return $this->discussionArea;
     }
-
-
 }
 
 ?>

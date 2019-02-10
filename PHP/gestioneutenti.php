@@ -17,11 +17,14 @@ if ($user->isAdmin()) {
 	if ($pages == 0)
 		$currentpage = 0;
 
-	if ($currentpage == 0 && $page != 0)
-		header("Location: notfound.php");
-
-	if ($currentpage > $pages || $currentpage < 0)
-		header("Location: notfound.php");
+	if ($currentpage == 0 && $page != 0) {
+        header("Location: notfound.php");
+        exit();
+    }
+	if ($currentpage > $pages || $currentpage < 0) {
+        header("Location: notfound.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
