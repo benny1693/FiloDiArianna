@@ -8,8 +8,9 @@ if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pa
     header("Location: notfound.php");
     exit();
 }
-$instime = $_GET['insTime'];
-$infoArticle = $user->getArticleInfo($articleID);
+$instime = $_GET['instime'];
+//print_r($instime);
+$infoArticle = $user->getArticleInfo($articleID, $instime);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
 //$time = $infoArticle['insTime'];
 //print_r($time);
@@ -46,13 +47,11 @@ $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['auth
 			</ol>
 		</nav>
 		<section id="articolo">
-            <?php
-                //if($articleID == null)
-            ?>
 			<ul id="article-menu">
 				<li class="active">Voce</li>
                 <?php if(!($user->isPendentPage($articleID, $instime))){
-                    echo '<li><a href="discussione.php">Discussione</a></li>';
+                    //echo '<li><a href="discussione.php">Discussione</a></li>';
+                    echo '<li><a href="discussione.php?articleID='.$articleID.'">Discussione</a></li>';
                 }
                 ?>
 
