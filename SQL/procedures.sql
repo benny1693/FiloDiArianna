@@ -20,7 +20,7 @@
 		@throws: 					segnala un errore se la pagina già esiste
 */
 DELIMITER |
-CREATE PROCEDURE insertPage(_title VARCHAR(30), _content TEXT, _img LONGBLOB, _ext VARCHAR(5),_author INTEGER,
+CREATE PROCEDURE insertPage(_title VARCHAR(150), _content TEXT, _img LONGBLOB, _ext VARCHAR(5),_author INTEGER,
 														 	_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
 	DECLARE _ID INTEGER;
@@ -68,7 +68,7 @@ DELIMITER ;
 													- Creatura
 */
 DELIMITER |
-CREATE PROCEDURE insertModification(_ID INTEGER, _content TEXT, _img LONGBLOB, _ext VARCHAR(5),
+CREATE PROCEDURE insertModification(_ID INTEGER, _content LONGTEXT, _img LONGBLOB, _ext VARCHAR(5),
 														_type1 VARCHAR(18), _type2 VARCHAR(18))
 BEGIN
 		INSERT INTO _modifiedPages (ID,content,img,ext,type1,type2)
@@ -83,7 +83,7 @@ DELIMITER ;
 DELIMITER |
 CREATE PROCEDURE approveModification(_ID INTEGER, _modTime TIMESTAMP(6))
 BEGIN
-	DECLARE _content TEXT;
+	DECLARE _content LONGTEXT;
 	DECLARE _img LONGBLOB;
 	DECLARE _ext VARCHAR(5);
 	DECLARE _type1 VARCHAR(18);
@@ -278,7 +278,7 @@ DELIMITER ;
 
 /* Inserisce un commento a una pagina */
 DELIMITER |
-CREATE PROCEDURE insertComment(_pageID INTEGER, _content TEXT, _author INTEGER)
+CREATE PROCEDURE insertComment(_pageID INTEGER, _content LONGTEXT, _author INTEGER)
 BEGIN
 	INSERT INTO _comments (pageID,content,author) VALUES (_pageID, _content, _author);
 END|

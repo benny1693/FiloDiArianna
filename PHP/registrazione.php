@@ -24,8 +24,8 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
 		$_SESSION['registration_errors']['birthdate'] = "Sei un po' giovane non credi?";
 	elseif ($_POST['birthdate'] <= date('Y-m-d',mktime(0,0,0,2,21,1875)))
         $_SESSION['registration_errors']['birthdate'] = "Sei davvero nato prima della persona pi&ugrave; anziana del mondo?";
-    elseif (empty($_POST['birthdate']))
-        $_SESSION['registration_errors']['birthdate'] = "Campo obbligatorio";
+    elseif (!isValidDate($_POST['birthdate']))
+        $_SESSION['registration_errors']['birthdate'] = "Data non valida";
 
 
 	if (!preg_match("/^[a-zA-Z0-9]+$/", $_POST['username']))
@@ -36,7 +36,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
 
 	if (!isset($_SESSION['registration_errors'])) {
 		if ($_POST['password'] == $_POST['confirmpass']) {
-            echo $subscribed = $user->subscribe($_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['birthdate'],
+            $subscribed = $user->subscribe($_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['birthdate'],
                 $_POST['email'], $_POST['username'], $_POST['password']);
 
             if (!$subscribed){
@@ -49,6 +49,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
         } else
 			$_SESSION['registration_errors']['confirmpass'] = 'Le password non combaciano';
 	}
+	$refill = isset($_SESSION['registration_errors']);
 }
 ?>
 <!DOCTYPE html>
@@ -95,7 +96,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
                     <div class="form-group row">
                         <label for="inputName" class="col-sm-3 col-form-label">Nome</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" aria-required="true" onblur="return checkText(\'inputName\',\'Nome non valido\',/^[a-zA-Z]{1,20}$/);"/>';
+                            <input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" aria-required="true" '.($refill ? 'value="'.$_POST['name'].'"' : "").' onblur="return checkText(\'inputName\',\'Nome non valido\',/^[a-zA-Z]{1,20}$/);"/>';
 
                   if (isset($_SESSION['registration_errors']['name']))
                       printFeedback($_SESSION['registration_errors']['name'],false);
@@ -107,7 +108,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
                     <div class="form-group row">
                         <label for="inputSurname" class="col-sm-3 col-form-label" >Cognome</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" aria-required="true" onblur="return checkText(\'inputSurname\',\'Cognome non valido\',/^[a-zA-Z\' ]{1,20}$/);"/>';
+                            <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" aria-required="true" '.($refill ? 'value="'.$_POST['surname'].'"' : "").' onblur="return checkText(\'inputSurname\',\'Cognome non valido\',/^[a-zA-Z\' ]{1,20}$/);"/>';
 
                   if (isset($_SESSION['registration_errors']['surname']))
                       printFeedback($_SESSION['registration_errors']['surname'],false);
@@ -137,7 +138,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
                     <div class="form-group row">
                           <label for="inputDate" class="col-sm-3 col-form-label">Data di nascita</label>
                                 <div class="col-sm-9">
-                          <input type="date" class="form-control" id="inputDate" name="birthdate" required="required" aria-required="true" onblur="return invalidBirthDay();" />';
+                          <input type="date" class="form-control" id="inputDate" name="birthdate" required="required" aria-required="true" '.($refill ? 'value="'.$_POST['birthdate'].'"' : "").' onblur="return invalidBirthDay();" />';
 
                     if (isset($_SESSION['registration_errors']['birthdate']))
                         printFeedback($_SESSION['registration_errors']['birthdate'],false);
@@ -148,7 +149,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
                     <div class="form-group row">
                         <label for="inputEmail" class="col-sm-3 col-form-label" lang="en">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" onblur="return checkEmail();"/>';
+                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" '.($refill ? 'value="'.$_POST['email'].'"' : "").' onblur="return checkEmail();"/>';
 
                     if (isset($_SESSION['registration_errors']['email']))
                         printFeedback($_SESSION['registration_errors']['email'],false);
@@ -160,7 +161,7 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
                     <div class="form-group row">
                         <label for="inputUsername" class="col-sm-3 col-form-label" lang="en">Username</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required="required" onblur="return checkText(\'inputUsername\',\'Username non valido\',/^[a-zA-Z0-9]+$/)"/>
+                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required="required" '.($refill ? 'value="'.$_POST['username'].'"' : "").' onblur="return checkText(\'inputUsername\',\'Username non valido\',/^[a-zA-Z0-9]+$/)"/>
                             <p class="help-block">Lo username pu&ograve contenere solo lettere e numeri.</p>';
                     
                     if (isset($_SESSION['registration_errors']['username']))

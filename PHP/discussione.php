@@ -85,6 +85,7 @@ $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricev
 					</div>
 				</form> ';
                 }
+                unset($_SESSION['commenterror']);
                 ?>
 
 			</div>

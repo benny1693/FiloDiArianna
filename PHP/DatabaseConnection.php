@@ -46,6 +46,10 @@ class DatabaseConnection{
 		return $this->connectionMYSQL->errno;
 	}
 
+	public function getErrorMessage() {
+		return $this->connectionMYSQL->error;
+	}
+
 	public function affectedRows() {
 		return $this->connectionMYSQL->affected_rows;
 	}

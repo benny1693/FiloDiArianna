@@ -764,10 +764,13 @@ label[for="inputPasswordConfirm"] {
 
 @media(min-width:768px) {
 	#back-to-article {
-		left: unset;
-		bottom: unset;
-		right: 2.5rem;
-		top: 6.5rem;
+		left: 18rem;
+		bottom: 1rem;
+		transition: opacity .3s ease, bottom .3s ease;
+	}
+
+	#back-to-article.active {
+		bottom: 4.5rem;
 	}
 }
 
@@ -781,9 +784,10 @@ label[for="inputPasswordConfirm"] {
 	}
 }
 
+
 @media(min-width:1200px) {
 	#back-to-article {
-		right: calc(50% - 32rem);
+		left: calc(50% - 17.5rem);
 	}
 }
 
@@ -847,7 +851,7 @@ label[for="inputPasswordConfirm"] {
 #page-content-wrapper {
 	width: 100%;
 	padding: 10.5rem 1.875rem 1.875rem 1.875rem;
-	min-height: calc(100vh - 3.15rem - 4.0625rem);
+	min-height: calc(100vh - 3.5rem);
 	background: #fff;
 }
 

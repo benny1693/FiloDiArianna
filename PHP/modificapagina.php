@@ -3,14 +3,14 @@ include_once 'utilities.php';
 $user = init();
 $modifiedpage = !empty($_SESSION['modification']['instime']);
 
-($_SESSION);
 $info = null;
 if (!empty($_SESSION['modification'])) { // sono arrivato da listapagine
 	$info = $user->getArticleInfo($_SESSION['modification']['pageid'], ($modifiedpage ? $_SESSION['modification']['instime'] : null));
 } else { // ho richiesto la modifica di una pagina
     $info = $user->getArticleInfo($_POST['articleID'],$_POST['instime']);
 
-    $validField = preg_match('/^.*[a-zA-Z].*$/', $_POST['content']) && $_POST['content'] != $info['content'];
+    $validField = preg_match('/^(.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content'])
+      && $_POST['content'] != $info['content'];
 
 	if (!empty($_POST) && $validField) {
 		$img = $ext = null;
@@ -69,10 +69,14 @@ if (!empty($_SESSION['modification'])) { // sono arrivato da listapagine
                 printFeedback("Per modificare una pagina devi effettuare l'accesso", false);
             } else {
                 if (empty($_SESSION['modification'])) {
-                    if (!$validField)
-                        printFeedback("Non hai selezionato la pagina da modificare", false);
-                    else
-                        printFeedback("Modifica avvenuta con successo e in attesa di approvazione",true);
+                    if (!$validField) {
+                        printFeedback("I campi inseriti non sono validi o uguali a quelli della pagina da modificare", false);
+                    } else {
+                        if (empty($_POST)) // Sono arrivato da una pagina senza usare un form
+                            printFeedback('Non hai selezionato una pagina da modificare',false);
+                        else
+                            printFeedback("Modifica avvenuta con successo e in attesa di approvazione",true);
+                    }
                 } else {
                     unset($_SESSION['modification']);
                     echo '

@@ -210,6 +210,10 @@ abstract class User
 		return $this->dbconnection->getError();
 	}
 
+	public function getDBErrorMessage() {
+		return $this->dbconnection->getErrorMessage();
+	}
+
 	public abstract function setSessionVars();
 
 	public function isAdmin() {

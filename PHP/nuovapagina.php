@@ -3,7 +3,7 @@ include_once 'utilities.php';
 $user = init();
 
 $validField = preg_match('/^.*[a-zA-Z].*$/',$_POST['title']) &&
-	preg_match('/^.*[a-zA-Z].*$/',$_POST['content']);
+        preg_match('/^(.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content']);
 
 if (!empty($_POST) && $validField){
 	$img = file_get_contents($_FILES['image']['tmp_name']);
@@ -16,6 +16,7 @@ if (!empty($_POST) && $validField){
 
 	$user->insertArticle($_POST['title'],$_POST['content'],$img,$ext,$_SESSION['ID'],$types,$_POST['relatedpages']);
 }
+$refill = !empty($_POST) && (!$validField || $user->getDBError() != 0);
 ?>
 
 <!DOCTYPE html>
@@ -58,9 +59,12 @@ if (!empty($_POST) && $validField){
                 echo '
 		<section id="nuovapagina">';
 
-                if ($user->getDBError() != 0)
-                    printFeedback('Pagina non inserita',false);
-		        else
+                if ($user->getDBError() != 0) {
+                    if ($user->getDBError() == 1644)
+                        printFeedback('Pagina gi&agrave; esistente: potrebbe essere in attesa di approvazione',false);
+                    else
+                        printFeedback('Pagina non inserita nel database', false);
+                }else
 		            if (!empty($_POST)) {
                         if ($validField)
                             printFeedback('Pagina inserita e in attesa di approvazione', true);
@@ -78,31 +82,31 @@ if (!empty($_POST) && $validField){
 
 				<div class="form-group">
 					<label for="inputTitolo">Titolo</label>
-					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" required="required" aria-required="true" />
+					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" required="required" aria-required="true" ' . ($refill ? 'value="'.$_POST['title'].'"' : "") .'/>
 				</div>
 
 				<div class="form-group">
 					<label for="FormControlTextarea1">Descrizione</label>
-					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10" required="required" aria-required="true"></textarea>
+					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10" required="required" aria-required="true">' . ($refill ? $_POST['content'] : "") .'</textarea>
 				</div>
 				
 				<div class="form-group">
 					<label for="inputCategorie">Categorie</label>
 					<select name="types" id="inputCategorie" class="form-control">
 						<optgroup label="Personaggi">
-							<option value="p_umani">Esseri Umani</option>
-							<option value="p_eroi">Semidivinit&agrave;/Eroi</option>
-							<option value="p_dei">Divinità</option>
-							<option value="p_creature">Creature</option>
+							<option value="p_umani" ' . ($refill ? selectRefill($_POST['types'],'p_umani') : "") .'>Esseri Umani</option>
+							<option value="p_eroi" ' . ($refill ? selectRefill($_POST['types'],'p_eroi') : "") .'>Semidivinit&agrave;/Eroi</option>
+							<option value="p_dei" ' . ($refill ? selectRefill($_POST['types'],'p_dei') : "") .'>Divinità</option>
+							<option value="p_creature" ' . ($refill ? selectRefill($_POST['types'],'p_creature') : "") .'>Creature</option>
 						</optgroup>
 						<optgroup label="Eventi">
-							<option value="era_dei">Era degli Dei</option>
-							<option value="era_dei_uomini">Era degli Dei e degli Uomini</option>
-							<option value="era_eroi">Era degli Eroi</option>
+							<option value="era_dei" '.($refill ? selectRefill($_POST['types'],'era_dei') : "").'>Era degli Dei</option>
+							<option value="era_dei_uomini" '.($refill ? selectRefill($_POST['types'],'era_dei_uomini') : "").'>Era degli Dei e degli Uomini</option>
+							<option value="era_eroi" '.($refill ? selectRefill($_POST['types'],'era_eroi') : "").'>Era degli Eroi</option>
 						</optgroup>
 						<optgroup label="Luoghi">
-							<option value="l_mitologici">Mitologici</option>
-							<option value="l_reali">Reali</option>
+							<option value="l_mitologici" '.($refill ? selectRefill($_POST['types'],'l_mitologici') : "").'>Mitologici</option>
+							<option value="l_reali" '.($refill ? selectRefill($_POST['types'],'l_reali') : "").'>Reali</option>
 						</optgroup>
 					</select>
 				</div>

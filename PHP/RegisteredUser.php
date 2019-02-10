@@ -85,7 +85,7 @@ class RegisteredUser extends User {
 																										WHERE ID = $articleID AND content = '".addslashes($newcontent)."'");
 
 		$result = $query->fetch_assoc();
-		echo $timestamp = str_replace(array(":"," ","-"),"", $result['modTime']);
+		$timestamp = str_replace(array(":"," ","-"),"", $result['modTime']);
 
 		foreach ($newrelatedPages as $relation)
 			$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");

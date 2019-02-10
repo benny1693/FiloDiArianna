@@ -23,11 +23,21 @@ function plusClick(){
 }
 
 function scroll(){
-	var scroll = document.getElementById("scroll-back-button");
+	var back = document.getElementById("scroll-back-button");
+
 	if(window.pageYOffset > 50){
-		scroll.classList.add("scroll-back-button-active");
+		back.classList.add("scroll-back-button-active");
 	}else{
-		scroll.classList.remove("scroll-back-button-active");
+		back.classList.remove("scroll-back-button-active");
+	}
+
+	var bta = document.getElementById("back-to-article");
+	if (bta) {
+		if (window.pageYOffset >= document.body.scrollHeight - window.innerHeight){
+			bta.classList.add("active");
+		} else {
+			bta.classList.remove("active");
+		}
 	}
 }
 
@@ -141,6 +151,17 @@ function invalidBirthDay() {
 	var element = document.getElementById("inputDate");
 	var parent = element.parentNode;
 	var alert = parent.querySelector(".invalid-feedback");
-	var condition = Date.now() - Date.parse(element.value)  >= Date.UTC(1976);	//sei anni a partire dal 1970
-	return showAlert(alert, condition, "Sei un po' troppo giovane non credi?", parent);
+	var condition = false;
+	var text = 'Data non valida';
+	var userBirth = Date.parse(element.value);
+	if (Date.now() - userBirth  < Date.UTC(1976))
+		text = 'Sei un po\' troppo giovane, non credi?';
+	else if (userBirth <= Date.UTC(1875,2,21))
+		text = 'Sei davvero nato prima della persona pi&ugrave; anziana del mondo?';
+	else if (element.value === "")
+		text = 'Campo obbligatorio';
+	else
+		condition = true;
+
+	return showAlert(alert, condition, text, parent);
 }

@@ -150,6 +150,20 @@ function printSelect($list) {
 	}
 }
 
+function selectRefill($post, $category){
+	return ($post == $category ? 'selected="selected"' : "");
+}
+
+function dayTimestamp($milliseconds){
+	return floor($milliseconds/86400);
+}
+
+function isValidDate($date) {
+	$date = DateTime::createFromFormat('Y-m-d',$date); // se la data non è valida genera un DateTime('now');
+	$today = DateTime::createFromFormat('Ymd',date('Ymd')); // genero un DateTime('now')
+
+	return dayTimestamp($date->getTimestamp()) != dayTimestamp($today->getTimestamp());
+}
 /*
 function isNamefile($name){
 	return $_SERVER['SCRIPT_URL'] == "/bcosenti/" . $name;
