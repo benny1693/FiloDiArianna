@@ -202,9 +202,12 @@ abstract class User
 		}
 	}
 
-	// TODO: rendere protected questo metodo
-	public function getDBConnection() {
+	protected function getDBConnection() {
 		return $this->dbconnection;
+	}
+
+	public function getDBError() {
+		return $this->dbconnection->getError();
 	}
 
 	public abstract function setSessionVars();
@@ -289,7 +292,6 @@ abstract class User
 			$this->printArticleListTitle(array($list[$rand_keys]));
 		}
 	}
-
 }
 
 ?>

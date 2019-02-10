@@ -58,7 +58,7 @@ if (!empty($_POST) && $validField){
                 echo '
 		<section id="nuovapagina">';
 
-                if ($user->getDBConnection()->getError() != 0)
+                if ($user->getDBError() != 0)
                     printFeedback('Pagina non inserita',false);
 		        else
 		            if (!empty($_POST)) {

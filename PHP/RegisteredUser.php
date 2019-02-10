@@ -61,7 +61,7 @@ class RegisteredUser extends User {
 			"CALL insertPage('".addslashes($title)."','".addslashes($content)."','".addslashes($image)."','".$ext."',$authorID,'$types[0]','$types[1]')"
 		);
 
-		if ($this->getDBConnection()->getError() == 0) {
+		if ($this->getDBError() == 0) {
 
 			$query = $this->getDBConnection()->query(
 				"SELECT ID,insTime FROM Prova._pages WHERE title = '" . addslashes($title) . "'"
@@ -87,11 +87,9 @@ class RegisteredUser extends User {
 		$result = $query->fetch_assoc();
 		echo $timestamp = str_replace(array(":"," ","-"),"", $result['modTime']);
 
-		foreach ($newrelatedPages as $relation) {
+		foreach ($newrelatedPages as $relation)
 			$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
-			echo $this->getDBConnection()->getError();
-			echo $relation;
-		}
+
 	}
 
 

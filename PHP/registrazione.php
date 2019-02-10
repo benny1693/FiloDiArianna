@@ -22,6 +22,11 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
 
 	if ($_POST['birthdate'] > date('Y-m-d') - 6)
 		$_SESSION['registration_errors']['birthdate'] = "Sei un po' giovane non credi?";
+	elseif ($_POST['birthdate'] <= date('Y-m-d',mktime(0,0,0,2,21,1875)))
+        $_SESSION['registration_errors']['birthdate'] = "Sei davvero nato prima della persona pi&ugrave; anziana del mondo?";
+    elseif (empty($_POST['birthdate']))
+        $_SESSION['registration_errors']['birthdate'] = "Campo obbligatorio";
+
 
 	if (!preg_match("/^[a-zA-Z0-9]+$/", $_POST['username']))
 		$_SESSION['registration_errors']['username'] = 'Username non valido';
@@ -73,12 +78,10 @@ if (!empty($_POST) && $_SESSION['ID'] == -1) {
 		</nav>
                 <?php
 
-
-
-
                 if ($_SESSION['ID'] != -1) {
                     echo'
 			<section>';
+
                     if ($_SERVER['HTTP_REFERER'] != "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'])
                         printFeedback('Sei gi&agrave; registrato!', false);
                     else

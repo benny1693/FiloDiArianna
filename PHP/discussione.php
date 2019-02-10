@@ -68,12 +68,18 @@ $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricev
                 //se l'utente non è registrato, non può lasciare un commento quindi non vede la textarea
                 if($user->isRegistered()) {
                     echo '
-                 <form id="comment-form" >
+                 <form id="comment-form" action="inseriscicommento.php" method="post">
+                    <input type="hidden" name="articleID" value="'.$article->getArticleID().'"/>
 					<div class="form-group row">
 						<label for="inputText">Lascia un commento</label>
-						<textarea id="inputText" class="form-control"></textarea>
-					</div>
+						<textarea id="inputText" class="form-control" name="content"></textarea>
+					';
+                    if (!empty($_SESSION['commenterror'])){
+                        printFeedback('Non puoi inviare un commento senza testo',false);
+                    }
 
+                    echo '
+                    </div>
 					<div class="form-group row">
 						<button type="submit" class="btn btn-outline-primary">Invia</button>
 					</div>
