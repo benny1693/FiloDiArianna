@@ -19,6 +19,9 @@ if ($currentpage > $pages || $currentpage < 0) {
 	header("Location: notfound.php");
 	exit();
 }
+
+$from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']);
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -43,13 +46,15 @@ if ($currentpage > $pages || $currentpage < 0) {
 			<p class="sr-only">Ti trovi in: </p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item" lang="en"><a href="../index.php">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>
+                <?php
+    				$breadcrumb = ( $from_scopri ? findCorrectTypes() : '<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>');
+				?>
 			</ol>
 		</nav>
 		<section>
 			<h1>Risultati di ricerca</h1>
             <?php
-            if($_GET['substringSearched'] == null)
+            if($_GET['substringSearched'] == null || empty($list))
                 echo '<p id="results">Nessun risultato trovato</p>';
             else {
                 echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
