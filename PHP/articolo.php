@@ -14,6 +14,11 @@ $instime = null;
 // Se sono l'autore dell'articolo o l'admin sono un utente corretto
 $correctUser = ($user->isRegistered() && $user->getID() == $article->getAuthor()) || $user->isAdmin();
 $instime = $correctUser ? $_GET['instime'] : null;
+
+
+
+$categories = $user->getPathArticle($articleID);
+//print_r($categories);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -40,8 +45,22 @@ $instime = $correctUser ? $_GET['instime'] : null;
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
+                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
+
+                <?php
+                /*
+                ?>
+                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
 				<li class="breadcrumb-item" aria-current="page"><?php echo $article->getTitle(); ?></li>
+                */
+
+                echo '
+                <li class="breadcrumb-item"><a href="'.$categories[2].'.php">'.$categories[0].'</a></li>
+                <li class="breadcrumb-item"><a href="ricerca.php?category='.$categories[2].'&subcategory='.$categories[3].'">'.$categories[1].'</a></li>
+                <li class="breadcrumb-item active" aria-current="page">'.$article->getTitle().'</li>';
+
+
+                ?>
 			</ol>
 		</nav>
 		<section id="articolo">
