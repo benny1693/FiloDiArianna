@@ -80,7 +80,14 @@ $categories = $user->getPathArticle($articleID);
                     echo '
 					<h1>' . $article->getTitle() . '</h1>
 					<p id="article-id">'.$article->getArticleID().'</p>
-					<p id="article-author">Scritto da <a href="profilopubblico.php?ID='.$article->getAuthor().'">'.$authorInfo['username'].'</a></p>'
+					<p id="article-author">Scritto da ';
+
+                    if($article->getAuthor()) {
+                        echo '
+                        <a href="profilopubblico.php?ID=' . $article->getAuthor() . '">' . $authorInfo['username'] . '</a></p>';
+                    }else{
+                        echo 'utente eliminato</p>';
+                    }
 				    ?>
                 </div>
 
