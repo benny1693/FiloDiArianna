@@ -7,7 +7,7 @@ $pendenti = $_GET['pendenti'] = (empty($_GET['pendenti']) ? 0 : $_GET['pendenti'
 
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 
-$articlesNumber = 2;
+$articlesNumber = 10;
 
 $list = null;
 if ($user->isAdmin())

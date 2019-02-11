@@ -138,7 +138,7 @@ abstract class User
 					echo '
 				<li>
 					<a href="articolo.php?articleID='.$article['ID'].'">
-						<p>' . stripslashes($article['title']) . '</p>
+						<p class="articleTitle">' . stripslashes($article['title']) . '</p>
 						<p>' . stripslashes(substr($article['content'], 0, 100)) . '</p>
 					</a>
 				</li>';
