@@ -2,6 +2,10 @@
 include_once 'utilities.php';
 $user = init();
 
+// Se sono l'autore dell'articolo o l'admin sono un utente corretto
+$correctUser = ($user->isRegistered() && $user->getID() == $article->getAuthor()) || $user->isAdmin();
+$instime = $correctUser ? $_GET['instime'] : null;
+
 $articleID = $_GET['articleID'];
 $infoArticle = $user->getArticleInfo($articleID,$_GET['instime']);
 if($articleID == null || $infoArticle == null) { //se la pagina non esiste o l'id non corrisponde
@@ -10,11 +14,7 @@ if($articleID == null || $infoArticle == null) { //se la pagina non esiste o l'i
 }
 
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
-$instime = null;
 
-// Se sono l'autore dell'articolo o l'admin sono un utente corretto
-$correctUser = ($user->isRegistered() && $user->getID() == $article->getAuthor()) || $user->isAdmin();
-$instime = $correctUser ? $_GET['instime'] : null;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
