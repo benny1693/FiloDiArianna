@@ -2,21 +2,25 @@
 include_once 'utilities.php';
 $user = init();
 
-// Se sono l'autore dell'articolo o l'admin sono un utente corretto
-$correctUser = ($user->isRegistered() && $user->getID() == $article->getAuthor()) || $user->isAdmin();
-$instime = $correctUser ? $_GET['instime'] : null;
 
 $articleID = $_GET['articleID'];
-$infoArticle = $user->getArticleInfo($articleID,$_GET['instime']);
+$infoArticle = $user->getArticleInfo($articleID);
 if($articleID == null || $infoArticle == null) { //se la pagina non esiste o l'id non corrisponde
 	header("Location: notfound.php");
 	exit();
 }
 
+// Se sono l'autore dell'articolo o l'admin sono un utente corretto
+
+$correctUser = ($user->isRegistered() && $user->getID() == $infoArticle['author']) || $user->isAdmin();
+$instime = $correctUser ? $_GET['instime'] : null;
+
+if ($instime)
+	$infoArticle = $user->getArticleInfo($articleID,$instime);
+
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
 
 $categories = $user->getPathArticle($articleID);
-//print_r($categories);
 
 ?>
 <!DOCTYPE html>
