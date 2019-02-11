@@ -45,7 +45,7 @@ if ($currentpage > $pages || $currentpage < 0)
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Profilo personale</li>
+				<li class="breadcrumb-item active" aria-current="page">Profilo personale di <?php echo $infoUserPage['username']; ?></li>
 			</ol>
 		</nav>
 		<section>
@@ -59,9 +59,9 @@ if ($currentpage > $pages || $currentpage < 0)
 
              echo '<ul class="query">';
              if ($currentpage < $pages)
-                 $user->printArticleList(array_slice($articleList, ($currentpage - 1) * 10, 10), true, false);
+                 $user->printArticleList(array_slice($articleList, ($currentpage - 1) * 10, 10), false, false);
              else
-                 $user->printArticleList(array_slice($articleList, ($currentpage - 1) * 10), true, false);
+                 $user->printArticleList(array_slice($articleList, ($currentpage - 1) * 10), false, false);
              echo '
                 </ul>';
 
@@ -70,22 +70,6 @@ if ($currentpage > $pages || $currentpage < 0)
          else {
              echo '<p>Nessuna pagina pubblicata</p>';
          }
-
-         /*
-         echo '
-			<h2>Pagine pubblicate</h2>
-			<nav aria-label="Paginazione" class="nav-pages">
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
-					<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-				</ul>
-			</nav>
-		 */
          ?>
 		</section>
 	</div>

@@ -77,7 +77,7 @@ class Admin extends RegisteredUser {
 				<li class=\"page-administration clearfix\">
 					<form action=\"gestioneutenti.php\" method=\"post\">
 						<input type=\"hidden\" name=\"userID\" value=\"".$row['ID']."\"/>
-						<a class=\"pagina\" href=\"profilopubblico.php?userID=".$row['ID']."\">".$row['username']."</a>";
+						<a class=\"pagina\" href=\"profilopubblico.php?ID=".$row['ID']."\">".$row['username']."</a>";
 
 			if ($row['is_admin'] == 0)
 				echo "

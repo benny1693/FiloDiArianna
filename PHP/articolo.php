@@ -69,8 +69,10 @@ $instime = $correctUser ? $_GET['instime'] : null;
 				<div id="article-body">
 					<figure id="article-image">
                         <?php
-						$base64 = 'data:image/' . $article->getImageExtension() . ';base64,' . base64_encode($article->getImage());
-						echo '<img class="img-fluid" src="'.$base64.'" alt="Immagine di TitoloArticolo" />'
+                        if (!empty($article->getImage())){
+                            $base64 = 'data:image/' . $article->getImageExtension() . ';base64,' . base64_encode($article->getImage());
+                            echo '<img class="img-fluid" src="'.$base64.'" alt="Immagine di '.$article->getArticleID().'" />';
+                        }
 						?>
 					</figure>
 					<p>
