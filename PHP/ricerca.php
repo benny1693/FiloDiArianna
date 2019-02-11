@@ -48,7 +48,8 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GE
 				<li class="breadcrumb-item" lang="en"><a href="../index.php">Home</a></li>
                 <?php
                 $categories = $user->findTypeReadFormat($_GET['category'],$_GET['subcategory']);
-                if ($categories){
+
+                if ($categories && User::isValidCategory($_GET['category'])){
                     echo '
                 <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
                 <li class="breadcrumb-item"><a href="'.$_GET['category'].'.php">'.$categories[0].'</a></li>

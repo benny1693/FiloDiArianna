@@ -64,7 +64,7 @@ abstract class User
 
 	public abstract function isRegistered();
 
-	static function adjustCategories(&$category,&$subcategory) {
+	static private function adjustCategories(&$category,&$subcategory) {
 		if ($category) {
 			if (!array_key_exists($category, self::Category_Handlers)) {
 				$category = null;
@@ -79,7 +79,7 @@ abstract class User
 		}
 	}
 
-	public function isValidCategory($category) {
+	static public function isValidCategory($category) {
 
             return array_key_exists($category, self::Category_Handlers) ||
                 !$category || $category == 'not_selected';
@@ -87,7 +87,7 @@ abstract class User
     }
 
 	public function searchArticle($substring, $category = null, $subcategory = null ,$pendant = false,$authorID = null) {
-        if ($this->isValidCategory($category)) {
+        if (self::isValidCategory($category)) {
             self::adjustCategories($category,$subcategory);
             $categoryfield = self::Category_Handlers[$category][1];
 
