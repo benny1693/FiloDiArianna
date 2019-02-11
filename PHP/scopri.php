@@ -29,7 +29,6 @@ $user = init();
 			</ol>
 		</nav>
 		<h1>Scopri le voci</h1>
-        <p>Per ogni sotto-categoria puoi visulizzare gli articoli più visitati!</p>
         <ul id="macrocategories">
 			<li>
 				<a href="#eventi" class="sr-only">Salta lista</a>

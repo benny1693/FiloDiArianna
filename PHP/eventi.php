@@ -43,6 +43,7 @@ $numArticles = 5;
 				<dt><em>"L'epoca degli eroi"</em> ovvero <em>"L'et&agrave; eroica"</em></dt>
 				<dd>Sono miti che riguardano soprattutto le vicende degli esseri umani, come quella della guerra di Troia.</dd>
 			</dl>
+            <p>Per ogni categoria puoi visulizzare alcuni articoli appartenenti.</p>
 			<ul id="macrocategories">
 				<li id="dei">
 					<a href="#uomini" class="sr-only">Salta lista</a>
