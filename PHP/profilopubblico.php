@@ -8,6 +8,13 @@ if($pageUserID == null || $infoUserPage == null) {  //se id inesistente o sbagli
     exit();
 }
 
+$bool = $_SESSION['ID'] == $pageUserID;
+if($bool){
+        header("Location: areapersonale.php");
+        exit();
+}
+
+
 //da qui, come per listapagine.php per la stampa delle pagine pubblicate dall'utente
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 $articleList = $user->searchArticle('', null, null, false, $pageUserID);
