@@ -49,7 +49,7 @@ if ($currentpage > $pages || $currentpage < 0) {
 		<section>
 			<h1>Risultati di ricerca</h1>
             <?php
-            if (!$list || count($list) <= 0)
+            if($_GET['substringSearched'] == null)
                 echo '<p id="results">Nessun risultato trovato</p>';
             else {
                 echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
