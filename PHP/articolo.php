@@ -3,11 +3,12 @@ include_once 'utilities.php';
 $user = init();
 
 $articleID = $_GET['articleID'];
-if($articleID == null || $user->getArticleInfo($articleID) == null) { //se la pagina non esiste o l'id non corrisponde
-    header("Location: notfound.php");
-    exit();
+$infoArticle = $user->getArticleInfo($articleID,$_GET['instime']);
+if($articleID == null || $infoArticle == null) { //se la pagina non esiste o l'id non corrisponde
+	header("Location: notfound.php");
+	exit();
 }
-$infoArticle = $user->getArticleInfo($articleID);
+
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
 $instime = null;
 

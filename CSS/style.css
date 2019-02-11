@@ -426,7 +426,7 @@ img.navbar-brand {
 .sidebar-nav a:visited,
 .sidebar-nav li.active:visited,
 .breadcrumb-item a:visited {
-	color: rgb(0, 255, 243);
+	color: #00fff3;
 }
 
 #categoria {
@@ -1494,7 +1494,7 @@ legend {
 }
 
 #collegamentibottoni a:visited {
-	color: rgb(0, 255, 243);
+	color: #00fff3;
 }
 
 #collegamentibottoni a:hover {

@@ -15,7 +15,7 @@ abstract class User
 	private $dbconnection;
 
 
-	private const Category_Handlers = array(
+	const Category_Handlers = array(
 		'personaggi' => array(
 			'_characters',
 			'type',
@@ -45,7 +45,7 @@ abstract class User
 		)
 	);
 
-	private const Category_Readble_Formats = array (
+	const Category_Readble_Formats = array (
 	    'umani'=> 'Esseri Umani',
         'creature' => 'Creature',
         'eroi' => 'Semidivinit&agrave; ed Eroi',
@@ -86,14 +86,14 @@ abstract class User
 
     }
 
-	public function searchArticle($substring, $category = null, $subcategory = null ,$pendant = false,$authorID = null) {
+	public function searchArticle($substring, $category = null, $subcategory = null ,$pendant = 0,$authorID = null) {
         if (self::isValidCategory($category)) {
             self::adjustCategories($category,$subcategory);
             $categoryfield = self::Category_Handlers[$category][1];
 
             $substring = addslashes(strtolower(trim($substring)));
 
-            $table = ($pendant ? 'unpostedPages' : 'postedPages');
+            $table = ($pendant == 1 ? 'unpostedPages' : 'postedPages');
 
             $select = "SELECT *
                                     FROM Prova.$table";
