@@ -27,7 +27,7 @@ $numArticles = 5;
 			<p class="sr-only">Ti trovi in:</p>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
+                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Eventi</li>
 			</ol>
 		</nav>

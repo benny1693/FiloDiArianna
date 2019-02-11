@@ -1,11 +1,11 @@
 <?php
 require_once "utilities.php";
-$u = init();
+$user= init();
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 
 $articlesNumber = 10;
 
-$list = $u->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
+$list = $user->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
 $pages = ceil(count($list)/$articlesNumber);
 if ($pages == 0)
     $currentpage = 0;
@@ -20,7 +20,7 @@ if ($currentpage > $pages || $currentpage < 0) {
 	exit();
 }
 
-$from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']);
+$from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GET['category'] != 'not_selected';
 
 ?>
 <!DOCTYPE html>
@@ -47,14 +47,24 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']);
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item" lang="en"><a href="../index.php">Home</a></li>
                 <?php
-    				$breadcrumb = ( $from_scopri ? findCorrectTypes() : '<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>');
-				?>
+                $categories = $user->findTypeReadFormat($_GET['category'],$_GET['subcategory']);
+                if ($categories){
+                    echo '
+                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
+                <li class="breadcrumb-item"><a href="'.$_GET['category'].'.php">'.$categories[0].'</a></li>
+                <li class="breadcrumb-item active"><a href="'.$_GET['subcategory'].'.php">'.$categories[1].'</a></li>';
+                } else {
+                    echo '<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>';
+                }
+
+                ?>
 			</ol>
 		</nav>
 		<section>
 			<h1>Risultati di ricerca</h1>
             <?php
-            if($_GET['substringSearched'] == null || empty($list))
+            $emptysearch = $_GET['substringSearched'] == null && !$from_scopri;
+            if($emptysearch || empty($list))
                 echo '<p id="results">Nessun risultato trovato</p>';
             else {
                 echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
@@ -64,9 +74,9 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']);
 
                 echo '<ul class="query">';
                 if ($currentpage < $pages)
-                    $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,$articlesNumber));
+                    $user->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,$articlesNumber));
                 else
-                    $u->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber));
+                    $user->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber));
 
                 printNavigation($currentpage,$pages);
                 echo '</ul>';
