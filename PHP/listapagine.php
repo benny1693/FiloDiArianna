@@ -2,12 +2,12 @@
 require_once 'utilities.php';
 $user = init();
 
-$pendenti = $_GET['pendenti'] = (empty($_GET['pendenti']) ? false : $_GET['pendenti']);
-$pendenti = filter_var($pendenti, FILTER_VALIDATE_BOOLEAN);
+$pendenti = $_GET['pendenti'] = (empty($_GET['pendenti']) ? 0 : $_GET['pendenti']);
+//$pendenti = filter_var($pendenti, FILTER_VALIDATE_BOOLEAN);
 
 $currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 
-$articlesNumber = 10;
+$articlesNumber = 2;
 
 $list = null;
 if ($user->isAdmin())
@@ -57,7 +57,7 @@ if ($currentpage > $pages || $currentpage < 0) {
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="areapersonale.php">Area personale</a></li>
                 <?php
-				echo '<li class="breadcrumb-item active" aria-current="page">Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</li>';
+				echo '<li class="breadcrumb-item active" aria-current="page">Pagine '.($pendenti == 1 ? 'pendenti' : 'pubblicate').'</li>';
 				?>
 			</ol>
 		</nav>
@@ -69,14 +69,14 @@ if ($currentpage > $pages || $currentpage < 0) {
                 printFeedback('Devi essere registrato per vedere questa pagina',false);
             else {
                 echo '
-			<h1>Pagine '.($pendenti ? 'pendenti' : 'pubblicate').'</h1>';
+			<h1>Pagine '.($pendenti == 1 ? 'pendenti' : 'pubblicate').'</h1>';
                 if (count($list) <= 0)
                     echo '<p id="results">Nessun risultato trovato</p>';
                 else {
                     echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
                     echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
 
-                    printNavigation($currentpage, $pages);
+                    printNavigation($currentpage, $pages,true,$pendenti);
 
                     echo '
                 <ul class="query">';
@@ -89,7 +89,7 @@ if ($currentpage > $pages || $currentpage < 0) {
                     echo '
                 </ul>';
 
-                    printNavigation($currentpage, $pages);
+                    printNavigation($currentpage, $pages,true,$pendenti);
                 }
             }
 			?>

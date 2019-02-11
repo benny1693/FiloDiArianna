@@ -53,8 +53,8 @@ $user = init();
                 <h2>Funzionalit&agrave;</h2>
                 <ul id="collegamentibottoni">
                     <li> <a href="nuovapagina.php">Crea una nuova pagina</a> </li>
-                    <li> <a href="listapagine.php?pendenti=true">Pagine pendenti</a> </li>
-                    <li> <a href="listapagine.php?pendenti=false">Pagine pubblicate</a> </li>';
+                    <li> <a href="listapagine.php?pendenti=1">Pagine pendenti</a> </li>
+                    <li> <a href="listapagine.php?pendenti=2">Pagine pubblicate</a> </li>';
                 if ($user->isAdmin())
                     echo '
                     <li> <a href="gestioneutenti.php">Gestione utenti</a> </li>';
