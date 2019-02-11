@@ -908,7 +908,6 @@ label[for="inputPasswordConfirm"] {
 	padding: 2rem 1rem;
 	border-radius: 5px;
 }
-
 /* END NOT FOUND ###################################################### */
 
 /* BREADCRUMB ############################################## */
@@ -1625,7 +1624,7 @@ legend {
 
 	.container,
 	.container-fluid {
-		max-width: 71.250em;
+		max-width: 71.250rem;
 	}
 }
 
