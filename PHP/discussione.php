@@ -3,12 +3,12 @@ include_once 'utilities.php';
 $user = init();
 $articleID = $_GET['articleID'];
 $instime = $_GET['instime'];
-if($articleID == null || $user->getArticleInfo($articleID) == null || $instime) { //se la pagina non esiste o l'id non corrisponde o la pagina è pendente
+$infoArticle = $user->getArticleInfo($articleID);
+if($articleID == null || $infoArticle == null || $instime) { //se la pagina non esiste o l'id non corrisponde o la pagina è pendente
     header("Location: notfound.php");
     exit();
 }
 
-$infoArticle = $user->getArticleInfo($articleID);
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['ext'], $infoArticle['content']);
 $disc = $article->getDiscussionArea();
 $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricevere tutti i commenti relativi a quell'articolo dal DB

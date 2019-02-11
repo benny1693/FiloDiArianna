@@ -51,11 +51,17 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GE
 
                 if ($categories && User::isValidCategory($_GET['category'])){
                     echo '
-                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
-                <li class="breadcrumb-item"><a href="'.$_GET['category'].'.php">'.$categories[0].'</a></li>
-                <li class="breadcrumb-item active"><a href="'.$_GET['subcategory'].'.php">'.$categories[1].'</a></li>';
+                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>';
+                    if(!empty($_GET['subcategory']) && User::isValidSubcategory($_GET['subcategory'])) {
+                        echo '
+                    <li class="breadcrumb-item"><a href="' . $_GET['category'] . '.php">' . $categories[0] . '</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" >' . $categories[1] . '</li>';
+                    } else {
+                        echo '
+                    <li class="breadcrumb-item active">' . $categories[0] . '</li>';
+                    }
                 } else {
-                    echo '<li class="breadcrumb-item active" aria-current="page" lang="en">Ricerca</li>';
+                    echo '<li class="breadcrumb-item active" aria-current="page">Ricerca</li>';
                 }
 
                 ?>
