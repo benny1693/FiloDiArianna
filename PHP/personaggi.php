@@ -45,6 +45,7 @@ $numArticles = 5;
                 <dt>Creature</dt>
                 <dd>Sono tutte quelle entit&agrave; dall'aspetto non antropomorfo.</dd>
             </dl>
+            <p>Per ogni categoria puoi visulizzare alcuni articoli appartenenti.</p>
             <ul id="macrocategories">
 				<li>
 					<a href="#semidei" class="sr-only">Salta lista</a>

@@ -15,7 +15,7 @@ abstract class User
 	private $dbconnection;
 
 
-	const Category_Handlers = array(
+	private const Category_Handlers = array(
 		'personaggi' => array(
 			'_characters',
 			'type',
@@ -45,13 +45,26 @@ abstract class User
 		)
 	);
 
+	private const Category_Readble_Formats = array (
+	    'umani'=> 'Esseri Umani',
+        'creature' => 'Creature',
+        'eroi' => 'Semidivinit&agrave; ed Eroi',
+        'dei' => 'Divinit&agrave;',
+        'eraeroi' => 'Era degli Eroi',
+        'eradei' => 'Era degli Dei',
+        'eradeiuomini' => 'Era degli Dei e degli Uomini',
+        'mitologici' => 'Mitologici',
+        'reali' => 'Reali'
+    );
+
+
 	public function __construct(){
 		$this->dbconnection = new DatabaseConnection();
 	}
 
 	public abstract function isRegistered();
 
-	private function adjustCategories(&$category,&$subcategory) {
+	static private function adjustCategories(&$category,&$subcategory) {
 		if ($category) {
 			if (!array_key_exists($category, self::Category_Handlers)) {
 				$category = null;
@@ -66,34 +79,43 @@ abstract class User
 		}
 	}
 
+	static public function isValidCategory($category) {
+
+            return array_key_exists($category, self::Category_Handlers) ||
+                !$category || $category == 'not_selected';
+
+    }
+
 	public function searchArticle($substring, $category = null, $subcategory = null ,$pendant = false,$authorID = null) {
+        if (self::isValidCategory($category)) {
+            self::adjustCategories($category,$subcategory);
+            $categoryfield = self::Category_Handlers[$category][1];
 
-		$this->adjustCategories($category,$subcategory);
-		$categoryfield = self::Category_Handlers[$category][1];
+            $substring = addslashes(strtolower(trim($substring)));
 
-		$substring = addslashes(strtolower(trim($substring)));
+            $table = ($pendant ? 'unpostedPages' : 'postedPages');
 
-		$table = ($pendant ? 'unpostedPages' : 'postedPages');
+            $select = "SELECT *
+                                    FROM Prova.$table";
 
-		$select = "SELECT *
-								FROM Prova.$table";
+            if ($category) {
+                $category = self::Category_Handlers[$category][0];
+                $select = $select . " NATURAL JOIN Prova.$category";
+            }
+            $select = $select . " WHERE title LIKE '%$substring%'";
 
-		if ($category) {
-			$category = self::Category_Handlers[$category][0];
-			$select = $select . " NATURAL JOIN Prova.$category";
-		}
-		$select = $select . " WHERE title LIKE '%$substring%'";
+            if ($subcategory) {
+                $select = $select . " AND $categoryfield = '$subcategory'";
+            }
 
-		if ($subcategory) {
-			$select = $select . " AND $categoryfield = '$subcategory'";
-		}
+            if ($authorID)
+                $select = $select . " AND author = $authorID";
 
-		if ($authorID)
-			$select = $select . " AND author = $authorID";
+            $query = $this->dbconnection->query($select);
 
-		$query = $this->dbconnection->query($select);
-
-		return $query->fetch_all(MYSQLI_ASSOC);
+            return $query->fetch_all(MYSQLI_ASSOC);
+        } else
+            return array();
 	}
 
 	public function printArticleListTitle($articleList){
@@ -296,6 +318,17 @@ abstract class User
 			$this->printArticleListTitle(array($list[$rand_keys]));
 		}
 	}
+
+	function findTypeReadFormat($category, $subcategory){
+        if (!empty($category) && !empty($subcategory))
+            return array(
+                strtoupper(substr($category,0,1)).substr($category,1), // rendo la prima lettera maiuscola
+                self::Category_Readble_Formats[$subcategory] // converto la sottocategoria
+            );
+        else
+            return null;
+    }
+
 }
 
 ?>

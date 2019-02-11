@@ -41,6 +41,7 @@ $numArticles = 5;
                 <dt>Mitologici</dt>
                 <dd>Sono tutti quei luoghi che sono presenti solo nella mitologia e che non trovano una collocazione geografica</dd>
             </dl>
+            <p>Per ogni categoria puoi visulizzare alcuni articoli appartenenti.</p>
             <ul id="macrocategories">
 				<li>
 					<a href="#reali" class="sr-only">Salta lista</a>
