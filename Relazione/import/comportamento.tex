@@ -1,0 +1,87 @@
+\section{Comportamento}
+Per comporamento del sito si intende il suo funzionamento dinamico, quindi
+lato server, gestito dai file PHP, e lato client, gestito dal JavaScript.
+
+\subsection{Javascript}
+Per il comportamento di determinate pagine del sito, lato client, è stato utilizzato uno script in JavaScript che comprende diverse funzioni, le quali servono principalmente per il controllo dell’input nei form e nella barra di ricerca. È stato scelto di limitare al massimo l’utilizzo di queste funzionalità, in quanto non si possono fare assunzioni sulla disponibilità di tale tecnologia per tutta l’utenza del sito.\\
+Inoltre, il sito è completamente fruibile nel caso JavaScript venga disabilitato,
+in quanto è stata fornita un’alternativa lato server tramite PHP. Di seguito forniamo una breve descrizione del funzionamento degli script inseriti.
+
+\subsubsection{Funzionalità}
+Abbiamo usato un solo file per contenere tutte le funzionalità da noi implementate. Di seguito, la lista delle funzioni:
+\begin{itemize}
+	\item \textbf{load():} questa funzione viene chiamata quando tutto il contenuto della pagina è stato caricato. Quello che fa è assegnare un evento di \textit{click} al pulsante \textit{burger-menu} e al pulsante \textit{close}.\\
+	Abbiamo scelto \textit{click} al posto di \textit{tocuh} perché il \textit{click} gestisce entrambi gli eventi. L'unica cosa negativa è che quando un utente usa le dita per cliccare il pulsante, l'evento non gestisce nel miglior modo l'area in cui l'utente clicca, siccome viene visto come un puntatore mouse e non come un dito. Per ovviare a questo problema abbiamo usato pulsanti un po' più grandi rispetto alla dimensione consigliata. Questo permette all'utente di non avere problemi nel tap sugli elementi.\\
+	Il pulsante \textit{burger-menu} è situato nel top-right della pagina, mentre il \textit{close} sempre top-right ma all'interno del contenuto del menu che compare al di sotto dell'header;
+	\item \textbf{scroll():} anche questa funzione viene chiamata alla fine del caricamento della pagina. Viene usata per far comparire un pulsante di aiuto alla navigazione, il quale permette di tornare ad inizio pagina quando un utente si trova al di sotto di una certa soglia di scrolling. Inoltre viene usata anche per il pulsante "torna all'articolo". Quando l'utente arriva a fine pagina, questo pulsante viene spostato leggermente più in alto per evitare che vada sopra al footer. Il suo posizionamento rispetto alla pagina è bottom-left. Grazie a questo pulsante non dovrà scrollare fino ad inizio pagina e quindi perdere tempo per tornare al contenuto da lui interessato. Il posizionamento del pulsante è bottom-right rispetto allo schermo per evitare che ingombri il contenuto della pagina e compare solo quando un utente scrolla.
+	\item \textbf{plusClick():} questa funzione viene chiamata quando si clicca il pulsante + della pagina "Nuova Pagina". Serve per aggiungere delle pagine correlate alla pagina che l'utente sta creando. Ad ogni click, si aggiunge un menu a tendina contenente la lista di pagine del sito, in modo tale che l'utente selezioni la pagina correlata.
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=10cm]{img/plusButton.jpg}
+			\caption{Errore di input}
+		\end{center}
+	\end{figure}
+	\item \textbf{showAlert():} questa funzione viene chiamata quando un utente sta compilando un form e cambia focus di input. La funzione ha lo scopo di controllare se ciò che ha digitato l'utente sia corretto rispetto a ciò che vuole l'input. Se non è corretto, viene creato un "commento" al di sotto quell'input di colore rosso.
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width=10cm]{img/error.jpg}
+			\caption{Errore di input}
+		\end{center}
+	\end{figure}
+	\item \textbf{checkText():} questa funzione viene usata per controllare se il testo inserito dall'utente è corretto. Ritorna true se lo è, false se non lo è, e in questo caso, attraverso la chiamata alla funzione \textit{showAlert()} mostra l'errore di input errato all'utente. La funzione \textit{checkText()} viene usata per controllare i campi nome, cognome, email, username, password e conferma password;
+	\item \textbf{checkEmail():} questa funzione viene usata allo stesso modo di \textit{checkText()} ma per il campo input email;
+	\item \textbf{isPasswordEqual():} questa funzione viene usata allo stesso modo di \textit{checkText()} ma confronta il campo input password con conferma password;
+	\item \textbf{alertFileSize():} questa funzione controlla che l'immagine caricata dall'utente nella pagina "Nuova pagina" o "Modifica pagina", non sia troppo grande. Se lo è, il pulsante di submit viene disabilitato attraverso la funzione \textit{disableElement()};
+	\item \textbf{disableElement():} questa funzione serve per disabilitare il pulsante di submit quando il form in "Nuova pagina" e "Modifica pagina" ha dei campi che non sono validi;
+	\item \textbf{invalidBirthDay():} questa funzione viene usata per controllare se la data di nascita dell'utente è corretta, ovvero fa dei controlli per verificare l'età e, se è troppo piccolo, troppo vecchio oppure non viene inserita una data, non valida.
+\end{itemize}
+\pagebreak
+\subsection{PHP}
+Il comportamento del sito dal lato server è gestito da file PHP, i quali sostituiscono il JavaScript nel caso sia disabilitato, interagiscono con il database, forniscono sessioni di utilizzo per utenti loggati e caratterizzano il comportamento generale delle pagine.\\
+Il codice PHP è stato suddiviso in diversi file, uno per ogni classe. Inoltre è stato creato un file che contiene un insieme di funzioni di supporto.
+
+\subsubsection{Classi}
+\paragraph{User} Abbiamo definito una classe che rappresenta un utente generico il quale ha una dipendenza verso la classe \textit{databaseConection}. Le sottoclassi di User sono \textit{RegisteredUser} che rappresenta un semplice utente che si è registrato il quale ha una sottoclasse \textit{Admin} che specializza un utente registrato, infatti ha i privilegi più alti e può fare cose che un utente registrato non può fare, e \textit{UnregisteredUser} che rappresenta un utente non registrato.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=14cm]{img/User.png}
+		\caption{Gerarchia utenti}
+	\end{center}
+\end{figure}
+
+\paragraph{Page} Abbiamo definito una classe che rappresenta una pagina generica, la quale ha una sottoclasse che rappresenta una pagina che contiene degli articoli creati da utenti registrati. Questa classe ha una dipendenza verso la classe \textit{discussionArea}.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/Page.png}
+		\caption{Gerarchia pagine}
+	\end{center}
+\end{figure}
+
+\paragraph{Discussion Area} Questa classe rappresenta l'area di una pagina in cui compare una discussione, ovvero contiene dei commenti relativi ad un determinato articolo che gli utenti hanno scritto. Questa classe ha una dipendenza verso la classe \textit{Comment}.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/DiscussionArea.png}
+		\caption{Classe Discussion Area}
+	\end{center}
+\end{figure}
+
+\paragraph{Database Connection} Questa classe rappresenta la connessione al database e permette ad un utente di interagire con il sito, come per esempio registrarsi ed accedere al proprio account.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/DatabaseConnection.png}
+		\caption{Classe Database Connection}
+	\end{center}
+\end{figure}
+
+\paragraph{Comment} Questa classe rappresenta un commento fatto da un utente, relativo ad un articolo pubblicato.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/Comment.png}
+		\caption{Classe Comment}
+	\end{center}
+\end{figure}
+\pagebreak
+\subsubsection{Sessione}
+La sessione viene usata per memorizzare gli ID degli utenti che visitano il sito. In questo modo si può capire la tipologia di utente che sta visitando il sito. Se un utente è non registrato, gli viene asegnato un ID con valore uguale a -1.
+
+\subsubsection{Form} Tutti i tag input vengono sottoposti ad un processo di validazione per garantire un corretto inserimento del dato richiesto. Nel caso un input non superi la validazione, viene mostrato un messaggio di errore senza eliminare il contenuto degli input, cosi che l'utente non debba riscrivere tutti campi nuovamente.
