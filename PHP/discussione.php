@@ -13,6 +13,8 @@ $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['auth
 $disc = $article->getDiscussionArea();
 $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricevere tutti i commenti relativi a quell'articolo dal DB
 
+$categories = $user->getPathArticle($articleID);
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -41,7 +43,10 @@ $arrayComments = $user->getArticleComment($article->getArticleID()); //per ricev
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
                 <?php
-				echo '<li class="breadcrumb-item"><a href="articolo.php?articleID='.$article->getArticleID().'">'.$article->getTitle().'</a></li>';
+                echo '
+                <li class="breadcrumb-item"><a href="'.$categories[2].'.php">'.$categories[0].'</a></li>
+                <li class="breadcrumb-item"><a href="ricerca.php?category='.$categories[2].'&subcategory='.$categories[3].'">'.$categories[1].'</a></li>
+				<li class="breadcrumb-item"><a href="articolo.php?articleID='.$article->getArticleID().'">'.$article->getTitle().'</a></li>';
 				?>
 				<li class="breadcrumb-item" aria-current="page">Discussione</li>
 			</ol>
