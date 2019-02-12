@@ -1,27 +1,17 @@
 <?php
 require_once "utilities.php";
 $user= init();
-$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
-
-$articlesNumber = 10;
-
 $list = $user->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
-$pages = ceil(count($list)/$articlesNumber);
-if ($pages == 0)
-    $currentpage = 0;
 
-if ($currentpage == 0 && $page != 0) {
-	header("Location: notfound.php");
-	exit();
-}
-
-if ($currentpage > $pages || $currentpage < 0) {
+$listPage = null;
+try {
+	$listPage = new SearchPage(empty($_GET['page']) ? 1 : $_GET['page'], count($list));
+} catch (Exception $exception) {
 	header("Location: notfound.php");
 	exit();
 }
 
 $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GET['category'] != 'not_selected';
-
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -74,19 +64,18 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GE
             if($emptysearch || empty($list))
                 echo '<p id="results">Nessun risultato trovato</p>';
             else {
-                echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
-                echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
+                echo "<p id=\"results\">Trovati " . $listPage->getArticles() . " risultati</p>";
+                echo '<p class="sr-only">Pagina '. $listPage->getIndex() .' di '. $listPage->lastPage() .'</p>';
 
-                printNavigation($currentpage,$pages);
+                $listPage->printNavigation();
 
                 echo '<ul class="query">';
-                if ($currentpage < $pages)
-                    $user->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber,$articlesNumber));
-                else
-                    $user->printArticleList(array_slice($list,($currentpage-1)*$articlesNumber));
 
-                printNavigation($currentpage,$pages);
+                $listPage->printArticleList($list);
+
                 echo '</ul>';
+
+                $listPage->printNavigation();
             }
             ?>
         </section>

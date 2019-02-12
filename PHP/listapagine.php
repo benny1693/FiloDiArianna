@@ -2,12 +2,7 @@
 require_once 'utilities.php';
 $user = init();
 
-$pendenti = $_GET['pendenti'] = (empty($_GET['pendenti']) ? 0 : $_GET['pendenti']);
-//$pendenti = filter_var($pendenti, FILTER_VALIDATE_BOOLEAN);
-
-$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
-
-$articlesNumber = 10;
+$pendenti = empty($_GET['adm']) ? 0 : $_GET['adm'];
 
 $list = null;
 if ($user->isAdmin())
@@ -16,20 +11,15 @@ else {
     if ($user->isRegistered())
     	$list = $user->searchArticle('', null, null, $pendenti, $user->getID());
 }
-$pages = ceil(count($list)/$articlesNumber);
-if ($pages == 0)
-	$currentpage = 0;
 
-if ($currentpage == 0 && $page != 0) {
-	header("Location: notfound.php");
-	exit();
+$listPage = null;
+try {
+	$listPage = new SearchPage(empty($_GET['page']) ? 1 : $_GET['page'], count($list));
+} catch (Exception $exception) {
+    header("Location: notfound.php");
+    exit();
 }
-
-if ($currentpage > $pages || $currentpage < 0) {
-	header("Location: notfound.php");
-	exit();
-}
-
+$listPage->setAdministration($pendenti);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -57,7 +47,7 @@ if ($currentpage > $pages || $currentpage < 0) {
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="areapersonale.php">Area personale</a></li>
                 <?php
-				echo '<li class="breadcrumb-item active" aria-current="page">Pagine '.($pendenti == 1 ? 'pendenti' : 'pubblicate').'</li>';
+				echo '<li class="breadcrumb-item active" aria-current="page">Pagine '.($pendenti == 2 ? 'pendenti' : 'pubblicate').'</li>';
 				?>
 			</ol>
 		</nav>
@@ -69,27 +59,22 @@ if ($currentpage > $pages || $currentpage < 0) {
                 printFeedback('Devi essere registrato per vedere questa pagina',false);
             else {
                 echo '
-			<h1>Pagine '.($pendenti == 1 ? 'pendenti' : 'pubblicate').'</h1>';
-                if (count($list) <= 0)
+			<h1>Pagine '.($pendenti == 2 ? 'pendenti' : 'pubblicate').'</h1>';
+                if ($listPage->noResults())
                     echo '<p id="results">Nessun risultato trovato</p>';
                 else {
-                    echo "<p id=\"results\">Trovati " . count($list) . " risultati</p>";
-                    echo "<p class='sr-only'>Pagina $currentpage di $pages</p>";
+                    echo '<p id="results">Trovati ' . $listPage->getArticles() . ' risultati</p>';
+                    echo '<p class="sr-only">Pagina '.$listPage->getIndex().' di '.$listPage->lastPage().'</p>';
 
-                    printNavigation($currentpage, $pages,true,$pendenti);
+                    $listPage->printNavigation(true);
 
-                    echo '
-                <ul class="query">';
+                    echo '<ul class="query">';
 
-                    if ($currentpage < $pages)
-                        $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber, $articlesNumber), true,$pendenti);
-                    else //$currentpage == $pages
-                        $user->printArticleList(array_slice($list, ($currentpage - 1) * $articlesNumber), true,$pendenti);
+                    $listPage->printArticleList($list, $user->isAdmin());
 
-                    echo '
-                </ul>';
+                    echo '</ul>';
 
-                    printNavigation($currentpage, $pages,true,$pendenti);
+                    $listPage->printNavigation(true);
                 }
             }
 			?>

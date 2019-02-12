@@ -8,26 +8,20 @@ if($pageUserID == null || $infoUserPage == null) {  //se id inesistente o sbagli
     exit();
 }
 
-$bool = $_SESSION['ID'] == $pageUserID;
-if($bool){
+$personalProfile = $_SESSION['ID'] == $pageUserID;
+if($personalProfile){
         header("Location: areapersonale.php");
         exit();
 }
 
-
 //da qui, come per listapagine.php per la stampa delle pagine pubblicate dall'utente
-$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
 $articleList = $user->searchArticle('', null, null, false, $pageUserID);
-$pages = ceil(count($articleList)/10);
-if ($pages == 0)
-    $currentpage = 0;
-
-if ($currentpage == 0 && $page != 0)
-    header("Location: notfound.php");
-
-if ($currentpage > $pages || $currentpage < 0)
-    header("Location: notfound.php");
-
+try {
+	$listPage = new SearchPage(empty($_GET['page']) ? 1 : $_GET['page'], count($list));
+} catch (Exception $exception) {
+	header("Location: notfound.php");
+	exit();
+}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
@@ -57,22 +51,20 @@ if ($currentpage > $pages || $currentpage < 0)
 		</nav>
 		<section>
          <?php
-         $user->printOtherUserInfo($pageUserID); //per stampare i dati personali
+         $listPage->printOtherUserInfo($user->getOtherUserInfo($pageUserID)); //per stampare i dati personali
 
          if($articleList) { //l'utente ha pubblicato delle pagine
              echo '<h2>Pagine pubblicate</h2>';
 
-             printNavigation($currentpage, $pages);
+             $listPage->printNavigation();
 
              echo '<ul class="query">';
-             if ($currentpage < $pages)
-                 $user->printArticleList(array_slice($articleList, ($currentpage - 1) * 10, 10), false, false);
-             else
-                 $user->printArticleList(array_slice($articleList, ($currentpage - 1) * 10), false, false);
-             echo '
-                </ul>';
 
-             printNavigation($currentpage, $pages);
+             $listPage->printArticleList($articleList);
+
+             echo '</ul>';
+
+             $listPage->printNavigation();
          }
          else {
              echo '<p>Nessuna pagina pubblicata</p>';
@@ -87,24 +79,3 @@ if ($currentpage > $pages || $currentpage < 0)
 </body>
 
 </html>
-
-
-<!--NOTE 
-La visualizzazione e le funzionalità  disponibili della pagina cambiano in base all'utente:
-
-ADMIN:
-1)In PAGINE PENDENTI:
-vede tutte le pagine che hanno bisogno di approvazione e può accettarle o no(in questo caso viene inviata una mail a chi l'aveva creata per dirgli il perchè)
-2)In PAGINE PUBBLICATE:
-vede tutte le pagine pubblicate e può eliminarle (in questo caso viene inviata una mail a chi l'aveva creata per dirgli il perchè)
-
-UTENTE:
-1)In PAGINE PENDENTI:
-vede le pagine che ha creato che attendono approvazione da parte di un admin, può in tempo reale eliminarle o modificarle
-2)In PAGINE PUBBLICATE:
-vede le pagine che ha creato che sono state pubblicate, può eliminarle o modicarle
-Una modifica per essere visibile ha bisogno di approvazione, cioè:
-la pagina attuale rimane tra le pagine  pubblicate, ma viene creata una copia con le modifiche apportate sulle pagine pendenti,
-se la pagina pendente viene accettata essa sostituisce la versione precedente sulle pagine pubblicate.
-Una eliminazione non richiede autorizazioni.
- -->

@@ -29,7 +29,67 @@ class Page {
         print_r('<a id="login-button" href="'.addPoints().'PHP/accesso.php">Accedi</a>');
     }
 
+    public function printLogButtons() {
+        if ($_SESSION['ID'] == -1)
+            $this->printLoginButton();
+        else
+            $this->printPersonalButtons();
+    }
 
+    public function printOtherUserInfo($info) {
+
+        if ($info != array()) {
+            print_r(
+              "<h1>Profilo di ".$info['username']."</h1>
+			<h2>Dati personali</h2>
+			<dl id=\"personalia\">
+				<dt>Nome</dt>
+				<dd>".stripslashes($info['name'])."</dd>
+				<dt>Cognome</dt>
+				<dd>".stripslashes($info['surname'])."</dd>
+				<dt>Data di nascita</dt>
+				<dd>".$info['birthDate']."</dd>
+				<dt>Sesso</dt>
+				<dd>".$info['gender']."</dd>
+			</dl>");
+        }
+    }
+
+    function printFeedback($message,$valid){
+        if ($valid)
+            echo "
+				<div class=\"feedback valid-feedback\">";
+        else
+            echo "
+				<div class=\"feedback invalid-feedback\">";
+
+        echo "
+					<p>$message</p>
+				</div>";
+    }
+
+    private function printArticleListTitle($articleList){
+        foreach ($articleList as $article){
+            echo '
+					<li><a href="articolo.php?articleID='.$article['ID'].'">' . stripslashes($article['title']) . '</a></li>';
+        }
+    }
+
+    function printRandomArticlesTitle($list,$numArticles){
+        // aggiungere $user->searchArticle('',$category,$subcategory); negli altri file
+        $numArticles = min(abs($numArticles),count($list));
+
+        $rand_keys = array_rand($list,$numArticles);
+        if ($numArticles > 1) {
+            $result = array();
+            foreach ($rand_keys as $key) {
+                array_push($result, $list[$key]);
+            }
+            $this->printArticleListTitle($result);
+        } elseif ($numArticles == 1) {
+            $this->printArticleListTitle(array($list[$rand_keys]));
+        }
+    }
 }
 
 ?>

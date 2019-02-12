@@ -1,6 +1,23 @@
 <?php
 require_once 'utilities.php';
-init();
+$user = init();
+
+$page = new FormPage(false);
+
+if ($user->isRegistered()) {
+	$_SESSION['errorMsg'] = 'Hai gi&agrave; effettuato l\'accesso';
+	header("Location: avviso.php");
+	exit();
+} else {
+	if (!empty($_POST)){
+		$user = login($_POST['username'], $_POST['password']);
+	    $page->setErrors(!$user->isRegistered());
+        if (!$page->hasErrors()){
+            header("Location: ../index.php");
+            exit();
+        }
+	}
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -9,6 +26,7 @@ init();
 	<title>Pagina di accesso | Filo di Arianna</title>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Laura Cameran" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
 	<meta name="keywords" content="greco, antico, ellenico, grecia, enciclopedia, mitologia, accesso, login, sign-up, sign-in" />
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
@@ -28,51 +46,37 @@ init();
 			</ol>
 		</nav>
 
-
-			<?php
-            if ($_SESSION['ID'] != -1) {
-                echo '
-        <section>';
-                printFeedback("Hai gi&agrave; effettuato l'accesso", false);
-            }else{
-                echo '
-            <section id="accesso">
+        <section id="accesso">
             <h1>Accedi</h1>
-
-			<form data-toggle="validator" action="login.php" method="post">
-				<div class="form-group row">
-					<label for="inputUsername0" class="col-sm-3 col-form-label">Username</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputUsername0" name="username" placeholder="Username" required="required" />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="inputPassword0" class="col-sm-3 col-form-label">Password</label>
-					<div class="col-sm-9">
-						<input type="password" class="form-control" id="inputPassword0" name="password" placeholder="Password" required="required" />
-					';
-
-                if (isset($_SESSION['login_error']) && ($_SESSION['login_error']))
-                    printFeedback('Username o password errati',false);
-
-                echo '
+            <form data-toggle="validator" action="accesso.php" method="post">
+                <div class="form-group row">
+                    <label for="inputUsername0" class="col-sm-3 col-form-label">Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="inputUsername0" name="username" placeholder="Username" required="required" />
                     </div>
-				</div>
-				<div class="form-group row col-sm-10 col-sm-offset-3">
-					<button type="submit" class="btn  btn-outline-primary">Vai</button>
-				</div>
-			</form>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword0" class="col-sm-3 col-form-label">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="inputPassword0" name="password" placeholder="Password" required="required" />
+                        <?php
+                        if ($page->hasErrors())
+                            $page->printFeedback('Username o password errati',false);
+                        ?>
+                    </div>
+                </div>
+                <div class="form-group row col-sm-10 col-sm-offset-3">
+                    <button type="submit" class="btn  btn-outline-primary">Vai</button>
+                </div>
+            </form>
 
-			<div class="row">
-				<div class="col-sm-10 col-sm-offset-3">
-					<p id="NonAncoraRegistrato">Non sei ancora registrato?</p>
-					<a href="registrazione.php" class="btn btn-outline-primary">Registrati</a>
-				</div>
-			</div>';
-            }
-            ?>
-		</section>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-3">
+                    <p id="NonAncoraRegistrato">Non sei ancora registrato?</p>
+                    <a href="registrazione.php" class="btn btn-outline-primary">Registrati</a>
+                </div>
+            </div>
+        </section>
 	</div>
 
 	<!-- FOOTER -->

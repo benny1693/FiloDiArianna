@@ -1,7 +1,6 @@
 <?php
-require_once "Page.php";
 require_once "utilities.php";
-$page = new Page();
+$header = new Page();
 ?>
 
 <header>
@@ -17,10 +16,7 @@ $page = new Page();
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <?php
-                if ($_SESSION['ID'] != -1)
-                    $page->printPersonalButtons();
-                else
-                    $page->printLoginButton();
+                    $header->printLogButtons();
                 ?>
             </div>
             <div class="col-sm-7 col-sm-pull-2 col-xs-12">

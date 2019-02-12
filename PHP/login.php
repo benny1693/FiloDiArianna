@@ -7,7 +7,7 @@
  */
 
 require_once 'utilities.php';
-init();
+
 $u = login($_POST['username'],$_POST['password']);
 
 if ($_SESSION['ID'] == -1){

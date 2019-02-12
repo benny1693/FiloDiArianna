@@ -51,17 +51,11 @@ $categories = $user->getPathArticle($articleID);
                 <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
 
                 <?php
-                /*
-                ?>
-                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
-				<li class="breadcrumb-item" aria-current="page"><?php echo $article->getTitle(); ?></li>
-                */
 
                 echo '
                 <li class="breadcrumb-item"><a href="'.$categories[2].'.php">'.$categories[0].'</a></li>
                 <li class="breadcrumb-item"><a href="ricerca.php?category='.$categories[2].'&subcategory='.$categories[3].'">'.$categories[1].'</a></li>
                 <li class="breadcrumb-item active" aria-current="page">'.$article->getTitle().'</li>';
-
 
                 ?>
 			</ol>

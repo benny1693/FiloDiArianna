@@ -5,7 +5,7 @@
  * Date: 04/01/19
  * Time: 17.58
  */
-
+/*
 require_once 'UnregisteredUser.php';
 require_once 'RegisteredUser.php';
 require_once 'Admin.php';
@@ -24,7 +24,7 @@ try {
 }
 
 
-/*
+
 $a = null;
 $b = null;
 $c = null;
@@ -53,7 +53,7 @@ $b->deleteComment($c1);
 $b->printComments();
 
 echo '-------FINE PROVE LAURA --------';
-*/
+
 
 echo "<h1>Funzionalità generiche</h1>";
 
@@ -212,5 +212,5 @@ $result = $query->fetch_assoc();
 print_r($result);
 
 $u->deleteArticle($result['ID']);
-
+*/
 ?>

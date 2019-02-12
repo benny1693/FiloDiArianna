@@ -11,6 +11,7 @@ $u = init();
 switch($_POST['action']):
 	case 'Accetta':
 		$u->approveArticle($_POST['pageid'],str_replace(array(':','-',' '),'',$_POST['instime']));
+
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 		exit();
 		break;
@@ -19,6 +20,7 @@ switch($_POST['action']):
 			$u->deleteArticle($_POST['pageid']);
 		else
 			$u->declinePendant($_POST['pageid'],$_POST['instime']);
+
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 		exit();
 		break;

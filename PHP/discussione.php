@@ -10,11 +10,10 @@ if($articleID == null || $infoArticle == null || $instime) { //se la pagina non 
 }
 
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'], $infoArticle['ext'], $infoArticle['content']);
-$disc = $article->getDiscussionArea();
-$arrayComments = $user->getArticleComment($article->getArticleID()); //per ricevere tutti i commenti relativi a quell'articolo dal DB
+
+$comments = $user->getArticleComment($article->getArticleID()); //per ricevere tutti i commenti relativi a quell'articolo dal DB
 
 $categories = $user->getPathArticle($articleID);
-
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -65,31 +64,16 @@ $categories = $user->getPathArticle($articleID);
 					echo '<a id="back-to-article" href="articolo.php?articleID='.$article->getArticleID().'">Torna all\'articolo</a>';
                     ?>
 				</div>
+
 				<div id="commentlist">
-                    <?php $user->printArticleComment($arrayComments); //per inserire in commenti nell'area discussione relativa ?>
+                    <?php $article->printArticleComments($comments); //per inserire in commenti nell'area discussione relativa ?>
 				</div>
 
                 <?php
                 //se l'utente non è registrato, non può lasciare un commento quindi non vede la textarea
-                if($user->isRegistered()) {
-                    echo '
-                 <form id="comment-form" action="inseriscicommento.php" method="post">
-                    <input type="hidden" name="articleID" value="'.$article->getArticleID().'"/>
-					<div class="form-group row">
-						<label for="inputText">Lascia un commento</label>
-						<textarea id="inputText" class="form-control" name="content"></textarea>
-					';
-                    if (!empty($_SESSION['commenterror'])){
-                        printFeedback('Non puoi inviare un commento senza testo',false);
-                    }
+                if($user->isRegistered())
+                    $article->showTextArea($_SESSION['commenterror']);
 
-                    echo '
-                    </div>
-					<div class="form-group row">
-						<button type="submit" class="btn btn-outline-primary">Invia</button>
-					</div>
-				</form> ';
-                }
                 unset($_SESSION['commenterror']);
                 ?>
 

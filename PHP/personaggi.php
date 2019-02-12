@@ -2,6 +2,7 @@
 require_once 'utilities.php';
 $user = init();
 $numArticles = 5;
+$page = new Page();
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -52,7 +53,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=personaggi&subcategory=umani">Esseri Umani</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'personaggi','umani');
+                        $list = $user->searchArticle('','personaggi','umani');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>
@@ -62,7 +64,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=personaggi&subcategory=eroi">Semidivinit&agrave; ed Eroi</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'personaggi','eroi');
+                        $list = $user->searchArticle('','personaggi','eroi');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>
@@ -72,7 +75,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=personaggi&subcategory=dei">Divinit&agrave;</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'personaggi','dei');
+                        $list = $user->searchArticle('','personaggi','dei');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>
@@ -82,7 +86,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=personaggi&subcategory=creature">Creature</a></h2>
 					<ul class="categories">
                         <?php
-                            $user->printRandomArticlesTitle($numArticles,'personaggi','creature');
+                        $list = $user->searchArticle('','personaggi','creature');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>

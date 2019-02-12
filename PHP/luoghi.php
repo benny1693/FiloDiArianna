@@ -2,6 +2,7 @@
 require_once 'utilities.php';
 $user = init();
 $numArticles = 5;
+$page = new Page();
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -48,7 +49,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=luoghi&subcategory=mitologici">Mitologici</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'luoghi','mitologici');
+                        $list = $user->searchArticle('','luoghi','mitologici');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>
@@ -58,7 +60,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=luoghi&subcategory=reali">Reali</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'luoghi','reali');
+                        $list = $user->searchArticle('','luoghi','reali');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>

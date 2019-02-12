@@ -30,4 +30,5 @@ class UnregisteredUser extends User{
 	public function setSessionVars() {
 		$_SESSION['ID'] = -1;
 	}
+
 }

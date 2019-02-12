@@ -126,8 +126,9 @@ class RegisteredUser extends User {
 	}
 
 
-	function setSessionVars() {
+	public function setSessionVars() {
 		$_SESSION['username'] = $this->getUsername();
 		$_SESSION['ID'] = $this->getID();
 	}
+
 }

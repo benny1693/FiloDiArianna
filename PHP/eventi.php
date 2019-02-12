@@ -2,6 +2,8 @@
 require_once 'utilities.php';
 $user = init();
 $numArticles = 5;
+
+$page = new Page();
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -50,7 +52,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=eventi&subcategory=eradei">Epoca degli Dei</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'eventi','eradei');
+                        $list = $user->searchArticle('','eventi','eradei');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>
@@ -60,7 +63,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=eventi&subcategory=eradeiuomini">Epoca degli Dei e degli Uomini</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'eventi','eradeiuomini');
+                        $list = $user->searchArticle('','eventi','eradeiuomini');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>
@@ -70,7 +74,8 @@ $numArticles = 5;
 					<h2><a href="ricerca.php?category=eventi&subcategory=eraeroi">Epoca degli Eroi</a></h2>
 					<ul class="categories">
                         <?php
-                        $user->printRandomArticlesTitle($numArticles,'eventi','eraeroi');
+                        $list = $user->searchArticle('','eventi','eraeroi');
+                        $page->printRandomArticlesTitle($list,$numArticles);
                         ?>
 					</ul>
 				</li>

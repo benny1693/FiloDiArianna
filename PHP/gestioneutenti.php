@@ -2,10 +2,6 @@
 require_once 'utilities.php';
 $user = init();
 
-$currentpage = $_GET['page'] = empty($_GET['page']) ? 1 : $_GET['page'];
-
-$usersNumber = 10;
-
 $list = null;
 if ($user->isAdmin()) {
 	if (!empty($_POST['userID'])){
@@ -13,16 +9,11 @@ if ($user->isAdmin()) {
     }
 
 	$list = $user->findUser('');
-	$pages = ceil(count($list)/$usersNumber);
-	if ($pages == 0)
-		$currentpage = 0;
 
-	if ($currentpage == 0 && $page != 0) {
-        header("Location: notfound.php");
-        exit();
-    }
-	if ($currentpage > $pages || $currentpage < 0) {
-        header("Location: notfound.php");
+	try {
+	    $listPage = new SearchPage(empty($_GET['page']) ? 1 : $_GET['page'], count($list));
+	} catch (Exception $exception) {
+	    header("Location: notfound.php");
         exit();
     }
 }
@@ -62,21 +53,15 @@ if ($user->isAdmin()) {
                 echo '
 			<h1>Gestisci gli utenti</h1>';
 
-                printNavigation($currentpage,$pages,false);
+                $listPage->printNavigation(false);
 
-                echo '
-			<ul class="query">';
+                echo '<ul class="query">';
 
-                if ($currentpage < $pages) {
-                    $user->printUserList(array_slice($list, ($currentpage - 1) * $usersNumber, $usersNumber));
-                }else{
-                    $user->printUserList(array_slice($list,($currentpage - 1) * $usersNumber));
-                }
+                $listPage->printUserList($list);
 
-                echo'
-			</ul>';
+                echo'</ul>';
 
-                printNavigation($currentpage,$pages,false);
+                $listPage->printNavigation(false);
             }
 			?>
 		</section>

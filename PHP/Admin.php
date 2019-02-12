@@ -69,28 +69,6 @@ class Admin extends RegisteredUser {
 		$this->getDBConnection()->query("CALL deletePage($articleID)");
 	}
 
-	public function printUserList($userList) {
-		foreach ($userList as $row) {
-
-			echo
-				"
-				<li class=\"page-administration clearfix\">
-					<form action=\"gestioneutenti.php\" method=\"post\">
-						<input type=\"hidden\" name=\"userID\" value=\"".$row['ID']."\"/>
-						<a class=\"pagina\" href=\"profilopubblico.php?ID=".$row['ID']."\">".$row['username']."</a>";
-
-			if ($row['is_admin'] == 0)
-				echo "
-						<div class=\"bottoni\">
-							<button type=\"submit\" class=\"btn btn-outline-primary\">Elimina</button>
-						</div>";
-
-			echo "
-					</form>
-				</li>";
-		}
-	}
-
 	public function findUser($username) {
 		$query = $this->getDBConnection()->query(
 			"SELECT * FROM Prova._users WHERE username LIKE '%".addslashes($username)."%'"

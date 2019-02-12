@@ -53,8 +53,8 @@ $user = init();
                 <h2>Funzionalit&agrave;</h2>
                 <ul id="collegamentibottoni">
                     <li> <a href="nuovapagina.php">Crea una nuova pagina</a> </li>
-                    <li> <a href="listapagine.php?pendenti=1">Pagine pendenti</a> </li>
-                    <li> <a href="listapagine.php?pendenti=2">Pagine pubblicate</a> </li>';
+                    <li> <a href="listapagine.php?adm=2">Pagine pendenti</a> </li>
+                    <li> <a href="listapagine.php?adm=1">Pagine pubblicate</a> </li>';
                 if ($user->isAdmin())
                     echo '
                     <li> <a href="gestioneutenti.php">Gestione utenti</a> </li>';
@@ -70,24 +70,3 @@ $user = init();
 </body>
 
 </html>
-
-
-<!--NOTE 
-La visualizzazione e le funzionalità  disponibili della pagina cambiano in base all'utente:
-
-ADMIN:
-1)In PAGINE PENDENTI:
-vede tutte le pagine che hanno bisogno di approvazione e può accettarle o no(in questo caso viene inviata una mail a chi l'aveva creata per dirgli il perchè)
-2)In PAGINE PUBBLICATE:
-vede tutte le pagine pubblicate e può eliminarle (in questo caso viene inviata una mail a chi l'aveva creata per dirgli il perchè)
-
-UTENTE:
-1)In PAGINE PENDENTI:
-vede le pagine che ha creato che attendono approvazione da parte di un admin, può in tempo reale eliminarle o modificarle
-2)In PAGINE PUBBLICATE:
-vede le pagine che ha creato che sono state pubblicate, può eliminarle o modicarle
-Una modifica per essere visibile ha bisogno di approvazione, cioè:
-la pagina attuale rimane tra le pagine  pubblicate, ma viene creata una copia con le modifiche apportate sulle pagine pendenti,
-se la pagina pendente viene accettata essa sostituisce la versione precedente sulle pagine pubblicate.
-Una eliminazione non richiede autorizazioni.
- -->
