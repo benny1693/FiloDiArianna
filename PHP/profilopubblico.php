@@ -50,26 +50,19 @@ try {
 			</ol>
 		</nav>
 		<section>
-         <?php
-         $listPage->printOtherUserInfo($user->getOtherUserInfo($pageUserID)); //per stampare i dati personali
+            <h2>Pagine pubblicate</h2>
+            <?php
+             $listPage->printOtherUserInfo($user->getOtherUserInfo($pageUserID)); //per stampare i dati personali
 
-         if($articleList) { //l'utente ha pubblicato delle pagine
-             echo '<h2>Pagine pubblicate</h2>';
-
-             $listPage->printNavigation();
-
-             echo '<ul class="query">';
-
-             $listPage->printArticleList($articleList);
-
-             echo '</ul>';
-
-             $listPage->printNavigation();
-         }
-         else {
-             echo '<p>Nessuna pagina pubblicata</p>';
-         }
-         ?>
+             if($articleList): //l'utente ha pubblicato delle pagine ?>
+                <?php $listPage->printNavigation(); ?>
+                 <ul class="query">
+                     <?php $listPage->printArticleList($articleList); ?>
+                 </ul>
+                <?php $listPage->printNavigation(); ?>
+             <?php else: ?>
+                <p>Nessuna pagina pubblicata</p>
+             <?php endif; ?>
 		</section>
 	</div>
 

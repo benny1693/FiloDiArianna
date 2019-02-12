@@ -16,6 +16,10 @@ if ($user->isAdmin()) {
 	    header("Location: notfound.php");
         exit();
     }
+}else{
+    $_SESSION['errorMsg'] = "Non hai i permessi per accedere a questa pagina";
+    header("Location: avviso.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -46,24 +50,12 @@ if ($user->isAdmin()) {
 			</ol>
 		</nav>
 		<section>
-            <?php
-            if (!$user->isAdmin())
-                printFeedback('Non sei un amministratore',false);
-            else {
-                echo '
-			<h1>Gestisci gli utenti</h1>';
-
-                $listPage->printNavigation(false);
-
-                echo '<ul class="query">';
-
-                $listPage->printUserList($list);
-
-                echo'</ul>';
-
-                $listPage->printNavigation(false);
-            }
-			?>
+			<h1>Gestisci gli utenti</h1>
+            <?php $listPage->printNavigation(false); ?>
+            <ul class="query">
+            <?php $listPage->printUserList($list); ?>
+            </ul>
+            <?php $listPage->printNavigation(false); ?>
 		</section>
 	</div>
 	<!-- FOOTER -->

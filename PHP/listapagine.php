@@ -46,38 +46,27 @@ $listPage->setAdministration($pendenti);
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="areapersonale.php">Area personale</a></li>
-                <?php
-				echo '<li class="breadcrumb-item active" aria-current="page">Pagine '.($pendenti == 2 ? 'pendenti' : 'pubblicate').'</li>';
-				?>
+                <li class="breadcrumb-item active" aria-current="page">Pagine <?php echo ($pendenti == 2 ? 'pendenti' : 'pubblicate'); ?></li>
 			</ol>
 		</nav>
 
 		<section>
-            <?php
-
-            if (!$user->isRegistered())
-                printFeedback('Devi essere registrato per vedere questa pagina',false);
-            else {
-                echo '
-			<h1>Pagine '.($pendenti == 2 ? 'pendenti' : 'pubblicate').'</h1>';
-                if ($listPage->noResults())
-                    echo '<p id="results">Nessun risultato trovato</p>';
-                else {
-                    echo '<p id="results">Trovati ' . $listPage->getArticles() . ' risultati</p>';
-                    echo '<p class="sr-only">Pagina '.$listPage->getIndex().' di '.$listPage->lastPage().'</p>';
-
-                    $listPage->printNavigation(true);
-
-                    echo '<ul class="query">';
-
-                    $listPage->printArticleList($list, $user->isAdmin());
-
-                    echo '</ul>';
-
-                    $listPage->printNavigation(true);
-                }
-            }
-			?>
+            <?php if (!$user->isRegistered()):
+                $listPage->printFeedback('Devi essere registrato per vedere questa pagina',false);
+            else: ?>
+                <h1>Pagine <?php echo ($pendenti == 2 ? 'pendenti' : 'pubblicate'); ?></h1>
+                <?php if ($listPage->noResults()): ?>
+                    <p id="results">Nessun risultato trovato</p>
+                <?php else: ?>
+                    <p id="results">Trovati <?php echo $listPage->getArticles(); ?> risultati</p>
+                    <p class="sr-only">Pagina <?php echo $listPage->getIndex(); ?> di <?php echo $listPage->lastPage(); ?></p>
+                    <?php $listPage->printNavigation(true); ?>
+                    <ul class="query">
+                        <?php $listPage->printArticleList($list, $user->isAdmin()); ?>
+                    </ul>
+                    <?php $listPage->printNavigation(true); ?>
+                <?php endif; ?>
+            <?php endif; ?>
 		</section>
 	</div>
 	<!-- FOOTER -->

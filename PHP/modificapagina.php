@@ -87,11 +87,10 @@ unset($_SESSION['modification']);
 			    <input type="hidden" name="articleID" value="'<?php echo $info['insTime']; ?>'"/>
 			    <input type="hidden" name="instime" value="<?php echo $info['insTime']; ?>">
 				<div class="form-group">
-                    <?php
-                    if ($info['img'])
-    			        echo '<img id="oldimage" src="data:image/' . $info['ext'] . ';base64,' . base64_encode($info['img']).'" alt="Vecchia immagine" />';
-                    ?>
-					<label for="FormControlFile">Carica l\'immagine per sostituire la precedente.</label>
+                    <?php if ($info['img']): ?>
+    			        <img id="oldimage" src="data:image/<?php echo $info['ext']; ?>;base64,<?php echo base64_encode($info['img']); ?>" alt="Vecchia immagine" />
+                    <?php endif; ?>
+					<label for="FormControlFile">Carica l'immagine per sostituire la precedente.</label>
 					<input type="file" class="form-control-file" id="FormControlFile"/>
 				</div>
 
@@ -104,13 +103,13 @@ unset($_SESSION['modification']);
                     <label for="inputCategorie">Categorie</label>
                     <select name="types" id="inputCategorie" class="form-control">
                         <optgroup label="Personaggi">
-                            <option value="p_umani" <?php $page->selectRefill($_POST['types'],"p_umani"); ?>>Esseri Umani</option>
+                            <option value="p_umani" <?php echo $page->selectRefill($_POST['types'],"p_umani"); ?>>Esseri Umani</option>
                             <option value="p_eroi" <?php echo $page->selectRefill($_POST['types'],"p_eroi"); ?>>Semidivinit&agrave;/Eroi</option>
                             <option value="p_dei" <?php echo $page->selectRefill($_POST['types'],"p_dei"); ?>>Divinità</option>
                             <option value="p_creature" <?php echo $page->selectRefill($_POST['types'],"p_creature"); ?>>Creature</option>
                         </optgroup>
                         <optgroup label="Eventi">
-                            <option value="era_dei" <?php echo $$page->selectRefill($_POST['types'],"era_dei"); ?>>Era degli Dei</option>
+                            <option value="era_dei" <?php echo $page->selectRefill($_POST['types'],"era_dei"); ?>>Era degli Dei</option>
                             <option value="era_dei_uomini" <?php echo $page->selectRefill($_POST['types'],"era_dei_uomini"); ?>>Era degli Dei e degli Uomini</option>
                             <option value="era_eroi" <?php $page->selectRefill($_POST['types'],"era_eroi"); ?>>Era degli Eroi</option>
                         </optgroup>
@@ -127,9 +126,7 @@ unset($_SESSION['modification']);
 						<label for="1" class="col-xs-1">1</label>
 						<select id="1" name="relatedpages[]" class="form-control col-xs-9">
                             <option value="none" selected="selected">Nessuna</option>
-                            <?php
-                            $page->printSelect($user->searchArticle(''));
-                            ?>
+                            <?php $page->printSelect($user->searchArticle('')); ?>
                         </select>
 					</p>
 					<button type="button" id="plus" class="btn" onclick="plusClick()">
