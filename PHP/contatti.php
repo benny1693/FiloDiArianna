@@ -1,7 +1,10 @@
 <?php
 require_once 'utilities.php';
 init();
-$page = new FormPage(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+if (!empty($_POST['email']))
+    $page = new FormPage(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+else
+    $page = new FormPage();
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">

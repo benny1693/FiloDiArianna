@@ -7,18 +7,9 @@
  */
 include_once 'utilities.php';
 $user = init();
-if ($user->isRegistered()){
-	if ($_SERVER['HTTP_REFERER'] != "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'])
-		$_SESSION['errorMsg'] = 'Sei gi&agrave; registrato!';
-	else
-		$_SESSION['errorMsg'] = 'Registrazione effettuata con successo';
-
-	header('Location: avviso.php');
-}
-
 $page = new FormPage();
 if (!empty($_POST)) {
-
+    $_POST['gender'] = !in_array($_POST['gender'],array('M','F') ? 'M' : $_POST['gender']);
     $page->inferRegistrationErrors($_POST,$user);
 
     if (!$page->hasErrors()){
@@ -28,7 +19,15 @@ if (!empty($_POST)) {
     }
 }
 
-print_r($page->errors);
+if ($user->isRegistered()){
+	if ($_SERVER['HTTP_REFERER'] != "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'])
+		$_SESSION['errorMsg'] = 'Sei gi&agrave; registrato!';
+	else
+		$_SESSION['successMsg'] = 'Registrazione effettuata con successo';
+
+	header('Location: avviso.php');
+	exit();
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">

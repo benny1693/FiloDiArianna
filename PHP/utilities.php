@@ -35,21 +35,11 @@ function login($username,$password) {
 	return $user;
 }
 
-function isNamefile($name){
-	return $_SERVER['SCRIPT_NAME'] == "/FiloDiArianna/" . $name;
-}
-
 function init() {
 	session_start();
 	$user = getLoggedUser($_SESSION['username']);
 	$user->setSessionVars();
 	return $user;
-}
-
-function addPoints(){
-	if (!isNamefile('index.php'))
-			return "../";
-	return "";
 }
 
 /*

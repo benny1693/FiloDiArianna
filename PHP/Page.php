@@ -18,15 +18,21 @@ class Page {
 						</svg>
 					</div>
 					<ul class="dropdown">
-						<li><a href="'.addPoints().'PHP/areapersonale.php">Area Riservata</a></li>
-						<li lang="en"><a href="'.addPoints().'PHP/logout.php">Logout</a></li>
+						<li><a href="'.self::addPoints().'PHP/areapersonale.php">Area Riservata</a></li>
+						<li lang="en"><a href="'.self::addPoints().'PHP/logout.php">Logout</a></li>
 					</ul>
 				</div>');
     }
 
-    //equivalente di getLoginButtons
+    public static function addPoints(){
+        if (!self::isNamefile('index.php'))
+            return "../";
+        return "";
+    }
+
     public function printLoginButton() {
-        print_r('<a id="login-button" href="'.addPoints().'PHP/accesso.php">Accedi</a>');
+        if (!$this->isNamefile('PHP/accesso.php'))
+            print_r('<a id="login-button" href="'.self::addPoints().'PHP/accesso.php">Accedi</a>');
     }
 
     public function printLogButtons() {
@@ -34,6 +40,30 @@ class Page {
             $this->printLoginButton();
         else
             $this->printPersonalButtons();
+    }
+
+    private static function isNamefile($name){
+        return $_SERVER['SCRIPT_NAME'] == "/FiloDiArianna/" . $name;
+    }
+
+    public function printMenu() {
+        if ($this->isNamefile("index.php")){
+            echo "<li class=\"active\" lang=\"en\">Home</li>";
+            echo "<li><a href=\"PHP/scopri.php\">Scopri</a></li>";
+            echo "<li><a href=\"PHP/contatti.php\">Contatti</a></li>";
+        } else if ($this->isNamefile("PHP/scopri.php")){
+            echo "<li lang=\"en\"><a href=\"../index.php\">Home</a></li>";
+            echo "<li class=\"active\">Scopri</li>";
+            echo "<li><a href=\"contatti.php\">Contatti</a></li>";
+        } else if ($this->isNamefile("PHP/contatti.php")){
+            echo "<li lang=\"en\"><a href=\"../index.php\">Home</a></li>";
+            echo "<li><a href=\"scopri.php\">Scopri</a></li>";
+            echo "<li class=\"active\">Contatti</li>";
+        } else {
+            echo "<li lang=\"en\"><a href=\"../index.php\">Home</a></li>";
+            echo "<li><a href=\"scopri.php\">Scopri</a></li>";
+            echo "<li><a href=\"contatti.php\">Contatti</a></li>";
+        }
     }
 
     public function printOtherUserInfo($info) {
