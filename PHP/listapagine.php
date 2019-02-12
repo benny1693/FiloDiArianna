@@ -56,7 +56,7 @@ $listPage->setAdministration($pendenti);
             <?php
 
             if (!$user->isRegistered())
-                printFeedback('Devi essere registrato per vedere questa pagina',false);
+                $listPage->printFeedback('Devi essere registrato per vedere questa pagina',false);
             else {
                 echo '
 			<h1>Pagine '.($pendenti == 2 ? 'pendenti' : 'pubblicate').'</h1>';

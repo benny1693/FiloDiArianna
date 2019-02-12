@@ -1,6 +1,7 @@
 <?php
 require_once 'utilities.php';
 init();
+$page = new FormPage(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
@@ -44,9 +45,8 @@ init();
 			</div>
 
 			<div id="contattomessaggio" class="row">
-                <?php if($_POST['formArea'] != null)
-                    printFeedback("Grazie, il tuo messaggio è stato inviato correttamente! Ti contatteremo al più presto", true);
-                    //unset($_POST['formArea']); // = null;
+                <?php if(!$page->hasErrors() && !empty($_POST['formArea']))
+                    $page->printFeedback("Grazie, il tuo messaggio è stato inviato correttamente! Ti contatteremo al più presto", true);
                 ?>
 				<h1>Oppure.. scrivi direttamente qui il tuo messaggio</h1>
 
@@ -57,12 +57,11 @@ init();
                             <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" onblur="return checkText('inputEmail','Email non valida', /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/);"/>
 
                             <?php
-                            if (isset($_SESSION['registration_errors']['email']))
-                            printFeedback($_SESSION['registration_errors']['email'],false);
+                            if ($page->hasErrors())
+                                $page->printFeedback('Email non valida',false);
                             ?>
                         </div>
                     </div>
-
 
 					<div class="form-group row">
 						<label for="FormControlTextarea" class="sr-only">Scrivi</label>

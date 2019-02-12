@@ -70,8 +70,10 @@ class ArticlePage extends Page{
 
     public function printRelatedPages($relatedPages){
         if ($relatedPages) {
+            echo '<ul>';
             foreach ($relatedPages as $related)
                 echo '<li><a href="articolo.php?articleID=' . $related['ID2'] . '">' . $related['title2'] . '</a></li>';
+            echo '</ul>';
         } else {
             echo '<p>Nessuna pagina correlata</p>';
         }
@@ -80,14 +82,14 @@ class ArticlePage extends Page{
     public function showTextArea($error = null) {
         echo '
                  <form id="comment-form" action="inseriscicommento.php" method="post">
-                    <input type="hidden" name="articleID" value="'.$article->getArticleID().'"/>
+                    <input type="hidden" name="articleID" value="'.$this->getArticleID().'"/>
 					<div class="form-group row">
 						<label for="inputText">Lascia un commento</label>
 						<textarea id="inputText" class="form-control" name="content"></textarea>
 					';
 
         if ($error)
-            printFeedback('Non puoi inviare un commento senza testo',false);
+            $this->printFeedback('Non puoi inviare un commento senza testo',false);
 
         echo '
                     </div>

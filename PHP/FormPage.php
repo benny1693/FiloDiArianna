@@ -66,7 +66,7 @@ class FormPage extends Page{
 
 		$this->errors['surname'] = !preg_match("/^[a-zA-Z' ]{1,20}$/", $post['surname']);
 
-		$this->errors['email'] = filter_var($post['email'], FILTER_VALIDATE_EMAIL);
+		$this->errors['email'] = !filter_var($post['email'], FILTER_VALIDATE_EMAIL);
 
 		if ($post['birthdate'] > date('Y-m-d') - 6)
 			$this->errors['birthdate'] = "Sei un po' giovane non credi?";

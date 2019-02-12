@@ -1169,6 +1169,10 @@ p.time {
 	color: rgb(0, 255, 243);
 }
 
+#macrocategories a.sr-only:focus {
+	color: #0000F3;
+}
+
 #macrocategories > li > ul {
 	background: #001840;
 	border-radius: 0 0 20px 20px;
@@ -1769,6 +1773,5 @@ legend {
 	font-size: 1.2rem;
 	font-weight: 900;
 }
-
 
 /* END FIX ################################################### */

@@ -52,17 +52,6 @@ function addPoints(){
 	return "";
 }
 
-
-function printFeedback($message,$valid){
-}
-
-function findCorrectTypes($type) {
-}
-
-function printSelect($list) {
-}
-
-
 /*
 function isNamefile($name){
 	return $_SERVER['SCRIPT_URL'] == "/bcosenti/" . $name;

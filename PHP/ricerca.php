@@ -1,5 +1,6 @@
 <?php
 require_once "utilities.php";
+
 $user= init();
 $list = $user->searchArticle($_GET['substringSearched'], $_GET['category'], $_GET['subcategory']);
 
@@ -39,45 +40,41 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GE
                 <?php
                 $categories = $user->findTypeReadFormat($_GET['category'],$_GET['subcategory']);
 
-                if ($categories && User::isValidCategory($_GET['category'])){
-                    echo '
-                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>';
-                    if(!empty($_GET['subcategory']) && User::isValidSubcategory($_GET['subcategory'])) {
-                        echo '
-                    <li class="breadcrumb-item"><a href="' . $_GET['category'] . '.php">' . $categories[0] . '</a></li>
-                    <li class="breadcrumb-item active" aria-current="page" >' . $categories[1] . '</li>';
-                    } else {
-                        echo '
-                    <li class="breadcrumb-item active">' . $categories[0] . '</li>';
-                    }
-                } else {
-                    echo '<li class="breadcrumb-item active" aria-current="page">Ricerca</li>';
-                }
-
+                if ($categories && User::isValidCategory($_GET['category'])):
                 ?>
+                <li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
+                    <?php if (!empty($_GET['subcategory']) && User::isValidSubcategory($_GET['subcategory'])): ?>
+                        <li class="breadcrumb-item"><a href="<?php echo $_GET['category']; ?>.php"><?php echo $categories[0]; ?></a></li>
+                        <li class="breadcrumb-item active" aria-current="page" ><?php echo $categories[1]; ?></li>
+                    <?php else: ?>
+                            <li class="breadcrumb-item active"><?php echo $categories[0]; ?></li>
+                    <?php endif;?>
+                <?php else: ?>
+                    <li class="breadcrumb-item active" aria-current="page">Ricerca</li>
+                <?php endif; ?>
 			</ol>
 		</nav>
 		<section>
 			<h1>Risultati di ricerca</h1>
             <?php
             $emptysearch = $_GET['substringSearched'] == null && !$from_scopri;
-            if($emptysearch || empty($list))
-                echo '<p id="results">Nessun risultato trovato</p>';
-            else {
-                echo "<p id=\"results\">Trovati " . $listPage->getArticles() . " risultati</p>";
-                echo '<p class="sr-only">Pagina '. $listPage->getIndex() .' di '. $listPage->lastPage() .'</p>';
-
-                $listPage->printNavigation();
-
-                echo '<ul class="query">';
-
-                $listPage->printArticleList($list);
-
-                echo '</ul>';
-
-                $listPage->printNavigation();
-            }
+            if($emptysearch || empty($list)):
             ?>
+                <p id="results">Nessun risultato trovato</p>
+            <?php else: ?>
+                <p id="results">Trovati <?php echo $listPage->getArticles(); ?> risultati</p>
+                <p class="sr-only">Pagina <?php echo $listPage->getIndex() ?> di <?php echo $listPage->lastPage(); ?></p>
+
+                <?php $listPage->printNavigation(); ?>
+
+                <ul class="query">
+
+                <?php $listPage->printArticleList($list); ?>
+
+                </ul>
+
+                <?php $listPage->printNavigation(); ?>
+            <?php endif; ?>
         </section>
 	</div>
 	<!--FOOTER-->

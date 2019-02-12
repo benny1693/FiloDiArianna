@@ -213,7 +213,7 @@ abstract class User {
 	}
 
 
-	function findTypeReadFormat($category, $subcategory){
+	public function findTypeReadFormat($category, $subcategory){
         if (!empty($category) && !empty($subcategory))
             return array(
                 strtoupper(substr($category,0,1)).substr($category,1), // rendo la prima lettera maiuscola
@@ -223,35 +223,35 @@ abstract class User {
             return null;
     }
 
-    function getPathArticle($articleID){
-        $finalQuery = null;
-        $queryReadable = null;
-        $query = $this->getDBConnection()->query("SELECT * FROM Prova._characters WHERE ID = $articleID");
-        if($query->num_rows > 0){
-            $finalQuery = $query->fetch_assoc();
-            $queryReadable = self::findTypeReadFormat("personaggi" ,$finalQuery['type']);
-            $finalQuery = array_merge($queryReadable,array('personaggi', $finalQuery['type']));
-        }
-        else {
-            $query = $this->getDBConnection()->query("SELECT * FROM Prova._events WHERE ID = $articleID");
-            if($query->num_rows > 0){
-                $finalQuery = $query->fetch_assoc();
-                $queryReadable = self::findTypeReadFormat("eventi" ,$finalQuery['era']);
-                $finalQuery = array_merge($queryReadable,array('eventi', ''.$finalQuery['era']));
-            }
-            else{
-                $query = $this->getDBConnection()->query("SELECT * FROM Prova._places WHERE ID = $articleID");
-                if($query->num_rows > 0) {
-                    $finalQuery = $query->fetch_assoc();
-                    $queryReadable = self::findTypeReadFormat("luoghi", $finalQuery['type']);
-                    $finalQuery = array_merge($queryReadable,array('luoghi', $finalQuery['type']));
+	public function getPathArticle($articleID){
+			$finalQuery = null;
+			$queryReadable = null;
+			$query = $this->getDBConnection()->query("SELECT * FROM Prova._characters WHERE ID = $articleID");
+			if($query->num_rows > 0){
+					$finalQuery = $query->fetch_assoc();
+					$queryReadable = self::findTypeReadFormat("personaggi" ,$finalQuery['type']);
+					$finalQuery = array_merge($queryReadable,array('personaggi', $finalQuery['type']));
+			}
+			else {
+					$query = $this->getDBConnection()->query("SELECT * FROM Prova._events WHERE ID = $articleID");
+					if($query->num_rows > 0){
+							$finalQuery = $query->fetch_assoc();
+							$queryReadable = self::findTypeReadFormat("eventi" ,$finalQuery['era']);
+							$finalQuery = array_merge($queryReadable,array('eventi', ''.$finalQuery['era']));
+					}
+					else{
+							$query = $this->getDBConnection()->query("SELECT * FROM Prova._places WHERE ID = $articleID");
+							if($query->num_rows > 0) {
+									$finalQuery = $query->fetch_assoc();
+									$queryReadable = self::findTypeReadFormat("luoghi", $finalQuery['type']);
+									$finalQuery = array_merge($queryReadable,array('luoghi', $finalQuery['type']));
 
-                }
-            }
-        }
+							}
+					}
+			}
 
-        return $finalQuery;
-    }
+			return $finalQuery;
+	}
 }
 
 ?>

@@ -48,7 +48,7 @@ if ($user->isAdmin()) {
 		<section>
             <?php
             if (!$user->isAdmin())
-                printFeedback('Non sei un amministratore',false);
+                $page->printFeedback('Non sei un amministratore',false);
             else {
                 echo '
 			<h1>Gestisci gli utenti</h1>';

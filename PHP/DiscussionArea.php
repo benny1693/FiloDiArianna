@@ -12,7 +12,7 @@ class DiscussionArea {
 
     private $comments = array(); //array di commenti vuoto
 
-	public function addComments($commentlist) {  //TODO: da testare
+	public function addComments($commentlist) {
         //mette l'elemento in fondo
 		foreach ($commentlist as $comment) {
 			array_push($this->comments,
@@ -22,7 +22,7 @@ class DiscussionArea {
 		}
 	}
 
-	public function deleteComment($comment) {   //TODO: da testare
+	public function deleteComment($comment) {
 
 			//scorrendo tutto l'array
 			foreach($this->comments as $currentComment) {
