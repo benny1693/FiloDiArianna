@@ -26,7 +26,7 @@ $categories = $user->getPathArticle($articleID);
 <head>
     <title><?php echo $article->getTitle(); ?> | Il Filo di Arianna</title>
 	<meta name="description" content="Articolo riguardante <?php echo $article->getTitle(); ?> all'interno della raccolta di FiloDiArianna" />
-	<meta name="keywords" content="Filo, Arianna, greco, mitologia, TitoloArticolo" />
+	<meta name="keywords" content="Filo, Arianna, greco, mitologia, <?php echo $article->getTitle(); ?>" />
 	<meta name="author" content="Benedetto Cosentino" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,12 +66,19 @@ $categories = $user->getPathArticle($articleID);
                     $authorInfo = $user->getOtherUserInfo($article->getAuthor());
                     ?>
 					<h1><?php echo $article->getTitle(); ?></h1>
+                    <a href="#article-body" class="sr-only">Vai al contenuto dell'articolo</a>
                     <p id="article-id"><?php echo $article->getArticleID(); ?></p>
 					<?php if($article->getAuthor()): ?>
                         <p id="article-author">Scritto da <a href="profilopubblico.php?ID=' . $article->getAuthor() . '"><?php echo $authorInfo['username']; ?></a></p>
                     <?php else: ?>
                         <p id="article-author">Scritto da utente eliminato</p>
 				    <?php endif; ?>
+                    <dl>
+                        <dt>Categoria</dt>
+                        <dd><?php echo $categories[0]; ?></dd>
+                        <dt>Sottocategoria</dt>
+                        <dd><?php echo $categories[1]; ?></dd>
+                    </dl>
                 </div>
 
 				<div id="article-body">

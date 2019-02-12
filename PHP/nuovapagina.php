@@ -124,10 +124,11 @@ if (!$page->hasErrors()){
                                 ?>
                         </select>
                     </p>
-                    <button type="button" id="plus" class="btn" onclick="plusClick()">
+                    <button type="button" id="plus" class="btn" onclick="plusClick()" aria-label="Aggiungi correlata">
                         <svg><path d="M 28, 20 h -8 v 8 h -4 v -8 h -8 v -4 h 8 v -8 h 4 v 8 h 8 v 4 z"/></svg>
                     </button>
 				</fieldset>
+                <a href="#correlate" class="sr-only">Torna all'inserimento delle pagine correlate</a>
 
 				<div class="form-group submit-button">
 					<button type="submit" id="fatto" class="btn btn-outline-primary">Fatto</button>

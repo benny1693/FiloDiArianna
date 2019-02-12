@@ -65,14 +65,14 @@ $from_scopri = !empty($_GET['category']) && !empty($_GET['subcategory']) && $_GE
                 <p id="results">Trovati <?php echo $listPage->getArticles(); ?> risultati</p>
                 <p class="sr-only">Pagina <?php echo $listPage->getIndex() ?> di <?php echo $listPage->lastPage(); ?></p>
 
+                <a href="#lista" class="sr-only">Salta la paginazione</a>
                 <?php $listPage->printNavigation(); ?>
-
-                <ul class="query">
+                <ul id="lista" class="query">
 
                 <?php $listPage->printArticleList($list); ?>
 
                 </ul>
-
+                <a href="#scroll-back-button" id="bottomnav" class="sr-only">Salta la navigazione</a>
                 <?php $listPage->printNavigation(); ?>
             <?php endif; ?>
         </section>

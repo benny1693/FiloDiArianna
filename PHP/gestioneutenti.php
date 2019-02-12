@@ -51,10 +51,12 @@ if ($user->isAdmin()) {
 		</nav>
 		<section>
 			<h1>Gestisci gli utenti</h1>
+            <a href="#lista" class="sr-only">Salta la paginazione</a>
             <?php $listPage->printNavigation(false); ?>
-            <ul class="query">
+            <ul id="lista" class="query">
             <?php $listPage->printUserList($list); ?>
             </ul>
+            <a href="#scroll-back-button" id="bottomnav" class="sr-only">Salta la navigazione</a>
             <?php $listPage->printNavigation(false); ?>
 		</section>
 	</div>

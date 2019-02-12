@@ -155,9 +155,12 @@ function invalidBirthDay() {
 	var text = 'Data non valida';
 	var userBirth = Date.parse(element.value);
 	if (Date.now() - userBirth  < Date.UTC(1976))
-		text = 'Sei un po\' troppo giovane, non credi?';
+		if(userBirth <= Date.now())
+			text = 'Sei un po\' troppo giovane, non credi?';
+		else
+			text = 'Vieni dal futuro?';
 	else if (userBirth <= Date.UTC(1875,2,21))
-		text = 'Sei davvero nato prima della persona pi&ugrave; anziana del mondo?';
+		text = 'Sei davvero nato prima della persona più anziana del mondo?';
 	else if (element.value === "")
 		text = 'Campo obbligatorio';
 	else

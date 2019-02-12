@@ -52,26 +52,21 @@ class SearchPage extends Page {
 
 	public function offset() { return ($this->index - 1) * $this->limit; }
 
-
-	public function printArticleSublist($articleList, $admin = false) {
-
-		if ($articleList != null) {
-			if (!$this->administration) {
-				foreach ($articleList as $article){
-					echo '
+	private function printArticle($article){
+		echo '
 				<li>
 					<a href="articolo.php?articleID='.$article['ID'].'">
 						<p class="articleTitle">' . stripslashes($article['title']) . '</p>
 						<p class="description">' . stripslashes(substr($article['content'], 0, 100)) . '</p>
 					</a>
 				</li>';
-				}
-			} else {
-				foreach ($articleList as $article){
-					echo '
+	}
+
+	private function printAdministrationArticle($article,$admin){
+		echo '
 										<li class="page-administration clearfix">
                         <form action="pageaction.php" method="post">
-                            <a class="pagina" href="articolo.php?articleID='.$article['ID'].($this->administration ? '&instime='.$article['insTime'] : '').'">
+                            <a class="pagina" href="articolo.php?articleID='.$article['ID'].($this->administration == 2 ? '&instime='.$article['insTime'] : '').'">
                             	<p>'.$article['title'].'</p>
                             	<p class="time">'.$article['insTime'].'</p>
                             </a>
@@ -79,16 +74,27 @@ class SearchPage extends Page {
                             		<input type="hidden" name="pageid" value="'.$article['ID'].'" />
                             		<input type="hidden" name="instime" value="'.$article['insTime'].'" />';
 
-					if ($admin && $this->administration == 2)
-						echo '<input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />';
+		if ($admin && $this->administration == 2)
+			echo '<input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />';
 
-					echo '
+		echo '
                                 <input type="submit" class="btn btn-outline-primary" name="action" value="Modifica" />
                                 <input type="submit" class="btn btn-outline-primary" name="action" value="Elimina" />
                             </div>
                         </form>
                     </li>';
+	}
+
+	public function printArticleSublist($articleList, $admin = false) {
+
+		if ($articleList != null) {
+			if (!$this->administration) {
+				foreach ($articleList as $article) {
+					$this->printArticle($article);
 				}
+			} else {
+				foreach ($articleList as $article)
+					$this->printAdministrationArticle($article,$admin);
 			}
 		}
 	}
@@ -100,10 +106,8 @@ class SearchPage extends Page {
 			$this->printArticleSublist(array_slice($list,$this->offset()),$admin);
 	}
 
-	private function printUserSublist($userList)
-	{
+	private function printUserSublist($userList){
 		foreach ($userList as $row) {
-
 			echo
 				"
 				<li class=\"page-administration clearfix\">
@@ -160,31 +164,25 @@ class SearchPage extends Page {
 		echo '<nav aria-label="Paginazione" class="nav-pages">
                 <ul class="pagination">';
 		if ($this->index == 1)
-			echo '
-					<li class="page-item disabled"><a href="#">&laquo;</a></li>
-					<li class="page-item disabled"><a href="#">&lsaquo;</a></li>';
+			echo '<li class="page-item disabled"><a href="#">&laquo;</a></li>';
 		else {
 			$this->printLink($article,1,'&laquo;');
-			$this->printLink($article,$this->index - 1, '&lsaquo;');
 		}
 
-		for ($i = 0; $i < 5; $i++) {
-			if ($this->index - 2 + $i > 0 && $this->index - 2 + $i <= $this->lastPage()) {
-				if ($i == 2)
+		for ($i = 0; $i < 3; $i++) {
+			if ($this->index - 1 + $i > 0 && $this->index - 1 + $i <= $this->lastPage()) {
+				if ($i == 1)
 					echo '<li class="page-item disabled"><a href="#">'.$this->index.'</a></li>';
 				else
-					$this->printLink($article,$this->index + $i - 2,$this->index + $i - 2);
+					$this->printLink($article,$this->index + $i - 1,$this->index + $i - 1);
 			}
 		}
 
 		if ($this->index == $this->lastPage())
-			echo'
-					<li class="page-item disabled"><a href="#" >&rsaquo;</a></li>
-					<li class="page-item disabled"><a href="#" >&raquo;</a></li>';
-		else {
-			$this->printLink($article,$this->index + 1,'&rsaquo;');
+			echo'<li class="page-item disabled"><a href="#" >&raquo;</a></li>';
+		else
 			$this->printLink($article,$this->lastPage(),'&raquo;');
-		}
+
 		echo '</ul>
             </nav>';
 	}

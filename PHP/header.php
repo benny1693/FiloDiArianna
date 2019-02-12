@@ -5,6 +5,7 @@ $header = new Page();
 
 <header>
     <div class="container-fluid">
+        <a href="#sidebar-wrapper" class="sr-only">Vai al men&ugrave; di navigazione</a>
         <div class="row navbar">
             <div class="col-sm-2 col-xs-3">
                 <img class="navbar-brand" src="<?php echo Page::addPoints() . 'img/logo.png'; ?>" alt="Logo Filo di Arianna" />

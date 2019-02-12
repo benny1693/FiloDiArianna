@@ -19,7 +19,7 @@ if (!$user->isRegistered()) {
             || $_POST['content'] == $info['content']);
 
         if ($page->hasErrors()) {
-            $_SESSION['errorMsg'] = "I campi inseriti non sono validi o uguali a quelli della pagina da modificare";
+            $_SESSION['errorMsg'] = "I campi inseriti non sono validi o sono uguali a quelli della pagina da modificare";
         } else {
             if (empty($_POST)) // Sono arrivato da una pagina senza usare un form
                 $_SESSION['errorMsg'] = 'Non hai selezionato una pagina da modificare';
@@ -129,12 +129,14 @@ unset($_SESSION['modification']);
                             <?php $page->printSelect($user->searchArticle('')); ?>
                         </select>
 					</p>
-					<button type="button" id="plus" class="btn" onclick="plusClick()">
+					<button type="button" id="plus" class="btn" onclick="plusClick()" aria-label="Aggiungi correlata">
 						<svg>
                             <path d="M 28, 20 h -8 v 8 h -4 v -8 h -8 v -4 h 8 v -8 h 4 v 8 h 8 v 4 z" />
                         </svg>
 					</button>
 				</fieldset>
+
+                <a href="#correlate" class="sr-only">Torna all'inserimento delle pagine correlate</a>
 
 				<div class="form-group submit-button">
 					<button type="submit" class="btn  btn-outline-primary">Fatto</button>

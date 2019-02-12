@@ -48,6 +48,7 @@ if ($user->isRegistered()) {
 
         <section id="accesso">
             <h1>Accedi</h1>
+            <a href="registrazione.php" class="sr-only">Salta alla registrazione</a>
             <form data-toggle="validator" action="accesso.php" method="post">
                 <div class="form-group row">
                     <label for="inputUsername0" class="col-sm-3 col-form-label">Username</label>
