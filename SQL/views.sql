@@ -21,8 +21,9 @@ CREATE VIEW postedPages AS
 
 /* Vista che seleziona tutte le pagine postate e non postate */
 CREATE VIEW allPages AS
-  SELECT DISTINCT *
-  FROM (SELECT * FROM postedPages UNION SELECT * FROM unpostedPages) AS U;
+	SELECT DISTINCT * FROM postedPages
+	UNION
+	SELECT DISTINCT * FROM unpostedPages;
 
 /* Vista che seleziona le pagine correlate */
 CREATE VIEW relatedPages AS
@@ -68,6 +69,6 @@ pagina commentata */
 CREATE VIEW commentedArticles AS
 	SELECT P.ID AS pageID, P.title AS pageTitle, P.author AS pageAuthor,
 				C.time_stamp AS commentTime, C.author AS commentAuthor, U.username AS commentAuthorName, C.content AS pageComment
-	FROM (Prova._pages AS P JOIN Prova._comments AS C ON P.ID = C.pageID)
-				JOIN Prova.`_users` AS U ON C.author = U.ID
+	FROM (_pages AS P JOIN _comments AS C ON P.ID = C.pageID)
+				JOIN _users AS U ON C.author = U.ID
 	ORDER BY C.time_stamp ASC;

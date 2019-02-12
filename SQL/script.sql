@@ -1,5 +1,5 @@
-create database Prova;
-use Prova;
+#create database Prova;
+use maranzat;
 source tables.sql;
 source views.sql;
 source procedures.sql;
