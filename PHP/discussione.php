@@ -19,7 +19,7 @@ $categories = $user->getPathArticle($articleID);
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
 <head>
-	<title>Discussione su <?php echo $article->getTitle() ?> | Il Filo di Arianna</title>
+	<title>Discussione su <?php echo $article->getTitle(); ?> | Il Filo di Arianna</title>
 	<meta name="description" content="Discussione tra gli utenti sull'articolo TitoloArticolo" />
 	<meta name="keywords" content="Filo, Arianna, greco, mitologia, TitoloArticolo, discussione" />
 	<meta name="author" content="Benedetto Cosentino" />
@@ -33,7 +33,7 @@ $categories = $user->getPathArticle($articleID);
 
 <body>
 	<!-- HEADER / SIDEBAR -->
-    <?php include_once 'header.php';?>
+    <?php include_once 'header.php'; ?>
 
 	<div id="page-content-wrapper" class="container-fluid">
 		<nav aria-label="breadcrumb">
@@ -41,12 +41,9 @@ $categories = $user->getPathArticle($articleID);
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.php">Home</a></li>
 				<li class="breadcrumb-item"><a href="scopri.php">Scopri</a></li>
-                <?php
-                echo '
-                <li class="breadcrumb-item"><a href="'.$categories[2].'.php">'.$categories[0].'</a></li>
-                <li class="breadcrumb-item"><a href="ricerca.php?category='.$categories[2].'&subcategory='.$categories[3].'">'.$categories[1].'</a></li>
-				<li class="breadcrumb-item"><a href="articolo.php?articleID='.$article->getArticleID().'">'.$article->getTitle().'</a></li>';
-				?>
+                <li class="breadcrumb-item"><a href="<?php echo $categories[2]; ?>.php"><?php echo $categories[0]; ?></a></li>
+                <li class="breadcrumb-item"><a href="ricerca.php?category=<?php echo $categories[2]; ?>&subcategory=<?php echo $categories[3]; ?>"><?php echo $categories[1]; ?></a></li>
+				<li class="breadcrumb-item"><a href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>"><?php echo $article->getTitle(); ?></a></li>
 				<li class="breadcrumb-item" aria-current="page">Discussione</li>
 			</ol>
 		</nav>
@@ -59,10 +56,8 @@ $categories = $user->getPathArticle($articleID);
 			<div id="article-content">
 				<div id="article-title">
 					<h1>Discussione di <?php echo $article->getTitle(); ?></h1>
-					<p id="article-id"><?php echo $article->getArticleID() ?></p>
-                    <?php
-					echo '<a id="back-to-article" href="articolo.php?articleID='.$article->getArticleID().'">Torna all\'articolo</a>';
-                    ?>
+					<p id="article-id"><?php echo $article->getArticleID(); ?></p>
+                    <a id="back-to-article" href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>">Torna all'articolo</a>
 				</div>
 
 				<div id="commentlist">
