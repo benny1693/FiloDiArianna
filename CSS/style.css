@@ -979,10 +979,8 @@ label[for="inputPasswordConfirm"] {
 
 .btn[disabled]{
 	cursor: not-allowed;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
     box-shadow: none;
-    opacity: .65;
+	opacity: .65;
 }
 
 .close {

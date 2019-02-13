@@ -12,21 +12,26 @@ class DatabaseConnection{
 	private $username = "user";
 	private $password = "1111";
 	private $connectionMYSQL;
-	private $connectionError = 0;
 
 	public function __construct(){
-		$this->connectionError = $this->connectToDatabase('Prova');
+		if (!$this->connectToDatabase('Prova'))
+			throw new Exception();
 	}
 
-	public function DatabaseConnection($host,$username,$password) {
+	public function DatabaseConnection($host,$username,$password,$connection) {
 		$this->host = $host;
 		$this->username = $username;
 		$this->password = $password;
+		if (!$this->connectToDatabase('Prova'))
+			throw new Exception();
 	}
 
 	public function connectToDatabase($database) {
 		$this->connectionMYSQL = mysqli_connect($this->host,$this->username,$this->password,$database);
-		return $this->connectionMYSQL->errno;
+		if (!$this->connectionMYSQL)
+			return false;
+		else
+			return true;
 	}
 
 	public function disconnect() {
@@ -36,10 +41,6 @@ class DatabaseConnection{
 
 	public function getConnection() {
 		return $this->connectionMYSQL;
-	}
-
-	public function getConnectionError(){
-		return $this->connectionError;
 	}
 
 	public function getError() {

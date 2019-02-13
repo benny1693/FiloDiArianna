@@ -58,7 +58,12 @@ abstract class User {
 
 
 	public function __construct(){
-		$this->dbconnection = new DatabaseConnection();
+		try {
+			$this->dbconnection = new DatabaseConnection();
+		} catch (Exception $exc) {
+			header('Location: '.$_SERVER['PATH_INFO'].'HTML/connectionerror.html');
+			exit();
+		}
 	}
 
 	public abstract function isRegistered();
