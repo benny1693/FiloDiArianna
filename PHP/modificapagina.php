@@ -2,24 +2,22 @@
 include_once 'utilities.php';
 $user = init();
 $page = new FormPage();
-
-print_r($_SESSION);
 unset($_SESSION['errorMsg']);
 unset($_SESSION['successMsg']);
 if (!$user->isRegistered()) {
     $_SESSION['errorMsg'] = "Per modificare una pagina devi effettuare l'accesso";
 } else {
     $info = null;
-    if (!isset($_SESSION['modification'])) { // se arrivo da una pagina diversa da pageaction, ovvero da modificaèagina stessa
+    if (!isset($_SESSION['modification'])) { // se arrivo da una pagina diversa da pageaction, ovvero da modificapagina stessa
 
         // bisogna completare la modifica di una pagina
         $info = $user->getArticleInfo($_POST['articleID'],$_POST['instime']);
 
         $page->setErrors(!preg_match('/^(.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content'])
-            || $_POST['content'] == $info['content']);
+            || $_POST['content'] == $info['content'] || $_POST['image'] == $info['image']);
 
         if ($page->hasErrors()) {
-            $_SESSION['errorMsg'] = "I campi inseriti non sono validi o sono uguali a quelli della pagina da modificare";
+            $_SESSION['errorMsg'] = "I dati inseriti non sono validi o sono uguali a quelli della pagina da modificare";
         } else {
             if (empty($_POST)) // Sono arrivato da una pagina senza usare un form
                 $_SESSION['errorMsg'] = 'Non hai selezionato una pagina da modificare';
@@ -123,8 +121,8 @@ unset($_SESSION['modification']);
 				<fieldset id="correlate" class="form-group">
 					<legend>Pagine correlate</legend>
 					<p class="row">
-						<label for="1" class="col-xs-1">1</label>
-						<select id="1" name="relatedpages[]" class="form-control col-xs-9">
+						<label for="_1" class="col-xs-1">1</label>
+						<select id="_1" name="relatedpages[]" class="form-control col-xs-9">
                             <option value="none" selected="selected">Nessuna</option>
                             <?php $page->printSelect($user->searchArticle('')); ?>
                         </select>

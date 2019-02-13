@@ -1,6 +1,11 @@
 <?php
 require_once 'utilities.php';
 $user = init();
+if (!$user->isRegistered()) {
+	$_SESSION['errorMsg'] = 'Devi essere registrato per vedere questa pagina';
+    header('Location: avviso.php');
+    exit();
+}
 
 $pendenti = empty($_GET['adm']) ? 0 : $_GET['adm'];
 
@@ -51,29 +56,24 @@ $listPage->setAdministration($pendenti);
 		</nav>
 
 		<section>
-            <?php if (!$user->isRegistered()):
-                $listPage->printFeedback('Devi essere registrato per vedere questa pagina',false);
-            else: ?>
-                <h1>Pagine <?php echo ($pendenti == 2 ? 'pendenti' : 'pubblicate'); ?></h1>
-                <?php if ($listPage->noResults()): ?>
-                    <p id="results">Nessun risultato trovato</p>
-                <?php else: ?>
-                    <p id="results">Trovati <?php echo $listPage->getArticles(); ?> risultati</p>
-                    <p class="sr-only">Pagina <?php echo $listPage->getIndex(); ?> di <?php echo $listPage->lastPage(); ?></p>
-                    <a href="#lista" class="sr-only">Salta la paginazione</a>
-                    <?php $listPage->printNavigation(true); ?>
-                    <ul id="lista" class="query">
-                        <?php $listPage->printArticleList($list, $user->isAdmin()); ?>
-                    </ul>
-                    <a href="#scroll-back-button" id="bottomnav" class="sr-only">Salta la navigazione</a>
-                    <?php $listPage->printNavigation(true); ?>
-                <?php endif; ?>
+            <h1>Pagine <?php echo ($pendenti == 2 ? 'pendenti' : 'pubblicate'); ?></h1>
+            <?php if ($listPage->noResults()): ?>
+                <p id="results">Nessun risultato trovato</p>
+            <?php else: ?>
+                <p id="results">Trovati <?php echo $listPage->getArticles(); ?> risultati</p>
+                <p class="sr-only">Pagina <?php echo $listPage->getIndex(); ?> di <?php echo $listPage->lastPage(); ?></p>
+                <a href="#lista" class="sr-only">Salta la paginazione</a>
+                <?php $listPage->printNavigation(true); ?>
+                <ul id="lista" class="query">
+                    <?php $listPage->printArticleList($list, $user->isAdmin()); ?>
+                </ul>
+                <a href="#scroll-back-button" id="bottomnav" class="sr-only">Salta la navigazione</a>
+                <?php $listPage->printNavigation(true); ?>
             <?php endif; ?>
 		</section>
 	</div>
 	<!-- FOOTER -->
     <?php include_once '../HTML/footer.html'; ?>
-
 </body>
 
 </html>

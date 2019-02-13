@@ -51,15 +51,27 @@ try {
 			</ol>
 		</nav>
 		<section>
+
+            <h1>Profilo di <?php echo $infoUserPage['username']; ?></h1>
+            <h2>Dati personali</h2>
+            <dl id="personalia">
+                <dt>Nome</dt>
+                <dd><?php echo stripslashes($infoUserPage['name']); ?></dd>
+                <dt>Cognome</dt>
+                <dd><?php echo stripslashes($infoUserPage['surname']); ?></dd>
+                <dt>Data di nascita</dt>
+                <dd><?php echo $infoUserPage['birthDate']; ?></dd>
+                <dt>Sesso</dt>
+                <dd><?php echo $infoUserPage['gender']; ?></dd>
+            </dl>
+
             <h2>Pagine pubblicate</h2>
             <?php
-             $listPage->printOtherUserInfo($user->getOtherUserInfo($pageUserID)); //per stampare i dati personali
-
-             if($articleList): //l'utente ha pubblicato delle pagine ?>
+            if($articleList): //l'utente ha pubblicato delle pagine ?>
                 <?php $listPage->printNavigation(); ?>
-                 <ul class="query">
-                     <?php $listPage->printArticleList($articleList); ?>
-                 </ul>
+                    <ul class="query">
+                    <?php $listPage->printArticleList($articleList); ?>
+                    </ul>
                 <?php $listPage->printNavigation(); ?>
              <?php else: ?>
                 <p>Nessuna pagina pubblicata</p>

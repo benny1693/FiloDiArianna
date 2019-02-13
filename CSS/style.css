@@ -1050,6 +1050,21 @@ ul.query {
 	padding: 1rem;
 }
 
+.query > li.page-administration.clearfix > a {
+	display: inline;
+	padding: 0;
+	color: #0000FF;
+	text-decoration: underline;
+}
+
+.query > li.page-administration.clearfix > a:visited {
+	color: #551a8b;
+}
+
+.query > li.page-administration.clearfix > a:active {
+	color: #FF0000;
+}
+
 .query > li:hover {
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175);
 }

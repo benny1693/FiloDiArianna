@@ -63,7 +63,7 @@ if ($user->isRegistered()){
                 <div class="form-group row">
                     <label for="inputName" class="col-sm-3 col-form-label">Nome</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" aria-required="true" <?php echo ($page->hasErrors() ? 'value="'.$_POST['name'].'"' : ""); ?> onblur="return checkText('inputName','Nome non valido',/^[a-zA-Z]{1,20}$/);"/>
+                        <input type="text" class="form-control" id="inputName" name="name" placeholder="Nome" required="required" <?php echo ($page->hasErrors() ? 'value="'.$_POST['name'].'"' : ""); ?> onblur="return checkText('inputName','Nome non valido',/^[a-zA-Z]{1,20}$/);"/>
                         <?php
                         if ($page->errors['name'])
                             $page->printFeedback('Nome non valido',false);
@@ -74,7 +74,7 @@ if ($user->isRegistered()){
                 <div class="form-group row">
                     <label for="inputSurname" class="col-sm-3 col-form-label" >Cognome</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" aria-required="true" <?php echo ($page->hasErrors() ? 'value="'.$_POST['surname'].'"' : ""); ?> onblur="return checkText('inputSurname','Cognome non valido',/^[a-zA-Z' ]{1,20}$/);"/>
+                        <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Cognome" required="required" <?php echo ($page->hasErrors() ? 'value="'.$_POST['surname'].'"' : ""); ?> onblur="return checkText('inputSurname','Cognome non valido',/^[a-zA-Z' ]{1,20}$/);"/>
                         <?php
                         if ($page->errors['surname'])
                             $page->printFeedback('Cognome non valido',false);
@@ -103,7 +103,7 @@ if ($user->isRegistered()){
                 <div class="form-group row">
                     <label for="inputDate" class="col-sm-3 col-form-label">Data di nascita</label>
                     <div class="col-sm-9">
-                        <input type="date" class="form-control" id="inputDate" name="birthdate" required="required" aria-required="true" <?php echo ($page->hasErrors() ? 'value="'.$_POST['birthdate'].'"' : ""); ?> onblur="return invalidBirthDay();" />
+                        <input type="date" class="form-control" id="inputDate" name="birthdate" required="required" <?php echo ($page->hasErrors() ? 'value="'.$_POST['birthdate'].'"' : ""); ?> onblur="return invalidBirthDay();" />
                         <?php
                         if ($page->errors['birthdate'])
                             $page->printFeedback($page->errors['birthdate'],false);
@@ -113,7 +113,7 @@ if ($user->isRegistered()){
                 <div class="form-group row">
                     <label for="inputEmail" class="col-sm-3 col-form-label" lang="en">Email</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" aria-required="true" <?php echo ($page->hasErrors() ? 'value="'.$_POST['email'].'"' : ""); ?> onblur="return checkEmail();"/>
+                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required" <?php echo ($page->hasErrors() ? 'value="'.$_POST['email'].'"' : ""); ?> onblur="return checkEmail();"/>
                         <?php
                         if ($page->errors['email'])
                             $page->printFeedback('Email non valida',false);

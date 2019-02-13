@@ -35,9 +35,8 @@ if (!$page->hasErrors()){
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">
 
 <head>
-	<meta name="title" content="Nuova Pagina | Filo di Arianna" />
-	<meta charset="utf-8" />
-	<title>Nuova Pagina | Filo di Arianna</title>
+    <title>Nuova Pagina | Filo di Arianna</title>
+    <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Accedi al tuo profilo o registrati." />
 	<meta name="author" content="Laura Cameran" />
@@ -85,12 +84,12 @@ if (!$page->hasErrors()){
 
 				<div class="form-group">
 					<label for="inputTitolo">Titolo</label>
-					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" required="required" aria-required="true" <?php echo $page->hasErrors() ? 'value="'.$_POST['title'].'"' : ''; ?> />
+					<input type="text" class="form-control" id="inputTitolo" name="title" placeholder="Titolo" required="required" <?php echo $page->hasErrors() ? 'value="'.$_POST['title'].'"' : ''; ?> />
 				</div>
 
 				<div class="form-group">
 					<label for="FormControlTextarea1">Descrizione</label>
-					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10" required="required" aria-required="true"><?php echo $page->hasErrors() ? $_POST['title']."" : ""?></textarea>
+					<textarea class="form-control" id="FormControlTextarea1" name="content" rows="10" required="required" ><?php echo $page->hasErrors() ? $_POST['title']."" : ""?></textarea>
 				</div>
 				
 				<div class="form-group">
@@ -116,8 +115,8 @@ if (!$page->hasErrors()){
 				<fieldset id="correlate" class="form-group">
 					<legend>Pagine correlate</legend>
                     <p class="row">
-                        <label for="1" class="col-xs-1">1</label>
-                        <select id="1" name="relatedpages[]" class="form-control col-xs-9">
+                        <label for="_1" class="col-xs-1">1</label>
+                        <select id="_1" name="relatedpages[]" class="form-control col-xs-9">
                             <option value="none" selected="selected">Nessuna</option>
                                 <?php
                                 $page->printSelect($user->searchArticle(''));

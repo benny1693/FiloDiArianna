@@ -16,9 +16,9 @@ function plusClick(){
 	var element = elements[elements.length - 2];
 	var newElement = element.cloneNode(true);
 	var number = +newElement.querySelector("label").textContent + 1;
-	newElement.querySelector("label").setAttribute("for", number);
+	newElement.querySelector("label").setAttribute("for", '_' + number);
 	newElement.querySelector("label").textContent = number;
-	newElement.querySelector("select").setAttribute("id", number);
+	newElement.querySelector("select").setAttribute("id", '_' + number);
 	element.parentNode.insertBefore(newElement, element.nextSibling);
 }
 

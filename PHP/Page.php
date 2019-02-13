@@ -66,25 +66,6 @@ class Page {
         }
     }
 
-    public function printOtherUserInfo($info) {
-
-        if ($info != array()) {
-            print_r(
-              "<h1>Profilo di ".$info['username']."</h1>
-			<h2>Dati personali</h2>
-			<dl id=\"personalia\">
-				<dt>Nome</dt>
-				<dd>".stripslashes($info['name'])."</dd>
-				<dt>Cognome</dt>
-				<dd>".stripslashes($info['surname'])."</dd>
-				<dt>Data di nascita</dt>
-				<dd>".$info['birthDate']."</dd>
-				<dt>Sesso</dt>
-				<dd>".$info['gender']."</dd>
-			</dl>");
-        }
-    }
-
     function printFeedback($message,$valid){
         if ($valid)
             echo "

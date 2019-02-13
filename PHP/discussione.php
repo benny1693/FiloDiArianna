@@ -50,27 +50,30 @@ $categories = $user->getPathArticle($articleID);
 
 		<section id="discussione">
 			<ul id="article-menu">
-				<li><a href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>">Voce</a></li>
+				<li><a href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>">Articolo</a></li>
 				<li class="active">Discussione</li>
 			</ul>
 			<div id="article-content">
 				<div id="article-title">
 					<h1>Discussione di <?php echo $article->getTitle(); ?></h1>
+                    <a href="#commentlist" class="sr-only">Vai ai commenti all'articolo</a>
 					<p id="article-id"><?php echo $article->getArticleID(); ?></p>
-                    <a id="back-to-article" href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>">Torna all'articolo</a>
 				</div>
 
 				<div id="commentlist">
-                    <?php $article->printArticleComments($comments); //per inserire in commenti nell'area discussione relativa ?>
+                    <?php if ($user->isRegistered()): ?>
+                    <a href="#comment-form" class="sr-only">Vai all'area di testo</a>
+                    <?php endif;
+                    $article->printArticleComments($comments);
+                    ?>
 				</div>
 
                 <?php
-                //se l'utente non è registrato, non può lasciare un commento quindi non vede la textarea
                 if($user->isRegistered())
                     $article->showTextArea($_SESSION['commenterror']);
-
                 unset($_SESSION['commenterror']);
                 ?>
+                <a id="back-to-article" href="articolo.php?articleID=<?php echo $article->getArticleID(); ?>">Torna all'articolo</a>
 
 			</div>
 		</section>

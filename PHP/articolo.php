@@ -51,7 +51,7 @@ $categories = $user->getPathArticle($articleID);
 		</nav>
 		<section id="articolo">
 			<ul id="article-menu">
-				<li class="active">Voce</li>
+				<li class="active">Articolo</li>
                 <?php
                 if($instime == null) {
                     echo '<li><a href="discussione.php?articleID='.$articleID.'">Discussione</a></li>';
@@ -82,8 +82,10 @@ $categories = $user->getPathArticle($articleID);
                 </div>
 
 				<div id="article-body">
+                    <a href="#article-references" class="sr-only">Vai alle pagine correlate</a>
 					<figure id="article-image">
-                    <?php if (!empty($article->getImage())):
+                    <?php
+                    if ($article->getImage() != ""):
                         $base64 = 'data:image/' . $article->getImageExtension() . ';base64,' . base64_encode($article->getImage());
                     ?>
                         <img class="img-fluid" src="<?php echo $base64; ?>" alt="Immagine di <?php echo $article->getArticleID();?>" />
@@ -96,7 +98,7 @@ $categories = $user->getPathArticle($articleID);
 
 				<div id="article-references">
                     <h2>Pagine correlate</h2>
-
+                    <a href="#scroll-back-button" class="sr-only">Salta pagine correlate</a>
                     <?php
                     $relatedPages = $user->getRelatedPages($article->getArticleID(),$instime);
 

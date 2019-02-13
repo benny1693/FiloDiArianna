@@ -81,8 +81,8 @@ class ArticlePage extends Page{
 
     public function showTextArea($error = null) {
         echo '
-                 <form id="comment-form" action="inseriscicommento.php" method="post">
-                    <input type="hidden" name="articleID" value="'.$this->getArticleID().'"/>
+     <form id="comment-form" action="inseriscicommento.php" method="post">
+        <input type="hidden" name="articleID" value="'.$this->getArticleID().'"/>
 					<div class="form-group row">
 						<label for="inputText">Lascia un commento</label>
 						<textarea id="inputText" class="form-control" name="content"></textarea>

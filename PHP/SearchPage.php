@@ -106,24 +106,35 @@ class SearchPage extends Page {
 			$this->printArticleSublist(array_slice($list,$this->offset()),$admin);
 	}
 
-	private function printUserSublist($userList){
-		foreach ($userList as $row) {
+	private function printAdmin($admin){
 			echo
 				"
 				<li class=\"page-administration clearfix\">
-					<form action=\"gestioneutenti.php\" method=\"post\">
-						<input type=\"hidden\" name=\"userID\" value=\"" . $row['ID'] . "\"/>
-						<a class=\"pagina\" href=\"profilopubblico.php?ID=" . $row['ID'] . "\">" . $row['username'] . "</a>";
+					<a class=\"pagina\" href=\"profilopubblico.php?ID=" . $admin['ID'] . "\">" . $admin['username'] . "</a>
+				</li>";
 
-			if ($row['is_admin'] == 0)
-				echo "
+	}
+
+	private function printUser($user) {
+		echo
+			"
+				<li class=\"page-administration clearfix\">
+					<form action=\"gestioneutenti.php\" method=\"post\">
+						<input type=\"hidden\" name=\"userID\" value=\"" . $user['ID'] . "\"/>
+						<a class=\"pagina\" href=\"profilopubblico.php?ID=" . $user['ID'] . "\">" . $user['username'] . "</a>
 						<div class=\"bottoni\">
 							<button type=\"submit\" class=\"btn btn-outline-primary\">Elimina</button>
-						</div>";
-
-			echo "
-					</form>
+						</div>
+						</form>
 				</li>";
+	}
+
+	private function printUserSublist($userList){
+		foreach ($userList as $row) {
+			if ($row['is_admin'])
+				$this->printAdmin($row);
+			else
+				$this->printUser($row);
 		}
 	}
 
