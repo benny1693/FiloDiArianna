@@ -636,6 +636,10 @@ img.navbar-brand {
 	border-radius: 0 0.25rem 0.25rem 0;
 }
 
+#correlate select{
+	height: 2.0625rem;
+}
+
 select[name="correlati"] {
 	margin-bottom: 1rem;
 }
