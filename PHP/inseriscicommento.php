@@ -7,7 +7,7 @@
  */
 require_once 'utilities.php';
 $user = init();
-$validField = preg_match('/^(.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content']);
+$validField = preg_match('/^(.*[a-zA-Z].*\r*\n*)+$/',$_POST['content']);
 
 if ($user->isRegistered() && $_SESSION['ID'] == $user->getID()){
 	if ($validField)
@@ -15,5 +15,5 @@ if ($user->isRegistered() && $_SESSION['ID'] == $user->getID()){
 	else
 		$_SESSION['commenterror'] = true;
 }
-header('Location: discussione.php?articleID='.$_POST['articleID']);
+header('Location: discussione.php?articleID='.$_POST['articleID'].'#comment-form');
 exit();
