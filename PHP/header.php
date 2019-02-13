@@ -8,7 +8,7 @@ $header = new Page();
         <a href="#sidebar-wrapper" class="sr-only">Vai al men&ugrave; di navigazione</a>
         <div class="row navbar">
             <div class="col-sm-2 col-xs-3">
-                <img class="navbar-brand" src="<?php echo Page::addPoints() . 'img/logo.png'; ?>" alt="Logo Filo di Arianna" />
+                <img class="navbar-brand" src="<?php echo Page::adjustPath() . 'img/logo.png'; ?>" alt="Logo Filo di Arianna" />
             </div>
             <div class="col-sm-3 col-sm-push-7 col-xs-9">
                 <button id="burger-menu" type="button" class="navbar-toggler" aria-hidden="true">
@@ -17,7 +17,7 @@ $header = new Page();
                 <?php $header->printLogButtons(); ?>
             </div>
             <div class="col-sm-7 col-sm-pull-2 col-xs-12">
-                <form class="row navbar-form clearfix" action="<?php echo Page::addPoints().'PHP/ricerca.php'; ?>" method="get">
+                <form class="row navbar-form clearfix" action="<?php echo Page::adjustPath().'PHP/ricerca.php'; ?>" method="get">
                     <div id="categoria" class="navbar-select">
                         <label id="selectCategory" for="inputState" class="sr-only">Seleziona la categoria in cui desideri effettuare la ricerca</label>
                         <select id="inputState" name="category" class="form-control">

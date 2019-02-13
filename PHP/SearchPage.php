@@ -74,12 +74,13 @@ class SearchPage extends Page {
                             		<input type="hidden" name="pageid" value="'.$article['ID'].'" />
                             		<input type="hidden" name="instime" value="'.$article['insTime'].'" />';
 
-		if ($admin && $this->administration == 2)
-			echo '<input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />';
+		if ($this->administration == 2) {
+			if ($admin)
+				echo '<input type="submit" class="btn  btn-outline-primary" name="action" value="Accetta" />';
+		} else
+			echo '<input type="submit" class="btn btn-outline-primary" name="action" value="Modifica" />';
 
-		echo '
-                                <input type="submit" class="btn btn-outline-primary" name="action" value="Modifica" />
-                                <input type="submit" class="btn btn-outline-primary" name="action" value="Elimina" />
+		echo '<input type="submit" class="btn btn-outline-primary" name="action" value="Elimina" />
                             </div>
                         </form>
                     </li>';

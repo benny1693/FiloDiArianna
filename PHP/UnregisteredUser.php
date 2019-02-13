@@ -20,7 +20,7 @@ class UnregisteredUser extends User{
 
 	public function subscribe($name,$surname,$gender,$birthDate,$email,$username,$password){
 
-		$birthDate = str_replace(array("-",":"," "),"",$birthDate);
+		$birthDate = self::DBTimeFormat($birthDate);
 		$this->getDBConnection()->query(
 			"CALL insertUser('$username','".addslashes($name)."','".addslashes($surname)."','$birthDate','$gender','$email','$password',0)");
 

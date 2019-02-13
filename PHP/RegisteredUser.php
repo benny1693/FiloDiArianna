@@ -17,7 +17,7 @@ class RegisteredUser extends User {
 
 	public function __construct($u_name) {
 		parent::__construct();
-		$query = $this->getDBConnection()->query("SELECT * FROM Prova._users WHERE username = '$u_name'");
+		$query = $this->getDBConnection()->query("SELECT * FROM _users WHERE username = '$u_name'");
 		if ($query->num_rows > 0) {
 			$result = $query->fetch_assoc();
 			$this->ID = $result['ID'];
@@ -64,12 +64,12 @@ class RegisteredUser extends User {
 		if ($this->getDBError() == 0) {
 
 			$query = $this->getDBConnection()->query(
-				"SELECT ID,insTime FROM Prova._pages WHERE title = '" . addslashes($title) . "'"
+				"SELECT ID,insTime FROM _pages WHERE title = '" . addslashes($title) . "'"
 			);
 
 			$result = $query->fetch_assoc();
 			$articleID = $result['ID'];
-			$timestamp = str_replace(array(":", " ", "-"), "", $result['insTime']);
+			$timestamp = self::DBTimeFormat($result['insTime']);
 
 			foreach ($relatedPages as $relation)
 				$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
@@ -81,11 +81,11 @@ class RegisteredUser extends User {
 			"CALL insertModification($articleID,'".addslashes($newcontent)."','".addslashes($newimage)."','$newext','$newtypes[0]','$newtypes[1]')");
 
 		$query = $this->getDBConnection()->query("SELECT modTime 
-																										FROM Prova._modifiedPages 
+																										FROM _modifiedPages 
 																										WHERE ID = $articleID AND content = '".addslashes($newcontent)."'");
 
 		$result = $query->fetch_assoc();
-		$timestamp = str_replace(array(":"," ","-"),"", $result['modTime']);
+		$timestamp = self::DBTimeFormat($result['modTime']);
 
 		foreach ($newrelatedPages as $relation)
 			$this->getDBConnection()->query("CALL insertPendantRelationship($articleID,$relation,'$timestamp')");
@@ -94,15 +94,15 @@ class RegisteredUser extends User {
 
 
 	public function declinePendant($articleID,$timestamp){
-		$query = $this->getDBConnection()->query("SELECT author FROM Prova._pages WHERE ID = $articleID");
+		$query = $this->getDBConnection()->query("SELECT author FROM _pages WHERE ID = $articleID");
 		$result = $query->fetch_row()[0];
 
 		if ($result == $this->ID){
 
-			$timestamp = str_replace(array("-"," ",":"),"",$timestamp);
+			$timestamp = self::DBTimeFormat($timestamp);
 
 			$query = $this->getDBConnection()->query(
-				"SELECT * FROM Prova.`_modifiedPages` WHERE ID = $articleID AND modTime = $timestamp"
+				"SELECT * FROM _modifiedPages WHERE ID = $articleID AND modTime = $timestamp"
 			);
 
 			if ($query->num_rows > 0)
@@ -114,7 +114,7 @@ class RegisteredUser extends User {
 
 
 	public function deleteArticle($articleID){
-		$query = $this->getDBConnection()->query("SELECT author FROM Prova._pages WHERE ID = $articleID");
+		$query = $this->getDBConnection()->query("SELECT author FROM _pages WHERE ID = $articleID");
 		$result = $query->fetch_row()[0];
 
 		if ($result == $this->ID)

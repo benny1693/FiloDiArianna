@@ -18,13 +18,13 @@ class Page {
 						</svg>
 					</div>
 					<ul class="dropdown">
-						<li><a href="'.self::addPoints().'PHP/areapersonale.php">Area Riservata</a></li>
-						<li lang="en"><a href="'.self::addPoints().'PHP/logout.php">Logout</a></li>
+						<li><a href="'.self::adjustPath().'PHP/areapersonale.php">Area Riservata</a></li>
+						<li lang="en"><a href="'.self::adjustPath().'PHP/logout.php">Logout</a></li>
 					</ul>
 				</div>');
     }
 
-    public static function addPoints(){
+    public static function adjustPath(){
         if (!self::isNamefile('index.php'))
             return "../";
         return "";
@@ -32,7 +32,7 @@ class Page {
 
     public function printLoginButton() {
         if (!$this->isNamefile('PHP/accesso.php'))
-            print_r('<a id="login-button" href="'.self::addPoints().'PHP/accesso.php">Accedi</a>');
+            print_r('<a id="login-button" href="'.self::adjustPath().'PHP/accesso.php">Accedi</a>');
     }
 
     public function printLogButtons() {
@@ -45,6 +45,12 @@ class Page {
     private static function isNamefile($name){
         return $_SERVER['SCRIPT_NAME'] == "/FiloDiArianna/" . $name;
     }
+
+    /* Da server tecweb
+    function isNamefile($name){
+	      return $_SERVER['SCRIPT_NAME'] == "/bcosenti/" . $name;
+    }
+    */
 
     public function printMenu() {
         if ($this->isNamefile("index.php")){

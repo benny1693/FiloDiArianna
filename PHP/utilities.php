@@ -41,10 +41,4 @@ function init() {
 	$user->setSessionVars();
 	return $user;
 }
-
-/*
-function isNamefile($name){
-	return $_SERVER['SCRIPT_URL'] == "/bcosenti/" . $name;
-}
-*/
 ?>

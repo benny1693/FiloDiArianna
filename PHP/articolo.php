@@ -18,7 +18,7 @@ if ($instime) // Se bisogna visualizzare una modifica, cerco con l'insTime
 
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
 
-$categories = $user->getPathArticle($articleID);
+$categories = $user->getPathArticle($articleID,$instime);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-IT" lang="it-IT">

@@ -10,11 +10,27 @@ if (!$user->isRegistered()) {
     $info = null;
     if (!isset($_SESSION['modification'])) { // se arrivo da una pagina diversa da pageaction, ovvero da modificapagina stessa
 
+        print_r($_POST);
         // bisogna completare la modifica di una pagina
         $info = $user->getArticleInfo($_POST['articleID'],$_POST['instime']);
 
-        $page->setErrors(!preg_match('/^(.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content'])
-            || $_POST['content'] == $info['content'] || $_POST['image'] == $info['image']);
+        $relatedPagesInfo = $user->getRelatedPages($_POST['articleID']);
+
+        $_POST['relatedpages'] = $page->filterRelatedPages($_POST['relatedpages'],$relatedPagesInfo);
+
+        $newTypes = $page->findCorrectTypes($_POST['types']);
+        $oldTypes = $user->getArticleTypes($_POST['articleID']);
+
+		print_r($oldTypes);
+		print_r($newTypes);
+
+        $nothing_new = $_POST['content'] == $info['content'] && $_POST['image'] == $info['image'] && empty($_POST['relatedpages'])
+                        && $newTypes[0] == $oldTypes[0] && $newTypes[1] == $newTypes[1];
+
+        print $newTypes[0] == $oldTypes[0] && $newTypes[1] == $newTypes[1];
+
+        $page->setErrors(!preg_match('/^(\r*\n*.*[a-zA-Z].*\r*\n*)+$/',$_POST['content'])
+            && $nothing_new);
 
         if ($page->hasErrors()) {
             $_SESSION['errorMsg'] = "I dati inseriti non sono validi o sono uguali a quelli della pagina da modificare";
@@ -23,14 +39,14 @@ if (!$user->isRegistered()) {
                 $_SESSION['errorMsg'] = 'Non hai selezionato una pagina da modificare';
             else {
                 $imgInfo = $page->adjustFile($_FILES,$info);
-                $types = $page->findCorrectTypes($_POST['types']);
-                $_POST['relatedpages'] = array_unique(array_diff($_POST['relatedpages'], array('none')));
-                $user->modifyArticle($_POST['articleID'], $_POST['content'], $imgInfo['img'], $imgInfo['ext'], $types, $_POST['relatedpages']);
+
+                $user->modifyArticle($_POST['articleID'], $_POST['content'], $imgInfo['img'], $imgInfo['ext'], $newTypes, $_POST['relatedpages']);
                 $page->addError($user->getDBError());
                 if ($page->hasErrors())
                     $_SESSION['errorMsg'] = 'Errore di inserimento nel database';
                 else
-                    $_SESSION['successMsg'] = "Modifica avvenuta con successo e in attesa di approvazione";
+                    //$_SESSION['successMsg'] = "Modifica avvenuta con successo e in attesa di approvazione";
+                    $_SESSION['successMsg'] = null;
             }
         }
     } else { // altrimenti devo effettuare il completamento dei campi
@@ -38,7 +54,6 @@ if (!$user->isRegistered()) {
         $info = $user->getArticleInfo($_SESSION['modification']['pageid'], ($modifiedpage ? $_SESSION['modification']['instime'] : null));
     }
 }
-
 if ($_SESSION['errorMsg'] || $_SESSION['successMsg']){
 	header('Location: avviso.php');
 	exit();
@@ -82,7 +97,7 @@ unset($_SESSION['modification']);
 			<h1>Modifica la pagina "<?php echo $info['title']; ?>"</h1>
 
 			<form action="modificapagina.php" method="post" enctype="multipart/form-data">
-			    <input type="hidden" name="articleID" value="'<?php echo $info['insTime']; ?>'"/>
+			    <input type="hidden" name="articleID" value="'<?php echo $info['ID']; ?>'"/>
 			    <input type="hidden" name="instime" value="<?php echo $info['insTime']; ?>">
 				<div class="form-group">
                     <?php if ($info['img']): ?>

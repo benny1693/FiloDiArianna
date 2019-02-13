@@ -7,8 +7,8 @@ if (!$user->isRegistered()){
     exit();
 }
 
-$page = new FormPage(!preg_match('/^.*[a-zA-Z].*$/',$_POST['title']) ||
-                        !preg_match('/^(.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content']));
+$page = new FormPage(!preg_match('/^\r*\n*.*[a-zA-Z].*$/',$_POST['title']) ||
+                        !preg_match('/^(\r*\n*.*[a-zA-Z].*\r*\n*)(.*[a-zA-Z]*.*\r*\n*)*$/',$_POST['content']));
 
 unset($_SESSION['errorMsg']);
 unset($_SESSION['successMsg']);
@@ -19,6 +19,8 @@ if (!$page->hasErrors()){
 	$_POST['relatedpages'] = array_unique(array_diff($_POST['relatedpages'], array('none')));
 	$user->insertArticle($_POST['title'],$_POST['content'],$imgInfo['img'],$imgInfo['ext'],$user->getID(),$types,$_POST['relatedpages']);
 	$page->addError($user->getDBError());
+	$user->getDBError();
+
 	if ($page->hasErrors()) {
 	    if ($user->getDBError() == 1644)
 	        $_SESSION['errorMsg'] = 'Pagina gi&agrave; esistente: potrebbe essere in attesa di approvazione';

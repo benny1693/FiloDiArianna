@@ -68,6 +68,10 @@ abstract class User {
 
 	public abstract function isRegistered();
 
+	static protected function DBTimeFormat($time) {
+		return str_replace(array(':','-',' '), '', $time);
+	}
+
 	static private function adjustCategories(&$category,&$subcategory) {
 		if ($category) {
 			if (!array_key_exists($category, self::Category_Handlers)) {
@@ -105,11 +109,11 @@ abstract class User {
             $table = ($pendant == 2 ? 'unpostedPages' : 'postedPages');
 
             $select = "SELECT *
-                                    FROM Prova.$table";
+                                    FROM $table";
 
             if ($category) {
                 $category = self::Category_Handlers[$category][0];
-                $select = $select . " NATURAL JOIN Prova.$category";
+                $select = $select . " NATURAL JOIN $category";
             }
             $select = $select . " WHERE title LIKE '%$substring%'";
 
@@ -119,6 +123,8 @@ abstract class User {
 
             if ($authorID)
                 $select = $select . " AND author = $authorID";
+
+            $select = $select . " ORDER BY title ASC";
 
             $query = $this->dbconnection->query($select);
 
@@ -130,7 +136,7 @@ abstract class User {
 	public function getArticleComment($articleID) {
 		$query = $this->dbconnection->query(
 			"SELECT *
-			FROM Prova.commentedArticles
+			FROM commentedArticles
 			WHERE pageID = $articleID"
 		);
 		return $query->fetch_all(MYSQLI_ASSOC);
@@ -139,7 +145,7 @@ abstract class User {
 	public function getOtherUserInfo($userID) {
 		$query = $this->dbconnection->query(
 		"SELECT * 
-			FROM Prova._users
+			FROM _users
 			WHERE ID = $userID"
 		);
 
@@ -181,13 +187,11 @@ abstract class User {
 	 */
 
 	public function getRelatedPages($articleID,$instime = null){
-
-			$query = $this->dbconnection->query("SELECT * FROM Prova.relatedPages WHERE ID1 = $articleID");
+			$query = $this->dbconnection->query("SELECT * FROM relatedPages WHERE ID1 = $articleID");
 			$result = $query->fetch_all(MYSQLI_ASSOC);
-
 			if ($instime != null){
-				$instime = str_replace(array(':','-',' '), '', $instime);
-				$query = $this->dbconnection->query("SELECT * FROM Prova.relatedPendantPages WHERE ID1 = $articleID AND insTime1 = $instime");
+				$instime = self::DBTimeFormat($instime);
+				$query = $this->dbconnection->query("SELECT * FROM relatedPendantPages WHERE ID1 = $articleID AND insTime1 = $instime");
 				$result = array('posted' => $result, 'unposted' => $query->fetch_all(MYSQLI_ASSOC));
 			}
 
@@ -203,11 +207,11 @@ abstract class User {
 	public function getArticleInfo($articleID, $instime = null) {   //ricavo le informazioni per ArticlePage
 		$query = null;
 		if ($instime == null) {
-			$query = $this->getDBConnection()->query("SELECT * FROM Prova._pages WHERE ID = $articleID");
+			$query = $this->getDBConnection()->query("SELECT * FROM _pages WHERE ID = $articleID");
 		} else {
-			$instime = str_replace(array(':','-',' '),'',$instime);
+			$instime = self::DBTimeFormat($instime);
 			$query = $this->getDBConnection()->query(
-				"SELECT * FROM Prova.allPages WHERE ID = $articleID AND insTime = $instime"
+				"SELECT * FROM allPages WHERE ID = $articleID AND insTime = $instime"
 			);
 		}
 
@@ -219,43 +223,56 @@ abstract class User {
 
 
 	public function findTypeReadFormat($category, $subcategory){
-        if (!empty($category) && !empty($subcategory))
-            return array(
-                strtoupper(substr($category,0,1)).substr($category,1), // rendo la prima lettera maiuscola
-                self::Category_Readble_Formats[$subcategory] // converto la sottocategoria
-            );
-        else
-            return null;
-    }
+			if (!empty($category) && !empty($subcategory))
+					return array(
+							strtoupper(substr($category,0,1)).substr($category,1), // rendo la prima lettera maiuscola
+							self::Category_Readble_Formats[$subcategory] // converto la sottocategoria
+					);
+			else
+					return null;
+	}
 
-	public function getPathArticle($articleID){
-			$finalQuery = null;
-			$queryReadable = null;
-			$query = $this->getDBConnection()->query("SELECT * FROM Prova._characters WHERE ID = $articleID");
+	public function getArticleTypes($articleID) {
+		$result = null;
+		$query = $this->getDBConnection()->query("SELECT * FROM _characters WHERE ID = $articleID");
+		if($query->num_rows > 0){
+			$result = $query->fetch_assoc();
+			$result = array('personaggi',$result['type']);
+		}
+		else {
+			$query = $this->getDBConnection()->query("SELECT * FROM _events WHERE ID = $articleID");
 			if($query->num_rows > 0){
-					$finalQuery = $query->fetch_assoc();
-					$queryReadable = self::findTypeReadFormat("personaggi" ,$finalQuery['type']);
-					$finalQuery = array_merge($queryReadable,array('personaggi', $finalQuery['type']));
+				$result = $query->fetch_assoc();
+				$result = array('eventi',$result['type']);
 			}
-			else {
-					$query = $this->getDBConnection()->query("SELECT * FROM Prova._events WHERE ID = $articleID");
-					if($query->num_rows > 0){
-							$finalQuery = $query->fetch_assoc();
-							$queryReadable = self::findTypeReadFormat("eventi" ,$finalQuery['era']);
-							$finalQuery = array_merge($queryReadable,array('eventi', ''.$finalQuery['era']));
-					}
-					else{
-							$query = $this->getDBConnection()->query("SELECT * FROM Prova._places WHERE ID = $articleID");
-							if($query->num_rows > 0) {
-									$finalQuery = $query->fetch_assoc();
-									$queryReadable = self::findTypeReadFormat("luoghi", $finalQuery['type']);
-									$finalQuery = array_merge($queryReadable,array('luoghi', $finalQuery['type']));
-
-							}
-					}
+			else{
+				$query = $this->getDBConnection()->query("SELECT * FROM _places WHERE ID = $articleID");
+				if($query->num_rows > 0) {
+					$result = $query->fetch_assoc();
+					$result = array('luoghi',$result['type']);
+				}
 			}
+		}
+		return $result;
+	}
 
-			return $finalQuery;
+	public function getPathArticle($articleID,$instime = null){
+		$types = null;
+		if (!$instime)
+			$types = $this->getArticleTypes($articleID);
+		else {
+			$modifiedInfo = $this->getModifiedInfo($articleID,$instime);
+			$types = array($modifiedInfo['type1'],$modifiedInfo['type2']);
+		}
+		$queryReadable = self::findTypeReadFormat($types[0],$types[1]);
+
+		return array_merge($queryReadable,$types);
+	}
+
+	public function getModifiedInfo($articleID,$instime) {
+		$instime = self::DBTimeFormat($instime);
+		$query = $this->dbconnection->query("SELECT * FROM _modifiedPages WHERE ID = $articleID AND modTime = $instime");
+		return $query->fetch_assoc();
 	}
 }
 

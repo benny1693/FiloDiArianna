@@ -17,7 +17,7 @@ class Admin extends RegisteredUser {
 
 	private function hasAdminPrivilege() {
 		$ID = $this->getID();
-		$query = $this->getDBConnection()->query("SELECT is_admin FROM Prova._users WHERE ID = $ID");
+		$query = $this->getDBConnection()->query("SELECT is_admin FROM _users WHERE ID = $ID");
 		$result = $query->fetch_row()[0];
 
 		return $result == 1;
@@ -34,11 +34,11 @@ class Admin extends RegisteredUser {
 	public function approveArticle($articleID,$timestamp = null) {
 
 		$select = "SELECT *
-								FROM Prova._modifiedPages
+								FROM _modifiedPages
 								WHERE ID = $articleID";
 
 		if ($timestamp != null) {
-			$timestamp = str_replace(array("-"," ",":"),"",$timestamp);
+			$timestamp = self::DBTimeFormat($timestamp);
 			$select = $select . " AND modTime = '$timestamp'";
 		}
 
@@ -52,10 +52,10 @@ class Admin extends RegisteredUser {
 	}
 
 	public function declinePendant($articleID,$timestamp){
-		$timestamp = str_replace(array("-"," ",":"),"",$timestamp);
+		$timestamp = self::DBTimeFormat($timestamp);
 
 		$query = $this->getDBConnection()->query(
-			"SELECT * FROM Prova.`_modifiedPages` WHERE ID = $articleID AND modTime = $timestamp"
+			"SELECT * FROM _modifiedPages WHERE ID = $articleID AND modTime = $timestamp"
 		);
 
 		if ($query->num_rows > 0)
@@ -71,7 +71,7 @@ class Admin extends RegisteredUser {
 
 	public function findUser($username) {
 		$query = $this->getDBConnection()->query(
-			"SELECT * FROM Prova._users WHERE username LIKE '%".addslashes($username)."%'"
+			"SELECT * FROM _users WHERE username LIKE '%".addslashes($username)."%'"
 		);
 
 		return $query->fetch_all(MYSQLI_ASSOC);

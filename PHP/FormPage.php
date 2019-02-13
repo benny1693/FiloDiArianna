@@ -33,10 +33,14 @@ class FormPage extends Page{
 	}
 
 	public function addError($error) {
-		if (!is_array($error)){
-			array_push($this->errors,$error);
+		if (!is_array($this->errors)) {
+			$this->errors = $error;
 		} else {
-			array_merge($this->errors,$error);
+			if (!is_array($error)){
+				array_push($this->errors,$error);
+			} else {
+				$this->errors = array_merge($this->errors,$error);
+			}
 		}
 	}
 
@@ -110,7 +114,6 @@ class FormPage extends Page{
 		} else {
 			$types[1] = substr($type,2);
 		}
-
 		return $types;
 	}
 
@@ -128,5 +131,15 @@ class FormPage extends Page{
 		}
 
 		return array('img' => $img, 'ext' => $ext);
+	}
+
+	public function filterRelatedPages($newRelatedID,$oldRelatedPages){
+		$filter = array_diff(array_unique($newRelatedID), array('none'));
+
+		$relPagesID = array();
+		foreach ($oldRelatedPages as $pageInfo)
+			array_push($relPagesID,$pageInfo['ID']);
+
+		return array_values(array_diff($filter,$relPagesID));
 	}
 }
