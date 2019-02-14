@@ -367,6 +367,13 @@ img.navbar-brand {
 	transform: translateX(-0.9375rem);
 }
 
+@media(max-height: 25rem) {
+	#sidebar-wrapper {
+		top:0;
+	}
+}
+
+
 .sidebar-nav {
 	top: 0;
 	/*width: 15rem;*/
