@@ -679,7 +679,7 @@ label[for="inputPasswordConfirm"] {
 #article-menu a {
 	text-decoration: underline;
 	background-color: rgba(100, 100, 100, 0.1);
-	padding: 0.5rem 2rem;
+	padding: 0.5rem 1rem;
 	display: block;
 }
 
@@ -693,7 +693,7 @@ label[for="inputPasswordConfirm"] {
 #article-menu > li.active {
 	background-color: #fff;
 	position: relative;
-	padding: 0.5rem 2rem;
+	padding: 0.5rem 1rem;
 	box-shadow: -0.1rem -2.5px 5px -2px rgba(0, 0, 0, .16), 0.1rem -1.5px 5px -2px rgba(0, 0, 0, .16);
 }
 
@@ -1358,7 +1358,6 @@ p.time {
 #FormControlTextarea {
 	line-height: inherit;
 	height: 20rem;
-	box-shadow: 0 0 0 0.1rem #001840;
 }
 
 .form-check-input:disabled ~ .form-check-label {

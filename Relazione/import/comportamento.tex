@@ -48,28 +48,29 @@ Il codice PHP è stato suddiviso in diversi file, uno per ogni classe. Inoltre �
 La classe \textit{User} effettua la connessione al database tramite il costruttore ed espone i metodi per il reperimento delle informazioni.\\
 I metodi più importanti sono:
 \begin{itemize}
-	\item \textbf{\texttt{searchArticle}}: permette la ricerca per sottostringa, categoria, sottocategoria, tipo di pagina (pendenti o pubblicate) e autore;
-	\item \textbf{\texttt{getArticleComment}}: permette il reperimento dei commenti a un determinato articolo;
-	\item \textbf{\texttt{getArticleInfo}}: permette il reperimento delle informazioni di un determinato articolo dato il suo codice identiificativo;
-	\item \textbf{\texttt{getPathArticle}}: permette il reperimento della categorie e della sottocategoria di un articolo.
+	\item \textbf{\texttt{searchArticle()}}: permette la ricerca per sottostringa, categoria, sottocategoria, tipo di pagina (pendenti o pubblicate) e autore;
+	\item \textbf{\texttt{getArticleComment()}}: permette il reperimento dei commenti a un determinato articolo;
+	\item \textbf{\texttt{getArticleInfo()}}: permette il reperimento delle informazioni di un determinato articolo dato il suo codice identificativo;
+	\item \textbf{\texttt{getPathArticle()}}: permette il reperimento della categorie e della sottocategoria di un articolo.
 \end{itemize}
 
 \subparagraph{UnregisteredUser} 
-La classe \textit{UnregisteredUser} espone la funzionalità di registrazione tramite il metodo \texttt{subscribe}.
+La classe \textit{UnregisteredUser} espone la funzionalità di registrazione tramite il metodo \texttt{subscribe()}.
 
 \subparagraph{RegisteredUser} 
 La classe \textit{RegisteredUser} aggiunge alle funzionalità del supertipo quelle di modifica della base di dati.\\
 I metodi principali sono:
 \begin{itemize}
-	\item \texttt{insertArticle}: permette di inserire un nuovo articolo alla piattaforma, tale articolo sarà inserito come pendente;
-	\item \texttt{modifyArticle}: permette di inserire una modifica dell'articolo alla piattaforma;
-	\item \texttt{deleteArticle}: permette l'eliminazione di un articolo pubblicato;
-	\item \texttt{declinePendant}: permette la possibilità di eliminare una propria pagina pendente o una propria modifica in attesa di approvazione;
-	\item \texttt{insertComment}: permette di inserire un commento a un articolo.
+	\item \texttt{insertArticle()}: permette di inserire un nuovo articolo alla piattaforma, tale articolo sarà inserito come pendente;
+	\item \texttt{modifyArticle()}: permette di inserire una modifica dell'articolo alla piattaforma;
+	\item \texttt{deleteArticle()}: permette l'eliminazione di un articolo pubblicato;
+	\item \texttt{declinePendant()}: permette la possibilità di eliminare una propria pagina pendente o una propria modifica in attesa di approvazione;
+	\item \texttt{insertComment()}: permette di inserire un commento a un articolo.
 \end{itemize}
 
 \subparagraph{Admin}
-La classe \textit{Admin} aggiunge la possibilità di approvare un articolo (\texttt{approveArticle()}) e di eliminare un utente \texttt{deleteUser()}. Infine, sovrascrive il metodo di \textit{RegisteredUser} \texttt{declinePendant()}, permettendo di eliminare una qualsiasi pagina pendente o un qualsiasi modifica.
+La classe \textit{Admin} aggiunge la possibilità di approvare un articolo (\texttt{approveArticle()}) e di eliminare un utente \texttt{deleteUser()}.\\
+Infine, sovrascrive il metodo \texttt{declinePendant()} di \textit{RegisteredUser}, permettendo di eliminare una qualsiasi pagina pendente o un qualsiasi modifica.
 
 \begin{figure}[H]
 	\begin{center}
@@ -90,10 +91,10 @@ I metodi principali sono:
 
 \subparagraph{SearchPage}
 La classe \textit{SearchPage} si occupa della visualizzazione delle liste dei risultati delle varie pagine (come ad esempio ricerca.php e listapagine.php), gestendo anche la paginazione. Il campo dati administration viene utilizzato per stabilire un livello di amministrazione della lista. I livelli possibili sono 3:
-\begin{enumerate}[start=0, label=\arabic*$\rightarrow$]
-	\item nessun tipo di amministrazione: non vengono mostrati bottoni per l'amministrazione;
-	\item abilita la modifica: vengono mostrati i bottoni di modifica ed eliminazione;
-	\item abilita l'approvazione: vengono mostrati i bottoni di approvazione (se i permessi sono sufficienti) e di eliminazione.
+\begin{enumerate}[start=0, label=\textbf{\arabic*$\rightarrow$}]
+	\item \textbf{nessun tipo di amministrazione:} non vengono mostrati bottoni per l'amministrazione;
+	\item \textbf{abilita la modifica:} vengono mostrati i bottoni di modifica ed eliminazione;
+	\item \textbf{abilita l'approvazione:} vengono mostrati i bottoni di approvazione (se i permessi sono sufficienti) e di eliminazione.
 \end{enumerate}
 I metodi principali sono:
 \begin{itemize}
