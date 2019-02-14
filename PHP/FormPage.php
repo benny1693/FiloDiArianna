@@ -82,7 +82,7 @@ class FormPage extends Page{
 		if (!preg_match("/^[a-zA-Z0-9]+$/", $post['username']))
 			$this->errors['username'] = 'Username non valido';
 
-		$this->errors['password'] = !preg_match("/^([a-zA-Z0-9!@#$%^&*]){6,12}$/", $post['password']);
+		$this->errors['password'] = !preg_match("/^([a-zA-Z0-9!@#$%^&*]){4,12}$/", $post['password']);
 
 		$this->errors['confirmpass'] = $post['password'] != $post['confirmpass'];
 
@@ -114,6 +114,7 @@ class FormPage extends Page{
 		} else {
 			$types[1] = substr($type,2);
 		}
+		print_r($types);
 		return $types;
 	}
 
