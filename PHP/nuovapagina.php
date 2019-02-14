@@ -19,7 +19,6 @@ if (!$page->hasErrors()){
 	$_POST['relatedpages'] = array_unique(array_diff($_POST['relatedpages'], array('none')));
 	$user->insertArticle($_POST['title'],$_POST['content'],$imgInfo['img'],$imgInfo['ext'],$user->getID(),$types,$_POST['relatedpages']);
 	$page->addError($user->getDBError());
-	$user->getDBError();
 
 	if ($page->hasErrors()) {
 	    if ($user->getDBError() == 1644)

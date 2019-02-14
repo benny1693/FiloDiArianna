@@ -46,14 +46,14 @@ abstract class User {
 
 	const Category_Readble_Formats = array (
 	    'umani'=> 'Esseri Umani',
-        'creature' => 'Creature',
-        'eroi' => 'Semidivinit&agrave; ed Eroi',
-        'dei' => 'Divinit&agrave;',
-        'eraeroi' => 'Epoca degli Eroi',
-        'eradei' => 'Epoca degli Dei',
-        'eradeiuomini' => 'Epoca degli Dei e degli Uomini',
-        'mitologici' => 'Mitologici',
-        'reali' => 'Reali'
+			'creature' => 'Creature',
+			'eroi' => 'Semidivinit&agrave; ed Eroi',
+			'dei' => 'Divinit&agrave;',
+			'eraeroi' => 'Epoca degli Eroi',
+			'eradei' => 'Epoca degli Dei',
+			'eradeiuomini' => 'Epoca degli Dei e degli Uomini',
+			'mitologici' => 'Mitologici',
+			'reali' => 'Reali'
     );
 
 
@@ -190,11 +190,10 @@ abstract class User {
 			$query = $this->dbconnection->query("SELECT * FROM relatedPages WHERE ID1 = $articleID");
 			$result = $query->fetch_all(MYSQLI_ASSOC);
 			if ($instime != null){
-				print $instime = self::DBTimeFormat($instime);
+				$instime = self::DBTimeFormat($instime);
 				$query = $this->dbconnection->query("SELECT * FROM relatedPendantPages WHERE ID1 = $articleID AND insTime1 = '$instime'");
 				$result = array('posted' => $result, 'unposted' => $query->fetch_all(MYSQLI_ASSOC));
 			}
-			print_r($result);
 			return $result;
 	}
 
@@ -243,7 +242,7 @@ abstract class User {
 			$query = $this->getDBConnection()->query("SELECT * FROM _events WHERE ID = $articleID");
 			if($query->num_rows > 0){
 				$result = $query->fetch_assoc();
-				$result = array('eventi',$result['type']);
+				$result = array('eventi',$result['era']);
 			}
 			else{
 				$query = $this->getDBConnection()->query("SELECT * FROM _places WHERE ID = $articleID");
@@ -264,6 +263,7 @@ abstract class User {
 			$modifiedInfo = $this->getModifiedInfo($articleID,$instime);
 			$types = array($modifiedInfo['type1'],$modifiedInfo['type2']);
 		}
+
 		$queryReadable = self::findTypeReadFormat($types[0],$types[1]);
 
 		return array_merge($queryReadable,$types);

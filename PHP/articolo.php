@@ -12,12 +12,10 @@ if($articleID == null || $infoArticle == null) { //se la pagina non esiste o l'i
 // Se sono l'autore dell'articolo o l'admin sono un utente corretto
 $correctUser = ($user->isRegistered() && $user->getID() == $infoArticle['author']) || $user->isAdmin();
 $instime = $correctUser ? $_GET['instime'] : null;
-
 if ($instime) // Se bisogna visualizzare una modifica, cerco con l'insTime
 	$infoArticle = $user->getArticleInfo($articleID,$instime);
 
 $article = new ArticlePage($articleID, $infoArticle['title'], $infoArticle['author'], $infoArticle['img'],$infoArticle['ext'], $infoArticle['content']);
-
 $categories = $user->getPathArticle($articleID,$instime);
 ?>
 <!DOCTYPE html>
@@ -69,10 +67,10 @@ $categories = $user->getPathArticle($articleID,$instime);
                     <a href="#article-body" class="sr-only">Vai al contenuto dell'articolo</a>
                     <p id="article-id"><?php echo $article->getArticleID(); ?></p>
 					<?php if($article->getAuthor()): ?>
-                        <p id="article-author">Scritto da <a href="profilopubblico.php?ID=' . $article->getAuthor() . '"><?php echo $authorInfo['username']; ?></a></p>
+                        <p id="article-author">Scritto da <a href="profilopubblico.php?ID=<?php echo $article->getAuthor(); ?>"><?php echo $authorInfo['username']; ?></a></p>
                     <?php else: ?>
                         <p id="article-author">Scritto da utente eliminato</p>
-				    <?php endif; ?>
+				    <?php endif;?>
                     <dl>
                         <dt>Categoria</dt>
                         <dd><?php echo $categories[0]; ?></dd>
