@@ -27,7 +27,7 @@ class Comment
 
   public function getArticleID()  { return $this->articleID; }
 
-  public function equalTo(Comment $comment) { //TODO: vedere se va senza Comment
+  public function equalTo(Comment $comment) {
 
     if ($this->timeStamp == $comment->getTimeStamp() && $this->userID == $comment->getAuthor() &&
         $this->articleID == $comment->getArticleID() && $this->content == $comment->getContent()) {

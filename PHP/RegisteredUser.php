@@ -80,9 +80,7 @@ class RegisteredUser extends User {
 		$this->getDBConnection()->query(
 			"CALL insertModification($articleID,'".addslashes($newcontent)."','".addslashes($newimage)."','$newext','$newtypes[0]','$newtypes[1]')");
 
-		$query = $this->getDBConnection()->query("SELECT modTime 
-																										FROM _modifiedPages 
-																										WHERE ID = $articleID AND content = '".addslashes($newcontent)."'");
+		$query = $this->getDBConnection()->query("SELECT modTime FROM _modifiedPages WHERE ID = $articleID ORDER BY modTime DESC LIMIT 1");
 
 		$result = $query->fetch_assoc();
 		$timestamp = self::DBTimeFormat($result['modTime']);

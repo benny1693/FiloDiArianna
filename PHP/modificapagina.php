@@ -9,44 +9,39 @@ if (!$user->isRegistered()) {
 } else {
     $info = null;
     if (!isset($_SESSION['modification'])) { // se arrivo da una pagina diversa da pageaction, ovvero da modificapagina stessa
+        if (empty($_POST)) // Sono arrivato da una pagina senza usare un form
+            $_SESSION['errorMsg'] = 'Non hai selezionato una pagina da modificare';
+        else {
+            // bisogna completare la modifica di una pagina
 
-        print_r($_POST);
-        // bisogna completare la modifica di una pagina
-        $info = $user->getArticleInfo($_POST['articleID'],$_POST['instime']);
+            $info = $user->getArticleInfo($_POST['articleID'],$_POST['instime']);
 
-        $relatedPagesInfo = $user->getRelatedPages($_POST['articleID']);
+            $relatedPagesInfo = $user->getRelatedPages($_POST['articleID']);
 
-        $_POST['relatedpages'] = $page->filterRelatedPages($_POST['relatedpages'],$relatedPagesInfo);
+            $_POST['relatedpages'] = $page->filterRelatedPages($_POST['relatedpages'],$relatedPagesInfo);
 
-        $newTypes = $page->findCorrectTypes($_POST['types']);
-        $oldTypes = $user->getArticleTypes($_POST['articleID']);
+            $newTypes = $page->findCorrectTypes($_POST['types']);
 
-		print_r($oldTypes);
-		print_r($newTypes);
+            $oldTypes = $user->getArticleTypes($_POST['articleID']);
 
-        $nothing_new = $_POST['content'] == $info['content'] && $_POST['image'] == $info['image'] && empty($_POST['relatedpages'])
-                        && $newTypes[0] == $oldTypes[0] && $newTypes[1] == $newTypes[1];
+            // non c'è nulla di nuovo se tutto ciò che c'è in post non cambia i dati della pagina da modificare
+            $nothing_new = $_POST['content'] == $info['content'] && $_POST['image'] == $info['image'] && empty($_POST['relatedpages'])
+                            && $newTypes[0] == $oldTypes[0] && $newTypes[1] == $newTypes[1];
 
-        print $newTypes[0] == $oldTypes[0] && $newTypes[1] == $newTypes[1];
+            $page->setErrors(!preg_match('/^(\r*\n*.*[a-zA-Z].*\r*\n*)+$/',$_POST['content']) || $nothing_new);
 
-        $page->setErrors(!preg_match('/^(\r*\n*.*[a-zA-Z].*\r*\n*)+$/',$_POST['content'])
-            && $nothing_new);
+            if ($page->hasErrors()) {
+                $_SESSION['errorMsg'] = "I dati inseriti non sono validi o sono uguali a quelli della pagina da modificare";
+            } else {
 
-        if ($page->hasErrors()) {
-            $_SESSION['errorMsg'] = "I dati inseriti non sono validi o sono uguali a quelli della pagina da modificare";
-        } else {
-            if (empty($_POST)) // Sono arrivato da una pagina senza usare un form
-                $_SESSION['errorMsg'] = 'Non hai selezionato una pagina da modificare';
-            else {
-                $imgInfo = $page->adjustFile($_FILES,$info);
+                    $imgInfo = $page->adjustFile($_FILES,$info);
 
-                $user->modifyArticle($_POST['articleID'], $_POST['content'], $imgInfo['img'], $imgInfo['ext'], $newTypes, $_POST['relatedpages']);
-                $page->addError($user->getDBError());
-                if ($page->hasErrors())
-                    $_SESSION['errorMsg'] = 'Errore di inserimento nel database';
-                else
-                    //$_SESSION['successMsg'] = "Modifica avvenuta con successo e in attesa di approvazione";
-                    $_SESSION['successMsg'] = null;
+                    $user->modifyArticle($_POST['articleID'], $_POST['content'], $imgInfo['img'], $imgInfo['ext'], $newTypes, $_POST['relatedpages']);
+                    $page->addError($user->getDBError());
+                    if ($page->hasErrors())
+                        $_SESSION['errorMsg'] = 'Errore di inserimento nel database';
+                    else
+                        $_SESSION['successMsg'] = "Modifica avvenuta con successo e in attesa di approvazione";
             }
         }
     } else { // altrimenti devo effettuare il completamento dei campi

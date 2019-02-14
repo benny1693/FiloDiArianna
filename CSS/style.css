@@ -1209,7 +1209,7 @@ p.time {
 	font-size: 1.8rem;
 	padding: 0.5rem 2rem;
 	display: block;
-	background: #004966;
+	background: #003177;
 	color: #fff;
 }
 
@@ -1460,6 +1460,10 @@ legend {
 .bottoni {
 	display: inline-block;
 	float: right;
+}
+
+.bottoni > *{
+	margin: 0 0.15rem;
 }
 
 .pagina {

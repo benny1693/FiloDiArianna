@@ -190,11 +190,11 @@ abstract class User {
 			$query = $this->dbconnection->query("SELECT * FROM relatedPages WHERE ID1 = $articleID");
 			$result = $query->fetch_all(MYSQLI_ASSOC);
 			if ($instime != null){
-				$instime = self::DBTimeFormat($instime);
-				$query = $this->dbconnection->query("SELECT * FROM relatedPendantPages WHERE ID1 = $articleID AND insTime1 = $instime");
+				print $instime = self::DBTimeFormat($instime);
+				$query = $this->dbconnection->query("SELECT * FROM relatedPendantPages WHERE ID1 = $articleID AND insTime1 = '$instime'");
 				$result = array('posted' => $result, 'unposted' => $query->fetch_all(MYSQLI_ASSOC));
 			}
-
+			print_r($result);
 			return $result;
 	}
 
