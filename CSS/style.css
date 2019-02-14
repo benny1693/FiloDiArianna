@@ -1351,7 +1351,6 @@ p.time {
 #FormControlTextarea {
 	line-height: inherit;
 	height: 20rem;
-	box-shadow: 0 0 0 0.1rem #001840;
 }
 
 .form-check-input:disabled ~ .form-check-label {
